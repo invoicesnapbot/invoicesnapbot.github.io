@@ -1,0 +1,12 @@
+title: InvoiceSnap
+description: Automated invoice extraction for Discord
+url: "https://invoicesnapbot.com"
+baseurl: ""
+theme: minima
+markdown: kramdown
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "page"
