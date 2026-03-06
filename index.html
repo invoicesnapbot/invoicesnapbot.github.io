@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvoiceSnap - Receipt extraction for Discord</title>
+    <meta name="description" content="Upload receipts to Discord, get organised spreadsheets. Betty reads your receipts so you don't have to. Free for 15 invoices/month.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        a { color: #f5a623; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Hero */
+        .hero {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 24px 60px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #1a1a2e;
+            border: 1px solid #2a2a4a;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            color: #a0a0c0;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #f5a623;
+        }
+
+        .hero .subtitle {
+            font-size: 20px;
+            color: #a0a0a0;
+            max-width: 600px;
+            margin: 0 auto 36px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #f5a623;
+            color: #0f0f0f;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 14px 32px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .btn-primary:hover { background: #e6951a; text-decoration: none; }
+
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: #e0e0e0;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: border-color 0.2s;
+        }
+        .btn-secondary:hover { border-color: #f5a623; text-decoration: none; }
+
+        .hero-note {
+            font-size: 14px;
+            color: #666;
+            margin-top: 12px;
+        }
+
+        /* Betty quote */
+        .betty-section {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+            text-align: center;
+        }
+
+        .betty-quote {
+            background: #1a1a1a;
+            border-left: 3px solid #f5a623;
+            border-radius: 0 8px 8px 0;
+            padding: 20px 28px;
+            font-style: italic;
+            color: #c0c0c0;
+            font-size: 17px;
+            text-align: left;
+        }
+
+        .betty-quote .attribution {
+            font-style: normal;
+            font-size: 13px;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        /* How it works */
+        .section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 48px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #1a1a2e;
+            border: 1px solid #2a2a4a;
+            color: #f5a623;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .step h3 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .feature {
+            background: #1a1a1a;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .feature h3 {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Pricing */
+        .pricing {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .pricing-card {
+            background: #1a1a1a;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            border-color: #f5a623;
+        }
+
+        .pricing-card h3 {
+            color: #fff;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .pricing-card .price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .pricing-card .price-note {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        .pricing-card li {
+            padding: 6px 0;
+            color: #a0a0a0;
+            font-size: 14px;
+        }
+
+        .pricing-card li::before {
+            content: "✓ ";
+            color: #f5a623;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .footer-links a { color: #888; font-size: 14px; }
+        .footer-links a:hover { color: #f5a623; }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 32px; }
+            .hero .subtitle { font-size: 17px; }
+            .steps { grid-template-columns: 1fr; gap: 24px; }
+            .features { grid-template-columns: 1fr; }
+            .pricing-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="hero-badge">Discord bot for freelancers, creators, and small businesses</div>
+    <h1>Upload receipts.<br>Get a <span>tidy spreadsheet</span>.</h1>
+    <p class="subtitle">Betty reads your invoices so you don't have to. Drop a PDF, photo, or Word doc into Discord and she'll extract it straight into Google Sheets.</p>
+    <div class="cta-group">
+        <a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" class="btn-primary">Add to Discord - Free</a>
+        <a href="#pricing" class="btn-secondary">See pricing</a>
+    </div>
+    <p class="hero-note">15 invoices/month free. No credit card. No time limit.</p>
+</section>
+
+<section class="betty-section">
+    <div class="betty-quote">
+        "You bought a $149 hardware wallet to protect your crypto. The irony of needing a receipt for that is not lost on me."
+        <div class="attribution">- Betty, after scanning a Ledger receipt</div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section-title">How it works</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <h3>Add Betty to Discord</h3>
+            <p>One click. Type <code>!setup your@email.com</code> and she creates your spreadsheet.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <h3>Upload your receipts</h3>
+            <p>Drag and drop PDFs, photos, or Word docs. Up to 10 at once.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <h3>Get organised data</h3>
+            <p>Date, vendor, amount, tax, category. All extracted and sorted in your Google Sheet.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section-title">What you get</h2>
+    <div class="features">
+        <div class="feature">
+            <h3>AI-powered extraction</h3>
+            <p>Betty reads receipts, invoices, and documents. She pulls out the vendor, date, amount, tax, and even categorises the purchase.</p>
+        </div>
+        <div class="feature">
+            <h3>Google Sheets integration</h3>
+            <p>Your data goes straight into a spreadsheet. Filter by category, sort by date, export for your accountant. Your data, your way.</p>
+        </div>
+        <div class="feature">
+            <h3>Personality included</h3>
+            <p>Betty has opinions about your spending. They're dry, occasionally devastating, and always brief. Don't take it personally.</p>
+        </div>
+        <div class="feature">
+            <h3>Batch uploads</h3>
+            <p>Drop up to 10 files at once. Betty processes them all, deduplicates, and stacks them into your sheet.</p>
+        </div>
+    </div>
+</section>
+
+<section class="pricing" id="pricing">
+    <h2 class="section-title">Simple pricing</h2>
+    <div class="pricing-cards">
+        <div class="pricing-card">
+            <h3>Free</h3>
+            <div class="price">$0</div>
+            <div class="price-note">forever</div>
+            <ul>
+                <li>15 invoices per month</li>
+                <li>AI extraction + categorisation</li>
+                <li>Google Sheets integration</li>
+                <li>Betty's personality commentary</li>
+                <li>Resets on the 1st of each month</li>
+            </ul>
+            <a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" class="btn-secondary" style="width:100%;display:block;text-align:center;">Get started</a>
+        </div>
+        <div class="pricing-card featured">
+            <h3>Unlimited</h3>
+            <div class="price">$9 <span style="font-size:16px;font-weight:400;color:#888;">USD/month</span></div>
+            <div class="price-note">cancel anytime</div>
+            <ul>
+                <li>Unlimited invoices</li>
+                <li>Everything in Free</li>
+                <li>Priority during high demand</li>
+                <li>Support via email</li>
+            </ul>
+            <a href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" class="btn-primary" style="width:100%;display:block;text-align:center;">Upgrade</a>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-links">
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/tos/">Terms of Service</a>
+        <a href="/refund/">Refund Policy</a>
+    </div>
+    <p>Questions? Email <a href="mailto:admin@invoicesnapbot.com">admin@invoicesnapbot.com</a></p>
+    <p style="margin-top:8px;">Powered by AI. Results may vary. Always review extracted data before using it for tax or accounting purposes.</p>
+</footer>
+
+</body>
+</html>
