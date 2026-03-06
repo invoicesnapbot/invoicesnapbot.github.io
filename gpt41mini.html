@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InvoiceSnap - Receipts with an Attitude</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #181214;
+    color: #ffb86c;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    color: #ffb86c;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  header {
+    padding: 2rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid #5c3a00;
+  }
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  header p {
+    font-weight: 700;
+    color: #f2f0e6; /* off white for emphasis */
+  }
+  main {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  section.hero {
+    margin-bottom: 3rem;
+    background-color: #2e1b07;
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 4px 12px rgba(255, 184, 108, 0.3);
+  }
+  section.hero h2 {
+    font-size: 1.9rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  section.hero p {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #ffd18c;
+  }
+  .betty-quote {
+    background: #3c2410;
+    border-left: 4px solid #ffb86c;
+    margin: 1rem 0;
+    padding: 1rem 1.2rem;
+    font-style: normal;
+    border-radius: 6px;
+    color: #ffe5b4;
+  }
+  .section-title {
+    font-size: 1.4rem;
+    border-bottom: 1px solid #5c3a00;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  ul.betty-quotes {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 3rem;
+  }
+  ul.betty-quotes li {
+    margin-bottom: 1rem;
+  }
+  .how-it-works ul {
+    padding-left: 1.25rem;
+  }
+  .how-it-works li {
+    margin-bottom: 1rem;
+  }
+  .pricing {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .price-card {
+    background: #3c2410;
+    border: 2px solid #ffb86c;
+    border-radius: 10px;
+    flex: 1 0 280px;
+    max-width: 320px;
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+    color: #ffe5b4;
+  }
+  .price-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+  }
+  .price-card p.price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0.5rem 0 1.5rem;
+    color: #ffb86c;
+  }
+  .price-card a {
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: #ffb86c;
+    color: #3c2410;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    transition: background-color 0.25s ease;
+  }
+  .price-card a:hover {
+    background-color: #e19b40;
+  }
+  footer {
+    padding: 1.5rem 1rem;
+    font-size: 0.85rem;
+    color: #796142;
+    border-top: 1px solid #5c3a00;
+    text-align: center;
+  }
+  footer a {
+    margin: 0 0.6rem;
+    color: #796142;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 600px) {
+    section.hero {
+      padding: 1.5rem 1rem;
+    }
+    main {
+      margin: 1rem auto;
+      padding: 0 1rem;
+    }
+    .price-card {
+      max-width: 100%;
+      flex: 1 0 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>InvoiceSnap</h1>
+  <p>Receipts with an attitude. Because your expenses deserve a little sass.</p>
+</header>
+<main>
+<section class="hero">
+  <h2>Hey, I'm Betty. Your receipts? I've seen 'em all. Twice.</h2>
+  <p>Ledger dinners, Adobe subscriptions you forgot, Uber Eats at 3am—if it’s on your tab, I’ve got thoughts. Mostly sarcastic.</p>
+</section>
+<section>
+  <h3 class="section-title">What you actually get (and what Betty thinks):</h3>
+  <ul class="betty-quotes">
+    <li class="betty-quote">"Ledger receipt from that 'business' lunch. Hope it was really work, not an excuse to drink alone."</li>
+    <li class="betty-quote">"Adobe: $49.99 for Photoshop. Because apparently, paying monthly hurts less than owning. Cute."</li>
+    <li class="betty-quote">"3am Uber Eats spree. The midnight salad was definitely not for health."</li>
+    <li class="betty-quote">"Subscription to 'Pro' cloud storage. Storage for your emotional baggage too?"</li>
+    <li class="betty-quote">"Coffee shop receipt with two extra lattes. Someone needed a hug, or a timeout."</li>
+  </ul>
+</section>
+<section class="how-it-works">
+  <h3 class="section-title">How this mess works:</h3>
+  <ul>
+    <li>Snap or upload your receipts. Even blurry, I don’t judge. Well, maybe a little.</li>
+    <li>I scan, I sort, I roast, I organize. Your mess, polished with a side of snark.</li>
+    <li>Export neat reports for tax, audits, or just to prove you’re not making it all up.</li>
+  </ul>
+</section>
+<section class="pricing">
+  <div class="price-card">
+    <h3>Free</h3>
+    <p class="price">15 receipts/month<br />$0 forever</p>
+    <p>Dip your toes in. No credit card required.</p>
+    <a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" target="_blank" rel="noopener noreferrer">Join our Discord</a>
+  </div>
+  <div class="price-card">
+    <h3>Unlimited</h3>
+    <p class="price">$9 USD/month</p>
+    <p>Because your receipt pile isn't going away anytime soon.</p>
+    <a href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" target="_blank" rel="noopener noreferrer">Subscribe Now</a>
+  </div>
+</section>
+</main>
+<footer>
+  <a href="/privacy/">Privacy</a> |
+  <a href="/tos/">Terms of Service</a> |
+  <a href="/refund/">Refund Policy</a> <br />
+  <a href="mailto:admin@invoicesnapbot.com">admin@invoicesnapbot.com</a>
+</footer>
+</body>
+</html>
