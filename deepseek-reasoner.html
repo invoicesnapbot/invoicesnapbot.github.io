@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvoiceSnap - Invoices with an Attitude</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0F0F0F;
+            --bg-darker: #0A0A0A;
+            --text: #E8E8E8;
+            --text-muted: #A0A0A0;
+            --accent-amber: #FF8C42;
+            --accent-coral: #FF6B35;
+            --accent-warm: #FF9A76;
+            --accent-subtle: #332218;
+            --card-bg: #1A1A1A;
+            --border: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Hero */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(to bottom, var(--bg-darker) 0%, var(--bg-dark) 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--accent-amber), var(--accent-coral));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .hero-subtitle strong {
+            color: var(--accent-warm);
+            font-weight: 600;
+        }
+
+        .byline {
+            font-size: 1.1rem;
+            color: var(--accent-amber);
+            font-style: italic;
+            margin-top: 2rem;
+        }
+
+        /* Quips */
+        .quips {
+            background-color: var(--bg-darker);
+        }
+
+        .quips h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent-warm);
+        }
+
+        .quip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .quip-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border-left: 4px solid var(--accent-amber);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .quip-card h3 {
+            font-size: 1.2rem;
+            color: var(--accent-amber);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quip-card p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: var(--text);
+        }
+
+        .quip-card .receipt-type {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--border);
+        }
+
+        /* How it works */
+        .how-it-works {
+            background-color: var(--bg-dark);
+        }
+
+        .how-it-works h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent-warm);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            background-color: var(--accent-subtle);
+            color: var(--accent-amber);
+            border-radius: 50%;
+            line-height: 48px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-warm);
+        }
+
+        .step p {
+            color: var(--text-muted);
+        }
+
+        /* Pricing */
+        .pricing {
+            background-color: var(--bg-darker);
+            text-align: center;
+        }
+
+        .pricing h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-warm);
+        }
+
+        .pricing-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+            border: 2px solid var(--border);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-amber);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent-coral);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured::before {
+            content: "Betty's Pick";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--accent-coral);
+            color: var(--bg-darker);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-bottom-left-radius: 12px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-warm);
+        }
+
+        .price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-amber);
+            margin-bottom: 0.5rem;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .pricing-card li {
+            padding: 0.5rem 0;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pricing-card li::before {
+            content: "✓";
+            color: var(--accent-amber);
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--accent-amber);
+            color: var(--bg-darker);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-coral);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent-warm);
+            border: 2px solid var(--accent-warm);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-warm);
+            color: var(--bg-darker);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-darker);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            color: var(--accent-amber);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-column h4 {
+            font-size: 1.2rem;
+            color: var(--accent-warm);
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent-amber);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 0;
+            }
+
+            .hero {
+                padding-top: 5rem;
+                padding-bottom: 5rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .pricing-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        /* Betty's touch */
+        .betty-voice {
+            font-style: italic;
+            color: var(--accent-warm);
+            opacity: 0.9;
+        }
+
+        .sigh {
+            display: inline-block;
+            animation: sigh 2s infinite;
+        }
+
+        @keyframes sigh {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Invoices with an Attitude</h1>
+            <p class="hero-subtitle">
+                Tired of boring spreadsheets? Meet <strong>Betty</strong>. I read your receipts so you don't have to pretend you know what "accounts payable" means.
+            </p>
+            <p class="hero-subtitle">
+                I've seen it all. Twice. And I have <span class="sigh">feelings</span> about it.
+            </p>
+            <a href="#pricing" class="btn">Let Betty Judge Your Spending</a>
+            <p class="byline">(Don't worry, I roast the behaviour, not the bill. Usually.)</p>
+        </div>
+    </section>
+
+    <!-- Example Quips -->
+    <section class="quips">
+        <div class="container">
+            <h2>What You Actually Get</h2>
+            <p class="betty-voice" style="text-align: center; margin-bottom: 3rem;">A glimpse into my world. Try not to feel seen.</p>
+            
+            <div class="quip-grid">
+                <div class="quip-card">
+                    <h3>💰 Ledger Receipt</h3>
+                    <p>"Ah, the 'future-proof financial security' purchase. Because nothing says 'I trust the system' like buying hardware to escape it. Let's hope you actually set it up this time."</p>
+                    <div class="receipt-type">Cryptocurrency • $149.99</div>
+                </div>
+                
+                <div class="quip-card">
+                    <h3>🎨 Adobe Subscription</h3>
+                    <p>"Another monthly charge for software you use twice a year to make a birthday card. The creative dream, now in convenient installment plan form."</p>
+                    <div class="receipt-type">Software • $29.99/month</div>
+                </div>
+                
+                <div class="quip-card">
+                    <h3>🍕 3am Uber Eats</h3>
+                    <p>"Midnight pizza: $24. Delivery fee: $5.99. The quiet despair of eating cold fries while questioning all your life choices: priceless."</p>
+                    <div class="receipt-type">Food Delivery • $35.47</div>
+                </div>
+                
+                <div class="quip-card">
+                    <h3>☕ Daily Coffee</h3>
+                    <p>"$6.50 for oat milk latte number 147 this year. That's approximately one kidney on the black market. But hey, you earned it by getting out of bed."</p>
+                    <div class="receipt-type">Coffee • $6.50</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works (Brief, Because I'm Tired)</h2>
+            <p class="betty-voice" style="text-align: center; margin-bottom: 3rem;">Three steps. That's all you get. I'm not writing a manual.</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Upload Receipts</h3>
+                    <p>Take a picture. Drag a PDF. Email it to me. I don't care how, just get me the paper trail.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>I Read Them</h3>
+                    <p>I extract dates, amounts, vendors. And yes, I notice the 3am ice cream. I always notice.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Betty-fied Spreadsheets</h3>
+                    <p>Clean CSV, categorized spending, tax-ready reports. Plus my occasional commentary. It's part of the package.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Pricing (The Part Where I Get Paid)</h2>
+            <p class="betty-voice" style="margin-bottom: 3rem;">Choose your level of Betty exposure. I recommend the free tier if you're scared.</p>
+            
+            <div class="pricing-cards">
+                <!-- Free Tier -->
+                <div class="pricing-card">
+                    <h3>Free Tier</h3>
+                    <div class="price">$0<span>/forever</span></div>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">For the financially curious</p>
+                    
+                    <ul>
+                        <li>15 receipts per month</li>
+                        <li>Basic categorization</li>
+                        <li>CSV export</li>
+                        <li>Light roasting (I go easy)</li>
+                        <li>Discord community access</li>
+                    </ul>
+                    
+                    <a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" class="btn btn-secondary" target="_blank">Join Discord</a>
+                </div>
+                
+                <!-- Unlimited -->
+                <div class="pricing-card featured">
+                    <h3>Unlimited Betty</h3>
+                    <div class="price">$9<span>/month</span></div>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">For the masochistically organized</p>
+                    
+                    <ul>
+                        <li>Unlimited receipts</li>
+                        <li>Advanced categorization</li>
+                        <li>PDF & CSV exports</li>
+                        <li>Full-strength Betty commentary</li>
+                        <li>Priority support (I sigh, but I answer)</li>
+                        <li>Tax season prep reports</li>
+                        <li>Custom spending insights</li>
+                    </ul>
+                    
+                    <a href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" class="btn" target="_blank">Subscribe Now</a>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem;">Cancel anytime. I'll miss you, probably.</p>
+                </div>
+            </div>
+            
+            <p style="margin-top: 3rem; color: var(--text-muted); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Both plans include my unique brand of financial existentialism. No hidden fees, no upsells, just receipts and regret.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>InvoiceSnap</h3>
+                    <p style="color: var(--text-muted); max-width: 300px;">Invoices with an attitude. Because spreadsheets should have personality disorders too.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Legal Stuff</h4>
+                        <ul>
+                            <li><a href="/privacy/">Privacy Policy</a></li>
+                            <li><a href="/tos/">Terms of Service</a></li>
+                            <li><a href="/refund/">Refund Policy</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:admin@invoicesnapbot.com">admin@invoicesnapbot.com</a></li>
+                            <li><a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" target="_blank">Discord Bot Invite</a></li>
+                            <li><a href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" target="_blank">Subscribe via Stripe</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Betty's Corner</h4>
+                        <ul>
+                            <li><span style="color: var(--text-muted);">Currently reading:</span></li>
+                            <li><span style="color: var(--text-muted); font-style: italic;">"47 receipts for 'business expenses'"</span></li>
+                            <li><span style="color: var(--text-muted);">Caffeine level: Critical</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 InvoiceSnap. All receipts judged, all feelings validated. Or not.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">Made with <span style="color: var(--accent-amber);">✓</span> existential dread and <span style="color: var(--accent-amber);">✓</span> warm amber/coral accents.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Betty's final thought -->
+    <script>
+        // Just a little Betty touch
+        document.addEventListener('DOMContentLoaded', function() {
+            const sighElements = document.querySelectorAll('.sigh');
+            sighElements.forEach(el => {
+                el.addEventListener('mouseover', function() {
+                    this.textContent = '...sigh...';
+                    setTimeout(() => {
+                        this.textContent = 'feelings';
+                    }, 1000);
+                });
+            });
+            
+            // Betty's console message
+            console.log("%cBetty here. Yes, I'm watching you inspect element. No, I'm not impressed.", "color: #FF8C42; font-size: 14px; font-weight: bold;");
+            console.log("%cNow go upload some receipts. I'm bored.", "color: #FF6B35; font-size: 12px;");
+        });
+    </script>
+</body>
+</html>
