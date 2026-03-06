@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvoiceSnap - Receipts, Roasted by Betty</title>
+    <meta name="description" content="InvoiceSnap: The only receipt scanner that judges your spending habits. Featuring Betty, your weary accountant.">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1E1E1E;
+            --text-main: #E0E0E0;
+            --text-muted: #A0A0A0;
+            --accent-coral: #FF7F50;
+            --accent-amber: #FFBF00;
+            --border-color: #333;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-coral);
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background: radial-gradient(circle at top, #2a1a1a 0%, var(--bg-dark) 70%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+        }
+
+        .hero h1 span {
+            color: var(--accent-coral);
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-coral);
+            color: #121212;
+            font-weight: 700;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 127, 80, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 127, 80, 0.4);
+            color: #000;
+        }
+
+        .betty-intro {
+            margin-top: 40px;
+            font-style: italic;
+            color: var(--accent-amber);
+            font-family: serif;
+            font-size: 1.1rem;
+        }
+
+        /* Quips Section */
+        .quips {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            border-bottom: 3px solid var(--accent-amber);
+            padding-bottom: 5px;
+        }
+
+        .quip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .quip-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .quip-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-amber);
+        }
+
+        .receipt-item {
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .betty-comment {
+            font-family: serif;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .betty-comment::before {
+            content: "“";
+            position: absolute;
+            left: -5px;
+            top: -10px;
+            font-size: 3rem;
+            color: var(--accent-coral);
+            opacity: 0.3;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background-color: #1a1a1a;
+            padding: 80px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+        }
+
+        .step-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--bg-dark);
+            text-shadow: -1px -1px 0 var(--accent-amber), 1px -1px 0 var(--accent-amber), -1px 1px 0 var(--accent-amber), 1px 1px 0 var(--accent-amber);
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .pricing-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent-coral);
+            box-shadow: 0 0 20px rgba(255, 127, 80, 0.1);
+        }
+
+        .pricing-card.featured::before {
+            content: "BETTY'S PICK";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-coral);
+            color: #000;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 20px;
+        }
+
+        .price-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .price-sub {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .features {
+            text-align: left;
+            margin-bottom: 30px;
+            flex-grow: 1;
+            list-style: none;
+        }
+
+        .features li {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+        }
+
+        .features li::before {
+            content: "✓";
+            color: var(--accent-amber);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-main);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--accent-coral);
+            color: var(--accent-coral);
+        }
+
+        .btn-filled {
+            background-color: var(--accent-coral);
+            color: #121212;
+            border: none;
+        }
+        
+        .btn-filled:hover {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            padding: 60px 0 30px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+        }
+
+        .footer-email {
+            color: var(--accent-amber);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .betty-signoff {
+            font-family: serif;
+            font-style: italic;
+            opacity: 0.6;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .pricing-grid { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1>
+                <span>InvoiceSnap</span>
+                I'm Betty. I judge your receipts.
+            </h1>
+            <p>
+                You upload the mess in your pockets. I turn it into spreadsheets. 
+                And yes, I will have opinions about that third coffee.
+            </p>
+            <a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" class="cta-button">Add Betty to Discord</a>
+            <div class="betty-intro">
+                "Oh look, another subscription you'll forget to cancel. Thrilling."
+            </div>
+        </div>
+    </header>
+
+    <!-- Quips Section -->
+    <section class="quips">
+        <div class="container">
+            <h2 class="section-title"><span>Sample Commentary</span></h2>
+            <div class="quip-grid">
+                
+                <!-- Quip 1 -->
+                <div class="quip-card">
+                    <div class="receipt-item">
+                        <span>UBER EATS</span>
+                        <span>$42.50 • 02:47 AM</span>
+                    </div>
+                    <p class="betty-comment">
+                        "Ah, the 'I am sad and awake' tax. A single burger at 3 AM. I've categorized this under 'Business Meals' but we both know the only business happening here was regret."
+                    </p>
+                </div>
+
+                <!-- Quip 2 -->
+                <div class="quip-card">
+                    <div class="receipt-item">
+                        <span>ADOBE CREATIVE CLOUD</span>
+                        <span>$54.99 • Monthly</span>
+                    </div>
+                    <p class="betty-comment">
+                        "Another donation to the Adobe retirement fund. I see you haven't opened Photoshop in three weeks. Your optimism is adorable. Expensive, but adorable."
+                    </p>
+                </div>
+
+                <!-- Quip 3 -->
+                <div class="quip-card">
+                    <div class="receipt-item">
+                        <span>LEDGER NANO X</span>
+                        <span>$149.00 • Hardware</span>
+                    </div>
+                    <p class="betty-comment">
+                        "Buying a vault for money you don't have yet. It's poetic, really. I'll file this under 'Office Supplies' and pretend it's not a mid-life crisis."
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title"><span>How It Works</span></h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Snap It</h3>
+                    <p>Take a photo. Upload a PDF. Throw a crumpled paper ball at your screen. (Please don't do the last one, I don't get paid enough for tech support).</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>I Read It</h3>
+                    <p>I extract the date, merchant, total, and tax. I also extract a small piece of your dignity if the purchase is ridiculous.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>It's Done</h3>
+                    <p>You get a CSV or a direct sync. I get a headache. The circle of life continues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title"><span>What It Costs</span></h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Surprisingly reasonable.</p>
+            
+            <div class="pricing-grid">
+                
+                <!-- Free Tier -->
+                <div class="pricing-card">
+                    <h3 class="price-title">The "Hobbyist"</h3>
+                    <div class="price-amount">$0</div>
+                    <div class="price-sub">Forever. Really.</div>
+                    <ul class="features">
+                        <li>15 receipts / month</li>
+                        <li>Basic data extraction</li>
+                        <li>Mild judgment included</li>
+                        <li>No credit card required</li>
+                    </ul>
+                    <a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" class="pricing-btn btn-outline">Start for Free</a>
+                </div>
+
+                <!-- Paid Tier -->
+                <div class="pricing-card featured">
+                    <h3 class="price-title">Unlimited</h3>
+                    <div class="price-amount">$9</div>
+                    <div class="price-sub">USD / month</div>
+                    <ul class="features">
+                        <li>Unlimited receipts</li>
+                        <li>Priority processing</li>
+                        <li>Premium roasting (or support)</li>
+                        <li>Supports my coffee habit</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" class="pricing-btn btn-filled">Get Unlimited</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="/privacy/">Privacy Policy</a>
+                <a href="/tos/">Terms of Service</a>
+                <a href="/refund/">Refund Policy</a>
+            </div>
+            <a href="mailto:admin@invoicesnapbot.com" class="footer-email">admin@invoicesnapbot.com</a>
+            <div class="betty-signoff">
+                &copy; 2024 InvoiceSnap. Made with ☕ and exhaustion.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
