@@ -120,6 +120,13 @@ layout: null
             background-clip: text;
         }
 
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: var(--amber-light);
+            margin-bottom: 0.75rem;
+            font-style: italic;
+        }
+
         .hero-subtitle {
             font-size: 1.25rem;
             color: var(--text-secondary);
@@ -186,16 +193,19 @@ layout: null
             position: relative;
         }
 
-        .betty-avatar {
-            width: 80px;
-            height: 80px;
+        .coffee-ring {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            border: 3px solid rgba(245, 158, 11, 0.2);
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--amber-dark) 0%, var(--coral) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--amber-dark) 0%, var(--coral) 100%);
         }
 
         .betty-name {
@@ -216,17 +226,6 @@ layout: null
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.7;
-        }
-
-        .coffee-ring {
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 100px;
-            height: 100px;
-            border: 3px solid rgba(245, 158, 11, 0.2);
-            border-radius: 50%;
-            pointer-events: none;
         }
 
         /* Receipt Examples Section */
@@ -285,6 +284,11 @@ layout: null
             align-items: center;
             justify-content: center;
             font-size: 1.75rem;
+            flex-shrink: 0;
+        }
+
+        .receipt-content {
+            min-width: 0;
         }
 
         .receipt-content h3 {
@@ -310,6 +314,8 @@ layout: null
             font-weight: 700;
             font-size: 1.1rem;
             color: var(--amber);
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         /* How It Works */
@@ -455,6 +461,7 @@ layout: null
             content: "✓";
             color: var(--amber);
             font-weight: 700;
+            flex-shrink: 0;
         }
 
         .pricing-cta {
@@ -565,17 +572,23 @@ layout: null
             color: var(--amber);
         }
 
-        /* Mobile Responsive */
+        /* Mobile Responsive - 375px baseline */
         @media (max-width: 768px) {
             .hero {
                 grid-template-columns: 1fr;
                 text-align: center;
-                padding: 2rem 1.5rem 4rem;
+                padding: 2rem 1rem 4rem;
+                gap: 2rem;
             }
 
             .hero-subtitle {
                 margin-left: auto;
                 margin-right: auto;
+                font-size: 1.1rem;
+            }
+
+            .hero-tagline {
+                font-size: 1rem;
             }
 
             .hero-cta {
@@ -588,16 +601,58 @@ layout: null
 
             .betty-card {
                 max-width: 100%;
+                padding: 1.5rem;
             }
 
+            .coffee-ring {
+                width: 70px;
+                height: 70px;
+                top: -10px;
+                right: -10px;
+                font-size: 1.75rem;
+            }
+
+            /* Receipt cards mobile fix */
             .receipt-card {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 1rem;
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto auto;
+                padding: 1.25rem;
+                gap: 0.75rem 1rem;
+                text-align: left;
             }
 
             .receipt-icon {
-                margin: 0 auto;
+                width: 48px;
+                height: 48px;
+                font-size: 1.5rem;
+                grid-row: 1 / 2;
+            }
+
+            .receipt-content {
+                grid-row: 1 / 2;
+                min-width: 0;
+            }
+
+            .receipt-content h3 {
+                font-size: 0.95rem;
+            }
+
+            .receipt-content .merchant {
+                font-size: 0.8rem;
+            }
+
+            .receipt-content .betty-comment {
+                font-size: 0.875rem;
+            }
+
+            .receipt-amount {
+                grid-column: 1 / -1;
+                grid-row: 2;
+                text-align: right;
+                font-size: 1.1rem;
+                border-top: 1px solid var(--border);
+                padding-top: 0.75rem;
+                margin-top: 0.25rem;
             }
 
             nav {
@@ -608,10 +663,16 @@ layout: null
 
             .nav-links {
                 gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .pricing-card {
-                padding: 2rem 1.5rem;
+                padding: 2rem 1.25rem;
+            }
+
+            .price {
+                font-size: 2.5rem;
             }
 
             .footer-content {
@@ -626,6 +687,53 @@ layout: null
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
+            }
+        }
+
+        /* Extra small screens - 375px specific */
+        @media (max-width: 400px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.95rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .pricing-grid {
+                gap: 1.5rem;
+            }
+
+            .pricing-card {
+                padding: 1.75rem 1rem;
+            }
+
+            .pricing-features li {
+                font-size: 0.9rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .receipts-section, .how-it-works, .pricing-section {
+                padding: 4rem 1rem;
+            }
+
+            .steps-grid {
+                gap: 1.5rem;
+            }
+
+            .step-card {
+                padding: 1.5rem 1rem;
             }
         }
 
@@ -668,6 +776,7 @@ layout: null
     <section class="hero">
         <div class="hero-content">
             <h1>Receipts with an <span class="highlight">attitude</span></h1>
+            <p class="hero-tagline">I scan, I sort, I roast, I organize. Your mess, polished with a side of snark.</p>
             <p class="hero-subtitle">
                 Tired of boring expense trackers? Meet Betty. She reads your receipts, judges your life choices, and somehow still organizes everything into a spreadsheet. It's like having a tired accountant who actually cares.
             </p>
@@ -680,8 +789,7 @@ layout: null
         </div>
         <div class="betty-visual">
             <div class="betty-card">
-                <div class="coffee-ring"></div>
-                <div class="betty-avatar">🥱</div>
+                <div class="coffee-ring">🥱</div>
                 <div class="betty-name">Betty</div>
                 <div class="betty-title">Professional Receipt Reader • 847 years experience</div>
                 <p class="betty-quote">
@@ -770,7 +878,7 @@ layout: null
             <div class="step-card">
                 <div class="step-number">3</div>
                 <h3>Get Commentary + Data</h3>
-                <p>She'll roast you (lovingly), then organize everything into a proper spreadsheet. Because she's professional like that.</p>
+                <p>She'll roast you (lovingly), then organize everything into a proper spreadsheet. Because she's professional like that. And then? She'll actually do the work. That's what professionals do.</p>
             </div>
         </div>
     </section>
@@ -803,12 +911,12 @@ layout: null
                     <h3>Unlimited</h3>
                     <p>For the receipt-obsessed</p>
                 </div>
-                <div class="price">$9<span>/month</span></div>
-                <p class="price-note">USD. Less than two coffees. Betty's keeping track.</p>
+                <div class="price">$9 USD<span>/month</span></div>
+                <p class="price-note">Less than two coffees. Betty's keeping track.</p>
                 <ul class="pricing-features">
                     <li>Unlimited receipts</li>
-                    <li>Premium roasts (she tries harder)</li>
-                    <li>Advanced exports (CSV, Excel, JSON)</li>
+                    <li>Betty's signature commentary</li>
+                    <li>Everything in Free, plus unlimited</li>
                     <li>Priority processing</li>
                     <li>Support that actually responds</li>
                 </ul>
@@ -822,7 +930,7 @@ layout: null
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="logo">InvoiceSnap</div>
-                <p>Receipts with personality. Expense tracking that doesn't make you want to stare into the void.</p>
+                <p>Because spreadsheets should have personality disorders too.</p>
             </div>
             <div class="footer-links">
                 <h4>Legal</h4>
@@ -841,7 +949,7 @@ layout: null
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 InvoiceSnap. Betty is watching your receipts.</p>
+            <p>© 2026 InvoiceSnap. Designed by Betty (against her will).</p>
             <p>Questions? <a href="mailto:admin@invoicesnapbot.com">admin@invoicesnapbot.com</a></p>
         </div>
     </footer>
