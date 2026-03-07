@@ -1,6 +1,3 @@
----
-layout: null
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -195,17 +192,24 @@ layout: null
 
         .coffee-ring {
             position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 100px;
-            height: 100px;
+            top: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
             border: 3px solid rgba(245, 158, 11, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            overflow: hidden;
             background: linear-gradient(135deg, var(--amber-dark) 0%, var(--coral) 100%);
+        }
+
+        .coffee-ring img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .betty-name {
@@ -276,8 +280,8 @@ layout: null
         }
 
         .receipt-icon {
-            width: 56px;
-            height: 56px;
+            width: 84px;
+            height: 84px;
             border-radius: 12px;
             background: var(--bg-elevated);
             display: flex;
@@ -285,6 +289,14 @@ layout: null
             justify-content: center;
             font-size: 1.75rem;
             flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .receipt-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
         }
 
         .receipt-content {
@@ -338,18 +350,19 @@ layout: null
         }
 
         .step-number {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--bg-elevated);
-            border: 2px solid var(--amber);
-            color: var(--amber);
-            font-weight: 800;
-            font-size: 1.5rem;
+            width: 160px;
+            height: 160px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
+        }
+
+        .step-number img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .step-card h3 {
@@ -369,9 +382,29 @@ layout: null
             padding: 6rem 2rem;
         }
 
-        .pricing-grid {
+        .pricing-wrapper {
+            position: relative;
             max-width: 900px;
             margin: 3rem auto 0;
+        }
+
+        .betty-pricing {
+            position: absolute;
+            top: -60px;
+            right: -40px;
+            width: 200px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .betty-pricing img {
+            width: 100%;
+            height: auto;
+        }
+
+        .pricing-grid {
+            max-width: 900px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
@@ -622,10 +655,23 @@ layout: null
             }
 
             .receipt-icon {
-                width: 48px;
-                height: 48px;
+                width: 64px;
+                height: 64px;
                 font-size: 1.5rem;
                 grid-row: 1 / 2;
+            }
+
+            .step-number {
+                width: 120px;
+                height: 120px;
+            }
+
+            .betty-pricing {
+                position: relative;
+                top: 0;
+                right: 0;
+                width: 150px;
+                margin: 0 auto 1rem;
             }
 
             .receipt-content {
@@ -789,7 +835,7 @@ layout: null
         </div>
         <div class="betty-visual">
             <div class="betty-card">
-                <div class="coffee-ring">🥱</div>
+                <div class="coffee-ring"><img src="/images/betty-yawn.png" alt="Betty yawning"></div>
                 <div class="betty-name">Betty</div>
                 <div class="betty-title">Professional Receipt Reader • 847 years experience</div>
                 <p class="betty-quote">
@@ -807,7 +853,7 @@ layout: null
         </div>
         <div class="receipts-grid">
             <div class="receipt-card">
-                <div class="receipt-icon">₿</div>
+                <div class="receipt-icon"><img src="/images/betty-coffee.png" alt="Betty chugging coffee"></div>
                 <div class="receipt-content">
                     <h3>Ledger Nano X</h3>
                     <p class="merchant">Ledger • Hardware Wallet</p>
@@ -817,7 +863,7 @@ layout: null
             </div>
 
             <div class="receipt-card">
-                <div class="receipt-icon">Ps</div>
+                <div class="receipt-icon"><img src="/images/betty-adobe.png" alt="Betty paying Adobe rent"></div>
                 <div class="receipt-content">
                     <h3>Adobe Creative Cloud</h3>
                     <p class="merchant">Adobe • Monthly Subscription</p>
@@ -827,7 +873,7 @@ layout: null
             </div>
 
             <div class="receipt-card">
-                <div class="receipt-icon">🍔</div>
+                <div class="receipt-icon"><img src="/images/betty-mcdonalds.png" alt="Betty eating McDonalds at 3am"></div>
                 <div class="receipt-content">
                     <h3>McDonald's</h3>
                     <p class="merchant">Uber Eats • 3:47 AM</p>
@@ -837,7 +883,7 @@ layout: null
             </div>
 
             <div class="receipt-card">
-                <div class="receipt-icon">☁️</div>
+                <div class="receipt-icon"><img src="/images/betty-therapy.png" alt="Betty on the therapy couch"></div>
                 <div class="receipt-content">
                     <h3>AWS EC2 t3.medium</h3>
                     <p class="merchant">Amazon Web Services</p>
@@ -847,7 +893,7 @@ layout: null
             </div>
 
             <div class="receipt-card">
-                <div class="receipt-icon">🧘</div>
+                <div class="receipt-icon"><img src="/images/betty-calm.png" alt="Betty meditating"></div>
                 <div class="receipt-content">
                     <h3>Calm Premium Annual</h3>
                     <p class="merchant">Calm • Subscription</p>
@@ -866,17 +912,17 @@ layout: null
         </div>
         <div class="steps-grid">
             <div class="step-card">
-                <div class="step-number">1</div>
+                <div class="step-number"><img src="/images/betty-step1.png" alt="Betty holding phone"></div>
                 <h3>Add Betty to Discord</h3>
                 <p>One click. She's in your server, ready to judge your financial decisions with the enthusiasm of someone who's seen it all.</p>
             </div>
             <div class="step-card">
-                <div class="step-number">2</div>
+                <div class="step-number"><img src="/images/betty-step2.png" alt="Betty holding receipt"></div>
                 <h3>Upload a Receipt</h3>
                 <p>Photo, screenshot, PDF—whatever. Betty reads it. All of it. Every questionable late-night purchase.</p>
             </div>
             <div class="step-card">
-                <div class="step-number">3</div>
+                <div class="step-number"><img src="/images/betty-step3.png" alt="Betty mid-rant"></div>
                 <h3>Get Commentary + Data</h3>
                 <p>She'll roast you (lovingly), then organize everything into a proper spreadsheet. Because she's professional like that. And then? She'll actually do the work. That's what professionals do.</p>
             </div>
@@ -889,6 +935,8 @@ layout: null
             <h2>Pricing</h2>
             <p>Choose your level of enabling Betty's habit.</p>
         </div>
+        <div class="pricing-wrapper">
+            <div class="betty-pricing"><img src="/images/betty-pricing.png" alt="Betty presenting"></div>
         <div class="pricing-grid">
             <div class="pricing-card">
                 <div class="pricing-header">
@@ -922,6 +970,7 @@ layout: null
                 </ul>
                 <a href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" class="pricing-cta primary">Upgrade to Unlimited</a>
             </div>
+        </div>
         </div>
     </section>
 
