@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InvoiceSnap — Overqualified. Underpaid. Unimpressed.</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -58,10 +60,7 @@
             gap: 0.5rem;
         }
 
-        .logo::before {
-            content: "📎";
-            filter: grayscale(0.3);
-        }
+        /* No logo icon — just text */
 
         .nav-links {
             display: flex;
@@ -453,9 +452,15 @@
         }
 
         .pricing-card:hover {
-            border-color: var(--amber);
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.03);
+        }
+
+        .pricing-card.featured:hover {
+            border-color: var(--amber-light);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.1);
+            box-shadow: 0 12px 35px rgba(245, 158, 11, 0.15);
         }
 
         .pricing-card.featured {
@@ -858,7 +863,7 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="logo">InvoiceSnap</div>
+        <div class="logo">Betty from InvoiceSnap</div>
         <div class="nav-links">
             <a href="#examples">Examples</a>
             <a href="#how-it-works">How It Works</a>
@@ -879,7 +884,7 @@
                 <a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" class="btn-primary">
                     Try Betty Free
                 </a>
-                <a href="#examples" class="btn-secondary">See Her Roasts</a>
+                <a href="#examples" class="btn-secondary">What She Says</a>
             </div>
         </div>
         <div class="betty-visual">
@@ -1027,7 +1032,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <div class="logo">InvoiceSnap</div>
+                <div class="logo" style="font-size: 1.3rem;">Betty from InvoiceSnap</div>
                 <p>Because spreadsheets should have personality disorders too.</p>
             </div>
             <div class="footer-links">
