@@ -388,11 +388,23 @@
             margin: 3rem auto 0;
         }
 
+        .pricing-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card.featured {
+            position: relative;
+        }
+
         .betty-pricing {
             position: absolute;
-            top: -60px;
-            right: -40px;
-            width: 200px;
+            top: -100px;
+            right: -60px;
+            width: 450px;
             z-index: 10;
             pointer-events: none;
         }
@@ -400,14 +412,6 @@
         .betty-pricing img {
             width: 100%;
             height: auto;
-        }
-
-        .pricing-grid {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
         }
 
         .pricing-card {
@@ -667,11 +671,7 @@
             }
 
             .betty-pricing {
-                position: relative;
-                top: 0;
-                right: 0;
-                width: 150px;
-                margin: 0 auto 1rem;
+                display: none;
             }
 
             .receipt-content {
@@ -936,7 +936,6 @@
             <p>Choose your level of enabling Betty's habit.</p>
         </div>
         <div class="pricing-wrapper">
-            <div class="betty-pricing"><img src="/images/betty-pricing.png" alt="Betty presenting"></div>
         <div class="pricing-grid">
             <div class="pricing-card">
                 <div class="pricing-header">
@@ -955,6 +954,7 @@
             </div>
 
             <div class="pricing-card featured">
+                <div class="betty-pricing"><img src="/images/betty-pricing.png" alt="Betty presenting"></div>
                 <div class="pricing-header">
                     <h3>Unlimited</h3>
                     <p>For the receipt-obsessed</p>
