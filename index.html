@@ -1,403 +1,1072 @@
----
-layout: null
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InvoiceSnap - Receipt extraction for Discord</title>
-    <meta name="description" content="Upload receipts to Discord, get organised spreadsheets. Betty reads your receipts so you don't have to. Free for 15 invoices/month.">
+    <title>InvoiceSnap — Overqualified. Underpaid. Unimpressed.</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        :root {
+            --bg-primary: #0d0d0d;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --bg-elevated: #222222;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --text-muted: #737373;
+            --amber: #f59e0b;
+            --amber-light: #fbbf24;
+            --amber-dark: #d97706;
+            --coral: #fb7185;
+            --coral-light: #fda4af;
+            --border: #2a2a2a;
+            --border-hover: #3a3a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0f0f0f;
-            color: #e0e0e0;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
-        a { color: #f5a623; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-
-        /* Hero */
-        .hero {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 80px 24px 60px;
-            text-align: center;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: #1a1a2e;
-            border: 1px solid #2a2a4a;
-            border-radius: 20px;
-            padding: 6px 16px;
-            font-size: 13px;
-            color: #a0a0c0;
-            margin-bottom: 24px;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1.15;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: #f5a623;
-        }
-
-        .hero .subtitle {
-            font-size: 20px;
-            color: #a0a0a0;
-            max-width: 600px;
-            margin: 0 auto 36px;
-        }
-
-        .cta-group {
+        /* Navigation */
+        nav {
+            padding: 1.5rem 2rem;
             display: flex;
-            gap: 16px;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--amber);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* No logo icon — just text */
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--amber);
+        }
+
+        .nav-cta {
+            background: var(--amber);
+            color: var(--bg-primary) !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            background: var(--amber-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-supertitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 .highlight {
+            background: linear-gradient(135deg, var(--amber) 0%, var(--coral) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: var(--amber-light);
+            margin-bottom: 0.75rem;
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin-bottom: 16px;
         }
 
         .btn-primary {
-            display: inline-block;
-            background: #f5a623;
-            color: #0f0f0f;
-            font-weight: 600;
-            font-size: 16px;
-            padding: 14px 32px;
-            border-radius: 8px;
-            transition: background 0.2s;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+            color: var(--bg-primary);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .btn-primary:hover { background: #e6951a; text-decoration: none; }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.3);
+        }
 
         .btn-secondary {
-            display: inline-block;
-            background: transparent;
-            color: #e0e0e0;
-            font-weight: 500;
-            font-size: 16px;
-            padding: 14px 32px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            transition: border-color 0.2s;
-        }
-        .btn-secondary:hover { border-color: #f5a623; text-decoration: none; }
-
-        .hero-note {
-            font-size: 14px;
-            color: #666;
-            margin-top: 12px;
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
         }
 
-        /* Betty quote */
-        .betty-section {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 0 24px 60px;
-            text-align: center;
+        .btn-secondary:hover {
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+
+        /* Betty Character Visual */
+        .betty-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .betty-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 400px;
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .betty-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--amber);
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.15);
+        }
+
+        .coffee-ring {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            border: 3px solid rgba(245, 158, 11, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--amber-dark) 0%, var(--coral) 100%);
+        }
+
+        .coffee-ring img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .betty-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--amber);
+            margin-bottom: 0.25rem;
+        }
+
+        .betty-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
         }
 
         .betty-quote {
-            background: #1a1a1a;
-            border-left: 3px solid #f5a623;
-            border-radius: 0 8px 8px 0;
-            padding: 20px 28px;
             font-style: italic;
-            color: #c0c0c0;
-            font-size: 17px;
-            text-align: left;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
-        .betty-quote .attribution {
-            font-style: normal;
-            font-size: 13px;
-            color: #888;
-            margin-top: 8px;
+        /* Receipt Examples Section */
+        .receipts-section {
+            background: var(--bg-secondary);
+            padding: 6rem 2rem;
         }
 
-        /* How it works */
-        .section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 24px;
-        }
-
-        .section-title {
+        .section-header {
             text-align: center;
-            font-size: 32px;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
             font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 48px;
+            margin-bottom: 1rem;
         }
 
-        .steps {
+        .section-header p {
+            color: var(--text-secondary);
+        }
+
+        .receipts-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .receipt-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
+            grid-template-columns: auto 1fr auto;
+            gap: 1.5rem;
+            align-items: center;
+            transition: all 0.2s;
         }
 
-        .step {
+        .receipt-card:hover {
+            border-color: var(--amber);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.1);
+        }
+
+        .receipt-icon {
+            width: 84px;
+            height: 84px;
+            border-radius: 12px;
+            background: var(--bg-elevated);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .receipt-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .receipt-card:hover .receipt-icon img {
+            transform: scale(1.1);
+        }
+
+        .receipt-content {
+            min-width: 0;
+        }
+
+        .receipt-content h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .receipt-content .merchant {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .receipt-content .betty-comment {
+            color: var(--coral-light);
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        .receipt-amount {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--amber);
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .steps-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            flex: 0 1 300px;
+        }
+
+        .step-card {
             text-align: center;
+            padding: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-card:hover .step-number img {
+            transform: scale(1.05);
+            transition: transform 0.3s;
         }
 
         .step-number {
-            display: inline-flex;
+            width: 160px;
+            height: 160px;
+            border-radius: 16px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #1a1a2e;
-            border: 1px solid #2a2a4a;
-            color: #f5a623;
-            font-weight: 700;
-            font-size: 20px;
-            margin-bottom: 16px;
+            margin: 0 auto 1.5rem;
         }
 
-        .step h3 {
-            color: #fff;
-            font-size: 18px;
-            margin-bottom: 8px;
+        .step-number img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
-        .step p {
-            color: #888;
-            font-size: 14px;
+        .step-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
         }
 
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+        .step-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
-        .feature {
-            background: #1a1a1a;
-            border: 1px solid #222;
-            border-radius: 12px;
-            padding: 24px;
+        /* Pricing Section */
+        .pricing-section {
+            background: var(--bg-secondary);
+            padding: 6rem 2rem;
+            overflow: hidden;
         }
 
-        .feature h3 {
-            color: #fff;
-            font-size: 16px;
-            margin-bottom: 8px;
+        .pricing-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 3rem auto 0;
         }
 
-        .feature p {
-            color: #888;
-            font-size: 14px;
-        }
-
-        /* Pricing */
-        .pricing {
-            max-width: 700px;
+        .pricing-grid {
+            max-width: 900px;
             margin: 0 auto;
-            padding: 60px 24px;
-        }
-
-        .pricing-cards {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .pricing-card {
-            background: #1a1a1a;
-            border: 1px solid #222;
-            border-radius: 12px;
-            padding: 32px;
-            text-align: center;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .pricing-card.featured {
-            border-color: #f5a623;
+            position: relative;
         }
 
-        .pricing-card h3 {
-            color: #fff;
-            font-size: 22px;
-            margin-bottom: 8px;
+        .betty-pricing {
+            position: absolute;
+            top: -90px;
+            right: -50px;
+            width: 400px;
+            z-index: 10;
+            pointer-events: none;
         }
 
-        .pricing-card .price {
-            font-size: 36px;
+        .betty-pricing img {
+            width: 100%;
+            height: auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.03);
+        }
+
+        .pricing-card.featured:hover {
+            border-color: var(--amber-light);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(245, 158, 11, 0.15);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--amber);
+            background: linear-gradient(180deg, var(--bg-card) 0%, rgba(245, 158, 11, 0.05) 100%);
+        }
+
+        .pricing-card.featured::before {
+            content: "Betty's Pick";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--amber);
+            color: var(--bg-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
             font-weight: 700;
-            color: #fff;
-            margin-bottom: 4px;
         }
 
-        .pricing-card .price-note {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 24px;
+        .pricing-header {
+            margin-bottom: 1.5rem;
         }
 
-        .pricing-card ul {
+        .pricing-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .price-note {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-features {
             list-style: none;
-            text-align: left;
-            margin-bottom: 24px;
+            margin-bottom: 2rem;
         }
 
-        .pricing-card li {
-            padding: 6px 0;
-            color: #a0a0a0;
-            font-size: 14px;
+        .pricing-features li {
+            padding: 0.6rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .pricing-card li::before {
-            content: "✓ ";
-            color: #f5a623;
-            font-weight: bold;
+        .pricing-features li::before {
+            content: "✓";
+            color: var(--amber);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .pricing-cta {
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+
+        .pricing-cta.primary {
+            background: var(--amber);
+            color: var(--bg-primary);
+        }
+
+        .pricing-cta.primary:hover {
+            background: var(--amber-light);
+        }
+
+        .pricing-cta.secondary {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .pricing-cta.secondary:hover {
+            border-color: var(--amber);
+            color: var(--amber);
         }
 
         /* Footer */
-        .footer {
-            max-width: 800px;
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 24px;
-            border-top: 1px solid #1a1a1a;
-            text-align: center;
-            font-size: 14px;
-            color: #555;
         }
 
-        .footer-links {
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            max-width: 280px;
+        }
+
+        .footer-links h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--amber);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
             display: flex;
-            gap: 24px;
-            justify-content: center;
-            margin-bottom: 12px;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .footer-links a { color: #888; font-size: 14px; }
-        .footer-links a:hover { color: #f5a623; }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            .hero h1 { font-size: 32px; }
-            .hero .subtitle { font-size: 17px; }
-            .steps { grid-template-columns: 1fr; gap: 24px; }
-            .features { grid-template-columns: 1fr; }
-            .pricing-cards { grid-template-columns: 1fr; }
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
+
+        .footer-bottom a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--amber);
+        }
+
+        /* Tablet - Betty scaling */
+        @media (max-width: 1024px) {
+            .betty-pricing {
+                width: clamp(220px, 30vw, 350px);
+                top: -60px;
+                right: -20px;
+            }
+        }
+
+        /* Mobile Responsive - 375px baseline */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 2rem 1rem 4rem;
+                gap: 2rem;
+            }
+
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 1.1rem;
+            }
+
+            .hero-tagline {
+                font-size: 1rem;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .betty-visual {
+                order: -1;
+            }
+
+            .betty-card {
+                max-width: 100%;
+                padding: 1.5rem;
+            }
+
+            .coffee-ring {
+                width: 70px;
+                height: 70px;
+                top: -10px;
+                right: -10px;
+                font-size: 1.75rem;
+            }
+
+            /* Receipt cards mobile fix */
+            .receipt-card {
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto auto;
+                padding: 1.25rem;
+                gap: 0.75rem 1rem;
+                text-align: left;
+            }
+
+            .receipt-icon {
+                width: 64px;
+                height: 64px;
+                font-size: 1.5rem;
+                grid-row: 1 / 2;
+            }
+
+            .step-number {
+                width: 120px;
+                height: 120px;
+            }
+
+            .betty-pricing {
+                width: clamp(180px, 30vw, 280px);
+                top: -40px;
+                right: -10px;
+            }
+
+            .receipt-content {
+                grid-row: 1 / 2;
+                min-width: 0;
+            }
+
+            .receipt-content h3 {
+                font-size: 0.95rem;
+            }
+
+            .receipt-content .merchant {
+                font-size: 0.8rem;
+            }
+
+            .receipt-content .betty-comment {
+                font-size: 0.875rem;
+            }
+
+            .receipt-amount {
+                grid-column: 1 / -1;
+                grid-row: 2;
+                text-align: right;
+                font-size: 1.1rem;
+                border-top: 1px solid var(--border);
+                padding-top: 0.75rem;
+                margin-top: 0.25rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .pricing-card {
+                padding: 2rem 1.25rem;
+                overflow: visible;
+            }
+
+            .price {
+                font-size: 2.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                margin: 0 auto;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Extra small screens - 375px specific */
+        @media (max-width: 400px) {
+            .betty-pricing {
+                width: clamp(280px, 70vw, 320px);
+                top: -50px;
+                right: -20px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.95rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .pricing-grid {
+                gap: 1.5rem;
+            }
+
+            .pricing-card {
+                padding: 1.75rem 1rem;
+            }
+
+            .pricing-features li {
+                font-size: 0.9rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .receipts-section, .how-it-works, .pricing-section {
+                padding: 4rem 1rem;
+            }
+
+            .steps-grid {
+                gap: 1.5rem;
+            }
+
+            .step-card {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .receipt-card {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .receipt-card:nth-child(1) { animation-delay: 0.1s; }
+        .receipt-card:nth-child(2) { animation-delay: 0.2s; }
+        .receipt-card:nth-child(3) { animation-delay: 0.3s; }
+        .receipt-card:nth-child(4) { animation-delay: 0.4s; }
+        .receipt-card:nth-child(5) { animation-delay: 0.5s; }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Betty from InvoiceSnap</div>
+        <div class="nav-links">
+            <a href="#examples">Examples</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" class="nav-cta">
+                <svg width="16" height="12" viewBox="0 0 71 55" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 4px;"><path d="M60.1 4.9A58.5 58.5 0 0045.4.2a.2.2 0 00-.2.1 40.8 40.8 0 00-1.8 3.7 54 54 0 00-16.2 0A37.3 37.3 0 0025.4.3a.2.2 0 00-.2-.1A58.4 58.4 0 0010.5 5a.2.2 0 00-.1 0C1.5 18.7-.9 32 .3 45.1a.2.2 0 00.1.2 58.7 58.7 0 0017.7 9 .2.2 0 00.3-.1 42 42 0 003.6-5.9.2.2 0 00-.1-.3 38.6 38.6 0 01-5.5-2.6.2.2 0 01 0-.4c.4-.3.7-.6 1.1-.8a.2.2 0 01.2 0c11.6 5.3 24.1 5.3 35.5 0a.2.2 0 01.2 0c.4.3.7.6 1.1.9a.2.2 0 010 .3c-1.8 1-3.6 1.9-5.6 2.6a.2.2 0 00-.1.4 47.2 47.2 0 003.7 5.9.2.2 0 00.2.1 58.5 58.5 0 0017.7-9 .2.2 0 00.1-.1c1.4-14.8-2.4-27.7-10.2-39.1a.2.2 0 00 0-.1zM23.7 37c-3.4 0-6.2-3.1-6.2-6.9s2.7-7 6.2-7 6.3 3.2 6.2 7c0 3.8-2.8 6.9-6.2 6.9zm23 0c-3.4 0-6.2-3.1-6.2-6.9s2.7-7 6.2-7 6.3 3.2 6.2 7c0 3.8-2.7 6.9-6.2 6.9z" fill="currentColor"/></svg>
+                Add to Discord
+            </a>
+        </div>
+    </nav>
 
-<section class="hero">
-    <div class="hero-badge">Discord bot for freelancers, creators, and small businesses</div>
-    <h1>Upload receipts.<br>Get a <span>tidy spreadsheet</span>.</h1>
-    <p class="subtitle">Betty reads your invoices so you don't have to. Drop a PDF, photo, or Word doc into Discord and she'll extract it straight into Google Sheets.</p>
-    <div class="cta-group">
-        <a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" class="btn-primary">Add to Discord - Free</a>
-        <a href="#pricing" class="btn-secondary">See pricing</a>
-    </div>
-    <p class="hero-note">15 invoices/month free. No credit card. No time limit.</p>
-</section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-supertitle">For freelancers, small businesses, and anyone trying to get their finances together.</p>
+            <h1>Overqualified. Underpaid. <span class="highlight">Unimpressed.</span></h1>
+            <p class="hero-tagline">A Discord bot that reads your receipts, judges your spending, and organizes it all into a Google spreadsheet.</p>
+            <p class="hero-subtitle">
+                <strong>Meet Betty.</strong> She's overqualified and she isn't afraid to let you know about it. But she's here to do a job. Give her your invoices and receipts and she'll organize it all into a spreadsheet for you. She's quick, efficient, and frankly too good for this.
+            </p>
+            <div class="hero-cta">
+                <a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" class="btn-primary">
+                    <svg width="20" height="15" viewBox="0 0 71 55" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.5 58.5 0 0045.4.2a.2.2 0 00-.2.1 40.8 40.8 0 00-1.8 3.7 54 54 0 00-16.2 0A37.3 37.3 0 0025.4.3a.2.2 0 00-.2-.1A58.4 58.4 0 0010.5 5a.2.2 0 00-.1 0C1.5 18.7-.9 32 .3 45.1a.2.2 0 00.1.2 58.7 58.7 0 0017.7 9 .2.2 0 00.3-.1 42 42 0 003.6-5.9.2.2 0 00-.1-.3 38.6 38.6 0 01-5.5-2.6.2.2 0 01 0-.4c.4-.3.7-.6 1.1-.8a.2.2 0 01.2 0c11.6 5.3 24.1 5.3 35.5 0a.2.2 0 01.2 0c.4.3.7.6 1.1.9a.2.2 0 010 .3c-1.8 1-3.6 1.9-5.6 2.6a.2.2 0 00-.1.4 47.2 47.2 0 003.7 5.9.2.2 0 00.2.1 58.5 58.5 0 0017.7-9 .2.2 0 00.1-.1c1.4-14.8-2.4-27.7-10.2-39.1a.2.2 0 00 0-.1zM23.7 37c-3.4 0-6.2-3.1-6.2-6.9s2.7-7 6.2-7 6.3 3.2 6.2 7c0 3.8-2.8 6.9-6.2 6.9zm23 0c-3.4 0-6.2-3.1-6.2-6.9s2.7-7 6.2-7 6.3 3.2 6.2 7c0 3.8-2.7 6.9-6.2 6.9z" fill="currentColor"/></svg>
+                    Try Betty Free
+                </a>
+                <a href="#examples" class="btn-secondary">What She Says</a>
+            </div>
+        </div>
+        <div class="betty-visual">
+            <div class="betty-card">
+                <div class="coffee-ring"><img src="/images/betty-portrait.png" alt="Betty smiling"></div>
+                <div class="betty-name">Betty</div>
+                <div class="betty-title">Professional Receipt Reader • 847 years experience</div>
+                <p class="betty-quote">
+                    "$99.99 a year so your emoji are animated. Somewhere a Victorian child is working a loom so you can have a moving cartoon cat."
+                </p>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">— Betty, on a Discord Nitro receipt</p>
+            </div>
+        </div>
+    </section>
 
-<section class="betty-section">
-    <div class="betty-quote">
-        "You bought a $149 hardware wallet to protect your crypto. The irony of needing a receipt for that is not lost on me."
-        <div class="attribution">- Betty, after scanning a Ledger receipt</div>
-    </div>
-</section>
+    <!-- Receipt Examples Section -->
+    <section class="receipts-section" id="examples">
+        <div class="section-header">
+            <h2>What Betty actually says</h2>
+            <p>Real receipts. Real commentary.</p>
+        </div>
+        <div class="receipts-grid">
+            <div class="receipt-card">
+                <div class="receipt-icon"><img src="/images/betty-coffee.png" alt="Betty chugging coffee"></div>
+                <div class="receipt-content">
+                    <h3>Ledger Nano X</h3>
+                    <p class="merchant">Ledger • Hardware Wallet</p>
+                    <p class="betty-comment">"Securing your future while I secure my fourth cup of coffee. We both have priorities."</p>
+                </div>
+                <div class="receipt-amount">$149.00</div>
+            </div>
 
-<section class="section">
-    <h2 class="section-title">How it works</h2>
-    <div class="steps">
-        <div class="step">
-            <div class="step-number">1</div>
-            <h3>Add Betty to Discord</h3>
-            <p>One click. Type <code>!setup your@email.com</code> and she creates your spreadsheet.</p>
-        </div>
-        <div class="step">
-            <div class="step-number">2</div>
-            <h3>Upload your receipts</h3>
-            <p>Drag and drop PDFs, photos, or Word docs. Up to 10 at once.</p>
-        </div>
-        <div class="step">
-            <div class="step-number">3</div>
-            <h3>Get organised data</h3>
-            <p>Date, vendor, amount, tax, category. All extracted and sorted in your Google Sheet.</p>
-        </div>
-    </div>
-</section>
+            <div class="receipt-card">
+                <div class="receipt-icon"><img src="/images/betty-adobe.png" alt="Betty paying Adobe rent"></div>
+                <div class="receipt-content">
+                    <h3>Adobe Creative Cloud</h3>
+                    <p class="merchant">Adobe • Monthly Subscription</p>
+                    <p class="betty-comment">"Another month of paying rent to the PDF company. At least you're consistent."</p>
+                </div>
+                <div class="receipt-amount">$82.49</div>
+            </div>
 
-<section class="section">
-    <h2 class="section-title">What you get</h2>
-    <div class="features">
-        <div class="feature">
-            <h3>AI-powered extraction</h3>
-            <p>Betty reads receipts, invoices, and documents. She pulls out the vendor, date, amount, tax, and even categorises the purchase.</p>
-        </div>
-        <div class="feature">
-            <h3>Google Sheets integration</h3>
-            <p>Your data goes straight into a spreadsheet. Filter by category, sort by date, export for your accountant. Your data, your way.</p>
-        </div>
-        <div class="feature">
-            <h3>Personality included</h3>
-            <p>Betty has opinions about your spending. They're dry, occasionally devastating, and always brief. Don't take it personally.</p>
-        </div>
-        <div class="feature">
-            <h3>Batch uploads</h3>
-            <p>Drop up to 10 files at once. Betty processes them all, deduplicates, and stacks them into your sheet.</p>
-        </div>
-    </div>
-</section>
+            <div class="receipt-card">
+                <div class="receipt-icon"><img src="/images/betty-mcdonalds.png" alt="Betty eating McDonalds at 3am"></div>
+                <div class="receipt-content">
+                    <h3>McDonald's</h3>
+                    <p class="merchant">Uber Eats • 3:47 AM</p>
+                    <p class="betty-comment">"3:47 AM. Double Quarter Pounder. No judgement—I've been there. Actually, yes, some judgement."</p>
+                </div>
+                <div class="receipt-amount">$24.83</div>
+            </div>
 
-<section class="pricing" id="pricing">
-    <h2 class="section-title">Simple pricing</h2>
-    <div class="pricing-cards">
-        <div class="pricing-card">
-            <h3>Free</h3>
-            <div class="price">$0</div>
-            <div class="price-note">forever</div>
-            <ul>
-                <li>15 invoices per month</li>
-                <li>AI extraction + categorisation</li>
-                <li>Google Sheets integration</li>
-                <li>Betty's personality commentary</li>
-                <li>Resets on the 1st of each month</li>
-            </ul>
-            <a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" class="btn-secondary" style="width:100%;display:block;text-align:center;">Get started</a>
-        </div>
-        <div class="pricing-card featured">
-            <h3>Unlimited</h3>
-            <div class="price">$9 <span style="font-size:16px;font-weight:400;color:#888;">USD/month</span></div>
-            <div class="price-note">cancel anytime</div>
-            <ul>
-                <li>Unlimited invoices</li>
-                <li>Everything in Free</li>
-                <li>Priority during high demand</li>
-                <li>Support via email</li>
-            </ul>
-            <a href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" class="btn-primary" style="width:100%;display:block;text-align:center;">Upgrade</a>
-        </div>
-    </div>
-</section>
+            <div class="receipt-card">
+                <div class="receipt-icon"><img src="/images/betty-therapy.png" alt="Betty on the therapy couch"></div>
+                <div class="receipt-content">
+                    <h3>AWS EC2 t3.medium</h3>
+                    <p class="merchant">Amazon Web Services</p>
+                    <p class="betty-comment">"Your server costs less than my therapy copay. We should both probably scale up."</p>
+                </div>
+                <div class="receipt-amount">$30.37</div>
+            </div>
 
-<footer class="footer">
-    <div class="footer-links">
-        <a href="/privacy/">Privacy Policy</a>
-        <a href="/tos/">Terms of Service</a>
-        <a href="/refund/">Refund Policy</a>
-    </div>
-    <p>Questions? Email <a href="mailto:admin@invoicesnapbot.com">admin@invoicesnapbot.com</a></p>
-    <p style="margin-top:8px;">Powered by AI. Results may vary. Always review extracted data before using it for tax or accounting purposes.</p>
-</footer>
+            <div class="receipt-card">
+                <div class="receipt-icon"><img src="/images/betty-calm.png" alt="Betty meditating"></div>
+                <div class="receipt-content">
+                    <h3>Calm Premium Annual</h3>
+                    <p class="merchant">Calm • Subscription</p>
+                    <p class="betty-comment">"You paid $70 to relax. I'm... actually proud of you for once. Self-care matters."</p>
+                </div>
+                <div class="receipt-amount">$69.99</div>
+            </div>
+        </div>
+    </section>
 
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <h2>How it works</h2>
+            <p>Let's keep this simple.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number"><img src="/images/betty-step1.png" alt="Betty holding phone"></div>
+                <h3>Add Betty to Discord</h3>
+                <p>One click. She's in your server, ready to help and ready to judge.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number"><img src="/images/betty-step2.png" alt="Betty holding receipt"></div>
+                <h3>Upload a Receipt</h3>
+                <p>Photo, screenshot, PDF—whatever. Betty reads it. All of it. Every questionable late-night purchase.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number"><img src="/images/betty-step3.png" alt="Betty mid-rant"></div>
+                <h3>Get Commentary + Data</h3>
+                <p>She'll have something to say about it (she always does), then organize everything into a proper spreadsheet. At the end of the day, she's a professional.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="section-header">
+            <h2>Pricing</h2>
+            <p>Choose your level of enabling Betty's habit.</p>
+        </div>
+        <div class="pricing-wrapper">
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Free</h3>
+                    <p>For the curious and budget-conscious</p>
+                </div>
+                <div class="price">$0<span>/month</span></div>
+                <p class="price-note">Forever. No tricks. No guilt trips. Only judgements.</p>
+                <ul class="pricing-features">
+                    <li>15 receipts per month</li>
+                    <li>Betty's signature commentary</li>
+                    <li>Basic spreadsheet export</li>
+                    <li>Email support</li>
+                </ul>
+                <a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot" class="pricing-cta secondary">Start Free</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="betty-pricing"><img src="/images/betty-pricing.png" alt="Betty presenting"></div>
+                <div class="pricing-header">
+                    <h3>Unlimited</h3>
+                    <p>For the receipt-obsessed</p>
+                </div>
+                <div class="price">$9 USD<span>/month</span></div>
+                <p class="price-note">Less than two coffees. Betty's keeping track.</p>
+                <ul class="pricing-features">
+                    <li>Unlimited receipts</li>
+                    <li>Betty's signature commentary</li>
+                    <li>Priority processing</li>
+                    <li>Email support</li>
+                </ul>
+                <a href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" class="pricing-cta primary">Upgrade to Unlimited</a>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo" style="font-size: 1.3rem;">Betty from InvoiceSnap</div>
+                <p>Because spreadsheets should have personality disorders too.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="/privacy/">Privacy Policy</a></li>
+                    <li><a href="/tos/">Terms of Service</a></li>
+                    <li><a href="/refund/">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="https://discord.com/oauth2/authorize?client_id=1467055423323639848&permissions=277025508416&scope=bot">Add to Discord</a></li>
+                    <li><a href="mailto:admin@invoicesnapbot.com">Contact Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 InvoiceSnap. Designed by Betty (against her will).</p>
+            <p>Questions? <a href="mailto:admin@invoicesnapbot.com">admin@invoicesnapbot.com</a></p>
+        </div>
+    </footer>
 </body>
 </html>
