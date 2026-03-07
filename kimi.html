@@ -188,6 +188,13 @@
             padding: 2rem;
             max-width: 400px;
             position: relative;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .betty-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--amber);
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.15);
         }
 
         .coffee-ring {
@@ -275,8 +282,9 @@
         }
 
         .receipt-card:hover {
-            border-color: var(--border-hover);
-            transform: translateX(4px);
+            border-color: var(--amber);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.1);
         }
 
         .receipt-icon {
@@ -297,6 +305,11 @@
             height: 100%;
             object-fit: cover;
             border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .receipt-card:hover .receipt-icon img {
+            transform: scale(1.1);
         }
 
         .receipt-content {
@@ -352,6 +365,16 @@
         .step-card {
             text-align: center;
             padding: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-card:hover .step-number img {
+            transform: scale(1.05);
+            transition: transform 0.3s;
         }
 
         .step-number {
@@ -430,7 +453,9 @@
         }
 
         .pricing-card:hover {
-            border-color: var(--border-hover);
+            border-color: var(--amber);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.1);
         }
 
         .pricing-card.featured {
