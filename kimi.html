@@ -610,6 +610,15 @@
             color: var(--amber);
         }
 
+        /* Tablet - Betty scaling */
+        @media (max-width: 1024px) {
+            .betty-pricing {
+                width: clamp(220px, 30vw, 350px);
+                top: -60px;
+                right: -20px;
+            }
+        }
+
         /* Mobile Responsive - 375px baseline */
         @media (max-width: 768px) {
             .hero {
@@ -743,9 +752,9 @@
         /* Extra small screens - 375px specific */
         @media (max-width: 400px) {
             .betty-pricing {
-                width: clamp(160px, 40vw, 200px);
-                top: -30px;
-                right: -5px;
+                width: clamp(280px, 70vw, 320px);
+                top: -50px;
+                right: -20px;
             }
 
             .hero-content h1 {
