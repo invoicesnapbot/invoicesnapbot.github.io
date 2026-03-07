@@ -380,6 +380,7 @@
         .pricing-section {
             background: var(--bg-secondary);
             padding: 6rem 2rem;
+            overflow: hidden;
         }
 
         .pricing-wrapper {
@@ -402,9 +403,9 @@
 
         .betty-pricing {
             position: absolute;
-            top: -100px;
-            right: -60px;
-            width: 450px;
+            top: -90px;
+            right: -50px;
+            width: 400px;
             z-index: 10;
             pointer-events: none;
         }
@@ -671,7 +672,9 @@
             }
 
             .betty-pricing {
-                display: none;
+                width: 200px;
+                top: -50px;
+                right: -10px;
             }
 
             .receipt-content {
@@ -715,6 +718,7 @@
 
             .pricing-card {
                 padding: 2rem 1.25rem;
+                overflow: visible;
             }
 
             .price {
@@ -738,6 +742,12 @@
 
         /* Extra small screens - 375px specific */
         @media (max-width: 400px) {
+            .betty-pricing {
+                width: 140px;
+                top: -35px;
+                right: -5px;
+            }
+
             .hero-content h1 {
                 font-size: 2rem;
             }
