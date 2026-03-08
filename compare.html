@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Betty Colour Comparison — DO NOT INDEX</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #070510; color: #dcddde; font-family: 'gg sans', 'Noto Sans', sans-serif; }
+  
+  .container { display: flex; gap: 40px; padding: 40px; max-width: 1400px; margin: 0 auto; }
+  .section { flex: 1; padding: 24px; border: 1px solid #333; border-radius: 12px; }
+  .section h3.label { color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; text-align: center; padding-bottom: 10px; border-bottom: 1px solid #333; }
+  .label-good { color: #4ade80 !important; }
+  .label-test { color: #f59e0b !important; }
+
+  /* ========================================
+     SECTION 1: THE "RICH" VERSION
+     Exact copy of the .html file that pops
+     ======================================== */
+  .rich .bp { font-family: 'gg sans', 'Noto Sans', sans-serif; font-size: 16px; line-height: 1.6; }
+  .rich .bp h1 { font-size: 1.5em; color: #f5a623; text-align: center; margin: 12px 0 4px; }
+  .rich .bp .sub { text-align: center; font-size: 1.05em; color: #b9bbbe; margin-bottom: 16px; }
+  .rich .bp .hero-img { display: block; width: 180px; border-radius: 50%; margin: 0 auto 8px; }
+  .rich .bp h2 { font-size: 1.15em; color: #f5a623; margin: 18px 0 6px; }
+  .rich .bp .q { border-left: 3px solid #f5a623; padding: 6px 12px; margin: 6px 0; }
+  .rich .bp .q b { color: #f5a623; font-size: 0.9em; }
+  .rich .bp .q i { color: #dcddde; }
+  .rich .bp .note { color: #888; font-size: 0.85em; margin: 4px 0 12px; }
+  .rich .bp .img-c { text-align: center; margin: 10px 0; }
+  .rich .bp .img-c img { width: 500px; max-width: 100%; border-radius: 16px; }
+  .rich .bp ol { padding-left: 20px; margin: 6px 0; }
+  .rich .bp ol li { margin: 4px 0; }
+  .rich .bp code { background: #2f3136; padding: 1px 5px; border-radius: 3px; color: #f5a623; }
+  .rich .bp .cmds { margin: 4px 0 12px; }
+  .rich .bp .cm { margin: 2px 0; }
+  .rich .bp .cm code { display: inline-block; min-width: 85px; }
+  .rich .bp .cm span { color: #b9bbbe; }
+  .rich .bp .foot { text-align: center; margin-top: 16px; }
+  .rich .bp .foot a { color: #f5a623; }
+
+  /* ========================================
+     SECTION 2: THE "TEST" VERSION
+     Starting with what we think kills the pop:
+     - amber-tinted backgrounds on quips
+     - bigger/bolder font sizes
+     - border-bottom on h2
+     We'll fiddle with these to find the cause
+     ======================================== */
+  .test .bp { font-family: 'gg sans', 'Noto Sans', sans-serif; font-size: 16px; line-height: 1.6; }
+  .test .bp h1 { font-size: 36px; font-weight: 600; color: #f5a623; text-align: center; margin: 12px 0 4px; }
+  .test .bp .sub { text-align: center; font-size: 1.05em; color: #b9bbbe; margin-bottom: 16px; }
+  .test .bp .hero-img { display: block; width: 180px; border-radius: 50%; margin: 0 auto 8px; }
+  .test .bp h2 { font-size: 28px; color: #f5a623; border-bottom: 1px solid rgba(245,166,35,0.3); padding-bottom: 3px; margin: 18px 0 6px; }
+  .test .bp .q { border-left: 4px solid #f5a623; padding: 4px 12px; background: rgba(245,166,35,0.08); border-radius: 0 6px 6px 0; margin: 6px 0; }
+  .test .bp .q b { color: #f5a623; }
+  .test .bp .q i { color: #dcddde; }
+  .test .bp .note { opacity: 0.8; font-size: 0.85em; margin: 4px 0 12px; }
+  .test .bp .img-c { text-align: center; margin: 10px 0; }
+  .test .bp .img-c img { width: 500px; max-width: 100%; border-radius: 16px; }
+  .test .bp ol { padding-left: 20px; margin: 6px 0; }
+  .test .bp ol li { margin: 4px 0; }
+  .test .bp code { background: rgba(245,166,35,0.15); padding: 1px 5px; border-radius: 3px; color: #f5a623; font-family: 'SF Mono', Monaco, monospace; font-size: 14px; }
+  .test .bp .cmds { margin: 4px 0 12px; }
+  .test .bp .cm { margin: 2px 0; }
+  .test .bp .cm code { display: inline-block; min-width: 85px; }
+  .test .bp .cm span { color: #b9bbbe; }
+  .test .bp .foot { text-align: center; margin-top: 16px; }
+  .test .bp .foot a { color: #f5a623; }
+
+  @media (max-width: 900px) {
+    .container { flex-direction: column; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- SECTION 1: THE RICH VERSION (DO NOT TOUCH) -->
+  <div class="section rich">
+    <h3 class="label label-good">✅ Section 1 — "The Rich One" (Reference — Do Not Touch)</h3>
+    <div class="bp">
+      <img class="hero-img" src="https://invoicesnapbot.com/images/betty-portrait.png" alt="Betty">
+      <h1>Overqualified. Underpaid. Unimpressed.</h1>
+      <p class="sub">I'm Betty. I read your invoices, organize them into Google Sheets, and give you a summary.</p>
+      <h2>My Summaries</h2>
+      <div class="q"><b>Uber Eats - $34.70</b><br><i>You paid $34.70 to not put pants on. Honestly? Respect. That's the kind of math that built civilization.</i></div>
+      <div class="q"><b>Adobe Creative Cloud - $22.99/mo</b><br><i>Another monthly subscription for software you'll open twice, feel guilty about, and keep paying for anyway because canceling feels like admitting defeat.</i></div>
+      <div class="q"><b>Discord Nitro - $9.99/mo</b><br><i>You paid real money for animated emojis and the ability to upload bigger files to a chat room. The human need for status in free apps remains undefeated.</i></div>
+      <p class="note">Yes, these are real. And I write a new one each time you send me receipts.</p>
+      <h2>How It Works</h2>
+      <ol>
+        <li><strong>Add me to your server</strong></li>
+        <li>Type <code>!setup email@example.com</code> to connect your Google account</li>
+        <li><strong>Drop receipts</strong> - photos, PDFs, Word docs, up to 10 at once</li>
+      </ol>
+      <p>That's it. You send it to me, I put it in your spreadsheet and give you a "summary." Life continues.</p>
+      <h2>Free Tier</h2>
+      <p><strong>15 receipts per month.</strong> No credit card. No trial that quietly starts charging you.</p>
+      <p><b style="color:#f5a623">$9 USD/month</b> for unlimited receipts if you want more.</p>
+      <h2>Commands</h2>
+      <div class="cmds">
+        <div class="cm"><code>!setup</code> <span>Connect your Google account</span></div>
+        <div class="cm"><code>!help</code> <span>See what I can do</span></div>
+        <div class="cm"><code>!upgrade</code> <span>Unlimited receipts</span></div>
+        <div class="cm"><code>!cancel</code> <span>End your subscription</span></div>
+        <div class="cm"><code>!sheet</code> <span>Link to your spreadsheet</span></div>
+        <div class="cm"><code>!betty</code> <span>Get me to draw myself (vote reward)</span></div>
+      </div>
+      <h2>Vote Rewards</h2>
+      <p>Vote for me and I'll draw you a picture of myself in whatever scene you describe. I'm not thrilled about it but I'm a professional, so I'll do it.</p>
+      <div class="foot"><a href="https://invoicesnapbot.com">invoicesnapbot.com</a></div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: THE TEST VERSION (FIDDLE WITH THIS) -->
+  <div class="section test">
+    <h3 class="label label-test">🧪 Section 2 — "The Test Lab" (Change This)</h3>
+    <div class="bp">
+      <img class="hero-img" src="https://invoicesnapbot.com/images/betty-portrait.png" alt="Betty">
+      <h1>Overqualified. Underpaid. Unimpressed.</h1>
+      <p class="sub">I'm Betty. I read your invoices, organize them into Google Sheets, and give you a summary.</p>
+      <h2>My Summaries</h2>
+      <div class="q"><b>Uber Eats - $34.70</b><br><i>You paid $34.70 to not put pants on. Honestly? Respect. That's the kind of math that built civilization.</i></div>
+      <div class="q"><b>Adobe Creative Cloud - $22.99/mo</b><br><i>Another monthly subscription for software you'll open twice, feel guilty about, and keep paying for anyway because canceling feels like admitting defeat.</i></div>
+      <div class="q"><b>Discord Nitro - $9.99/mo</b><br><i>You paid real money for animated emojis and the ability to upload bigger files to a chat room. The human need for status in free apps remains undefeated.</i></div>
+      <p class="note">Yes, these are real. And I write a new one each time you send me receipts.</p>
+      <h2>How It Works</h2>
+      <ol>
+        <li><strong>Add me to your server</strong></li>
+        <li>Type <code>!setup email@example.com</code> to connect your Google account</li>
+        <li><strong>Drop receipts</strong> - photos, PDFs, Word docs, up to 10 at once</li>
+      </ol>
+      <p>That's it. You send it to me, I put it in your spreadsheet and give you a "summary." Life continues.</p>
+      <h2>Free Tier</h2>
+      <p><strong>15 receipts per month.</strong> No credit card. No trial that quietly starts charging you.</p>
+      <p><b style="color:#f5a623">$9 USD/month</b> for unlimited receipts if you want more.</p>
+      <h2>Commands</h2>
+      <div class="cmds">
+        <div class="cm"><code>!setup</code> <span>Connect your Google account</span></div>
+        <div class="cm"><code>!help</code> <span>See what I can do</span></div>
+        <div class="cm"><code>!upgrade</code> <span>Unlimited receipts</span></div>
+        <div class="cm"><code>!cancel</code> <span>End your subscription</span></div>
+        <div class="cm"><code>!sheet</code> <span>Link to your spreadsheet</span></div>
+        <div class="cm"><code>!betty</code> <span>Get me to draw myself (vote reward)</span></div>
+      </div>
+      <h2>Vote Rewards</h2>
+      <p>Vote for me and I'll draw you a picture of myself in whatever scene you describe. I'm not thrilled about it but I'm a professional, so I'll do it.</p>
+      <div class="foot"><a href="https://invoicesnapbot.com">invoicesnapbot.com</a></div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
