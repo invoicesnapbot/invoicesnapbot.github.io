@@ -67,6 +67,18 @@
             color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
+            position: relative;
+            isolation: isolate;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(20, 30, 80, 0.03);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 9999;
         }
 
         /* Navigation */
@@ -951,7 +963,7 @@
         </div>
         <div class="betty-visual">
             <div class="betty-card">
-                <div class="coffee-ring"><img src="/images/betty-portrait.png" alt="Betty smiling"></div>
+                <div class="coffee-ring"><img src="/images/betty-portrait-rembg.png" alt="Betty smiling"></div>
                 <div class="betty-name">Betty</div>
                 <div class="betty-title">Professional Receipt Reader • 847 years experience</div>
                 <p class="betty-quote">
@@ -965,8 +977,8 @@
     <!-- Receipt Examples Section -->
     <section class="receipts-section" id="examples">
         <div class="section-header">
-            <h2>What Betty actually says</h2>
-            <p>Real receipts. Real commentary.</p>
+            <h2>Betty's Summaries</h2>
+            <p>Real receipts. Real summaries.</p>
         </div>
         <div class="receipts-grid">
             <div class="receipt-card">
