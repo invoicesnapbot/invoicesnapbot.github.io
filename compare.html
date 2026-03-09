@@ -2,265 +2,98 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Betty Colour Comparison — DO NOT INDEX</title>
+<title>Coffee Ring Test — DO NOT INDEX</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #070510; color: #dcddde; font-family: 'gg sans', 'Noto Sans', sans-serif; }
-  
-  .page-label { text-align: center; color: #fff; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; padding: 30px 0 10px; }
-  .row { display: flex; gap: 40px; padding: 20px 40px; max-width: 1600px; margin: 0 auto; }
-  .section { flex: 1; padding: 24px; border: 1px solid #333; border-radius: 12px; }
-  .section h3.label { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; text-align: center; padding-bottom: 8px; border-bottom: 1px solid #333; }
-  .label-ref { color: #4ade80; }
-  .label-test { color: #f59e0b; }
+  body { background: #0d0d0d; color: #dcddde; font-family: 'Inter', sans-serif; position: relative; isolation: isolate; }
+  body::after { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(20, 30, 80, 0.03); mix-blend-mode: screen; pointer-events: none; z-index: 9999; }
 
-  /* Shared BP styles for all sections */
-  .bp { font-family: 'gg sans', 'Noto Sans', sans-serif; font-size: 16px; line-height: 1.6; }
-  .bp h1 { font-size: 1.5em; color: #f5a623; text-align: center; margin: 12px 0 4px; }
-  .bp .sub { text-align: center; font-size: 1.05em; color: #b9bbbe; margin-bottom: 16px; }
-  .bp .hero-img { display: block; width: 140px; border-radius: 50%; margin: 0 auto 8px; }
-  .bp h2 { font-size: 1.15em; color: #f5a623; margin: 18px 0 6px; }
-  .bp .q { border-left: 3px solid #f5a623; padding: 6px 12px; margin: 6px 0; }
-  .bp .q b { color: #f5a623; font-size: 0.9em; }
-  .bp .q i { color: #dcddde; }
-  .bp .note { color: #888; font-size: 0.85em; margin: 4px 0 12px; }
-  .bp code { background: #2f3136; padding: 1px 5px; border-radius: 3px; color: #f5a623; }
-  .bp .cmds { margin: 4px 0 12px; }
-  .bp .cm { margin: 2px 0; }
-  .bp .cm code { display: inline-block; min-width: 85px; }
-  .bp .cm span { color: #b9bbbe; }
+  .container { display: flex; gap: 40px; padding: 60px 40px; max-width: 1400px; margin: 0 auto; justify-content: center; flex-wrap: wrap; }
+  .option { text-align: center; }
+  .option h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #f5a623; margin-bottom: 20px; }
+  .option p { font-size: 12px; color: #888; margin-top: 10px; font-family: monospace; }
 
-  /* OPTION 1: Blue-shifted background colour */
-  .opt1 { background: #0a0a1a; }
-  .opt1-alt { background: #0d0f1a; }
+  .coffee-ring {
+    width: 150px;
+    height: 150px;
+    border: 3px solid rgba(245, 158, 11, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  .coffee-ring img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 
-  /* OPTION 2: Full-page blue overlay via ::before */
-  .opt2 { position: relative; }
-  .opt2::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(25, 35, 75, 0.08); border-radius: 12px; pointer-events: none; z-index: 1; }
-  .opt2 > * { position: relative; z-index: 2; }
-  .opt2-alt { position: relative; }
-  .opt2-alt::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(30, 40, 90, 0.12); border-radius: 12px; pointer-events: none; z-index: 1; }
-  .opt2-alt > * { position: relative; z-index: 2; }
+  /* Option A: Transparent (current) */
+  .opt-a .coffee-ring { background: transparent; }
 
-  /* OPTION 3: Mix-blend-mode blue layer */
-  .opt3 { position: relative; isolation: isolate; }
-  .opt3::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(20, 30, 80, 0.03); mix-blend-mode: screen; border-radius: 12px; pointer-events: none; }
-  .opt3-alt { position: relative; isolation: isolate; }
-  .opt3-alt::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(30, 50, 120, 0.10); mix-blend-mode: screen; border-radius: 12px; pointer-events: none; }
+  /* Option B: Dark grey 60% */
+  .opt-b .coffee-ring { background: rgba(30, 30, 35, 0.6); }
 
-  .divider { border: none; border-top: 1px solid #333; margin: 30px 40px; }
+  /* Option C: Dark grey 40% */
+  .opt-c .coffee-ring { background: rgba(30, 30, 35, 0.4); }
+
+  /* Option D: Coral 30% */
+  .opt-d .coffee-ring { background: rgba(251, 113, 133, 0.3); }
+
+  /* Option E: Coral 15% */
+  .opt-e .coffee-ring { background: rgba(251, 113, 133, 0.15); }
+
+  /* Option F: Amber 20% */
+  .opt-f .coffee-ring { background: rgba(245, 166, 35, 0.15); }
 
   @media (max-width: 900px) {
-    .row { flex-direction: column; padding: 20px; }
+    .container { flex-direction: column; align-items: center; }
   }
 </style>
 </head>
 <body>
 
-<!-- ============================================
-     ROW 1: OPTION 1 — Blue-shifted background
-     ============================================ -->
-<p class="page-label">Option 1 — Blue-shifted background colour</p>
-<div class="row">
-  <div class="section">
-    <h3 class="label label-ref">✅ Reference (no change)</h3>
-    <div class="bp">
-      <img class="hero-img" src="https://invoicesnapbot.com/images/betty-portrait.png" alt="Betty">
-      <h1>Overqualified. Underpaid. Unimpressed.</h1>
-      <p class="sub">I'm Betty. I read your invoices, organize them into Google Sheets, and give you a summary.</p>
-      <h2>My Summaries</h2>
-      <div class="q"><b>Uber Eats - $34.70</b><br><i>You paid $34.70 to not put pants on. Honestly? Respect.</i></div>
-      <div class="q"><b>Adobe Creative Cloud - $22.99/mo</b><br><i>Another monthly subscription for software you'll open twice, feel guilty about, and keep paying for anyway.</i></div>
-      <div class="q"><b>Discord Nitro - $9.99/mo</b><br><i>You paid real money for animated emojis. The human need for status in free apps remains undefeated.</i></div>
-      <p class="note">Yes, these are real. And I write a new one each time you send me receipts.</p>
-      <h2>Commands</h2>
-      <div class="cmds">
-        <div class="cm"><code>!setup</code> <span>Connect your Google account</span></div>
-        <div class="cm"><code>!help</code> <span>See what I can do</span></div>
-        <div class="cm"><code>!betty</code> <span>Get me to draw myself</span></div>
-      </div>
-    </div>
+<div class="container">
+  <div class="option opt-a">
+    <h3>A — Transparent</h3>
+    <div class="coffee-ring"><img src="https://invoicesnapbot.com/images/betty-portrait-rembg.png" alt="Betty"></div>
+    <p>background: transparent</p>
   </div>
 
-  <div class="section opt1">
-    <h3 class="label label-test">🧪 1A — bg: #0a0a1a (subtle blue)</h3>
-    <div class="bp">
-      <img class="hero-img" src="https://invoicesnapbot.com/images/betty-portrait.png" alt="Betty">
-      <h1>Overqualified. Underpaid. Unimpressed.</h1>
-      <p class="sub">I'm Betty. I read your invoices, organize them into Google Sheets, and give you a summary.</p>
-      <h2>My Summaries</h2>
-      <div class="q"><b>Uber Eats - $34.70</b><br><i>You paid $34.70 to not put pants on. Honestly? Respect.</i></div>
-      <div class="q"><b>Adobe Creative Cloud - $22.99/mo</b><br><i>Another monthly subscription for software you'll open twice, feel guilty about, and keep paying for anyway.</i></div>
-      <div class="q"><b>Discord Nitro - $9.99/mo</b><br><i>You paid real money for animated emojis. The human need for status in free apps remains undefeated.</i></div>
-      <p class="note">Yes, these are real. And I write a new one each time you send me receipts.</p>
-      <h2>Commands</h2>
-      <div class="cmds">
-        <div class="cm"><code>!setup</code> <span>Connect your Google account</span></div>
-        <div class="cm"><code>!help</code> <span>See what I can do</span></div>
-        <div class="cm"><code>!betty</code> <span>Get me to draw myself</span></div>
-      </div>
-    </div>
+  <div class="option opt-b">
+    <h3>B — Dark Grey 60%</h3>
+    <div class="coffee-ring"><img src="https://invoicesnapbot.com/images/betty-portrait-rembg.png" alt="Betty"></div>
+    <p>rgba(30, 30, 35, 0.6)</p>
   </div>
 
-  <div class="section opt1-alt">
-    <h3 class="label label-test">🧪 1B — bg: #0d0f1a (more blue)</h3>
-    <div class="bp">
-      <img class="hero-img" src="https://invoicesnapbot.com/images/betty-portrait.png" alt="Betty">
-      <h1>Overqualified. Underpaid. Unimpressed.</h1>
-      <p class="sub">I'm Betty. I read your invoices, organize them into Google Sheets, and give you a summary.</p>
-      <h2>My Summaries</h2>
-      <div class="q"><b>Uber Eats - $34.70</b><br><i>You paid $34.70 to not put pants on. Honestly? Respect.</i></div>
-      <div class="q"><b>Adobe Creative Cloud - $22.99/mo</b><br><i>Another monthly subscription for software you'll open twice, feel guilty about, and keep paying for anyway.</i></div>
-      <div class="q"><b>Discord Nitro - $9.99/mo</b><br><i>You paid real money for animated emojis. The human need for status in free apps remains undefeated.</i></div>
-      <p class="note">Yes, these are real. And I write a new one each time you send me receipts.</p>
-      <h2>Commands</h2>
-      <div class="cmds">
-        <div class="cm"><code>!setup</code> <span>Connect your Google account</span></div>
-        <div class="cm"><code>!help</code> <span>See what I can do</span></div>
-        <div class="cm"><code>!betty</code> <span>Get me to draw myself</span></div>
-      </div>
-    </div>
+  <div class="option opt-c">
+    <h3>C — Dark Grey 40%</h3>
+    <div class="coffee-ring"><img src="https://invoicesnapbot.com/images/betty-portrait-rembg.png" alt="Betty"></div>
+    <p>rgba(30, 30, 35, 0.4)</p>
+  </div>
+
+  <div class="option opt-d">
+    <h3>D — Coral 30%</h3>
+    <div class="coffee-ring"><img src="https://invoicesnapbot.com/images/betty-portrait-rembg.png" alt="Betty"></div>
+    <p>rgba(251, 113, 133, 0.3)</p>
+  </div>
+
+  <div class="option opt-e">
+    <h3>E — Coral 15%</h3>
+    <div class="coffee-ring"><img src="https://invoicesnapbot.com/images/betty-portrait-rembg.png" alt="Betty"></div>
+    <p>rgba(251, 113, 133, 0.15)</p>
+  </div>
+
+  <div class="option opt-f">
+    <h3>F — Amber 15%</h3>
+    <div class="coffee-ring"><img src="https://invoicesnapbot.com/images/betty-portrait-rembg.png" alt="Betty"></div>
+    <p>rgba(245, 166, 35, 0.15)</p>
   </div>
 </div>
 
-<hr class="divider">
-
-<!-- ============================================
-     ROW 2: OPTION 2 — CSS overlay (::before)
-     ============================================ -->
-<p class="page-label">Option 2 — Blue overlay (::before pseudo-element)</p>
-<div class="row">
-  <div class="section">
-    <h3 class="label label-ref">✅ Reference (no change)</h3>
-    <div class="bp">
-      <img class="hero-img" src="https://invoicesnapbot.com/images/betty-portrait.png" alt="Betty">
-      <h1>Overqualified. Underpaid. Unimpressed.</h1>
-      <p class="sub">I'm Betty. I read your invoices, organize them into Google Sheets, and give you a summary.</p>
-      <h2>My Summaries</h2>
-      <div class="q"><b>Uber Eats - $34.70</b><br><i>You paid $34.70 to not put pants on. Honestly? Respect.</i></div>
-      <div class="q"><b>Adobe Creative Cloud - $22.99/mo</b><br><i>Another monthly subscription for software you'll open twice, feel guilty about, and keep paying for anyway.</i></div>
-      <div class="q"><b>Discord Nitro - $9.99/mo</b><br><i>You paid real money for animated emojis. The human need for status in free apps remains undefeated.</i></div>
-      <p class="note">Yes, these are real. And I write a new one each time you send me receipts.</p>
-      <h2>Commands</h2>
-      <div class="cmds">
-        <div class="cm"><code>!setup</code> <span>Connect your Google account</span></div>
-        <div class="cm"><code>!help</code> <span>See what I can do</span></div>
-        <div class="cm"><code>!betty</code> <span>Get me to draw myself</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section opt2">
-    <h3 class="label label-test">🧪 2A — overlay rgba(25,35,75, 0.08)</h3>
-    <div class="bp">
-      <img class="hero-img" src="https://invoicesnapbot.com/images/betty-portrait.png" alt="Betty">
-      <h1>Overqualified. Underpaid. Unimpressed.</h1>
-      <p class="sub">I'm Betty. I read your invoices, organize them into Google Sheets, and give you a summary.</p>
-      <h2>My Summaries</h2>
-      <div class="q"><b>Uber Eats - $34.70</b><br><i>You paid $34.70 to not put pants on. Honestly? Respect.</i></div>
-      <div class="q"><b>Adobe Creative Cloud - $22.99/mo</b><br><i>Another monthly subscription for software you'll open twice, feel guilty about, and keep paying for anyway.</i></div>
-      <div class="q"><b>Discord Nitro - $9.99/mo</b><br><i>You paid real money for animated emojis. The human need for status in free apps remains undefeated.</i></div>
-      <p class="note">Yes, these are real. And I write a new one each time you send me receipts.</p>
-      <h2>Commands</h2>
-      <div class="cmds">
-        <div class="cm"><code>!setup</code> <span>Connect your Google account</span></div>
-        <div class="cm"><code>!help</code> <span>See what I can do</span></div>
-        <div class="cm"><code>!betty</code> <span>Get me to draw myself</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section opt2-alt">
-    <h3 class="label label-test">🧪 2B — overlay rgba(30,40,90, 0.12)</h3>
-    <div class="bp">
-      <img class="hero-img" src="https://invoicesnapbot.com/images/betty-portrait.png" alt="Betty">
-      <h1>Overqualified. Underpaid. Unimpressed.</h1>
-      <p class="sub">I'm Betty. I read your invoices, organize them into Google Sheets, and give you a summary.</p>
-      <h2>My Summaries</h2>
-      <div class="q"><b>Uber Eats - $34.70</b><br><i>You paid $34.70 to not put pants on. Honestly? Respect.</i></div>
-      <div class="q"><b>Adobe Creative Cloud - $22.99/mo</b><br><i>Another monthly subscription for software you'll open twice, feel guilty about, and keep paying for anyway.</i></div>
-      <div class="q"><b>Discord Nitro - $9.99/mo</b><br><i>You paid real money for animated emojis. The human need for status in free apps remains undefeated.</i></div>
-      <p class="note">Yes, these are real. And I write a new one each time you send me receipts.</p>
-      <h2>Commands</h2>
-      <div class="cmds">
-        <div class="cm"><code>!setup</code> <span>Connect your Google account</span></div>
-        <div class="cm"><code>!help</code> <span>See what I can do</span></div>
-        <div class="cm"><code>!betty</code> <span>Get me to draw myself</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- ============================================
-     ROW 3: OPTION 3 — Mix-blend-mode
-     ============================================ -->
-<p class="page-label">Option 3 — Mix-blend-mode (screen)</p>
-<div class="row">
-  <div class="section">
-    <h3 class="label label-ref">✅ Reference (no change)</h3>
-    <div class="bp">
-      <img class="hero-img" src="https://invoicesnapbot.com/images/betty-portrait.png" alt="Betty">
-      <h1>Overqualified. Underpaid. Unimpressed.</h1>
-      <p class="sub">I'm Betty. I read your invoices, organize them into Google Sheets, and give you a summary.</p>
-      <h2>My Summaries</h2>
-      <div class="q"><b>Uber Eats - $34.70</b><br><i>You paid $34.70 to not put pants on. Honestly? Respect.</i></div>
-      <div class="q"><b>Adobe Creative Cloud - $22.99/mo</b><br><i>Another monthly subscription for software you'll open twice, feel guilty about, and keep paying for anyway.</i></div>
-      <div class="q"><b>Discord Nitro - $9.99/mo</b><br><i>You paid real money for animated emojis. The human need for status in free apps remains undefeated.</i></div>
-      <p class="note">Yes, these are real. And I write a new one each time you send me receipts.</p>
-      <h2>Commands</h2>
-      <div class="cmds">
-        <div class="cm"><code>!setup</code> <span>Connect your Google account</span></div>
-        <div class="cm"><code>!help</code> <span>See what I can do</span></div>
-        <div class="cm"><code>!betty</code> <span>Get me to draw myself</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section opt3">
-    <h3 class="label label-test">🧪 3A — blend-screen rgba(20,30,80, 0.06)</h3>
-    <div class="bp">
-      <img class="hero-img" src="https://invoicesnapbot.com/images/betty-portrait.png" alt="Betty">
-      <h1>Overqualified. Underpaid. Unimpressed.</h1>
-      <p class="sub">I'm Betty. I read your invoices, organize them into Google Sheets, and give you a summary.</p>
-      <h2>My Summaries</h2>
-      <div class="q"><b>Uber Eats - $34.70</b><br><i>You paid $34.70 to not put pants on. Honestly? Respect.</i></div>
-      <div class="q"><b>Adobe Creative Cloud - $22.99/mo</b><br><i>Another monthly subscription for software you'll open twice, feel guilty about, and keep paying for anyway.</i></div>
-      <div class="q"><b>Discord Nitro - $9.99/mo</b><br><i>You paid real money for animated emojis. The human need for status in free apps remains undefeated.</i></div>
-      <p class="note">Yes, these are real. And I write a new one each time you send me receipts.</p>
-      <h2>Commands</h2>
-      <div class="cmds">
-        <div class="cm"><code>!setup</code> <span>Connect your Google account</span></div>
-        <div class="cm"><code>!help</code> <span>See what I can do</span></div>
-        <div class="cm"><code>!betty</code> <span>Get me to draw myself</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section opt3-alt">
-    <h3 class="label label-test">🧪 3B — blend-screen rgba(30,50,120, 0.10)</h3>
-    <div class="bp">
-      <img class="hero-img" src="https://invoicesnapbot.com/images/betty-portrait.png" alt="Betty">
-      <h1>Overqualified. Underpaid. Unimpressed.</h1>
-      <p class="sub">I'm Betty. I read your invoices, organize them into Google Sheets, and give you a summary.</p>
-      <h2>My Summaries</h2>
-      <div class="q"><b>Uber Eats - $34.70</b><br><i>You paid $34.70 to not put pants on. Honestly? Respect.</i></div>
-      <div class="q"><b>Adobe Creative Cloud - $22.99/mo</b><br><i>Another monthly subscription for software you'll open twice, feel guilty about, and keep paying for anyway.</i></div>
-      <div class="q"><b>Discord Nitro - $9.99/mo</b><br><i>You paid real money for animated emojis. The human need for status in free apps remains undefeated.</i></div>
-      <p class="note">Yes, these are real. And I write a new one each time you send me receipts.</p>
-      <h2>Commands</h2>
-      <div class="cmds">
-        <div class="cm"><code>!setup</code> <span>Connect your Google account</span></div>
-        <div class="cm"><code>!help</code> <span>See what I can do</span></div>
-        <div class="cm"><code>!betty</code> <span>Get me to draw myself</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div style="height: 60px;"></div>
 </body>
 </html>
