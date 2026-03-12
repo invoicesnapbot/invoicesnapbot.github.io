@@ -25,6 +25,9 @@ We collect only the minimum information needed to provide our service:
 - **Google Sheets account email address** - the email you provide via `!setup` to be invited as an editor to the sheet we create for you
 - **Invoice images/files** - temporarily processed to extract data (not permanently stored by us)
 - **Discord messages** - messages you send to the bot (in DMs or in a server where the bot is present) that are necessary for the service (e.g., `!setup`, `!help`, file uploads)
+- **Image generation prompts** - scene descriptions you provide when using the `!selfie` command are sent to our AI provider for image generation
+- **Vote data** - when you vote for InvoiceSnap on a bot directory, we receive a notification containing your Discord User ID and the directory you voted from
+- **Image usage counters** - we track how many selfies you've generated per month (count only, not the images themselves)
 - **Payment information** - processed by Stripe. We do not see or store your full card details. Through our Stripe merchant dashboard, we can see your name, email address, card type and last four digits, and payment history. This is standard for any online merchant using Stripe.
 
 ## How We Use Your Data
@@ -36,6 +39,9 @@ We collect only the minimum information needed to provide our service:
 | Google Sheets account email | To invite you as an editor to the sheet we create | Until you request deletion, or 30 days after cancellation |
 | Invoice images | To extract data using AI | Processed in real-time, not stored by us (Discord retains its own copy) |
 | Discord messages | To process your commands and file uploads | Retained by Discord per their policies; we do not store them separately |
+| Image generation prompts | To generate the requested image via AI | Not stored — processed in real-time and discarded |
+| Vote data | To award selfies and track which directories drive engagement | Stored as part of your account configuration, deleted on account removal |
+| Image usage counters | To enforce monthly limits | Reset monthly, deleted on account removal |
 
 ## Free and Paid Tiers
 
@@ -64,6 +70,8 @@ InvoiceSnap uses artificial intelligence to extract data from your invoices and 
 - **Receipt image extraction:** Processed by Google Gemini (Google, USA). The AI receives your uploaded document, extracts structured data (vendor, date, amount, etc.), and returns it. The document is not stored by Google beyond the processing request.
 
 - **Personality responses:** A summary of the extracted data (vendor name, total amount, category, description, and line items) may be sent to Moonshot AI (Kimi, China) or DeepSeek (China) to generate a short personality response. No receipt images, personal information, or file contents are sent to these providers; only the extracted summary fields listed above.
+
+- **Image generation:** When you use the `!selfie` command, your scene description is sent to xAI (Grok, USA) for prompt expansion and image generation. The expanded prompt and generated image are processed in real-time and not stored by us beyond delivery to Discord. xAI's data handling is governed by their privacy policy.
 
 - According to their published policies, these AI providers do not retain your data beyond the individual processing request.
 
@@ -94,6 +102,9 @@ We rely on the following services to operate InvoiceSnap:
 - **Cloudflare** - network security and content delivery ([Cloudflare's Privacy Policy](https://www.cloudflare.com/privacypolicy/))
 - **Google Gemini** - AI data extraction from documents (processed in real-time, not stored)
 - **Moonshot AI / DeepSeek** - AI personality responses (receives extracted text summaries only, not stored)
+- **xAI (Grok)** - AI image generation and scene expansion for the `!selfie` feature ([xAI's Privacy Policy](https://x.ai/legal/privacy-policy))
+- **BotBlock** - we post our bot's server count to multiple bot directories via BotBlock's unified API. No user data is shared. ([BotBlock](https://botblock.org))
+- **Bot directories** (Top.gg, Discord Bot List, and others) - when you vote for InvoiceSnap, the directory sends us a notification with your Discord User ID. We do not share your data with these directories.
 - **Zapier** - connecting Stripe payments to our notification system ([Zapier's Privacy Policy](https://zapier.com/privacy))
 
 ## Children's Privacy
