@@ -40,6 +40,10 @@ We encourage you to:
 - Understand that AI extraction may not be 100% accurate
 - Contact us at admin@invoicesnapbot.com if you have questions before subscribing
 
+## Image Generation (Selfies)
+
+Selfies earned through voting or included with your account are non-refundable. If our content filter blocks your prompt, the selfie is still consumed. If an image fails to generate due to a technical error on our end, the selfie is automatically refunded to your account.
+
 ## Exception: Technical Failure
 
 If a technical failure on our end prevents the service from functioning after successful payment, we will:
