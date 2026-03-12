@@ -23,6 +23,7 @@ InvoiceSnap is a Discord bot that:
 - Extracts data from invoice images, PDFs, and Word documents using AI
 - Organises that data into a Google Sheet we create for you
 - May provide personality-driven commentary on your receipts (this is for entertainment only and is not financial advice)
+- May generate AI-created cartoon images of our character "Betty" based on user prompts (the `!selfie` command). These are AI-generated illustrations, not photographs. Image generation is a bonus feature and may be limited or removed at any time.
 
 ## Free and Paid Tiers
 
@@ -31,6 +32,21 @@ InvoiceSnap is a Discord bot that:
 - Payment is processed through Stripe
 - The subscription renews monthly until cancelled
 - Free tier users may upgrade at any time. Paid users may cancel at any time.
+
+## Image Generation (Selfies)
+
+New accounts receive a limited number of free selfies. Additional selfies can be earned by voting for InvoiceSnap on third-party bot directories (such as Top.gg). Weekend votes may be worth more than weekday votes. A monthly usage limit applies to all accounts.
+
+Voting is handled by third-party directory platforms. We track which directory a vote came from but do not control those platforms' voting systems.
+
+The `!selfie` command generates AI cartoon images. You agree to:
+
+- Not use the image generation feature to attempt to create illegal, harmful, or exploitative content
+- Not attempt to bypass our content filter through encoded language, alternate spellings, or prompt injection
+- Accept that some prompts will be refused at our discretion — refused prompts still consume a selfie
+- Not redistribute generated images in a way that misrepresents them as photographs or real people
+
+We use automated content filtering to block harmful prompts. Attempting to circumvent this filter may result in immediate termination of access.
 
 ## Acceptable Use
 
@@ -65,13 +81,15 @@ While we use AI to extract invoice data, we cannot guarantee 100% accuracy. You 
 
 The Bot's personality commentary is for entertainment purposes only and should not be interpreted as financial, legal, or professional advice of any kind.
 
+AI-generated images may not always match the requested scene. Image quality, style consistency, and content accuracy vary. Generated images are provided "as is" for entertainment purposes.
+
 ## Limitation of Liability
 
 To the maximum extent permitted by Australian law:
 
 - InvoiceSnap is provided "as is" without warranties of any kind
 - We are not liable for any direct, indirect, incidental, or consequential damages arising from use of the Bot
-- This includes errors in data extraction, loss of data, or business interruption
+- This includes errors in data extraction, loss of data, business interruption, or AI-generated images that do not match expectations
 - Our total liability will not exceed the amount you paid in the last month ($9 USD), or $0 if you are on the free tier
 
 ## Cancellation and Termination
