@@ -41,6 +41,16 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.35);
       text-align: center;
     }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--text-primary); }
     .portrait {
       width: 120px;
       height: 120px;
@@ -91,19 +101,19 @@
     .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
     .btn-card { background: var(--stripe-purple); }
     .btn-card svg { width: 20px; height: 20px; fill: white; }
-
-    /* PayPal SDK button container should align with our button row */
     #paypal-button-container { width: 100%; }
     #paypal-button-container > div { width: 100%; }
-
     .options-link {
       color: var(--amber);
       text-decoration: none;
       font-weight: 600;
       font-size: 14px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
     }
     .options-link:hover { text-decoration: underline; }
-
     .success {
       display: none;
       margin-top: 18px;
@@ -113,8 +123,14 @@
       border: 1px solid rgba(245, 158, 11, 0.35);
       color: var(--text-primary);
       font-size: 14px;
+      line-height: 1.6;
     }
-
+    .success code {
+      background: #2a2a2a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
     /* Modal */
     .modal-overlay {
       position: fixed;
@@ -126,6 +142,7 @@
       padding: 20px;
       z-index: 1000;
     }
+    .modal-overlay.open { display: flex; }
     .modal {
       width: min(520px, 100%);
       background: var(--bg-elevated);
@@ -135,20 +152,19 @@
       text-align: left;
       position: relative;
     }
-    .modal h2 {
-      margin: 0 0 12px;
-      font-size: 18px;
-    }
+    .modal h2 { margin: 0 0 12px; font-size: 18px; }
     .modal-close {
       position: absolute;
-      top: 12px;
-      right: 12px;
+      top: 12px; right: 12px;
       background: transparent;
       border: none;
       color: var(--text-muted);
       font-size: 22px;
       cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
     }
+    .modal-close:hover { color: var(--text-primary); }
     .option-list { display: grid; gap: 10px; }
     .option-item {
       display: flex;
@@ -178,44 +194,47 @@
       text-decoration: none;
       font-size: 13px;
       cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
     }
   </style>
 </head>
 <body>
   <main class="card">
+    <!-- Back link so users can return to the home page -->
+    <a href="/" class="back-link">&#8592; Back to InvoiceSnap</a>
+
     <img class="portrait" src="/images/betty-portrait-rembg.png" alt="Betty" onerror="this.style.display='none'" />
     <h1>Pick your payment method</h1>
-    <div class="subheading">$9 USD/month — Unlimited receipts + selfies</div>
+    <div class="subheading"><strong style="color:var(--amber)">$9 USD/month</strong> — Unlimited receipts + double vote rewards</div>
 
     <div id="payment-buttons" class="buttons">
-      <!-- Stripe card button (static link) -->
       <a class="btn btn-card" href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4H4V6h16v2zM4 18v-8h16v8H4zm3-3h6v2H7v-2z" />
         </svg>
         Pay by Card
       </a>
-
-      <!-- PayPal button rendered by the PayPal JS SDK -->
       <div id="paypal-button-container"></div>
     </div>
 
-    <a href="#" class="options-link" id="open-options">See all payment options</a>
+    <button class="options-link" id="open-options">See all payment options</button>
 
     <div id="success-msg" class="success">
-      Payment received! Now type <code>!upgrade your@email.com</code> in Discord (use the email from your PayPal account) to activate unlimited.
+      Payment received! Now type <code>!upgrade</code> followed by your email address in Discord (the email from your PayPal account) to activate unlimited.
     </div>
   </main>
 
-  <!-- Modal / lightbox for additional payment options -->
+  <!-- Modal for all payment options -->
   <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button class="modal-close" id="close-modal" aria-label="Close">×</button>
+      <button class="modal-close" id="close-modal" aria-label="Close">&times;</button>
       <h2 id="modal-title">All payment options</h2>
       <div class="option-list">
         <div class="option-item">
           <div class="option-left">
-            <span class="badge badge-card">💳</span>
+            <span class="badge badge-card">&#x1F4B3;</span>
             <div>
               <div class="option-title">Credit / Debit Card</div>
               <div class="option-note">Secure checkout via Stripe</div>
@@ -226,7 +245,7 @@
 
         <div class="option-item">
           <div class="option-left">
-            <span class="badge badge-apple"></span>
+            <span class="badge badge-apple">&#xF8FF;</span>
             <div>
               <div class="option-title">Apple Pay</div>
               <div class="option-note">Available on supported devices</div>
@@ -260,61 +279,44 @@
     </div>
   </div>
 
-  <!-- PayPal JS SDK (only external JS dependency) -->
+  <!-- PayPal JS SDK -->
   <script src="https://www.paypal.com/sdk/js?client-id=AWaVKs0tun_UzLy0N3lXw5rqYiLvF1Y-GS-_1s9Vi_HDaE-bXju0gS94nuttsrCSK-VtdyxcGNOve5K7&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
 
   <script>
     // Modal controls
-    const overlay = document.getElementById('modal-overlay');
-    const openOptions = document.getElementById('open-options');
-    const closeModal = document.getElementById('close-modal');
-    const paypalModalTrigger = document.getElementById('paypal-modal-trigger');
+    var overlay = document.getElementById('modal-overlay');
 
-    function openModal() {
-      overlay.style.display = 'flex';
-      overlay.setAttribute('aria-hidden', 'false');
-    }
-    function hideModal() {
-      overlay.style.display = 'none';
-      overlay.setAttribute('aria-hidden', 'true');
-    }
+    function openModal() { overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false'); }
+    function closeModal() { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden', 'true'); }
 
-    openOptions.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal();
-    });
-    closeModal.addEventListener('click', hideModal);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) hideModal();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') hideModal();
-    });
+    document.getElementById('open-options').addEventListener('click', function(e) { e.preventDefault(); openModal(); });
+    document.getElementById('close-modal').addEventListener('click', closeModal);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-    // PayPal button rendering + subscription flow
+    // PayPal button
     paypal.Buttons({
       style: { shape: 'rect', color: 'gold', layout: 'horizontal', label: 'subscribe', tagline: false },
       createSubscription: function(data, actions) {
         return actions.subscription.create({ plan_id: 'P-4UA27426TD111891TNGZZUQY' });
       },
       onApprove: function(data, actions) {
-        // Show success message and hide payment buttons
         document.getElementById('success-msg').style.display = 'block';
         document.getElementById('payment-buttons').style.display = 'none';
-        // Optionally close modal if it was open
-        hideModal();
+        document.getElementById('open-options').style.display = 'none';
+        closeModal();
       }
     }).render('#paypal-button-container');
 
-    // In modal, trigger the same PayPal button click
-    paypalModalTrigger.addEventListener('click', () => {
-      // Attempt to click the PayPal button (first button in container)
-      const paypalIframeButton = document.querySelector('#paypal-button-container iframe');
-      if (paypalIframeButton) {
-        paypalIframeButton.contentWindow.focus();
-      }
-      hideModal();
-      // User can click the PayPal button row after modal closes
+    // Modal PayPal trigger — close modal and scroll to the PayPal button
+    document.getElementById('paypal-modal-trigger').addEventListener('click', function() {
+      closeModal();
+      var container = document.getElementById('paypal-button-container');
+      container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Flash the PayPal button area briefly to draw attention
+      container.style.outline = '2px solid var(--amber)';
+      container.style.borderRadius = '10px';
+      setTimeout(function() { container.style.outline = 'none'; }, 2000);
     });
   </script>
 </body>
