@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InvoiceSnap — Checkout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0d0d0d;
+      --bg-card: #1a1a1a;
+      --bg-elevated: #222222;
+      --amber: #f59e0b;
+      --text-primary: #f1f1f1;
+      --text-muted: #888888;
+      --border: #2a2a2a;
+      --stripe-purple: #635bff;
+      --paypal-gold: #FFC439;
+      --paypal-blue: #003087;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 16px;
+    }
+    .card {
+      width: min(720px, 100%);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      text-align: center;
+    }
+    .portrait {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 999px;
+      border: 2px solid var(--border);
+      margin: 0 auto 14px;
+      background: var(--bg-elevated);
+    }
+    h1 {
+      font-size: 24px;
+      margin: 8px 0 6px;
+      font-weight: 700;
+    }
+    .subheading {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 22px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 420px) {
+      .buttons { grid-template-columns: 1fr; }
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: none;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      color: white;
+      width: 100%;
+      height: 50px;
+      transition: transform 0.08s ease, box-shadow 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
+    .btn-card { background: var(--stripe-purple); }
+    .btn-card svg { width: 20px; height: 20px; fill: white; }
+
+    /* PayPal SDK button container should align with our button row */
+    #paypal-button-container { width: 100%; }
+    #paypal-button-container > div { width: 100%; }
+
+    .options-link {
+      color: var(--amber);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .options-link:hover { text-decoration: underline; }
+
+    .success {
+      display: none;
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: var(--text-primary);
+      font-size: 14px;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1000;
+    }
+    .modal {
+      width: min(520px, 100%);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: left;
+      position: relative;
+    }
+    .modal h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 22px;
+      cursor: pointer;
+    }
+    .option-list { display: grid; gap: 10px; }
+    .option-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .option-left { display: flex; align-items: center; gap: 10px; }
+    .badge {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 700; color: white; font-size: 14px;
+    }
+    .badge-card { background: var(--stripe-purple); }
+    .badge-apple { background: #111111; }
+    .badge-google { background: #4285F4; }
+    .badge-paypal { background: var(--paypal-blue); }
+    .option-title { font-weight: 600; font-size: 14px; }
+    .option-note { font-size: 12px; color: var(--text-muted); }
+    .option-action {
+      color: var(--amber);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 13px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img class="portrait" src="/images/betty-portrait-rembg.png" alt="Betty" onerror="this.style.display='none'" />
+    <h1>Pick your payment method</h1>
+    <div class="subheading">$9 USD/month — Unlimited receipts + selfies</div>
+
+    <div id="payment-buttons" class="buttons">
+      <!-- Stripe card button (static link) -->
+      <a class="btn btn-card" href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4H4V6h16v2zM4 18v-8h16v8H4zm3-3h6v2H7v-2z" />
+        </svg>
+        Pay by Card
+      </a>
+
+      <!-- PayPal button rendered by the PayPal JS SDK -->
+      <div id="paypal-button-container"></div>
+    </div>
+
+    <a href="#" class="options-link" id="open-options">See all payment options</a>
+
+    <div id="success-msg" class="success">
+      Payment received! Now type <code>!upgrade your@email.com</code> in Discord (use the email from your PayPal account) to activate unlimited.
+    </div>
+  </main>
+
+  <!-- Modal / lightbox for additional payment options -->
+  <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="close-modal" aria-label="Close">×</button>
+      <h2 id="modal-title">All payment options</h2>
+      <div class="option-list">
+        <div class="option-item">
+          <div class="option-left">
+            <span class="badge badge-card">💳</span>
+            <div>
+              <div class="option-title">Credit / Debit Card</div>
+              <div class="option-note">Secure checkout via Stripe</div>
+            </div>
+          </div>
+          <a class="option-action" href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" target="_blank" rel="noopener">Pay</a>
+        </div>
+
+        <div class="option-item">
+          <div class="option-left">
+            <span class="badge badge-apple"></span>
+            <div>
+              <div class="option-title">Apple Pay</div>
+              <div class="option-note">Available on supported devices</div>
+            </div>
+          </div>
+          <a class="option-action" href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" target="_blank" rel="noopener">Pay</a>
+        </div>
+
+        <div class="option-item">
+          <div class="option-left">
+            <span class="badge badge-google">G</span>
+            <div>
+              <div class="option-title">Google Pay</div>
+              <div class="option-note">Available on supported devices</div>
+            </div>
+          </div>
+          <a class="option-action" href="https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00" target="_blank" rel="noopener">Pay</a>
+        </div>
+
+        <div class="option-item">
+          <div class="option-left">
+            <span class="badge badge-paypal">P</span>
+            <div>
+              <div class="option-title">PayPal</div>
+              <div class="option-note">Subscription via PayPal</div>
+            </div>
+          </div>
+          <button class="option-action" id="paypal-modal-trigger">Pay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PayPal JS SDK (only external JS dependency) -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AWaVKs0tun_UzLy0N3lXw5rqYiLvF1Y-GS-_1s9Vi_HDaE-bXju0gS94nuttsrCSK-VtdyxcGNOve5K7&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+
+  <script>
+    // Modal controls
+    const overlay = document.getElementById('modal-overlay');
+    const openOptions = document.getElementById('open-options');
+    const closeModal = document.getElementById('close-modal');
+    const paypalModalTrigger = document.getElementById('paypal-modal-trigger');
+
+    function openModal() {
+      overlay.style.display = 'flex';
+      overlay.setAttribute('aria-hidden', 'false');
+    }
+    function hideModal() {
+      overlay.style.display = 'none';
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+
+    openOptions.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+    closeModal.addEventListener('click', hideModal);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) hideModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') hideModal();
+    });
+
+    // PayPal button rendering + subscription flow
+    paypal.Buttons({
+      style: { shape: 'rect', color: 'gold', layout: 'horizontal', label: 'subscribe', tagline: false },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({ plan_id: 'P-4UA27426TD111891TNGZZUQY' });
+      },
+      onApprove: function(data, actions) {
+        // Show success message and hide payment buttons
+        document.getElementById('success-msg').style.display = 'block';
+        document.getElementById('payment-buttons').style.display = 'none';
+        // Optionally close modal if it was open
+        hideModal();
+      }
+    }).render('#paypal-button-container');
+
+    // In modal, trigger the same PayPal button click
+    paypalModalTrigger.addEventListener('click', () => {
+      // Attempt to click the PayPal button (first button in container)
+      const paypalIframeButton = document.querySelector('#paypal-button-container iframe');
+      if (paypalIframeButton) {
+        paypalIframeButton.contentWindow.focus();
+      }
+      hideModal();
+      // User can click the PayPal button row after modal closes
+    });
+  </script>
+</body>
+</html>
