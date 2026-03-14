@@ -228,6 +228,9 @@
         Pay by Card
       </a>
       <div id="paypal-button-container"></div>
+      <a id="paypal-fallback" class="btn" style="background:#FFC439;color:#003087;font-weight:700;display:none" href="javascript:void(0)">
+        PayPal
+      </a>
     </div>
 
     <button class="options-link" id="open-options">See all payment options</button>
@@ -306,6 +309,15 @@
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
     // PayPal button
+    // Show fallback if PayPal SDK didn't load
+    var ppFallback = document.getElementById('paypal-fallback');
+    var ppTimeout = setTimeout(function() {
+      if (ppFallback && !document.querySelector('#paypal-button-container iframe')) {
+        ppFallback.style.display = 'flex';
+        ppFallback.onclick = function() { window.open('https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-4UA27426TD111891TNGZZUQY', '_blank'); };
+      }
+    }, 3000);
+
     paypal.Buttons({
       style: { shape: 'rect', color: 'gold', layout: 'horizontal', label: 'subscribe', tagline: false },
       createSubscription: function(data, actions) {
@@ -317,7 +329,10 @@
         document.getElementById('open-options').style.display = 'none';
         closeModal();
       }
-    }).render('#paypal-button-container');
+    }).render('#paypal-button-container').then(function() {
+      clearTimeout(ppTimeout);
+      if (ppFallback) ppFallback.style.display = 'none';
+    });
 
     // Modal PayPal trigger — close modal and scroll to the PayPal button
     document.getElementById('paypal-modal-trigger').addEventListener('click', function() {
