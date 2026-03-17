@@ -4,8 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InvoiceSnap — Receipt Tracker for Small Business & Sole Traders</title>
-    <meta name="description" content="Snap receipts on the job. Betty (our AI) extracts data and sends it to your Google Spreadsheet. No apps to install.">
+    <meta name="description" content="The easiest way to scan receipts to Google Sheets. Send a photo via WhatsApp or Discord, and our AI extracts the details automatically. Done.">
     <meta name="keywords" content="receipt tracker, receipt to spreadsheet, scan receipts to google sheets, receipt tracking app, receipt scanner app">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="InvoiceSnap — Receipt Tracker for Small Business">
+    <meta property="og:description" content="The easiest way to scan receipts to Google Sheets. Send a photo via WhatsApp or Discord, and our AI extracts the details automatically. Done.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoicesnapbot.com">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="InvoiceSnap — Receipt Tracker">
+    <meta name="twitter:description" content="The easiest way to scan receipts to Google Sheets. Send a photo via WhatsApp or Discord, and our AI extracts the details automatically. Done.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,6 +41,23 @@
             --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
+        .light-mode {
+            --bg-primary: #f5f5f0;
+            --bg-secondary: #eaeae5;
+            --bg-card: #ffffff;
+            --bg-elevated: #f0f0eb;
+            --text-primary: #1a1a1a;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --amber: #d97706;
+            --amber-light: #f59e0b;
+            --amber-dark: #b45309;
+            --coral: #e11d48;
+            --coral-light: #fb7185;
+            --border: #d4d4d0;
+            --border-hover: #b0b0a8;
+        }
+
         body::after {
             content: '';
             position: fixed;
@@ -47,6 +75,7 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         a { color: var(--amber); text-decoration: none; transition: color 0.2s ease; }
@@ -187,10 +216,7 @@
         .pricing-card h3 { font-size: 1.5rem; margin-bottom: 0px; }
         .pricing-card .price { font-size: 3rem; font-weight: 800; margin: 0px 0 8px 0; color: var(--amber); }
         .pricing-card .price span { font-size: 1rem; color: var(--text-secondary); font-weight: 400; }
-        
-        /* SPACING FIX FOR PRICING DESCRIPTION */
         .pricing-card .description { color: var(--text-secondary); margin-top: 0px; margin-bottom: 32px; font-size: 0.95rem; }
-        
         .pricing-features { list-style: none; margin-bottom: 32px; border-top: 1px solid var(--border); padding-top: 24px;}
         .pricing-features li { padding: 8px 0; color: var(--text-secondary); display: flex; gap: 12px; }
         .pricing-features li::before { content: '✓'; color: var(--amber); font-weight: 700; }
@@ -253,7 +279,7 @@
         <div class="container hero-layout">
             <div class="hero-text">
                 <h1>Snap the receipt.<br>Betty does the spreadsheet.</h1>
-                <p class="hero-subtitle">Send a photo via WhatsApp or Discord. Our AI extracts the details and sorts your tax categories. Done.</p>
+                <p class="hero-subtitle">The simplest <strong>receipt tracker</strong> for small business. Send a photo via WhatsApp or Discord, and our AI puts the data straight into your spreadsheet. Done.</p>
                 <div class="hero-cta">
                     <button onclick="openPlatformModal()" class="btn btn-primary">Get Started Free</button>
                     <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
@@ -263,7 +289,7 @@
                 <div class="betty-id-card">
                     <img src="/images/betty-portrait-rembg.png" alt="Betty">
                     <h3>Betty</h3>
-                    <p class="title">AI Receipt Processor</p>
+                    <p class="title">AI Receipt Tracker</p>
                     <p class="quote">"I read your invoices, organise them into Google Sheets, and give you a summary."</p>
                 </div>
             </div>
@@ -274,7 +300,7 @@
     <div class="trust-bar">
         <div class="container">
             <div class="trust-bar-grid">
-                <div class="trust-bar-item"><span class="trust-bar-icon">📱</span> No App Needed</div>
+                <div class="trust-bar-item"><span class="trust-bar-icon">📱</span> No receipt tracking app to install</div>
                 <div class="trust-bar-item"><span class="trust-bar-icon">📋</span> Auto Tax Categories</div>
                 <div class="trust-bar-item"><span class="trust-bar-icon">📊</span> Direct to Google Sheets</div>
                 <div class="trust-bar-item"><span class="trust-bar-icon">💰</span> Just $9/mo</div>
@@ -285,14 +311,14 @@
     <section class="section" id="how-it-works">
         <div class="container">
             <div class="section-header">
-                <h2>How InvoiceSnap Works</h2>
+                <h2>Receipt to Spreadsheet</h2>
                 <p>Zero data entry.<br>Just point, shoot, and send.</p>
             </div>
             <div class="steps-grid">
                 <div class="step-card">
                     <div class="step-number">1</div>
                     <h3>Send the Photo</h3>
-                    <p>Grab a pic on site. Send it to Betty via WhatsApp or Discord.</p>
+                    <p>No clunky <strong>receipt organiser apps</strong>. No forms. Just send the image via WhatsApp or Discord.</p>
                 </div>
                 <div class="step-card">
                     <div class="step-number">2</div>
@@ -302,7 +328,7 @@
                 <div class="step-card">
                     <div class="step-number">3</div>
                     <h3>Spreadsheet Updated</h3>
-                    <p>Data hits your Google Sheet. Ready for tax time. Done.</p>
+                    <p>Ready for tax time. The easiest way to <strong>scan receipts to Google Sheets</strong>.</p>
                 </div>
             </div>
         </div>
@@ -380,7 +406,7 @@
             <div class="footer-flex">
                 <div class="footer-brand">
                     <a href="/" class="logo">InvoiceSnap</a>
-                    <p>Simple receipt tracking. Snap a photo, data to spreadsheet. Done.</p>
+                    <p>The simplest <strong>receipt tracker</strong>. Snap a photo, data to spreadsheet. Done.</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
@@ -411,10 +437,27 @@
         </div>
     </div>
 
+    <!-- Checkout Modal (For "Go Unlimited") -->
+    <div class="overlay-modal" id="checkout-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCheckoutModal()">×</button>
+            <h2>Go Unlimited</h2>
+            <p class="subtitle">$9 USD/month — no receipt limits.</p>
+            <button class="modal-btn stripe" onclick="checkoutStripe()">💳 Pay by Card (Stripe)</button>
+            <div id="paypal-button-container" style="margin-top: 10px;"></div>
+            <p class="modal-secure">🔒 Secure checkout. Cancel anytime.</p>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script>
         function openPlatformModal() { document.getElementById('platform-modal').classList.add('active'); }
         function closePlatformModal() { document.getElementById('platform-modal').classList.remove('active'); }
+        
+        function openCheckoutModal() { document.getElementById('checkout-modal').classList.add('active'); }
+        function closeCheckoutModal() { document.getElementById('checkout-modal').classList.remove('active'); }
+
+        function checkoutStripe() { window.open('https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00', '_blank'); }
         
         document.querySelectorAll('.overlay-modal').forEach(modal => {
             modal.addEventListener('click', e => { if (e.target === e.currentTarget) modal.classList.remove('active'); });
