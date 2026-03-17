@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InvoiceSnap — Receipt Tracker for Sole Traders & Small Business | Australia</title>
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Snap a photo of your receipt. AI reads it and sends data to Google Spreadsheet. No app install. $9/month. ATO-aligned categories. Perfect for tradies, freelancers, sole traders.">
-    <meta name="keywords" content="receipt tracking app, sole trader expense tracker, receipt to spreadsheet, tax receipts Australia, tradie expense tracker, receipt scanner app">
+    <title>InvoiceSnap — Receipt Tracker for Small Business & Sole Traders</title>
+    <meta name="description" content="Snap receipts on the job. AI extracts data and sends it to your Google Spreadsheet. No apps to install. Works with WhatsApp or Discord. $9 USD/mo.">
+    <meta name="keywords" content="receipt tracker, receipt to spreadsheet, scan receipts to google sheets, receipt tracking app, receipt scanner app">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="InvoiceSnap — Receipt Tracker for Sole Traders">
-    <meta property="og:description" content="Snap a photo of your receipt. AI reads it and sends data to Google Spreadsheet.">
+    <meta property="og:title" content="InvoiceSnap — Receipt Tracker for Small Business">
+    <meta property="og:description" content="Snap receipts on the job. Data goes straight to your spreadsheet. No extra apps.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://invoicesnapbot.com">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="InvoiceSnap — Receipt Tracker">
-    <meta name="twitter:description" content="Snap receipts to Google Spreadsheet. No app install. $9/month.">
+    <meta name="twitter:description" content="Snap receipts to spreadsheet. Simple as sending a photo.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,7 +99,6 @@
             padding: 0 24px;
         }
 
-        /* Navigation */
         nav {
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border);
@@ -175,7 +173,6 @@
             background: var(--bg-elevated);
         }
 
-        /* Hero Section */
         .hero {
             padding: 80px 0;
             text-align: center;
@@ -243,7 +240,6 @@
             background: var(--bg-elevated);
         }
 
-        /* How It Works */
         .section {
             padding: 80px 0;
         }
@@ -311,7 +307,6 @@
             font-size: 0.95rem;
         }
 
-        /* Examples Section */
         #examples {
             background: var(--bg-secondary);
         }
@@ -362,7 +357,6 @@
             font-size: 0.9rem;
         }
 
-        /* Platform Cards */
         .platforms-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -420,7 +414,6 @@
             background: var(--bg-secondary);
         }
 
-        /* Pricing */
         #pricing {
             background: var(--bg-secondary);
         }
@@ -515,7 +508,6 @@
             font-weight: 700;
         }
 
-        /* Trust Section */
         .trust-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -546,7 +538,6 @@
             font-size: 0.85rem;
         }
 
-        /* Footer */
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border);
@@ -599,8 +590,8 @@
             font-size: 0.85rem;
         }
 
-        /* Checkout Overlay */
-        .checkout-overlay {
+        /* Overlay Modals */
+        .overlay-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -614,11 +605,11 @@
             padding: 24px;
         }
 
-        .checkout-overlay.active {
+        .overlay-modal.active {
             display: flex;
         }
 
-        .checkout-modal {
+        .modal-content {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 20px;
@@ -628,7 +619,7 @@
             position: relative;
         }
 
-        .checkout-close {
+        .modal-close {
             position: absolute;
             top: 16px;
             right: 16px;
@@ -639,18 +630,18 @@
             cursor: pointer;
         }
 
-        .checkout-modal h2 {
+        .modal-content h2 {
             text-align: center;
             margin-bottom: 8px;
         }
 
-        .checkout-modal .subtitle {
+        .modal-content .subtitle {
             text-align: center;
             color: var(--text-secondary);
             margin-bottom: 32px;
         }
 
-        .checkout-btn {
+        .modal-btn {
             width: 100%;
             padding: 16px;
             border-radius: 10px;
@@ -660,35 +651,57 @@
             margin-bottom: 12px;
             transition: all 0.2s ease;
             border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
         }
 
-        .checkout-btn.stripe {
+        .modal-btn.stripe {
             background: #635bff;
             color: #fff;
         }
 
-        .checkout-btn.stripe:hover {
+        .modal-btn.stripe:hover {
             background: #4f46e5;
         }
 
-        .checkout-btn.paypal {
+        .modal-btn.whatsapp {
+            background: #25D366;
+            color: #fff;
+        }
+        
+        .modal-btn.whatsapp:hover {
+            background: #1EBE5D;
+        }
+
+        .modal-btn.discord {
+            background: #5865F2;
+            color: #fff;
+        }
+
+        .modal-btn.discord:hover {
+            background: #4752C4;
+        }
+
+        .modal-btn.paypal {
             background: var(--bg-elevated);
             border: 1px solid var(--border);
             color: var(--text-primary);
         }
 
-        .checkout-btn.paypal:hover {
+        .modal-btn.paypal:hover {
             border-color: var(--border-hover);
         }
 
-        .checkout-secure {
+        .modal-secure {
             text-align: center;
             margin-top: 16px;
             color: var(--text-muted);
             font-size: 0.8rem;
         }
 
-        /* Responsive */
         @media (max-width: 1024px) {
             .steps-grid,
             .examples-grid,
@@ -762,7 +775,7 @@
                 padding: 24px;
             }
 
-            .checkout-modal {
+            .modal-content {
                 padding: 24px;
             }
         }
@@ -793,10 +806,10 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Snap Your Receipts.<br>Tax Time Sorted.</h1>
-            <p class="hero-subtitle">Take a photo of any receipt and AI automatically extracts the details into your Google Spreadsheet. No apps to install, no manual data entry, ATO-aligned categories.</p>
+            <h1>Snap receipts on the job. <br>Get them into your spreadsheet fast.</h1>
+            <p class="hero-subtitle">Take a photo of fuel dockets, tool receipts or runs to the hardware store. AI pulls out the details and adds them to your Google Spreadsheet. No extra apps, no hassle.</p>
             <div class="hero-cta">
-                <a href="#pricing" class="btn btn-primary">Start Free →</a>
+                <button onclick="openPlatformModal()" class="btn btn-primary">Get Started Free →</button>
                 <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
             </div>
         </div>
@@ -807,55 +820,55 @@
         <div class="container">
             <div class="section-header">
                 <h2>How InvoiceSnap Works</h2>
-                <p>Three simple steps to track every receipt automatically.</p>
+                <p>Three simple steps to track receipts without the spreadsheet headache.</p>
             </div>
             <div class="steps-grid">
                 <div class="step-card">
                     <div class="step-number">1</div>
-                    <h3>Snap a Photo</h3>
-                    <p>Send a photo of your receipt via WhatsApp, Discord, or email. Whatever platform you already use.</p>
+                    <h3>Send the Photo</h3>
+                    <p>Grab a pic of your receipt on site — fuel, parts, lunch. Send it via WhatsApp or Discord, the apps you already use.</p>
                 </div>
                 <div class="step-card">
                     <div class="step-number">2</div>
-                    <h3>AI Reads It</h3>
-                    <p>Our AI extracts the date, amount, vendor, and categorises it using ATO-aligned categories automatically.</p>
+                    <h3>AI Handles It</h3>
+                    <p>AI reads the date, supplier, amount and sorts it into tax categories. No typing needed.</p>
                 </div>
                 <div class="step-card">
                     <div class="step-number">3</div>
-                    <h3> Lands in Spreadsheet</h3>
-                    <p>All your receipt data appears in Google Spreadsheet, ready for BAS, tax, or expense reports.</p>
+                    <h3>Spreadsheet Updated</h3>
+                    <p>Data lands in your Google Spreadsheet, ready for your bookkeeper or tax time. Done.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Examples Section -->
+    <!-- Examples Section (Real Receipts, Real Results) -->
     <section class="section" id="examples">
         <div class="container">
             <div class="section-header">
-                <h2>See It In Action</h2>
-                <p>From paper receipt to organized spreadsheet in seconds.</p>
+                <h2>Real Receipts, Real Results</h2>
+                <p>See exactly what happens when you snap a receipt on the job.</p>
             </div>
             <div class="examples-grid">
                 <div class="example-card">
-                    <div class="placeholder-image">[SCREENSHOT: Photo of receipt being sent via WhatsApp]</div>
+                    <div class="placeholder-image">[Screenshot: WhatsApp showing a photo of a receipt being sent]</div>
                     <div class="example-content">
-                        <h3>Send the Receipt</h3>
-                        <p>Just snap and send. Works on any phone with WhatsApp or Discord.</p>
+                        <h3>1. Send the Receipt</h3>
+                        <p>Just snap a photo and send it to InvoiceSnap via WhatsApp or Discord. No form filling.</p>
                     </div>
                 </div>
                 <div class="example-card">
-                    <div class="placeholder-image">[SCREENSHOT: AI processing confirmation with extracted details]</div>
+                    <div class="placeholder-image">[Screenshot: Bot replying "Done! Here's the details!" with parsed data]</div>
                     <div class="example-content">
-                        <h3>AI Processes It</h3>
-                        <p>Receipt is read and categorized. You'll see a confirmation with all extracted details.</p>
+                        <h3>2. AI Processes It</h3>
+                        <p>Our AI reads the text, grabs the total, tax, and date, and picks the right category.</p>
                     </div>
                 </div>
                 <div class="example-card">
-                    <div class="placeholder-image">[SCREENSHOT: Google Spreadsheet with receipt data rows]</div>
+                    <div class="placeholder-image">[Screenshot: Google Sheet row with generic tradie data like Jim's Home Hardware]</div>
                     <div class="example-content">
-                        <h3>Spreadsheet Updated</h3>
-                        <p>Date, vendor, amount, category — all neatly organized in your Google Spreadsheet.</p>
+                        <h3>3. Spreadsheet Updated</h3>
+                        <p>The details automatically appear in a clean, organized Google Spreadsheet row.</p>
                     </div>
                 </div>
             </div>
@@ -866,26 +879,26 @@
     <section class="section" id="platforms">
         <div class="container">
             <div class="section-header">
-                <h2>Use It Your Way</h2>
-                <p>Choose your preferred platform. More coming soon.</p>
+                <h2>Works Where You Already Chat</h2>
+                <p>No new apps. Use what you have.</p>
             </div>
             <div class="platforms-grid">
                 <div class="platform-card">
                     <div class="platform-icon">💬</div>
                     <h3>WhatsApp</h3>
-                    <p>Just send a photo. No apps to install, no accounts to create. Perfect for tradies and sole traders.</p>
-                    <a href="/whatsapp" class="btn btn-primary">Get Started on WhatsApp</a>
+                    <p>Send receipt photos to a contact. That's it. Perfect for on-site tracking without stopping work.</p>
+                    <a href="/whatsapp" class="btn btn-primary">Start with WhatsApp</a>
                 </div>
                 <div class="platform-card">
                     <div class="platform-icon">🎮</div>
                     <h3>Discord</h3>
-                    <p>Meet Betty — your AI receipt assistant with opinions. Great for freelancers and side hustles.</p>
-                    <a href="/discord" class="btn btn-secondary">Add Betty to Discord</a>
+                    <p>Meet <strong>Betty from InvoiceSnap</strong> (our AI). She processes your receipts and organizes your spreadsheet.</p>
+                    <a href="/discord" class="btn btn-secondary">Add to Discord</a>
                 </div>
                 <div class="platform-card coming-soon">
                     <div class="platform-icon">📧</div>
                     <h3>Email</h3>
-                    <p>Forward your receipts. Simple email integration coming soon.</p>
+                    <p>Forward receipts from your phone. Coming soon for simple forwarding.</p>
                     <span class="btn btn-secondary" style="opacity: 0.5;">Coming Soon</span>
                 </div>
             </div>
@@ -896,34 +909,34 @@
     <section class="section" id="pricing">
         <div class="container">
             <div class="section-header">
-                <h2>Simple, Affordable Pricing</h2>
-                <p>No hidden fees. No surprises. Cancel anytime.</p>
+                <h2>Pricing That Fits Your Cash Flow</h2>
+                <p>No lock-in. Cancel anytime. Start free.</p>
             </div>
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3>Free</h3>
                     <div class="price">$0</div>
-                    <p class="description">Perfect for testing or minimal use</p>
+                    <p class="description">Test it out or handle light use</p>
                     <ul class="pricing-features">
                         <li>15 receipts per month</li>
-                        <li>No credit card required</li>
-                        <li>Google Spreadsheet export</li>
-                        <li>ATO-aligned categories</li>
+                        <li>No card needed</li>
+                        <li>Google Spreadsheet ready</li>
+                        <li>Organised for tax time</li>
                     </ul>
-                    <button class="btn btn-secondary" onclick="openCheckout('free')">Get Started Free</button>
+                    <button class="btn btn-secondary" onclick="openPlatformModal()">Get Started Free</button>
                 </div>
                 <div class="pricing-card featured">
                     <h3>Unlimited</h3>
                     <div class="price">$9<span> USD/month</span></div>
-                    <p class="description">Everything you need for business</p>
+                    <p class="description">Every receipt, every job, no limits</p>
                     <ul class="pricing-features">
                         <li>Unlimited receipts</li>
-                        <li>All platforms included</li>
-                        <li>Priority processing</li>
-                        <li>Export to multiple spreadsheets</li>
-                        <li>BAS-ready reports</li>
+                        <li>All platforms</li>
+                        <li>Fast processing</li>
+                        <li>Multiple spreadsheets</li>
+                        <li>Makes your accountant happy</li>
                     </ul>
-                    <button class="btn btn-primary" onclick="openCheckout('unlimited')">Start Free Trial</button>
+                    <button class="btn btn-primary" onclick="openCheckoutModal()">Go Unlimited</button>
                 </div>
             </div>
         </div>
@@ -933,29 +946,29 @@
     <section class="section" id="trust">
         <div class="container">
             <div class="section-header">
-                <h2>Why Tradies & Sole Traders Love InvoiceSnap</h2>
-                <p>Built for Australian small business, aligned with ATO requirements.</p>
+                <h2>Built for Jobs Like Yours</h2>
+                <p>Straightforward tools that get the job done.</p>
             </div>
             <div class="trust-grid">
                 <div class="trust-item">
                     <div class="trust-item-icon">📱</div>
-                    <h4>No App to Install</h4>
-                    <p>Uses WhatsApp or Discord — apps you already have on your phone.</p>
+                    <h4>No App Download</h4>
+                    <p>Use WhatsApp or Discord — apps already on your phone.</p>
                 </div>
                 <div class="trust-item">
-                    <div class="trust-item-icon">🏢</div>
-                    <h4>ATO Categories</h4>
-                    <p>Every receipt automatically categorised according to ATO tax requirements.</p>
+                    <div class="trust-item-icon">📋</div>
+                    <h4>Organised Data</h4>
+                    <p>Fuel, tools, subcontractors — sorted right.</p>
                 </div>
                 <div class="trust-item">
                     <div class="trust-item-icon">📊</div>
-                    <h4>Spreadsheet Ready</h4>
-                    <p>Data lands in Google Sheets — no locked-in formats or expensive software.</p>
+                    <h4>Spreadsheet Direct</h4>
+                    <p>Data hits Google Sheets. Share with your bookkeeper easy.</p>
                 </div>
                 <div class="trust-item">
                     <div class="trust-item-icon">💰</div>
-                    <h4>75% Cheaper</h4>
-                    <p>$9/month vs $20-50/month for Dext, Hubdoc, or Xero. Big savings.</p>
+                    <h4>Cheaper Than Big Apps</h4>
+                    <p>$9/mo vs $30+ for full software you barely use.</p>
                 </div>
             </div>
         </div>
@@ -970,10 +983,10 @@
                         <span class="logo-icon">📸</span>
                         InvoiceSnap
                     </a>
-                    <p>Receipt tracking for Australian tradies, sole traders, and small business. Simple. Affordable. ATO-aligned.</p>
+                    <p>Straightforward receipt tracking for small business and sole traders. Send a photo, data to spreadsheet. Done.</p>
                 </div>
                 <div class="footer-column">
-                    <h4>Product</h4>
+                    <h4>Use It</h4>
                     <ul>
                         <li><a href="#how-it-works">How It Works</a></li>
                         <li><a href="#pricing">Pricing</a></li>
@@ -984,53 +997,60 @@
                 <div class="footer-column">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="/privacy">Privacy Policy</a></li>
-                        <li><a href="/tos">Terms of Service</a></li>
-                        <li><a href="/refund">Refund Policy</a></li>
+                        <li><a href="/privacy">Privacy</a></li>
+                        <li><a href="/tos">Terms</a></li>
+                        <li><a href="/refund">Refund</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h4>Support</h4>
+                    <h4>Get Help</h4>
                     <ul>
-                        <li><a href="#" rel="noopener noreferrer" target="_blank">Contact Us</a></li>
-                        <li><a href="#" rel="noopener noreferrer" target="_blank">WhatsApp</a></li>
-                        <li><a href="#" rel="noopener noreferrer" target="_blank">Discord</a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer">Contact</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 InvoiceSnap. All rights reserved.</p>
+                <p>&copy; 2026 InvoiceSnap. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Checkout Overlay -->
-    <div class="checkout-overlay" id="checkout-overlay">
-        <div class="checkout-modal checkout-content">
-            <button class="checkout-close" onclick="closeCheckout()">×</button>
-            <h2 id="checkout-title">Upgrade to Unlimited</h2>
-            <p class="subtitle" id="checkout-subtitle">$9 USD/month — unlimited receipts, all platforms.</p>
-            <div class="checkout-buttons">
-                <button class="checkout-btn stripe" onclick="checkoutWithStripe()">
-                    💳 Pay by Card — $9 USD/mo
-                </button>
-                <div id="paypal-button-container" style="margin-top: 10px;"></div>
+    <!-- Platform Picker Modal (For "Get Started Free") -->
+    <div class="overlay-modal" id="platform-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePlatformModal()">×</button>
+            <h2>Choose Your Platform</h2>
+            <p class="subtitle">Where do you want to track receipts?</p>
+            <div class="modal-buttons" style="display:flex; flex-direction:column; gap:10px;">
+                <a href="/whatsapp" class="modal-btn whatsapp">💬 Continue with WhatsApp</a>
+                <a href="/discord" class="modal-btn discord">🎮 Continue with Discord</a>
             </div>
-            <p class="checkout-secure">🔒 Secure checkout. Cancel anytime.</p>
+            <p class="modal-secure">Start free. 15 receipts per month on us.</p>
         </div>
     </div>
 
-    <!-- Analytics -->
+    <!-- Checkout Modal (For "Go Unlimited") -->
+    <div class="overlay-modal" id="checkout-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCheckoutModal()">×</button>
+            <h2>Go Unlimited</h2>
+            <p class="subtitle">$9 USD/month — no receipt limits.</p>
+            <button class="modal-btn stripe" onclick="checkoutStripe()">💳 Pay by Card (Stripe)</button>
+            <div id="paypal-button-container" style="margin-top: 10px;"></div>
+            <p class="modal-secure">🔒 Secure checkout. Cancel anytime.</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP3NHESQHT"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
-        gtag("js", new Date());
-        gtag("config", "G-WP3NHESQHT");
-        gtag("config", "AW-472938836");
+        gtag('js', new Date());
+        gtag('config', 'G-WP3NHESQHT');
+        gtag('config', 'AW-472938836');
     </script>
 
-    <!-- Theme Toggle -->
     <script>
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
@@ -1038,7 +1058,6 @@
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
             document.getElementById('theme-icon').textContent = isLight ? '🌙' : '☀️';
         }
-        
         (function() {
             const saved = localStorage.getItem('theme');
             if (saved === 'light') {
@@ -1048,70 +1067,70 @@
         })();
     </script>
 
-    <!-- UTM Passthrough -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var params = new URLSearchParams(window.location.search);
-            var utm = params.get("utm_source") || params.get("ref");
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const utm = params.get('utm_source') || params.get('ref');
             if (utm) {
-                document.querySelectorAll('a[href*="ref="]').forEach(function(a) {
-                    a.href = a.href.replace(/ref=[^&]*/, "ref=" + encodeURIComponent(utm));
+                document.querySelectorAll('a[href*="ref="]').forEach(a => {
+                    a.href = a.href.replace(/ref=[^&]*/, `ref=${encodeURIComponent(utm)}`);
                 });
             }
         });
     </script>
 
-    <!-- Checkout Functions -->
     <script>
-        function openCheckout(plan) {
-            const overlay = document.getElementById('checkout-overlay');
-            const title = document.getElementById('checkout-title');
-            const subtitle = document.getElementById('checkout-subtitle');
-            
-            if (plan === 'unlimited') {
-                title.textContent = 'Upgrade to Unlimited';
-                subtitle.textContent = '$9 USD/month — unlimited receipts, all platforms.';
-            } else {
-                title.textContent = 'Create Free Account';
-                subtitle.textContent = 'Start with 15 free receipts per month.';
-            }
-            
-            overlay.classList.add('active');
+        // Modal functions
+        function openPlatformModal() {
+            document.getElementById('platform-modal').classList.add('active');
         }
-
-        function closeCheckout() {
-            document.getElementById('checkout-overlay').classList.remove('active');
+        function closePlatformModal() {
+            document.getElementById('platform-modal').classList.remove('active');
         }
-
-        function checkoutWithStripe() {
+        function openCheckoutModal() {
+            document.getElementById('checkout-modal').classList.add('active');
+        }
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').classList.remove('active');
+        }
+        function checkoutStripe() {
             window.open('https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00', '_blank');
         }
 
-        // Close overlay on outside click
-        document.getElementById('checkout-overlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeCheckout();
-            }
+        // Close overlays on outside click
+        document.querySelectorAll('.overlay-modal').forEach(modal => {
+            modal.addEventListener('click', e => {
+                if (e.target === e.currentTarget) {
+                    modal.classList.remove('active');
+                }
+            });
         });
 
-        // Escape key closes overlay
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeCheckout();
+        // Escape key closes overlays
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closePlatformModal();
+                closeCheckoutModal();
+            }
         });
     </script>
 
     <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AWaVKs0tun_UzLy0N3lXw5rqYiLvF1Y-GS-_1s9Vi_HDaE-bXju0gS94nuttsrCSK-VtdyxcGNOve5K7&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AWaVKs0tun_UzLy0N3lXw5rqYiLvF1Y-GS-_1s9Vi_HDaE-bXju0gS94nuttsrCSK-VtdyxcGNOve5K7&vault=true&intent=subscription"></script>
     <script>
         paypal.Buttons({
-            style:{shape:'rect',color:'gold',layout:'horizontal',label:'subscribe',tagline:false},
-            createSubscription:function(d,a){return a.subscription.create({plan_id:'P-4UA27426TD111891TNGZZUQY'});},
-            onApprove:function(d,a){
-                document.querySelector('.checkout-buttons').style.display='none';
-                var msg = document.createElement('div');
+            style: {shape: 'rect', color: 'gold', layout: 'horizontal', label: 'subscribe', tagline: false},
+            createSubscription: function(data, actions) {
+                return actions.subscription.create({plan_id: 'P-4UA27426TD111891TNGZZUQY'});
+            },
+            onApprove: function(data, actions) {
+                // Hide buttons and show success message
+                document.querySelector('.modal-content .stripe').style.display = 'none';
+                document.getElementById('paypal-button-container').style.display = 'none';
+                const msg = document.createElement('div');
                 msg.style.cssText = 'margin-top:14px;padding:12px;border-radius:10px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.35);font-size:13px;line-height:1.6;color:var(--text-primary)';
-                msg.innerHTML = 'Payment received! Now type <code style="background:#2a2a2a;padding:2px 6px;border-radius:4px">!upgrade</code> followed by your email address in Discord to activate unlimited.';
-                document.querySelector('.checkout-content').appendChild(msg);
+                msg.innerHTML = 'Payment received! Type <code style="background:#2a2a2a;padding:2px 6px;border-radius:4px">!upgrade your@email.com</code> in Discord or WhatsApp to activate.';
+                document.querySelector('#checkout-modal .modal-content').appendChild(msg);
             }
         }).render('#paypal-button-container');
     </script>
