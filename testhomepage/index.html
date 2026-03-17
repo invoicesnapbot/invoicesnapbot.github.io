@@ -126,12 +126,18 @@
         .logo-icon {
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, var(--amber), var(--coral));
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            overflow: hidden;
+            background: var(--bg-elevated);
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .nav-links {
@@ -433,15 +439,15 @@
             padding: 40px;
             text-align: center;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .pricing-card.featured {
             border-color: var(--amber);
-            position: relative;
         }
 
         .pricing-card.featured::before {
-            content: 'Most Popular';
+            content: "Betty's Pick";
             position: absolute;
             top: -12px;
             left: 50%;
@@ -461,6 +467,16 @@
         .pricing-card.featured:hover {
             border-color: var(--amber);
             box-shadow: 0 8px 32px rgba(245, 158, 11, 0.15);
+        }
+        
+        .pricing-betty-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--amber);
+            margin: 0 auto 16px;
+            display: block;
+            object-fit: cover;
         }
 
         .pricing-card h3 {
@@ -786,7 +802,7 @@
     <nav>
         <div class="container nav-inner">
             <a href="/" class="logo">
-                <span class="logo-icon">📸</span>
+                <span class="logo-icon"><img src="/images/betty-portrait-rembg.png" alt="InvoiceSnap"></span>
                 InvoiceSnap
             </a>
             <ul class="nav-links">
@@ -806,8 +822,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Snap receipts on the job. <br>Get them into your spreadsheet fast.</h1>
-            <p class="hero-subtitle">Take a photo of fuel dockets, tool receipts or runs to the hardware store. AI pulls out the details and adds them to your Google Spreadsheet. No extra apps, no hassle.</p>
+            <h1>Snap receipts on the job. <br>Let Betty put them in your spreadsheet.</h1>
+            <p class="hero-subtitle">Take a photo of fuel dockets, tool receipts or runs to the hardware store. Send them to Betty (our AI) via WhatsApp or Discord, and she'll extract the details straight to your Google Spreadsheet. No extra apps, no hassle.</p>
             <div class="hero-cta">
                 <button onclick="openPlatformModal()" class="btn btn-primary">Get Started Free →</button>
                 <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
@@ -830,8 +846,8 @@
                 </div>
                 <div class="step-card">
                     <div class="step-number">2</div>
-                    <h3>AI Handles It</h3>
-                    <p>AI reads the date, supplier, amount and sorts it into tax categories. No typing needed.</p>
+                    <h3>Betty Handles It</h3>
+                    <p>Betty reads the date, supplier, amount and sorts it into tax categories. No typing needed.</p>
                 </div>
                 <div class="step-card">
                     <div class="step-number">3</div>
@@ -860,8 +876,8 @@
                 <div class="example-card">
                     <div class="placeholder-image">[Screenshot: Bot replying "Done! Here's the details!" with parsed data]</div>
                     <div class="example-content">
-                        <h3>2. AI Processes It</h3>
-                        <p>Our AI reads the text, grabs the total, tax, and date, and picks the right category.</p>
+                        <h3>2. Betty Processes It</h3>
+                        <p>Betty reads the text, grabs the total, tax, and date, and picks the right category.</p>
                     </div>
                 </div>
                 <div class="example-card">
@@ -926,15 +942,16 @@
                     <button class="btn btn-secondary" onclick="openPlatformModal()">Get Started Free</button>
                 </div>
                 <div class="pricing-card featured">
+                    <img src="/images/betty-portrait-rembg.png" alt="Betty" class="pricing-betty-img">
                     <h3>Unlimited</h3>
                     <div class="price">$9<span> USD/month</span></div>
-                    <p class="description">Every receipt, every job, no limits</p>
+                    <p class="description">For the receipt-obsessed. Less than two coffees, and Betty's keeping track.</p>
                     <ul class="pricing-features">
                         <li>Unlimited receipts</li>
-                        <li>All platforms</li>
-                        <li>Fast processing</li>
-                        <li>Multiple spreadsheets</li>
-                        <li>Makes your accountant happy</li>
+                        <li>Betty's signature commentary</li>
+                        <li>Priority processing</li>
+                        <li>Double vote rewards (2× selfies)</li>
+                        <li>Email support</li>
                     </ul>
                     <button class="btn btn-primary" onclick="openCheckoutModal()">Go Unlimited</button>
                 </div>
@@ -980,7 +997,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="/" class="logo">
-                        <span class="logo-icon">📸</span>
+                        <span class="logo-icon"><img src="/images/betty-portrait-rembg.png" alt="InvoiceSnap"></span>
                         InvoiceSnap
                     </a>
                     <p>Straightforward receipt tracking for small business and sole traders. Send a photo, data to spreadsheet. Done.</p>
@@ -1022,10 +1039,10 @@
             <h2>Choose Your Platform</h2>
             <p class="subtitle">Where do you want to track receipts?</p>
             <div class="modal-buttons" style="display:flex; flex-direction:column; gap:10px;">
-                <a href="/whatsapp" class="modal-btn whatsapp">💬 Continue with WhatsApp</a>
-                <a href="/discord" class="modal-btn discord">🎮 Continue with Discord</a>
+                <a href="https://wa.me/61494589028?text=Hi%20Betty" target="_blank" class="modal-btn whatsapp">💬 Send WhatsApp Message</a>
+                <a href="/invite?ref=website" target="_blank" class="modal-btn discord">🎮 Add to Discord</a>
             </div>
-            <p class="modal-secure">Start free. 15 receipts per month on us.</p>
+            <p class="modal-secure" style="margin-top:20px;">Start free. 15 receipts per month on us.</p>
         </div>
     </div>
 
