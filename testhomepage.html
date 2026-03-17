@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvoiceSnap — Receipt Tracker for Small Business & Sole Traders</title>
+    <meta name="description" content="Snap receipts on the job. AI extracts data and sends it to your Google Spreadsheet. No apps to install. Works with WhatsApp or Discord. $9 USD/mo.">
+    <meta name="keywords" content="receipt tracker, receipt to spreadsheet, scan receipts to google sheets, receipt tracking app, receipt scanner app">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="InvoiceSnap — Receipt Tracker for Small Business">
+    <meta property="og:description" content="Snap receipts on the job. Data goes straight to your spreadsheet. No extra apps.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoicesnapbot.com">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="InvoiceSnap — Receipt Tracker">
+    <meta name="twitter:description" content="Snap receipts to spreadsheet. Simple as sending a photo.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* [Full CSS unchanged from v2 - brevity] */
+        :root {
+            --bg-primary: #0d0d0d;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --bg-elevated: #222222;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --text-muted: #737373;
+            --amber: #f59e0b;
+            --amber-light: #fbbf24;
+            --amber-dark: #d97706;
+            --coral: #fb7185;
+            --coral-light: #fda4af;
+            --border: #2a2a2a;
+            --border-hover: #3a3a3a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .light-mode {
+            --bg-primary: #f5f5f0;
+            --bg-secondary: #eaeae5;
+            --bg-card: #ffffff;
+            --bg-elevated: #f0f0eb;
+            --text-primary: #1a1a1a;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --amber: #d97706;
+            --amber-light: #f59e0b;
+            --amber-dark: #b45309;
+            --coral: #e11d48;
+            --coral-light: #fb7185;
+            --border: #d4d4d0;
+            --border-hover: #b0b0a8;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(20, 30, 80, 0.03);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a {
+            color: var(--amber);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--amber-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--amber), var(--coral));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-elevated);
+        }
+
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--amber) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+            color: #000;
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-elevated);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #000;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        #examples {
+            background: var(--bg-secondary);
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .example-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .placeholder-image {
+            background: var(--bg-elevated);
+            aspect-ratio: 16/10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .example-content {
+            padding: 20px;
+        }
+
+        .example-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .example-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .platform-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .platform-card:hover {
+            border-color: var(--amber);
+            transform: translateY(-4px);
+        }
+
+        .platform-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            background: var(--bg-elevated);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .platform-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .platform-card p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .platform-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .platform-card.coming-soon {
+            opacity: 0.6;
+        }
+
+        .platform-card.coming-soon .platform-icon {
+            background: var(--bg-secondary);
+        }
+
+        #pricing {
+            background: var(--bg-secondary);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--amber);
+            position: relative;
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--amber);
+            color: #000;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .pricing-card.featured:hover {
+            border-color: var(--amber);
+            box-shadow: 0 8px 32px rgba(245, 158, 11, 0.15);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 16px 0;
+            color: var(--amber);
+        }
+
+        .pricing-card .price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .pricing-card .description {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--amber);
+            font-weight: 700;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .trust-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .trust-item-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .trust-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .trust-item p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin-top: 16px;
+            font-size: 0.9rem;
+            max-width: 300px;
+        }
+
+        .footer-column h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--amber);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .checkout-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .checkout-overlay.active {
+            display: flex;
+        }
+
+        .checkout-modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+        }
+
+        .checkout-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .checkout-modal h2 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .checkout-modal .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .checkout-btn.stripe {
+            background: #635bff;
+            color: #fff;
+        }
+
+        .checkout-btn.stripe:hover {
+            background: #4f46e5;
+        }
+
+        .checkout-btn.paypal {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .checkout-btn.paypal:hover {
+            border-color: var(--border-hover);
+        }
+
+        .checkout-secure {
+            text-align: center;
+            margin-top: 16px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 1024px) {
+            .steps-grid,
+            .examples-grid,
+            .platforms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .steps-grid,
+            .examples-grid,
+            .platforms-grid,
+            .pricing-grid,
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .pricing-card {
+                padding: 24px;
+            }
+
+            .checkout-modal {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">📸</span>
+                InvoiceSnap
+            </a>
+            <ul class="nav-links">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="/whatsapp">WhatsApp</a></li>
+                <li><a href="/discord">Discord</a></li>
+                <li><a href="#" style="opacity: 0.5; cursor: not-allowed;">Blog</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="theme-toggle" id="theme-icon" onclick="toggleTheme()">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Snap receipts on the job. <br>Get them into your spreadsheet fast.</h1>
+            <p class="hero-subtitle">Take a photo of fuel dockets, tool receipts or Bunnings runs. AI pulls out the details and adds them to your Google Spreadsheet. No extra apps, no hassle.</p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn btn-primary">Get Started Free →</a>
+                <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How InvoiceSnap Works</h2>
+                <p>Three simple steps to track receipts without the spreadsheet headache.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Send the Photo</h3>
+                    <p>Grab a pic of your receipt on site — fuel, parts, lunch. Send it via WhatsApp or Discord, the apps you already use.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>AI Handles It</h3>
+                    <p>AI reads the date, supplier, amount and sorts it into tax categories. No typing needed.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Spreadsheet Updated</h3>
+                    <p>Data lands in your Google Spreadsheet, ready for your bookkeeper or tax time. Done.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section class="section" id="examples">
+        <div class="container">
+            <div class="section-header">
+                <h2>Real Receipts, Real Results</h2>
+                <p>Fuel docket, hardware store run, subcontractor invoice — all handled the same way.</p>
+            </div>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="placeholder-image">[Screenshot: Fuel receipt photo sent via WhatsApp]</div>
+                    <div class="example-content">
+                        <h3>Fuel Receipt</h3>
+                        <p>Photo sent. AI extracts date, station, $75.43 diesel, adds to Fuel category in your spreadsheet.</p>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="placeholder-image">[Screenshot: AI confirmation with extracted details]</div>
+                    <div class="example-content">
+                        <h3>Tool Purchase</h3>
+                        <p>Bunnings drill set $189. Tax category: Tools. Spreadsheet updated, no manual entry.</p>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="placeholder-image">[Screenshot: Google Spreadsheet row added]</div>
+                    <div class="example-content">
+                        <h3>Subcontractor Invoice</h3>
+                        <p>Scan receipts to Google Sheets automatically. Supplier, amount, date — all in one row.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Cards -->
+    <section class="section" id="platforms">
+        <div class="container">
+            <div class="section-header">
+                <h2>Works Where You Already Chat</h2>
+                <p>No new apps. Use what you have.</p>
+            </div>
+            <div class="platforms-grid">
+                <div class="platform-card">
+                    <div class="platform-icon">💬</div>
+                    <h3>WhatsApp</h3>
+                    <p>Send receipt photos to a contact. That's it. Perfect for on-site tracking without stopping work.</p>
+                    <a href="/whatsapp" class="btn btn-primary">Start with WhatsApp</a>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">🎮</div>
+                    <h3>Discord</h3>
+                    <p>Meet Betty. She processes receipts and adds a quick note. Good for teams or solo jobs.</p>
+                    <a href="/discord" class="btn btn-secondary">Add to Discord</a>
+                </div>
+                <div class="platform-card coming-soon">
+                    <div class="platform-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>Forward receipts from your phone. Coming soon for simple forwarding.</p>
+                    <span class="btn btn-secondary" style="opacity: 0.5;">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pricing That Fits Your Cash Flow</h2>
+                <p>No lock-in. Cancel anytime. Start free.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <p class="description">Test it out or handle light use</p>
+                    <ul class="pricing-features">
+                        <li>15 receipts per month</li>
+                        <li>No card needed</li>
+                        <li>Google Spreadsheet ready</li>
+                        <li>Tax categories included</li>
+                    </ul>
+                    <button class="btn btn-secondary" onclick="openCheckout('free')">Get Started Free</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Unlimited</h3>
+                    <div class="price">$9<span> USD/month</span></div>
+                    <p class="description">Every receipt, every job, no limits</p>
+                    <ul class="pricing-features">
+                        <li>Unlimited receipts</li>
+                        <li>All platforms</li>
+                        <li>Fast processing</li>
+                        <li>Multiple spreadsheets</li>
+                        <li>Tax-ready reports</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="openCheckout('unlimited')">Go Unlimited</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="section" id="trust">
+        <div class="container">
+            <div class="section-header">
+                <h2>Built for Jobs Like Yours</h2>
+                <p>Straightforward tools that get the job done.</p>
+            </div>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="trust-item-icon">📱</div>
+                    <h4>No App Download</h4>
+                    <p>Use WhatsApp or Discord — apps already on your phone.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-item-icon">📋</div>
+                    <h4>Tax Categories</h4>
+                    <p>Fuel, tools, subcontractors — sorted right.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-item-icon">📊</div>
+                    <h4>Spreadsheet Direct</h4>
+                    <p>Data hits Google Sheets. Share with your bookkeeper easy.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-item-icon">💰</div>
+                    <h4>Cheaper Than Big Apps</h4>
+                    <p>$9/mo vs $30+ for full software you barely use.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <span class="logo-icon">📸</span>
+                        InvoiceSnap
+                    </a>
+                    <p>Straightforward receipt tracking for small business and sole traders. Send a photo, data to spreadsheet. Done.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Use It</h4>
+                    <ul>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="/whatsapp">WhatsApp</a></li>
+                        <li><a href="/discord">Discord</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="/privacy">Privacy</a></li>
+                        <li><a href="/tos">Terms</a></li>
+                        <li><a href="/refund">Refund</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Get Help</h4>
+                    <ul>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 InvoiceSnap. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Checkout Overlay -->
+    <div class="checkout-overlay" id="checkout-overlay">
+        <div class="checkout-modal">
+            <button class="checkout-close" onclick="closeCheckout()">×</button>
+            <h2>Go Unlimited</h2>
+            <p class="subtitle">$9 USD/month — no receipt limits.</p>
+            <button class="checkout-btn stripe" onclick="checkoutStripe()">💳 Card (Stripe)</button>
+            <div id="paypal-container"></div>
+            <p class="checkout-secure">Secure. Cancel anytime.</p>
+        </div>
+    </div>
+
+    <!-- Scripts (unchanged) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP3NHESQHT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WP3NHESQHT');
+        gtag('config', 'AW-472938836');
+    </script>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            document.getElementById('theme-icon').textContent = isLight ? '🌙' : '☀️';
+        }
+        (function() {
+            const saved = localStorage.getItem('theme');
+            if (saved === 'light') {
+                document.body.classList.add('light-mode');
+                document.getElementById('theme-icon').textContent = '🌙';
+            }
+        })();
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const utm = params.get('utm_source') || params.get('ref');
+            if (utm) {
+                document.querySelectorAll('a[href*="ref="]').forEach(a => {
+                    a.href = a.href.replace(/ref=[^&]*/, `ref=${encodeURIComponent(utm)}`);
+                });
+            }
+        });
+    </script>
+
+    <script>
+        function openCheckout(plan) {
+            const overlay = document.getElementById('checkout-overlay');
+            overlay.classList.add('active');
+        }
+        function closeCheckout() {
+            document.getElementById('checkout-overlay').classList.remove('active');
+        }
+        function checkoutStripe() {
+            window.open('https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00', '_blank');
+        }
+        document.getElementById('checkout-overlay').addEventListener('click', e => {
+            if (e.target === e.currentTarget) closeCheckout();
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeCheckout();
+        });
+    </script>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AWaVKs0tun_UzLy0N3lXw5rqYiLvF1Y-GS-_1s9Vi_HDaE-bXju0gS94nuttsrCSK-VtdyxcGNOve5K7&vault=true&intent=subscription"></script>
+    <script>
+        paypal.Buttons({
+            style: {shape: 'rect', color: 'gold', layout: 'horizontal', label: 'subscribe', tagline: false},
+            createSubscription: function(data, actions) {
+                return actions.subscription.create({plan_id: 'P-4UA27426TD111891TNGZZUQY'});
+            },
+            onApprove: function(data, actions) {
+                document.querySelector('.checkout-buttons').style.display = 'none';
+                const msg = document.createElement('div');
+                msg.style.cssText = 'margin-top:14px;padding:12px;border-radius:10px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.35);font-size:13px;line-height:1.6;color:var(--text-primary)';
+                msg.innerHTML = 'Payment received! Type <code style="background:#2a2a2a;padding:2px 6px;border-radius:4px">!upgrade your@email.com</code> to activate.';
+                document.querySelector('.checkout-modal').appendChild(msg);
+            }
+        }).render('#paypal-container');
+    </script>
+</body>
+</html>
