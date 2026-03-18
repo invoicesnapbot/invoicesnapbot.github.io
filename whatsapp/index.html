@@ -88,7 +88,7 @@
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3); }
         
         .btn-free { background: var(--bg-elevated); border: 1px solid var(--border); color: var(--text-primary); transition: all 0.3s ease; }
-        .btn-free:hover { background: var(--amber); color: #000; border-color: var(--amber); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3); }
+        .btn-free:hover { background: transparent; color: var(--amber); border-color: var(--amber); transform: translateY(-2px); }
 
         .betty-id-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; max-width: 380px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.4); position: relative; }
         .betty-id-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--amber), var(--coral)); border-radius: 20px 20px 0 0; }
@@ -184,7 +184,7 @@
             <div class="hero-text">
                 <h1>Photo it. Text it. Done.</h1>
                 <p class="hero-subtitle">Fuel runs, tools, sub-contractors, whatever. Take a photo of the invoice or receipt, send it to Betty in WhatsApp and she'll put it into a spreadsheet for you. That's it.</p>
-                <a href="https://wa.me/61494589028?text=Hi%20Betty" target="_blank" class="btn btn-whatsapp">💬 Open in WhatsApp</a>
+                <a href="https://wa.me/61494589028?text=Hi%20Betty" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 32px;">💬 Open in WhatsApp</a>
             </div>
             <div class="hero-card-container">
                 <div class="betty-id-card">
@@ -236,6 +236,37 @@
     </section>
 
 
+
+    <section class="section" id="examples" style="background: var(--bg-secondary); display: none;">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Process</h2>
+            </div>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="placeholder-image">[Screenshot: WhatsApp sending a photo]</div>
+                    <div class="example-content">
+                        <h3>1. Send</h3>
+                        <p>Send the image via WhatsApp. That's it.</p>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="placeholder-image">[Screenshot: Betty replying "Done!"]</div>
+                    <div class="example-content">
+                        <h3>2. Process</h3>
+                        <p>Betty confirms the exact details she extracted.</p>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="placeholder-image">[Screenshot: Google Sheet row added]</div>
+                    <div class="example-content">
+                        <h3>3. Organise</h3>
+                        <p>Clean, structured data in your spreadsheet instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="section" id="pricing">
         <div class="container">
