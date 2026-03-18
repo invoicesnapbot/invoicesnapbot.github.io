@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvoiceSnap for Tradies — Receipt Tracker</title>
+    <meta name="description" content="Snap fuel and tool receipts on the job. Send a photo via WhatsApp, and our AI extracts the details automatically.">
+    <meta name="keywords" content="tradie receipt tracker, sole trader expense app, business receipt tracking app, sole trader receipts">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="InvoiceSnap for Tradies">
+    <meta property="og:description" content="Snap fuel and tool receipts on the job. Send a photo via WhatsApp, and our AI extracts the details automatically.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoicesnapbot.com/whatsapp">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0d0d0d;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --bg-elevated: #222222;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --text-muted: #737373;
+            --amber: #f59e0b;
+            --amber-light: #fbbf24;
+            --amber-dark: #d97706;
+            --coral: #fb7185;
+            --border: #2a2a2a;
+            --border-hover: #3a3a3a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .light-mode {
+            --bg-primary: #f5f5f0;
+            --bg-secondary: #eaeae5;
+            --bg-card: #ffffff;
+            --bg-elevated: #f0f0eb;
+            --text-primary: #1a1a1a;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --amber: #d97706;
+            --amber-light: #f59e0b;
+            --amber-dark: #b45309;
+            --border: #d4d4d0;
+            --border-hover: #b0b0a8;
+        }
+
+        body::after {
+            content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(20, 30, 80, 0.03); mix-blend-mode: screen; pointer-events: none; z-index: 9999;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-family); background-color: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        a { color: var(--amber); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: var(--amber-light); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        nav { background: var(--bg-secondary); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
+        .logo-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg-elevated); }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+        .theme-toggle { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 1.1rem; transition: all 0.2s ease; }
+        .theme-toggle:hover { border-color: var(--border-hover); background: var(--bg-elevated); }
+
+        .hero { padding: 80px 0 40px; background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%); }
+        .hero-layout { display: flex; align-items: center; gap: 60px; }
+        .hero-text { flex: 1; text-align: left; }
+        .hero-card-container { flex: 1; display: flex; justify-content: center; }
+
+        .hero h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 24px; background: linear-gradient(135deg, var(--text-primary) 0%, var(--amber) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 40px; max-width: 500px; }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; border: none; text-decoration: none; transition: all 0.2s; }
+        .btn-whatsapp { background: #25D366; color: #fff; font-size: 1.1rem; padding: 16px 32px;}
+        .btn-whatsapp:hover { background: #1EBE5D; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3); }
+        
+        .btn-primary { background: linear-gradient(135deg, var(--amber), var(--amber-dark)); color: #000; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3); }
+
+        .betty-id-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; max-width: 380px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.4); position: relative; }
+        .betty-id-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--amber), var(--coral)); border-radius: 20px 20px 0 0; }
+        .betty-id-card img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--amber); margin: 0 auto 20px; background: var(--bg-elevated); object-fit: cover; }
+        .betty-id-card h3 { font-size: 1.5rem; margin-bottom: 4px; color: var(--text-primary); }
+        .betty-id-card .title { color: var(--amber); font-weight: 600; font-size: 0.95rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;}
+        .betty-id-card .quote { font-size: 1rem; color: var(--text-secondary); font-style: italic; line-height: 1.5; }
+
+        .trust-bar { padding: 40px 0; border-bottom: 1px solid var(--border); }
+        .trust-bar-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 24px; text-align: center; }
+        .trust-bar-item { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 500; }
+        .trust-bar-icon { font-size: 1.5rem; color: var(--amber); }
+
+        .section { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
+        .section-header p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .step-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; }
+        .step-number { width: 48px; height: 48px; background: linear-gradient(135deg, var(--amber), var(--amber-dark)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; color: #000; margin: 0 auto 20px; }
+        .step-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .step-card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        .examples-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .example-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+        .placeholder-image { background: var(--bg-elevated); aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem; border-bottom: 1px solid var(--border); }
+        .example-content { padding: 20px; }
+        .example-content h3 { font-size: 1.1rem; margin-bottom: 8px; }
+        .example-content p { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 800px; margin: 0 auto; }
+        .pricing-card { background: var(--bg-card); border: 2px solid var(--border); border-radius: 20px; padding: 40px; text-align: left; position: relative; }
+        .pricing-card.featured { border-color: var(--amber); }
+        .pricing-card.featured::before { content: "Betty's Pick"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--amber); color: #000; padding: 4px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .pricing-card h3 { font-size: 1.5rem; margin-bottom: 0px; }
+        .pricing-card .price { font-size: 3rem; font-weight: 800; margin: 0px 0 8px 0; color: var(--amber); }
+        .pricing-card .price span { font-size: 1rem; color: var(--text-secondary); font-weight: 400; }
+        .pricing-card .description { color: var(--text-secondary); margin-top: 0px; margin-bottom: 32px; font-size: 0.95rem; }
+        .pricing-features { list-style: none; margin-bottom: 32px; border-top: 1px solid var(--border); padding-top: 24px;}
+        .pricing-features li { padding: 8px 0; color: var(--text-secondary); display: flex; gap: 12px; }
+        .pricing-features li::before { content: '✓'; color: var(--amber); font-weight: 700; }
+        .pricing-card .btn { width: 100%; }
+
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 40px 0 20px; }
+        .footer-flex { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; flex-wrap: wrap; gap: 40px;}
+        .footer-brand p { color: var(--text-secondary); margin-top: 12px; font-size: 0.9rem; max-width: 300px; }
+        .footer-links { display: flex; gap: 60px; }
+        .footer-column { display: flex; flex-direction: column; gap: 12px;}
+        .footer-column a { color: var(--text-secondary); font-size: 0.9rem; }
+        .footer-column a:hover { color: var(--amber); }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
+
+        /* Checkout Modal */
+        .overlay-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; padding: 24px; }
+        .overlay-modal.active { display: flex; }
+        .modal-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 40px; max-width: 420px; width: 100%; position: relative; text-align: center; }
+        .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; }
+        .modal-btn { width: 100%; padding: 16px; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 12px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: white;}
+        .modal-btn.stripe { background: #635bff; color: #fff; }
+        .modal-btn.stripe:hover { background: #4f46e5; }
+        .modal-secure { text-align: center; margin-top: 16px; color: var(--text-muted); font-size: 0.8rem; }
+
+        .light-mode-icon-swap { display: none; }
+        .light-mode .dark-mode-icon-swap { display: none; }
+        .light-mode .light-mode-icon-swap { display: inline; }
+
+        @media (max-width: 768px) {
+            .hero-layout { flex-direction: column; text-align: center; gap: 40px;}
+            .hero-text { text-align: center; }
+            .hero h1 { font-size: 2.8rem; }
+            .section-header h2 { font-size: 1.8rem; }
+            .steps-grid, .examples-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .trust-bar-grid { flex-direction: column; align-items: center; gap: 16px;}
+            .footer-flex { flex-direction: column; align-items: center; text-align: center; gap: 32px;}
+            .footer-links { flex-direction: column; gap: 24px; align-items: center;}
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <a href="/" class="logo">InvoiceSnap</a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="theme-icon" onclick="toggleTheme()"><span class="dark-mode-icon-swap">☀️</span><span class="light-mode-icon-swap">🌙</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container hero-layout">
+            <div class="hero-text">
+                <h1>Snap fuel receipts on the job.<br>They land in your spreadsheet.</h1>
+                <p class="hero-subtitle">The simplest expense tracker for tradies and sole traders. Send a photo via WhatsApp, and our AI extracts the details automatically. Done.</p>
+                <a href="https://wa.me/61494589028?text=Hi%20Betty" target="_blank" class="btn btn-whatsapp">💬 Open in WhatsApp</a>
+            </div>
+            <div class="hero-card-container">
+                <div class="betty-id-card">
+                    <img src="/images/betty-portrait-rembg.png" alt="Betty">
+                    <h3>Betty</h3>
+                    <p class="title">AI Receipt Tracker</p>
+                    <p class="quote">"I read your invoices, organise them into Google Sheets, and give you a summary."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clean Trust Bar -->
+    <div class="trust-bar">
+        <div class="container">
+            <div class="trust-bar-grid">
+                <div class="trust-bar-item"><span class="trust-bar-icon">📱</span> No new app to install</div>
+                <div class="trust-bar-item"><span class="trust-bar-icon">📋</span> Auto Tax Categories</div>
+                <div class="trust-bar-item"><span class="trust-bar-icon">📊</span> Direct to Google Sheets</div>
+                <div class="trust-bar-item"><span class="trust-bar-icon">💰</span> Just $9/mo</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Receipt to Spreadsheet</h2>
+                <p>Zero data entry.<br>Just point, shoot, and send.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Send the Photo</h3>
+                    <p>Send the image via WhatsApp.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Betty Reads It</h3>
+                    <p>She grabs the date, supplier, amount, and tax category automatically.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Spreadsheet Updated</h3>
+                    <p>Ready for tax time. The easiest way to scan receipts to Google Sheets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="examples" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Process</h2>
+            </div>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="placeholder-image">[Screenshot: WhatsApp sending a photo]</div>
+                    <div class="example-content">
+                        <h3>1. Send</h3>
+                        <p>No app to open, no forms. Just send the image.</p>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="placeholder-image">[Screenshot: Betty replying "Done!"]</div>
+                    <div class="example-content">
+                        <h3>2. Process</h3>
+                        <p>Betty confirms the exact details she extracted.</p>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="placeholder-image">[Screenshot: Google Sheet row added]</div>
+                    <div class="example-content">
+                        <h3>3. Organise</h3>
+                        <p>Clean, structured data in your spreadsheet instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pricing</h2>
+                <p>Simple tools. Simple pricing.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <p class="description">For light use and testing.</p>
+                    <ul class="pricing-features">
+                        <li>15 receipts per month</li>
+                        <li>No card required</li>
+                        <li>Google Spreadsheet export</li>
+                        <li>Organised for tax time</li>
+                    </ul>
+                    <a href="https://wa.me/61494589028?text=Hi%20Betty" target="_blank" class="btn btn-whatsapp" style="padding: 14px 28px; font-size: 1rem;">Start Free</a>
+                </div>
+                <div class="pricing-card featured">
+                    <img src="/images/betty-portrait-rembg.png" alt="Betty" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--amber); margin: 0 auto 16px; display: block; object-fit: cover;">
+                    <h3>Unlimited</h3>
+                    <div class="price">$9<span> USD/mo</span></div>
+                    <p class="description">For sole traders who want to snap it and forget it.</p>
+                    <ul class="pricing-features">
+                        <li>Unlimited receipts</li>
+                        <li>Priority AI processing</li>
+                        <li>Automatic tax categorisation</li>
+                        <li>Makes your accountant happy</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="openCheckoutModal()">Go Unlimited</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clean Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-flex">
+                <div class="footer-brand">
+                    <a href="/" class="logo">InvoiceSnap</a>
+                    <p>The simplest receipt tracker. Snap a photo, data to spreadsheet. Done.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <a href="/privacy">Privacy Policy</a>
+                        <a href="/tos">Terms of Service</a>
+                        <a href="/refund">Refund Policy</a>
+                    </div>
+                    <div class="footer-column">
+                        <a href="#" target="_blank" rel="noopener noreferrer">Contact Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 InvoiceSnap. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Checkout Modal (For "Go Unlimited") -->
+    <div class="overlay-modal" id="checkout-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCheckoutModal()">×</button>
+            <h2>Go Unlimited</h2>
+            <p class="subtitle">$9 USD/month — no receipt limits.</p>
+            <button class="modal-btn stripe" onclick="checkoutStripe()">💳 Pay by Card (Stripe)</button>
+            <div id="paypal-button-container" style="margin-top: 10px;"></div>
+            <p class="modal-secure">🔒 Secure checkout. Cancel anytime.</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP3NHESQHT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WP3NHESQHT');
+        gtag('config', 'AW-472938836');
+    </script>
+
+    <script>
+        function openCheckoutModal() { document.getElementById('checkout-modal').classList.add('active'); }
+        function closeCheckoutModal() { document.getElementById('checkout-modal').classList.remove('active'); }
+        function checkoutStripe() { window.open('https://buy.stripe.com/6oU00i2zhe9ogV0deNfUQ00', '_blank'); }
+        
+        document.querySelectorAll('.overlay-modal').forEach(modal => {
+            modal.addEventListener('click', e => { if (e.target === e.currentTarget) modal.classList.remove('active'); });
+        });
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+        
+        (function() {
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+            }
+        })();
+    </script>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AWaVKs0tun_UzLy0N3lXw5rqYiLvF1Y-GS-_1s9Vi_HDaE-bXju0gS94nuttsrCSK-VtdyxcGNOve5K7&vault=true&intent=subscription"></script>
+    <script>
+        paypal.Buttons({
+            style: {shape: 'rect', color: 'gold', layout: 'horizontal', label: 'subscribe', tagline: false},
+            createSubscription: function(data, actions) {
+                return actions.subscription.create({plan_id: 'P-4UA27426TD111891TNGZZUQY'});
+            },
+            onApprove: function(data, actions) {
+                // Hide buttons and show success message
+                document.querySelector('.modal-content .stripe').style.display = 'none';
+                document.getElementById('paypal-button-container').style.display = 'none';
+                const msg = document.createElement('div');
+                msg.style.cssText = 'margin-top:14px;padding:12px;border-radius:10px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.35);font-size:13px;line-height:1.6;color:var(--text-primary)';
+                msg.innerHTML = 'Payment received! Type <code style="background:#2a2a2a;padding:2px 6px;border-radius:4px">!upgrade your@email.com</code> in WhatsApp to activate.';
+                document.querySelector('#checkout-modal .modal-content').appendChild(msg);
+            }
+        }).render('#paypal-button-container');
+    </script>
+</body>
+</html>
