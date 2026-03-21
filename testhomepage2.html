@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvoiceSnap — Receipt Tracker for Small Business & Sole Traders</title>
+    <meta name="description" content="Snap receipts on the job. Betty (our AI) extracts data and sends it to your Google Spreadsheet. No apps to install.">
+    <meta name="keywords" content="receipt tracker, receipt to spreadsheet, scan receipts to google sheets, receipt tracking app, receipt scanner app">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0d0d0d;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --bg-elevated: #222222;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --text-muted: #737373;
+            --amber: #f59e0b;
+            --amber-light: #fbbf24;
+            --amber-dark: #d97706;
+            --coral: #fb7185;
+            --border: #2a2a2a;
+            --border-hover: #3a3a3a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(20, 30, 80, 0.03);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        a { color: var(--amber); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: var(--amber-light); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            display: flex; align-items: center; justify-content: space-between; padding: 16px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem; font-weight: 800; color: var(--text-primary);
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .logo-icon {
+            width: 32px; height: 32px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; background: var(--bg-elevated);
+        }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--text-primary); }
+
+        .hero { padding: 80px 0; background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%); }
+        
+        .hero-layout {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-text { flex: 1; text-align: left; }
+        .hero-card-container { flex: 1; display: flex; justify-content: center; }
+
+        .hero h1 {
+            font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--amber) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 40px; max-width: 500px; }
+
+        .hero-cta { display: flex; gap: 16px; }
+
+        .betty-id-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            position: relative;
+        }
+        
+        .betty-id-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 6px;
+            background: linear-gradient(90deg, var(--amber), var(--coral));
+            border-radius: 20px 20px 0 0;
+        }
+
+        .betty-id-card img {
+            width: 120px; height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--amber);
+            margin: 0 auto 20px;
+            background: var(--bg-elevated);
+            object-fit: cover;
+        }
+
+        .betty-id-card h3 { font-size: 1.5rem; margin-bottom: 4px; color: var(--text-primary); }
+        .betty-id-card .title { color: var(--amber); font-weight: 600; font-size: 0.95rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;}
+        .betty-id-card .quote { font-size: 1rem; color: var(--text-secondary); font-style: italic; line-height: 1.5; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 1rem;
+            cursor: pointer; border: none; text-decoration: none; transition: all 0.2s;
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--amber), var(--amber-dark)); color: #000; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3); }
+        .btn-secondary { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); }
+        .btn-secondary:hover { border-color: var(--border-hover); background: var(--bg-elevated); }
+
+        .section { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
+        .section-header p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .step-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; }
+        .step-number { width: 48px; height: 48px; background: linear-gradient(135deg, var(--amber), var(--amber-dark)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; color: #000; margin: 0 auto 20px; }
+        .step-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .step-card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        .examples-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .example-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+        .placeholder-image { background: var(--bg-elevated); aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem; border-bottom: 1px solid var(--border); }
+        .example-content { padding: 20px; }
+        .example-content h3 { font-size: 1.1rem; margin-bottom: 8px; }
+        .example-content p { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .platforms-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 800px; margin: 0 auto; }
+        .platform-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; }
+        .platform-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .platform-card p { color: var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem; }
+        .platform-card .btn { width: 100%; justify-content: center; }
+
+        .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 800px; margin: 0 auto; }
+        .pricing-card { background: var(--bg-card); border: 2px solid var(--border); border-radius: 20px; padding: 40px; text-align: left; position: relative; }
+        .pricing-card.featured { border-color: var(--amber); }
+        .pricing-card.featured::before { content: "Betty's Pick"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--amber); color: #000; padding: 4px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .pricing-card h3 { font-size: 1.5rem; margin-bottom: 8px; }
+        .pricing-card .price { font-size: 3rem; font-weight: 800; margin: 16px 0; color: var(--amber); }
+        .pricing-card .price span { font-size: 1rem; color: var(--text-secondary); font-weight: 400; }
+        .pricing-features { list-style: none; margin-bottom: 32px; }
+        .pricing-features li { padding: 8px 0; color: var(--text-secondary); display: flex; gap: 12px; }
+        .pricing-features li::before { content: '✓'; color: var(--amber); font-weight: 700; }
+        .pricing-card .btn { width: 100%; justify-content: center; text-align: center;}
+
+        /* Overlays */
+        .overlay-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; padding: 24px; }
+        .overlay-modal.active { display: flex; }
+        .modal-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 40px; max-width: 420px; width: 100%; position: relative; text-align: center; }
+        .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; }
+        .modal-btn { width: 100%; padding: 16px; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 12px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: white;}
+        .modal-btn.whatsapp { background: #25D366; }
+        .modal-btn.discord { background: #5865F2; }
+
+        @media (max-width: 768px) {
+            .hero-layout { flex-direction: column; text-align: center; gap: 40px;}
+            .hero-text { text-align: center; }
+            .hero-cta { justify-content: center; }
+            .hero h1 { font-size: 2.8rem; }
+            .steps-grid, .examples-grid, .platforms-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon"><img src="/images/betty-portrait-rembg.png" alt="InvoiceSnap"></span>
+                InvoiceSnap
+            </a>
+            <ul class="nav-links">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container hero-layout">
+            <div class="hero-text">
+                <h1>Snap the receipt.<br>Betty does the spreadsheet.</h1>
+                <p class="hero-subtitle">Send a photo via WhatsApp or Discord. Our AI extracts the vendor, amount, and date, then sorts it into your Google Sheet. No apps to install. Done.</p>
+                <div class="hero-cta">
+                    <button onclick="openPlatformModal()" class="btn btn-primary">Get Started Free</button>
+                    <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+                </div>
+            </div>
+            <div class="hero-card-container">
+                <div class="betty-id-card">
+                    <img src="/images/betty-portrait-rembg.png" alt="Betty">
+                    <h3>Betty</h3>
+                    <p class="title">AI Receipt Processor</p>
+                    <p class="quote">"I read your invoices, organise them into Google Sheets, and give you a summary, in between taking selfies."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How InvoiceSnap Works</h2>
+                <p>Zero data entry. Just point, shoot, and send.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Send the Photo</h3>
+                    <p>Grab a pic on site. Send it to Betty via WhatsApp or Discord.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Betty Reads It</h3>
+                    <p>She grabs the date, supplier, amount, and tax category automatically.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Spreadsheet Updated</h3>
+                    <p>Data hits your Google Sheet. Ready for tax time. Done.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="examples" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Process</h2>
+            </div>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="placeholder-image">[Screenshot: WhatsApp sending a photo]</div>
+                    <div class="example-content">
+                        <h3>1. Send</h3>
+                        <p>No app to open, no forms. Just send the image.</p>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="placeholder-image">[Screenshot: Betty replying "Done!"]</div>
+                    <div class="example-content">
+                        <h3>2. Process</h3>
+                        <p>Betty confirms the exact details she extracted.</p>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="placeholder-image">[Screenshot: Google Sheet row added]</div>
+                    <div class="example-content">
+                        <h3>3. Organise</h3>
+                        <p>Clean, structured data in your spreadsheet instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pricing</h2>
+                <p>Simple tools. Simple pricing.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <p class="description">For light use and testing.</p>
+                    <ul class="pricing-features">
+                        <li>15 receipts per month</li>
+                        <li>No card required</li>
+                        <li>Google Spreadsheet export</li>
+                    </ul>
+                    <button class="btn btn-secondary" onclick="openPlatformModal()">Start Free</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Unlimited</h3>
+                    <div class="price">$9<span> USD/mo</span></div>
+                    <p class="description">For the receipt-obsessed. Betty's keeping track.</p>
+                    <ul class="pricing-features">
+                        <li>Unlimited receipts</li>
+                        <li>Betty's signature commentary</li>
+                        <li>Priority processing</li>
+                        <li>Makes your accountant happy</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="openCheckoutModal()">Go Unlimited</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <div class="overlay-modal" id="platform-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePlatformModal()">×</button>
+            <h2>Choose Your Platform</h2>
+            <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px;">
+                <a href="https://wa.me/61420522696?text=Hi%20Betty" target="_blank" class="modal-btn whatsapp">💬 Open in WhatsApp</a>
+                <a href="/invite?ref=website" target="_blank" class="modal-btn discord">🎮 Add to Discord</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function openPlatformModal() { document.getElementById('platform-modal').classList.add('active'); }
+        function closePlatformModal() { document.getElementById('platform-modal').classList.remove('active'); }
+        
+        document.querySelectorAll('.overlay-modal').forEach(modal => {
+            modal.addEventListener('click', e => { if (e.target === e.currentTarget) modal.classList.remove('active'); });
+        });
+    </script>
+</body>
+</html>
