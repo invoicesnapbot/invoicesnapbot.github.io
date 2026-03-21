@@ -188,8 +188,8 @@
 
         /* Trust Bar */
         .trust-bar { padding: 40px 0; border-bottom: 1px solid var(--border); }
-        .trust-bar-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 24px; text-align: center; }
-        .trust-bar-item { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 500; }
+        .trust-bar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+        .trust-bar-item { display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-secondary); font-weight: 500; font-size: 0.95rem; line-height: 1.4; }
         .trust-bar-icon { font-size: 1.5rem; color: var(--amber); }
 
         .section { padding: 80px 0; }
@@ -263,7 +263,7 @@
             .steps-grid, .examples-grid, .platforms-grid, .pricing-grid { grid-template-columns: 1fr; }
             .platform-proof-grid { grid-template-columns: 1fr !important; max-width: 350px !important; }
             .platform-proof-grid img { max-height: 400px !important; }
-            .trust-bar-grid { flex-direction: column; align-items: center; gap: 16px;}
+            .trust-bar-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px; }
             .footer-flex { flex-direction: column; align-items: center; text-align: center; gap: 32px;}
             .footer-links { flex-direction: column; gap: 24px; align-items: center;}
             
@@ -310,10 +310,10 @@
     <div class="trust-bar">
         <div class="container">
             <div class="trust-bar-grid">
-                <div class="trust-bar-item"><span class="trust-bar-icon">📱</span> No new app to install</div>
-                <div class="trust-bar-item"><span class="trust-bar-icon">📋</span> Auto Tax Categories</div>
-                <div class="trust-bar-item"><span class="trust-bar-icon">📊</span> Direct to Google Sheets</div>
-                <div class="trust-bar-item"><span class="trust-bar-icon">💰</span> Just $9/mo</div>
+                <div class="trust-bar-item"><span class="trust-bar-icon">📱</span> No new app to install — just use WhatsApp.</div>
+                <div class="trust-bar-item"><span class="trust-bar-icon">📋</span> Auto tax categories. Make your accountant happy.</div>
+                <div class="trust-bar-item"><span class="trust-bar-icon">📊</span> Direct to Google Sheets and a digital backup in case you lose it.</div>
+                <div class="trust-bar-item"><span class="trust-bar-icon">💰</span> Just $9/mth. Cheaper than 2 iced coffees.</div>
             </div>
         </div>
     </div>
