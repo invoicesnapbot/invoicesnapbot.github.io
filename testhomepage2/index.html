@@ -254,7 +254,8 @@
             .hero h1 { font-size: 2.8rem; }
             .section-header h2 { font-size: 1.8rem; }
             .steps-grid, .examples-grid, .platforms-grid, .pricing-grid { grid-template-columns: 1fr; }
-            .platform-proof-grid { grid-template-columns: 1fr !important; max-width: 300px !important; }
+            .platform-proof-grid { grid-template-columns: 1fr !important; max-width: 350px !important; }
+            .platform-proof-grid img { max-height: 400px !important; }
             .trust-bar-grid { flex-direction: column; align-items: center; gap: 16px;}
             .footer-flex { flex-direction: column; align-items: center; text-align: center; gap: 32px;}
             .footer-links { flex-direction: column; gap: 24px; align-items: center;}
@@ -317,11 +318,11 @@
                 <h2>Receipt to Spreadsheet</h2>
                 <p>Send the photo. Betty does the rest.</p>
             </div>
-            <div class="platform-proof-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 120px; max-width: 600px; margin: 0 auto;">
+            <div class="platform-proof-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; max-width: 1000px; margin: 0 auto;">
                 <!-- WhatsApp column -->
                 <div style="text-align: center;">
                     <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 16px;">
-                        <img src="/images/screenshot-whatsapp.png" alt="WhatsApp receipt scanning" style="width: 100%; display: block;">
+                        <img src="/images/screenshot-whatsapp-cropped.png" alt="WhatsApp receipt scanning" style="width: 100%; max-height: 500px; object-fit: contain; display: block; margin: 0 auto;">
                     </div>
                     <h3 style="margin-bottom: 8px;">WhatsApp</h3>
                     <p style="color: var(--text-secondary); font-size: 0.95rem;">Send a photo. Betty replies with the details.</p>
@@ -330,7 +331,7 @@
                 <!-- Discord column -->
                 <div style="text-align: center;">
                     <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 16px;">
-                        <img src="/images/screenshot-discord.jpg" alt="Discord receipt scanning" style="width: 100%; display: block;">
+                        <img src="/images/screenshot-discord-cropped.jpg" alt="Discord receipt scanning" style="width: 100%; max-height: 500px; object-fit: contain; display: block; margin: 0 auto;">
                     </div>
                     <h3 style="margin-bottom: 8px;">Discord</h3>
                     <p style="color: var(--text-secondary); font-size: 0.95rem;">Drop the image in chat. Same result.</p>
@@ -338,7 +339,7 @@
                 </div>
             </div>
             <!-- Shared outcome: spreadsheet -->
-            <div style="max-width: 600px; margin: 80px auto 0; text-align: center;">
+            <div style="max-width: 800px; margin: 80px auto 0; text-align: center;">
                 <h2 style="margin-bottom: 24px; font-size: 1.8rem; font-weight: 600;">Same result, either way.</h2>
                 <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
                     <img src="/images/screenshot-spreadsheet.png" alt="Google Sheets with receipt data" style="width: 100%; display: block;">
