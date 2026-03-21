@@ -175,10 +175,16 @@
             padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 1rem;
             cursor: pointer; border: none; text-decoration: none; transition: all 0.2s;
         }
+        /* Dark mode (default): amber buttons = black text, secondary = default text */
         .btn-primary { background: linear-gradient(135deg, var(--amber), var(--amber-dark)); color: #000; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3); color: #000; }
         .btn-secondary { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); }
-        .btn-secondary:hover { border-color: var(--border-hover); background: var(--bg-elevated); }
+        .btn-secondary:hover { border-color: var(--amber); color: var(--amber); background: var(--bg-elevated); }
+
+        /* Light mode: amber buttons = white text, secondary hover = amber text */
+        .light-mode .btn-primary { color: #fff; }
+        .light-mode .btn-primary:hover { color: #fff; }
+        .light-mode .btn-secondary:hover { border-color: var(--amber); color: var(--amber); }
 
         /* Trust Bar */
         .trust-bar { padding: 40px 0; border-bottom: 1px solid var(--border); }
@@ -238,7 +244,8 @@
         .overlay-modal.active { display: flex; }
         .modal-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 40px; max-width: 420px; width: 100%; position: relative; text-align: center; }
         .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; }
-        .modal-btn { width: 100%; padding: 16px; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 12px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: white;}
+        .modal-btn { width: 100%; padding: 16px; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 12px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: white; transition: all 0.2s ease;}
+        .modal-btn:hover { color: #000; }
         .modal-btn.whatsapp { background: #25D366; }
         .modal-btn.discord { background: #5865F2; }
 
