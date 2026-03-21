@@ -253,7 +253,7 @@
             .hero-cta { justify-content: center; }
             .hero h1 { font-size: 2.8rem; }
             .section-header h2 { font-size: 1.8rem; }
-            .steps-grid, .examples-grid, .platforms-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .steps-grid, .examples-grid, .platforms-grid, .pricing-grid, .platform-proof-grid { grid-template-columns: 1fr; }
             .trust-bar-grid { flex-direction: column; align-items: center; gap: 16px;}
             .footer-flex { flex-direction: column; align-items: center; text-align: center; gap: 32px;}
             .footer-links { flex-direction: column; gap: 24px; align-items: center;}
@@ -309,7 +309,46 @@
         </div>
     </div>
 
+    <!-- NEW: Combined "How It Works" with real screenshots -->
     <section class="section" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Receipt to Spreadsheet</h2>
+                <p>Send the photo. Betty does the rest.</p>
+            </div>
+            <div class="platform-proof-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 900px; margin: 0 auto;">
+                <!-- WhatsApp column -->
+                <div style="text-align: center;">
+                    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 16px;">
+                        <img src="/images/screenshot-whatsapp.png" alt="WhatsApp receipt scanning" style="width: 100%; display: block;">
+                    </div>
+                    <h3 style="margin-bottom: 8px;">WhatsApp</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Send a photo. Betty replies with the details.</p>
+                    <a href="https://wa.me/61420522696?text=Hi%20Betty" target="_blank" class="btn btn-primary" style="margin-top: 16px; display: inline-flex;">Try on WhatsApp</a>
+                </div>
+                <!-- Discord column -->
+                <div style="text-align: center;">
+                    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 16px;">
+                        <img src="/images/screenshot-discord.jpg" alt="Discord receipt scanning" style="width: 100%; display: block;">
+                    </div>
+                    <h3 style="margin-bottom: 8px;">Discord</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Drop the image in chat. Same result.</p>
+                    <a href="/invite?ref=website" target="_blank" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">Try on Discord</a>
+                </div>
+            </div>
+            <!-- Shared outcome: spreadsheet -->
+            <div style="max-width: 900px; margin: 60px auto 0; text-align: center;">
+                <h3 style="margin-bottom: 16px; color: var(--text-secondary);">Same result, either way.</h3>
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
+                    <img src="/images/screenshot-spreadsheet.png" alt="Google Sheets with receipt data" style="width: 100%; display: block;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OLD sections hidden (kept for undo) -->
+    <!--
+    <section class="section" id="how-it-works-old">
         <div class="container">
             <div class="section-header">
                 <h2>Receipt to Spreadsheet</h2>
@@ -335,7 +374,7 @@
         </div>
     </section>
 
-    <section class="section" id="examples" style="background: var(--bg-secondary);">
+    <section class="section" id="examples-old" style="background: var(--bg-secondary);">
         <div class="container">
             <div class="section-header">
                 <h2>The Process</h2>
@@ -365,6 +404,7 @@
             </div>
         </div>
     </section>
+    -->
 
     <section class="section" id="pricing">
         <div class="container">
