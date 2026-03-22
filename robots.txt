@@ -2,9 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://invoicesnapbot.com/sitemap.xml
-
-# Old test pages — don't index
-Disallow: /testhomepage
-Disallow: /testhomepage2
-Disallow: /compare.html
-Disallow: /testhomepage.html
