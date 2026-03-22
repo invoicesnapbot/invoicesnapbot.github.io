@@ -1,250 +1,460 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InvoiceSnap Email Templates</title>
-</head>
-<body style="margin: 0; padding: 0; background-color: #f5f5f5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-
-    <!-- =====================================================
-         TEMPLATE 1: WELCOME EMAIL (after first payment)
-         Subject: "You're in. Let's get to work."
-    ===================================================== -->
-
-    <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f0; padding: 40px 20px;">
-        <tr>
-            <td align="center">
-                <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden;">
-                    <!-- Header -->
-                    <tr>
-                        <td style="background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%); padding: 32px; text-align: center;">
-                            <span style="font-size: 28px; font-weight: 700; color: #f5f5f5;">InvoiceSnap</span>
-                            <p style="margin: 8px 0 0 0; color: #a3a3a3; font-size: 14px;">AI Receipt Scanner</p>
-                        </td>
-                    </tr>
-                    <!-- Body -->
-                    <tr>
-                        <td style="padding: 32px; color: #1a1a1a;">
-                            <h1 style="margin: 0 0 16px 0; font-size: 24px; font-weight: 600; color: #0d0d0d;">You're in. Let's get to work.</h1>
-                            
-                            <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.6; color: #555555;">Hey there!</p>
-                            
-                            <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.6; color: #555555;">Payment confirmed — you're officially an InvoiceSnap subscriber at <strong>$9/month</strong>. Your next billing date is <strong>{{nextBillingDate}}</strong>.</p>
-                            
-                            <p style="margin: 0 0 24px 0; font-size: 16px; line-height: 1.6; color: #555555;">Here's how to get started:</p>
-                            
-                            <div style="background-color: #f5f5f0; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
-                                <p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; color: #d97706;">{{platformInstructions}}</p>
-                                <p style="margin: 0; font-size: 14px; color: #555555; line-height: 1.5;">Just forward or upload your receipts, and I'll scan them, categorize them, and organize everything in your spreadsheet.</p>
-                            </div>
-                            
-                            <!-- Conditional spreadsheet link -->
-                            <table width="100%" cellpadding="0" cellspacing="0" id="sheetLinkSection">
-                                <tr>
-                                    <td style="padding: 16px; background-color: #f0f0eb; border-radius: 8px; text-align: center; margin-bottom: 24px;">
-                                        <p style="margin: 0 0 12px 0; font-size: 14px; color: #555555;">Your receipt spreadsheet is ready:</p>
-                                        <a href="{{sheetUrl}}" style="display: inline-block; padding: 12px 24px; background-color: #f59e0b; color: #0d0d0d; text-decoration: none; font-weight: 600; font-size: 14px; border-radius: 6px;">View Your Spreadsheet →</a>
-                                    </td>
-                                </tr>
-                            </table>
-                            
-                            <p style="margin: 0; font-size: 14px; color: #888888; line-height: 1.5;">Questions? Just reply to this email — I'm real and I actually read my inbox.</p>
-                        </td>
-                    </tr>
-                    <!-- Footer -->
-                    <tr>
-                        <td style="padding: 24px 32px; background-color: #f5f5f0; border-top: 1px solid #eaeae5;">
-                            <p style="margin: 0 0 8px 0; font-size: 12px; color: #888888; text-align: center;">InvoiceSnap — admin@invoicesnapbot.com</p>
-                            <p style="margin: 0; font-size: 12px; color: #888888; text-align: center;"><a href="{{manageUrl}}" style="color: #d97706; text-decoration: underline;">Manage subscription</a></p>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-
-    <!-- =====================================================
-         TEMPLATE 2: MONTHLY RECEIPT EMAIL (renewal)
-         Subject: "Receipt — $9 — {{month}} {{year}}"
-    ===================================================== -->
-
-    <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f0; padding: 40px 20px;">
-        <tr>
-            <td align="center">
-                <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden;">
-                    <!-- Header -->
-                    <tr>
-                        <td style="background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%); padding: 32px; text-align: center;">
-                            <span style="font-size: 28px; font-weight: 700; color: #f5f5f5;">InvoiceSnap</span>
-                            <p style="margin: 8px 0 0 0; color: #a3a3a3; font-size: 14px;">AI Receipt Scanner</p>
-                        </td>
-                    </tr>
-                    <!-- Body -->
-                    <tr>
-                        <td style="padding: 32px; color: #1a1a1a;">
-                            <h1 style="margin: 0 0 24px 0; font-size: 24px; font-weight: 600; color: #0d0d0d;">Your Receipt</h1>
-                            
-                            <!-- Receipt Details Box -->
-                            <div style="background-color: #f5f5f0; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
-                                <table width="100%" cellpadding="0" cellspacing="0">
-                                    <tr>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eaeae5;">
-                                            <span style="font-size: 14px; color: #888888;">Date</span>
-                                        </td>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eaeae5; text-align: right;">
-                                            <span style="font-size: 14px; color: #1a1a1a; font-weight: 500;">{{date}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eaeae5;">
-                                            <span style="font-size: 14px; color: #888888;">Amount</span>
-                                        </td>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eaeae5; text-align: right;">
-                                            <span style="font-size: 14px; color: #1a1a1a; font-weight: 500;">$9.00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eaeae5;">
-                                            <span style="font-size: 14px; color: #888888;">Payment Method</span>
-                                        </td>
-                                        <td style="padding: 8px 0; border-bottom: 1px solid #eaeae5; text-align: right;">
-                                            <span style="font-size: 14px; color: #1a1a1a; font-weight: 500;">{{paymentMethod}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 8px 0;">
-                                            <span style="font-size: 14px; color: #888888;">Next Billing</span>
-                                        </td>
-                                        <td style="padding: 8px 0; text-align: right;">
-                                            <span style="font-size: 14px; color: #1a1a1a; font-weight: 500;">{{nextBillingDate}}</span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            
-                            <!-- Stats -->
-                            <div style="text-align: center; padding: 20px 0; margin-bottom: 24px; border-top: 1px solid #eaeae5; border-bottom: 1px solid #eaeae5;">
-                                <p style="margin: 0; font-size: 14px; color: #555555;">
-                                    <strong style="color: #d97706;">{{receiptCount}}</strong> receipts processed this month
-                                </p>
-                            </div>
-                            
-                            <!-- Spreadsheet Link -->
-                            <table width="100%" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td style="text-align: center;">
-                                        <a href="{{sheetUrl}}" style="display: inline-block; padding: 12px 24px; background-color: #f59e0b; color: #0d0d0d; text-decoration: none; font-weight: 600; font-size: 14px; border-radius: 6px;">View All Receipts →</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <!-- Footer -->
-                    <tr>
-                        <td style="padding: 24px 32px; background-color: #f5f5f0; border-top: 1px solid #eaeae5;">
-                            <p style="margin: 0 0 8px 0; font-size: 12px; color: #888888; text-align: center;">Questions? — admin@invoicesnapbot.com</p>
-                            <p style="margin: 0; font-size: 12px; color: #888888; text-align: center;">InvoiceSnap</p>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-
-    <!-- =====================================================
-         TEMPLATE 3: RENEWAL REMINDER (3 days before charge)
-         Subject: "Heads up — your $9 renewal is in 3 days"
-    ===================================================== -->
-
-    <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f0; padding: 40px 20px;">
-        <tr>
-            <td align="center">
-                <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden;">
-                    <!-- Header -->
-                    <tr>
-                        <td style="background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%); padding: 32px; text-align: center;">
-                            <span style="font-size: 28px; font-weight: 700; color: #f5f5f5;">InvoiceSnap</span>
-                            <p style="margin: 8px 0 0 0; color: #a3a3a3; font-size: 14px;">AI Receipt Scanner</p>
-                        </td>
-                    </tr>
-                    <!-- Body -->
-                    <tr>
-                        <td style="padding: 32px; color: #1a1a1a;">
-                            <h1 style="margin: 0 0 16px 0; font-size: 24px; font-weight: 600; color: #0d0d0d;">Heads up — renewal coming</h1>
-                            
-                            <p style="margin: 0 0 24px 0; font-size: 16px; line-height: 1.6; color: #555555;">Quick note: your $9 InvoiceSnap subscription renews on <strong>{{renewalDate}}</strong>.</p>
-                            
-                            <p style="margin: 0 0 24px 0; font-size: 16px; line-height: 1.6; color: #555555;">No action needed — just keeping you in the loop. Your receipt tracking keeps running like clockwork.</p>
-                            
-                            <!-- Links -->
-                            <table width="100%" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td style="text-align: center; padding: 20px 0;">
-                                        <a href="{{manageUrl}}" style="display: inline-block; padding: 10px 20px; background-color: transparent; color: #d97706; text-decoration: none; font-weight: 500; font-size: 14px; border: 1px solid #d97706; border-radius: 6px; margin-right: 12px;">Manage</a>
-                                        <a href="{{cancelUrl}}" style="display: inline-block; padding: 10px 20px; background-color: transparent; color: #888888; text-decoration: none; font-weight: 500; font-size: 14px;">Cancel</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <!-- Footer -->
-                    <tr>
-                        <td style="padding: 24px 32px; background-color: #f5f5f0; border-top: 1px solid #eaeae5;">
-                            <p style="margin: 0; font-size: 12px; color: #888888; text-align: center;">InvoiceSnap — See you next month!</p>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-
-    <!-- =====================================================
-         TEMPLATE 4: CANCELLATION CONFIRMATION
-         Subject: "Subscription ended. Your data's safe."
-    ===================================================== -->
-
-    <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f0; padding: 40px 20px;">
-        <tr>
-            <td align="center">
-                <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden;">
-                    <!-- Header -->
-                    <tr>
-                        <td style="background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%); padding: 32px; text-align: center;">
-                            <span style="font-size: 28px; font-weight: 700; color: #f5f5f5;">InvoiceSnap</span>
-                            <p style="margin: 8px 0 0 0; color: #a3a3a3; font-size: 14px;">AI Receipt Scanner</p>
-                        </td>
-                    </tr>
-                    <!-- Body -->
-                    <tr>
-                        <td style="padding: 32px; color: #1a1a1a;">
-                            <h1 style="margin: 0 0 16px 0; font-size: 24px; font-weight: 600; color: #0d0d0d;">Subscription ended.</h1>
-                            
-                            <p style="margin: 0 0 16px 0; font-size: 16px; line-height: 1.6; color: #555555;">Alright — I've cancelled your subscription. No hard feelings.</p>
-                            
-                            <p style="margin: 0 0 24px 0; font-size: 16px; line-height: 1.6; color: #555555;">Your data isn't going anywhere. Your spreadsheet and all your receipt copies are still here, waiting for you whenever you need them.</p>
-                            
-                            <!-- Free tier info -->
-                            <div style="background-color: #f5f5f0; border-radius: 8px; padding: 20px; margin-bottom: 24px; text-align: center;">
-                                <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600; color: #1a1a1a;">Still want to keep tabs on receipts?</p>
-                                <p style="margin: 0 0 16px 0; font-size: 14px; color: #555555;">You're on the free tier now — <strong>15 receipts/month</strong>, forever.</p>
-                                <a href="{{resubscribeUrl}}" style="display: inline-block; padding: 10px 20px; background-color: #f59e0b; color: #0d0d0d; text-decoration: none; font-weight: 600; font-size: 14px; border-radius: 6px;">Jump Back In →</a>
-                            </div>
-                            
-                            <p style="margin: 0; font-size: 14px; color: #888888; line-height: 1.5;">We'll be here if you need us. Take care!</p>
-                        </td>
-                    </tr>
-                    <!-- Footer -->
-                    <tr>
-                        <td style="padding: 24px 32px; background-color: #f5f5f0; border-top: 1px solid #eaeae5;">
-                            <p style="margin: 0 0 8px 0; font-size: 12px; color: #888888; text-align: center;">InvoiceSnap — admin@invoicesnapbot.com</p>
-                            <p style="margin: 0; font-size: 12px; color: #888888; text-align: center;"><a href="{{manageUrl}}" style="color: #d97706; text-decoration: underline;">Manage subscription</a></p>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-
-</body>
-</html>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>InvoiceSnap Email Preview</title><style>body{background:#0a0a0a;color:#f0f0f0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;margin:0;padding:40px 20px}h1{text-align:center;font-size:32px;margin-bottom:8px}p.sub{text-align:center;color:#888;margin-bottom:40px;font-size:14px}.nav{text-align:center;margin-bottom:40px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.nav a{color:#f59e0b;text-decoration:none;padding:8px 16px;border:1px solid #333;border-radius:6px;font-size:13px}.nav a:hover{background:#1a1a1a}.template{margin-bottom:60px;max-width:700px;margin-left:auto;margin-right:auto}.template h2{font-size:18px;color:#f59e0b;margin-bottom:4px}.template .subject{color:#888;font-size:13px;margin-bottom:16px}.template iframe{width:100%;border:1px solid #333;border-radius:8px;background:#111}</style></head><body><h1>InvoiceSnap Email Preview</h1><p class="sub">All 8 email variants. Dark mode default, light mode compatible.</p><div class="nav"><a href="#t0">Welcome (WhatsApp + sheet)</a><a href="#t1">Welcome (WhatsApp, no sheet)</a><a href="#t2">Welcome (Discord + sheet)</a><a href="#t3">Welcome (Discord, no sheet)</a><a href="#t4">Welcome (website-only payer)</a><a href="#t5">Monthly Receipt</a><a href="#t6">Renewal Reminder</a><a href="#t7">Cancellation</a></div><div class="template" id="t0"><h2>Welcome (WhatsApp + sheet)</h2><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta name=&quot;color-scheme&quot; content=&quot;dark light&quot;&gt;
+  &lt;meta name=&quot;supported-color-schemes&quot; content=&quot;dark light&quot;&gt;
+  &lt;title&gt;Payment confirmed - $9/month&lt;/title&gt;
+  &lt;style&gt;
+    :root { color-scheme: dark light; }
+    @media (prefers-color-scheme: light) {
+      .email-body { background-color: #f5f5f0 !important; }
+      .email-card { background-color: #ffffff !important; }
+      .email-text { color: #1a1a1a !important; }
+      .email-muted { color: #555555 !important; }
+      .email-subtle { color: #888888 !important; }
+      .email-footer { background-color: #f5f5f0 !important; }
+      .email-divider { border-color: #eaeae5 !important; }
+      .email-receipt-bg { background-color: #f5f5f0 !important; }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class=&quot;email-body&quot; style=&quot;margin:0;padding:0;background-color:#111111;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;&quot;&gt;
+  &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-body&quot; style=&quot;background-color:#111111;padding:40px 20px;&quot;&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot;&gt;
+        &lt;table width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-card&quot; style=&quot;max-width:600px;background-color:#1a1a1a;border-radius:12px;overflow:hidden;&quot;&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;background:linear-gradient(135deg,#0d0d0d 0%,#222222 100%);padding:32px;text-align:center;&quot;&gt;
+              &lt;span style=&quot;font-size:28px;font-weight:700;color:#f5f5f5;&quot;&gt;InvoiceSnap&lt;/span&gt;
+              &lt;p style=&quot;margin:8px 0 0 0;color:#a3a3a3;font-size:14px;&quot;&gt;AI Receipt Tracker&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;padding:32px;color:#f0f0f0;&quot;&gt;
+              
+    &lt;h1 class=&quot;email-text&quot; style=&quot;margin:0 0 16px 0;font-size:24px;font-weight:600;color:#f0f0f0;&quot;&gt;Payment confirmed&lt;/h1&gt;
+    &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Payment confirmed. $9/month, next billing 22 April 2026.&lt;/p&gt;
+  
+        &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Your spreadsheet is ready:&lt;/p&gt;
+        &lt;div style=&quot;text-align:center;margin:0 0 20px 0;&quot;&gt;&lt;a href=&quot;https://docs.google.com/spreadsheets/d/abc123/edit&quot; style=&quot;display:inline-block;padding:12px 24px;background-color:#f59e0b;color:#0d0d0d;text-decoration:none;font-weight:600;font-size:14px;border-radius:6px;&quot;&gt;View Spreadsheet&lt;/a&gt;&lt;/div&gt;
+        &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Send your receipts to Betty on WhatsApp and she'll do the rest.&lt;/p&gt;
+        &lt;div style=&quot;text-align:center;margin:0 0 20px 0;&quot;&gt;&lt;a href=&quot;https://wa.me/61420522696&quot; style=&quot;display:inline-block;padding:12px 24px;background-color:#f59e0b;color:#0d0d0d;text-decoration:none;font-weight:600;font-size:14px;border-radius:6px;&quot;&gt;Open WhatsApp&lt;/a&gt;&lt;/div&gt;
+      
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td class=&quot;email-footer&quot; style=&quot;padding:24px 32px;background-color:#0d0d0d;border-top:1px solid #333333;&quot;&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0 0 12px 0;font-size:12px;color:#888888;text-align:center;&quot;&gt;To manage your subscription, message Betty and type 'cancel' or 'resubscribe'.&lt;/p&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0;font-size:12px;color:#888888;text-align:center;&quot;&gt;InvoiceSnap - admin@invoicesnapbot.com&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/table&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;" style="height:700px;" onload="this.style.height=this.contentDocument.body.scrollHeight+40+&apos;px&apos;"></iframe></div><div class="template" id="t1"><h2>Welcome (WhatsApp, no sheet)</h2><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta name=&quot;color-scheme&quot; content=&quot;dark light&quot;&gt;
+  &lt;meta name=&quot;supported-color-schemes&quot; content=&quot;dark light&quot;&gt;
+  &lt;title&gt;Payment confirmed - $9/month&lt;/title&gt;
+  &lt;style&gt;
+    :root { color-scheme: dark light; }
+    @media (prefers-color-scheme: light) {
+      .email-body { background-color: #f5f5f0 !important; }
+      .email-card { background-color: #ffffff !important; }
+      .email-text { color: #1a1a1a !important; }
+      .email-muted { color: #555555 !important; }
+      .email-subtle { color: #888888 !important; }
+      .email-footer { background-color: #f5f5f0 !important; }
+      .email-divider { border-color: #eaeae5 !important; }
+      .email-receipt-bg { background-color: #f5f5f0 !important; }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class=&quot;email-body&quot; style=&quot;margin:0;padding:0;background-color:#111111;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;&quot;&gt;
+  &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-body&quot; style=&quot;background-color:#111111;padding:40px 20px;&quot;&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot;&gt;
+        &lt;table width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-card&quot; style=&quot;max-width:600px;background-color:#1a1a1a;border-radius:12px;overflow:hidden;&quot;&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;background:linear-gradient(135deg,#0d0d0d 0%,#222222 100%);padding:32px;text-align:center;&quot;&gt;
+              &lt;span style=&quot;font-size:28px;font-weight:700;color:#f5f5f5;&quot;&gt;InvoiceSnap&lt;/span&gt;
+              &lt;p style=&quot;margin:8px 0 0 0;color:#a3a3a3;font-size:14px;&quot;&gt;AI Receipt Tracker&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;padding:32px;color:#f0f0f0;&quot;&gt;
+              
+    &lt;h1 class=&quot;email-text&quot; style=&quot;margin:0 0 16px 0;font-size:24px;font-weight:600;color:#f0f0f0;&quot;&gt;Payment confirmed&lt;/h1&gt;
+    &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Payment confirmed. $9/month, next billing 22 April 2026.&lt;/p&gt;
+  
+        &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;To create your spreadsheet, message Betty on WhatsApp and type 'setup' followed by your Google email.&lt;/p&gt;
+        &lt;div style=&quot;text-align:center;margin:0 0 20px 0;&quot;&gt;&lt;a href=&quot;https://wa.me/61420522696&quot; style=&quot;display:inline-block;padding:12px 24px;background-color:#f59e0b;color:#0d0d0d;text-decoration:none;font-weight:600;font-size:14px;border-radius:6px;&quot;&gt;Open WhatsApp&lt;/a&gt;&lt;/div&gt;
+      
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td class=&quot;email-footer&quot; style=&quot;padding:24px 32px;background-color:#0d0d0d;border-top:1px solid #333333;&quot;&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0 0 12px 0;font-size:12px;color:#888888;text-align:center;&quot;&gt;To manage your subscription, message Betty and type 'cancel' or 'resubscribe'.&lt;/p&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0;font-size:12px;color:#888888;text-align:center;&quot;&gt;InvoiceSnap - admin@invoicesnapbot.com&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/table&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;" style="height:700px;" onload="this.style.height=this.contentDocument.body.scrollHeight+40+&apos;px&apos;"></iframe></div><div class="template" id="t2"><h2>Welcome (Discord + sheet)</h2><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta name=&quot;color-scheme&quot; content=&quot;dark light&quot;&gt;
+  &lt;meta name=&quot;supported-color-schemes&quot; content=&quot;dark light&quot;&gt;
+  &lt;title&gt;Payment confirmed - $9/month&lt;/title&gt;
+  &lt;style&gt;
+    :root { color-scheme: dark light; }
+    @media (prefers-color-scheme: light) {
+      .email-body { background-color: #f5f5f0 !important; }
+      .email-card { background-color: #ffffff !important; }
+      .email-text { color: #1a1a1a !important; }
+      .email-muted { color: #555555 !important; }
+      .email-subtle { color: #888888 !important; }
+      .email-footer { background-color: #f5f5f0 !important; }
+      .email-divider { border-color: #eaeae5 !important; }
+      .email-receipt-bg { background-color: #f5f5f0 !important; }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class=&quot;email-body&quot; style=&quot;margin:0;padding:0;background-color:#111111;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;&quot;&gt;
+  &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-body&quot; style=&quot;background-color:#111111;padding:40px 20px;&quot;&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot;&gt;
+        &lt;table width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-card&quot; style=&quot;max-width:600px;background-color:#1a1a1a;border-radius:12px;overflow:hidden;&quot;&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;background:linear-gradient(135deg,#0d0d0d 0%,#222222 100%);padding:32px;text-align:center;&quot;&gt;
+              &lt;span style=&quot;font-size:28px;font-weight:700;color:#f5f5f5;&quot;&gt;InvoiceSnap&lt;/span&gt;
+              &lt;p style=&quot;margin:8px 0 0 0;color:#a3a3a3;font-size:14px;&quot;&gt;AI Receipt Tracker&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;padding:32px;color:#f0f0f0;&quot;&gt;
+              
+    &lt;h1 class=&quot;email-text&quot; style=&quot;margin:0 0 16px 0;font-size:24px;font-weight:600;color:#f0f0f0;&quot;&gt;Payment confirmed&lt;/h1&gt;
+    &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Payment confirmed. $9/month, next billing 22 April 2026.&lt;/p&gt;
+  
+        &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Your spreadsheet is ready:&lt;/p&gt;
+        &lt;div style=&quot;text-align:center;margin:0 0 20px 0;&quot;&gt;&lt;a href=&quot;https://docs.google.com/spreadsheets/d/abc123/edit&quot; style=&quot;display:inline-block;padding:12px 24px;background-color:#f59e0b;color:#0d0d0d;text-decoration:none;font-weight:600;font-size:14px;border-radius:6px;&quot;&gt;View Spreadsheet&lt;/a&gt;&lt;/div&gt;
+        &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Drop your receipts in Betty's DMs or any server she's in.&lt;/p&gt;
+      
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td class=&quot;email-footer&quot; style=&quot;padding:24px 32px;background-color:#0d0d0d;border-top:1px solid #333333;&quot;&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0 0 12px 0;font-size:12px;color:#888888;text-align:center;&quot;&gt;To manage your subscription, type /cancel or /resubscribe in Discord.&lt;/p&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0;font-size:12px;color:#888888;text-align:center;&quot;&gt;InvoiceSnap - admin@invoicesnapbot.com&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/table&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;" style="height:700px;" onload="this.style.height=this.contentDocument.body.scrollHeight+40+&apos;px&apos;"></iframe></div><div class="template" id="t3"><h2>Welcome (Discord, no sheet)</h2><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta name=&quot;color-scheme&quot; content=&quot;dark light&quot;&gt;
+  &lt;meta name=&quot;supported-color-schemes&quot; content=&quot;dark light&quot;&gt;
+  &lt;title&gt;Payment confirmed - $9/month&lt;/title&gt;
+  &lt;style&gt;
+    :root { color-scheme: dark light; }
+    @media (prefers-color-scheme: light) {
+      .email-body { background-color: #f5f5f0 !important; }
+      .email-card { background-color: #ffffff !important; }
+      .email-text { color: #1a1a1a !important; }
+      .email-muted { color: #555555 !important; }
+      .email-subtle { color: #888888 !important; }
+      .email-footer { background-color: #f5f5f0 !important; }
+      .email-divider { border-color: #eaeae5 !important; }
+      .email-receipt-bg { background-color: #f5f5f0 !important; }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class=&quot;email-body&quot; style=&quot;margin:0;padding:0;background-color:#111111;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;&quot;&gt;
+  &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-body&quot; style=&quot;background-color:#111111;padding:40px 20px;&quot;&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot;&gt;
+        &lt;table width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-card&quot; style=&quot;max-width:600px;background-color:#1a1a1a;border-radius:12px;overflow:hidden;&quot;&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;background:linear-gradient(135deg,#0d0d0d 0%,#222222 100%);padding:32px;text-align:center;&quot;&gt;
+              &lt;span style=&quot;font-size:28px;font-weight:700;color:#f5f5f5;&quot;&gt;InvoiceSnap&lt;/span&gt;
+              &lt;p style=&quot;margin:8px 0 0 0;color:#a3a3a3;font-size:14px;&quot;&gt;AI Receipt Tracker&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;padding:32px;color:#f0f0f0;&quot;&gt;
+              
+    &lt;h1 class=&quot;email-text&quot; style=&quot;margin:0 0 16px 0;font-size:24px;font-weight:600;color:#f0f0f0;&quot;&gt;Payment confirmed&lt;/h1&gt;
+    &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Payment confirmed. $9/month, next billing 22 April 2026.&lt;/p&gt;
+  
+        &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;To create your spreadsheet, type /setup your@email.com in Discord.&lt;/p&gt;
+      
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td class=&quot;email-footer&quot; style=&quot;padding:24px 32px;background-color:#0d0d0d;border-top:1px solid #333333;&quot;&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0 0 12px 0;font-size:12px;color:#888888;text-align:center;&quot;&gt;To manage your subscription, type /cancel or /resubscribe in Discord.&lt;/p&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0;font-size:12px;color:#888888;text-align:center;&quot;&gt;InvoiceSnap - admin@invoicesnapbot.com&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/table&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;" style="height:700px;" onload="this.style.height=this.contentDocument.body.scrollHeight+40+&apos;px&apos;"></iframe></div><div class="template" id="t4"><h2>Welcome (website-only payer)</h2><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta name=&quot;color-scheme&quot; content=&quot;dark light&quot;&gt;
+  &lt;meta name=&quot;supported-color-schemes&quot; content=&quot;dark light&quot;&gt;
+  &lt;title&gt;Payment confirmed - $9/month&lt;/title&gt;
+  &lt;style&gt;
+    :root { color-scheme: dark light; }
+    @media (prefers-color-scheme: light) {
+      .email-body { background-color: #f5f5f0 !important; }
+      .email-card { background-color: #ffffff !important; }
+      .email-text { color: #1a1a1a !important; }
+      .email-muted { color: #555555 !important; }
+      .email-subtle { color: #888888 !important; }
+      .email-footer { background-color: #f5f5f0 !important; }
+      .email-divider { border-color: #eaeae5 !important; }
+      .email-receipt-bg { background-color: #f5f5f0 !important; }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class=&quot;email-body&quot; style=&quot;margin:0;padding:0;background-color:#111111;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;&quot;&gt;
+  &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-body&quot; style=&quot;background-color:#111111;padding:40px 20px;&quot;&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot;&gt;
+        &lt;table width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-card&quot; style=&quot;max-width:600px;background-color:#1a1a1a;border-radius:12px;overflow:hidden;&quot;&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;background:linear-gradient(135deg,#0d0d0d 0%,#222222 100%);padding:32px;text-align:center;&quot;&gt;
+              &lt;span style=&quot;font-size:28px;font-weight:700;color:#f5f5f5;&quot;&gt;InvoiceSnap&lt;/span&gt;
+              &lt;p style=&quot;margin:8px 0 0 0;color:#a3a3a3;font-size:14px;&quot;&gt;AI Receipt Tracker&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;padding:32px;color:#f0f0f0;&quot;&gt;
+              
+      &lt;h1 class=&quot;email-text&quot; style=&quot;margin:0 0 16px 0;font-size:24px;font-weight:600;color:#f0f0f0;&quot;&gt;Payment confirmed&lt;/h1&gt;
+      &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Payment confirmed! $9/month, next billing 22 April 2026.&lt;/p&gt;
+      &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;You're paid up but haven't connected to Betty yet. Pick your platform to get started:&lt;/p&gt;
+      &lt;div style=&quot;text-align:center;margin:0 0 12px 0;&quot;&gt;&lt;a href=&quot;https://wa.me/61420522696?text=Hi%20Betty&quot; style=&quot;display:inline-block;padding:12px 24px;background-color:#f59e0b;color:#0d0d0d;text-decoration:none;font-weight:600;font-size:14px;border-radius:6px;&quot;&gt;Connect to WhatsApp&lt;/a&gt;&lt;/div&gt;
+      &lt;div style=&quot;text-align:center;margin:0 0 20px 0;&quot;&gt;&lt;a href=&quot;https://invoicesnapbot.com/invite?ref=welcome-email&quot; style=&quot;display:inline-block;padding:12px 24px;background-color:#f59e0b;color:#0d0d0d;text-decoration:none;font-weight:600;font-size:14px;border-radius:6px;&quot;&gt;Connect to Discord&lt;/a&gt;&lt;/div&gt;
+      &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Once connected, tell Betty 'upgrade brendon@test.com' to activate your unlimited access.&lt;/p&gt;
+    
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td class=&quot;email-footer&quot; style=&quot;padding:24px 32px;background-color:#0d0d0d;border-top:1px solid #333333;&quot;&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0 0 12px 0;font-size:12px;color:#888888;text-align:center;&quot;&gt;To manage your subscription, message Betty and type 'cancel' or 'resubscribe'.&lt;/p&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0;font-size:12px;color:#888888;text-align:center;&quot;&gt;InvoiceSnap - admin@invoicesnapbot.com&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/table&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;" style="height:700px;" onload="this.style.height=this.contentDocument.body.scrollHeight+40+&apos;px&apos;"></iframe></div><div class="template" id="t5"><h2>Monthly Receipt</h2><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta name=&quot;color-scheme&quot; content=&quot;dark light&quot;&gt;
+  &lt;meta name=&quot;supported-color-schemes&quot; content=&quot;dark light&quot;&gt;
+  &lt;title&gt;Receipt - $9 - March 2026&lt;/title&gt;
+  &lt;style&gt;
+    :root { color-scheme: dark light; }
+    @media (prefers-color-scheme: light) {
+      .email-body { background-color: #f5f5f0 !important; }
+      .email-card { background-color: #ffffff !important; }
+      .email-text { color: #1a1a1a !important; }
+      .email-muted { color: #555555 !important; }
+      .email-subtle { color: #888888 !important; }
+      .email-footer { background-color: #f5f5f0 !important; }
+      .email-divider { border-color: #eaeae5 !important; }
+      .email-receipt-bg { background-color: #f5f5f0 !important; }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class=&quot;email-body&quot; style=&quot;margin:0;padding:0;background-color:#111111;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;&quot;&gt;
+  &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-body&quot; style=&quot;background-color:#111111;padding:40px 20px;&quot;&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot;&gt;
+        &lt;table width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-card&quot; style=&quot;max-width:600px;background-color:#1a1a1a;border-radius:12px;overflow:hidden;&quot;&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;background:linear-gradient(135deg,#0d0d0d 0%,#222222 100%);padding:32px;text-align:center;&quot;&gt;
+              &lt;span style=&quot;font-size:28px;font-weight:700;color:#f5f5f5;&quot;&gt;InvoiceSnap&lt;/span&gt;
+              &lt;p style=&quot;margin:8px 0 0 0;color:#a3a3a3;font-size:14px;&quot;&gt;AI Receipt Tracker&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;padding:32px;color:#f0f0f0;&quot;&gt;
+              
+    &lt;h1 class=&quot;email-text&quot; style=&quot;margin:0 0 24px 0;font-size:24px;font-weight:600;color:#f0f0f0;&quot;&gt;Your Receipt&lt;/h1&gt;
+    &lt;div class=&quot;email-receipt-bg&quot; style=&quot;background-color:#222222;border-radius:8px;padding:24px;margin-bottom:24px;&quot;&gt;
+      &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;padding:8px 0;border-bottom:1px solid #333333;&quot;&gt;&lt;span class=&quot;email-subtle&quot; style=&quot;font-size:14px;color:#888888;&quot;&gt;Date&lt;/span&gt;&lt;/td&gt;
+          &lt;td style=&quot;padding:8px 0;border-bottom:1px solid #333333;text-align:right;&quot;&gt;&lt;span class=&quot;email-text&quot; style=&quot;font-size:14px;color:#f0f0f0;font-weight:500;&quot;&gt;22 March 2026&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;padding:8px 0;border-bottom:1px solid #333333;&quot;&gt;&lt;span class=&quot;email-subtle&quot; style=&quot;font-size:14px;color:#888888;&quot;&gt;Amount&lt;/span&gt;&lt;/td&gt;
+          &lt;td style=&quot;padding:8px 0;border-bottom:1px solid #333333;text-align:right;&quot;&gt;&lt;span class=&quot;email-text&quot; style=&quot;font-size:14px;color:#f0f0f0;font-weight:500;&quot;&gt;$9.00&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;padding:8px 0;border-bottom:1px solid #333333;&quot;&gt;&lt;span class=&quot;email-subtle&quot; style=&quot;font-size:14px;color:#888888;&quot;&gt;Payment Method&lt;/span&gt;&lt;/td&gt;
+          &lt;td style=&quot;padding:8px 0;border-bottom:1px solid #333333;text-align:right;&quot;&gt;&lt;span class=&quot;email-text&quot; style=&quot;font-size:14px;color:#f0f0f0;font-weight:500;&quot;&gt;Stripe&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;padding:8px 0;&quot;&gt;&lt;span class=&quot;email-subtle&quot; style=&quot;font-size:14px;color:#888888;&quot;&gt;Next Billing&lt;/span&gt;&lt;/td&gt;
+          &lt;td style=&quot;padding:8px 0;text-align:right;&quot;&gt;&lt;span class=&quot;email-text&quot; style=&quot;font-size:14px;color:#f0f0f0;font-weight:500;&quot;&gt;22 April 2026&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;text-align:center;padding:20px 0;margin-bottom:24px;border-top:1px solid #333333;border-bottom:1px solid #333333;&quot;&gt;
+      &lt;p class=&quot;email-muted&quot; style=&quot;margin:0;font-size:14px;color:#c0c0c0;&quot;&gt;&lt;strong style=&quot;color:#d97706;&quot;&gt;47&lt;/strong&gt; receipts processed this month&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;div style=&quot;text-align:center;&quot;&gt;&lt;a href=&quot;https://docs.google.com/spreadsheets/d/abc123/edit&quot; style=&quot;display:inline-block;padding:12px 24px;background-color:#f59e0b;color:#0d0d0d;text-decoration:none;font-weight:600;font-size:14px;border-radius:6px;&quot;&gt;View Spreadsheet&lt;/a&gt;&lt;/div&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td class=&quot;email-footer&quot; style=&quot;padding:24px 32px;background-color:#0d0d0d;border-top:1px solid #333333;&quot;&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0 0 12px 0;font-size:12px;color:#888888;text-align:center;&quot;&gt;Questions? admin@invoicesnapbot.com&lt;/p&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0;font-size:12px;color:#888888;text-align:center;&quot;&gt;InvoiceSnap - admin@invoicesnapbot.com&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/table&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;" style="height:700px;" onload="this.style.height=this.contentDocument.body.scrollHeight+40+&apos;px&apos;"></iframe></div><div class="template" id="t6"><h2>Renewal Reminder</h2><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta name=&quot;color-scheme&quot; content=&quot;dark light&quot;&gt;
+  &lt;meta name=&quot;supported-color-schemes&quot; content=&quot;dark light&quot;&gt;
+  &lt;title&gt;Renewal reminder - $9 on 25 March 2026&lt;/title&gt;
+  &lt;style&gt;
+    :root { color-scheme: dark light; }
+    @media (prefers-color-scheme: light) {
+      .email-body { background-color: #f5f5f0 !important; }
+      .email-card { background-color: #ffffff !important; }
+      .email-text { color: #1a1a1a !important; }
+      .email-muted { color: #555555 !important; }
+      .email-subtle { color: #888888 !important; }
+      .email-footer { background-color: #f5f5f0 !important; }
+      .email-divider { border-color: #eaeae5 !important; }
+      .email-receipt-bg { background-color: #f5f5f0 !important; }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class=&quot;email-body&quot; style=&quot;margin:0;padding:0;background-color:#111111;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;&quot;&gt;
+  &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-body&quot; style=&quot;background-color:#111111;padding:40px 20px;&quot;&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot;&gt;
+        &lt;table width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-card&quot; style=&quot;max-width:600px;background-color:#1a1a1a;border-radius:12px;overflow:hidden;&quot;&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;background:linear-gradient(135deg,#0d0d0d 0%,#222222 100%);padding:32px;text-align:center;&quot;&gt;
+              &lt;span style=&quot;font-size:28px;font-weight:700;color:#f5f5f5;&quot;&gt;InvoiceSnap&lt;/span&gt;
+              &lt;p style=&quot;margin:8px 0 0 0;color:#a3a3a3;font-size:14px;&quot;&gt;AI Receipt Tracker&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;padding:32px;color:#f0f0f0;&quot;&gt;
+              
+    &lt;h1 class=&quot;email-text&quot; style=&quot;margin:0 0 16px 0;font-size:24px;font-weight:600;color:#f0f0f0;&quot;&gt;Renewal reminder&lt;/h1&gt;
+    &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Quick heads up - your $9 InvoiceSnap subscription renews on &lt;strong&gt;25 March 2026&lt;/strong&gt;.&lt;/p&gt;
+    &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;No action needed. Just keeping you in the loop.&lt;/p&gt;
+  
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td class=&quot;email-footer&quot; style=&quot;padding:24px 32px;background-color:#0d0d0d;border-top:1px solid #333333;&quot;&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0 0 12px 0;font-size:12px;color:#888888;text-align:center;&quot;&gt;To manage your subscription, message Betty and type 'cancel' or 'resubscribe'.&lt;/p&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0;font-size:12px;color:#888888;text-align:center;&quot;&gt;InvoiceSnap - admin@invoicesnapbot.com&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/table&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;" style="height:700px;" onload="this.style.height=this.contentDocument.body.scrollHeight+40+&apos;px&apos;"></iframe></div><div class="template" id="t7"><h2>Cancellation</h2><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta name=&quot;color-scheme&quot; content=&quot;dark light&quot;&gt;
+  &lt;meta name=&quot;supported-color-schemes&quot; content=&quot;dark light&quot;&gt;
+  &lt;title&gt;Subscription cancelled&lt;/title&gt;
+  &lt;style&gt;
+    :root { color-scheme: dark light; }
+    @media (prefers-color-scheme: light) {
+      .email-body { background-color: #f5f5f0 !important; }
+      .email-card { background-color: #ffffff !important; }
+      .email-text { color: #1a1a1a !important; }
+      .email-muted { color: #555555 !important; }
+      .email-subtle { color: #888888 !important; }
+      .email-footer { background-color: #f5f5f0 !important; }
+      .email-divider { border-color: #eaeae5 !important; }
+      .email-receipt-bg { background-color: #f5f5f0 !important; }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class=&quot;email-body&quot; style=&quot;margin:0;padding:0;background-color:#111111;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;&quot;&gt;
+  &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-body&quot; style=&quot;background-color:#111111;padding:40px 20px;&quot;&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot;&gt;
+        &lt;table width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; class=&quot;email-card&quot; style=&quot;max-width:600px;background-color:#1a1a1a;border-radius:12px;overflow:hidden;&quot;&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;background:linear-gradient(135deg,#0d0d0d 0%,#222222 100%);padding:32px;text-align:center;&quot;&gt;
+              &lt;span style=&quot;font-size:28px;font-weight:700;color:#f5f5f5;&quot;&gt;InvoiceSnap&lt;/span&gt;
+              &lt;p style=&quot;margin:8px 0 0 0;color:#a3a3a3;font-size:14px;&quot;&gt;AI Receipt Tracker&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;padding:32px;color:#f0f0f0;&quot;&gt;
+              
+    &lt;h1 class=&quot;email-text&quot; style=&quot;margin:0 0 16px 0;font-size:24px;font-weight:600;color:#f0f0f0;&quot;&gt;Subscription cancelled&lt;/h1&gt;
+    &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 16px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Your subscription is cancelled. You'll keep unlimited access until 22 April 2026, then you'll be back on the free tier (15 receipts/month).&lt;/p&gt;
+    &lt;p class=&quot;email-muted&quot; style=&quot;margin:0 0 24px 0;font-size:16px;line-height:1.6;color:#c0c0c0;&quot;&gt;Your spreadsheet and all your receipt copies aren't going anywhere.&lt;/p&gt;
+    &lt;div style=&quot;text-align:center;margin:0 0 20px 0;&quot;&gt;&lt;a href=&quot;https://buy.stripe.com/test123&quot; style=&quot;display:inline-block;padding:12px 24px;background-color:#f59e0b;color:#0d0d0d;text-decoration:none;font-weight:600;font-size:14px;border-radius:6px;&quot;&gt;Resubscribe&lt;/a&gt;&lt;/div&gt;
+  
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td class=&quot;email-footer&quot; style=&quot;padding:24px 32px;background-color:#0d0d0d;border-top:1px solid #333333;&quot;&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0 0 12px 0;font-size:12px;color:#888888;text-align:center;&quot;&gt;To resubscribe, message Betty and type 'resubscribe'.&lt;/p&gt;
+              &lt;p class=&quot;email-subtle&quot; style=&quot;margin:0;font-size:12px;color:#888888;text-align:center;&quot;&gt;InvoiceSnap - admin@invoicesnapbot.com&lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/table&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;" style="height:700px;" onload="this.style.height=this.contentDocument.body.scrollHeight+40+&apos;px&apos;"></iframe></div></body></html>
