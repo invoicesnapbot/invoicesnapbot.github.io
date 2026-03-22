@@ -250,6 +250,8 @@
         .modal-btn { width: 100%; padding: 16px; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 12px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: white; transition: all 0.2s ease;}
         .modal-btn:hover { color: #000; }
         .modal-btn.whatsapp { background: #25D366; }
+        .modal-btn.stripe { background: white; color: #000 !important; }
+        .modal-btn.stripe:hover { color: #000 !important; }
         .modal-btn.discord { background: #5865F2; }
 
         /* Light mode toggle script needs this */
@@ -519,6 +521,20 @@ src="https://www.facebook.com/tr?id=958336127153632&ev=PageView&noscript=1"/></n
             <p class="modal-secure">🔒 Secure checkout. Cancel anytime.</p>
         </div>
     </div>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AWaVKs0tun_UzLy0N3lXw5rqYiLvF1Y-GS-_1s9Vi_HDaE-bXju0gS94nuttsrCSK-VtdyxcGNOve5K7&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+    <script>
+        paypal.Buttons({
+            style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
+            createSubscription: function(data, actions) {
+                return actions.subscription.create({ plan_id: 'P-3L5808217N0972454NG7TTSQ' });
+            },
+            onApprove: function(data, actions) {
+                window.location.href = 'https://invoicesnapbot.com/?subscribed=paypal&sub_id=' + data.subscriptionID;
+            }
+        }).render('#paypal-button-container');
+    </script>
 
     <!-- Scripts -->
     <script>
