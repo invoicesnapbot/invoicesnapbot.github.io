@@ -562,16 +562,40 @@ src="https://www.facebook.com/tr?id=958336127153632&ev=PageView&noscript=1"/></n
             }
         })();
     </script>
+
 <!-- Meta Pixel Button Click Tracking -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll("a[href*=\"wa.me\"], a[href*=\"discord\"], a[href*=\"stripe\"], a[href*=\"paypal\"]").forEach(function(btn) {
+  // Track all links (a tags) to wa.me, discord, stripe, paypal
+  document.querySelectorAll("a[href*="wa.me"], a[href*="discord"], a[href*="stripe"], a[href*="paypal"]").forEach(function(btn) {
     btn.addEventListener("click", function() {
       if (typeof fbq !== "undefined") {
         fbq("track", "Lead", {content_name: btn.textContent.trim(), content_category: btn.href.includes("wa.me") ? "whatsapp" : btn.href.includes("discord") ? "discord" : "payment"});
       }
     });
   });
+  // Track Stripe button click (its a button, not a link)
+  var stripeBtn = document.querySelector(".modal-btn.stripe");
+  if (stripeBtn) {
+    stripeBtn.addEventListener("click", function() {
+      if (typeof fbq !== "undefined") fbq("track", "Lead", {content_name: "Pay by Card (Stripe)", content_category: "payment"});
+    });
+  }
+  // Track Go Unlimited button (opens modal = intent signal)
+  document.querySelectorAll("button").forEach(function(btn) {
+    if (btn.textContent.includes("Go Unlimited") || btn.textContent.includes("Upgrade")) {
+      btn.addEventListener("click", function() {
+        if (typeof fbq !== "undefined") fbq("track", "InitiateCheckout", {content_name: btn.textContent.trim()});
+      });
+    }
+  });
+  // Track PayPal - listen for iframe insertion (PayPal renders in iframe)
+  var paypalContainer = document.getElementById("paypal-button-container");
+  if (paypalContainer) {
+    paypalContainer.addEventListener("click", function() {
+      if (typeof fbq !== "undefined") fbq("track", "Lead", {content_name: "PayPal Subscribe", content_category: "payment"});
+    });
+  }
 });
 </script>
 </body>
