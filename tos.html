@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.7; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d0d0d; color: #e0e0e0; line-height: 1.7; }
     .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
     h1 { color: #f5a623; margin-bottom: 8px; font-size: 2rem; }
     h2 { color: #f5a623; margin-top: 40px; margin-bottom: 16px; font-size: 1.4rem; border-bottom: 1px solid #333; padding-bottom: 8px; }
@@ -22,16 +22,24 @@
     strong { color: #f0f0f0; }
     a { color: #f5a623; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    code { background: #252540; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+    code { background: #1a1a1a; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
     hr { border: none; border-top: 1px solid #333; margin: 32px 0; }
     .subtitle { color: #999; margin-bottom: 32px; }
     .back-link { display: inline-block; margin-bottom: 24px; color: #f5a623; }
+    .policy-nav { margin-bottom: 32px; }
+    .policy-nav a { margin-right: 16px; color: #f5a623; }
   </style>
 </head>
 <body>
 <div class="container">
 
 <a href="/" class="back-link">&larr; Back to InvoiceSnap</a>
+
+<div class="policy-nav">
+  <a href="/privacy">Privacy Policy</a>
+  <a href="/tos"><strong>Terms of Service</strong></a>
+  <a href="/refund">Refund Policy</a>
+</div>
 
 <h1>Terms of Service</h1>
 <p class="subtitle">Last updated: March 2026 | Contact: <a href="mailto:admin@invoicesnapbot.com">admin@invoicesnapbot.com</a></p>
@@ -45,8 +53,8 @@
 <p>InvoiceSnap is a receipt tracking service available on Discord and WhatsApp that:</p>
 <ul>
   <li>Extracts data from receipt and invoice images, PDFs, and Word documents using AI</li>
-  <li>Organises that data into a Google Sheet we create for you</li>
-  <li>Saves compressed copies of your receipts to a Google Drive folder shared with you</li>
+  <li>Organises that data into a Google Sheet created on our Google Workspace account and shared with you</li>
+  <li>Saves compressed receipt copies to a Google Drive folder shared with you</li>
   <li>May provide personality-driven commentary on your receipts (this is for entertainment only and is not financial advice)</li>
   <li>May generate AI-created cartoon images of our character "Betty" based on user prompts (the <code>/selfie</code> command on Discord). These are AI-generated illustrations, not photographs. Image generation is a bonus feature and may be limited or removed at any time.</li>
 </ul>
@@ -85,7 +93,7 @@
 
 <h2>Google Account Requirements</h2>
 <p>To use InvoiceSnap, you need a valid Google account (Gmail or Google Workspace) that can accept editor invitations.</p>
-<p><strong>Important:</strong> We create a Google Drive folder for you ("InvoiceSnap - [your ID]") containing your spreadsheet and receipt copies. The folder is owned by our service account (a Google Workspace requirement), but you are added as an Editor with full sharing permissions. You can share it with your accountant, bookkeeper, or anyone else. You can also export or copy your data at any time.</p>
+<p><strong>Important:</strong> We create a Google Drive folder on our Google Workspace account ("InvoiceSnap - [your ID]") containing your spreadsheet and receipt copies. The folder is owned by our service account as required by Google Workspace. You are added as an editor and can view, export, and share the contents with anyone you choose (e.g. your accountant or bookkeeper).</p>
 
 <h2>AI Accuracy Disclaimer</h2>
 <p>While we use AI to extract receipt data, we cannot guarantee 100% accuracy. You are responsible for:</p>
@@ -107,7 +115,7 @@
 </ul>
 
 <h2>Cancellation and Termination</h2>
-<p><strong>If you cancel:</strong> Type "cancel" to Betty on WhatsApp, or use <code>/cancel</code> on Discord. Alternatively, email <a href="mailto:admin@invoicesnapbot.com">admin@invoicesnapbot.com</a>. Your Google Drive folder and spreadsheet remain accessible to you - they're in your Google account. Your configuration data is removed from our systems 30 days after cancellation.</p>
+<p><strong>If you cancel:</strong> Type "cancel" to Betty on WhatsApp, or use <code>/cancel</code> on Discord. Alternatively, email <a href="mailto:admin@invoicesnapbot.com">admin@invoicesnapbot.com</a>. Your data remains in the shared Google Drive folder. We keep your account data for 12 months in case you want to come back. After 12 months of inactivity, your account and associated data are deleted. You can also request immediate deletion at any time.</p>
 <p><strong>If we terminate your access:</strong> We may suspend or terminate your access at any time, for any reason, at our sole discretion. This includes but is not limited to:</p>
 <ul>
   <li>Violation of these Terms</li>
@@ -121,7 +129,7 @@
 <ul>
   <li>InvoiceSnap's code, branding, and systems are our property</li>
   <li>Your receipt data remains yours</li>
-  <li>The Google Drive folder we create is owned by our service account (as required by Google Workspace), but you have full editor access and can copy, export, or share the data at any time</li>
+  <li>The Google Drive folder is owned by our service account (as required by Google Workspace), but you have editor access and can copy, export, or share the data at any time</li>
 </ul>
 
 <h2>Governing Law</h2>
