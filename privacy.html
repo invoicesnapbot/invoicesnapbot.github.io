@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #1a1a2e; color: #e0e0e0; line-height: 1.7; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d0d0d; color: #e0e0e0; line-height: 1.7; }
     .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
     h1 { color: #f5a623; margin-bottom: 8px; font-size: 2rem; }
     h2 { color: #f5a623; margin-top: 40px; margin-bottom: 16px; font-size: 1.4rem; border-bottom: 1px solid #333; padding-bottom: 8px; }
@@ -25,11 +25,13 @@
     a:hover { text-decoration: underline; }
     table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
     th, td { text-align: left; padding: 10px 12px; border: 1px solid #333; }
-    th { background: #252540; color: #f5a623; }
-    td { background: #1e1e36; }
+    th { background: #1a1a1a; color: #f5a623; }
+    td { background: #141414; }
     hr { border: none; border-top: 1px solid #333; margin: 32px 0; }
     .subtitle { color: #999; margin-bottom: 32px; }
     .back-link { display: inline-block; margin-bottom: 24px; color: #f5a623; }
+    .policy-nav { margin-bottom: 32px; }
+    .policy-nav a { margin-right: 16px; color: #f5a623; }
   </style>
 </head>
 <body>
@@ -37,13 +39,19 @@
 
 <a href="/" class="back-link">&larr; Back to InvoiceSnap</a>
 
+<div class="policy-nav">
+  <a href="/privacy"><strong>Privacy Policy</strong></a>
+  <a href="/tos">Terms of Service</a>
+  <a href="/refund">Refund Policy</a>
+</div>
+
 <h1>Privacy Policy</h1>
 <p class="subtitle">Last updated: March 2026 | Contact: <a href="mailto:admin@invoicesnapbot.com">admin@invoicesnapbot.com</a></p>
 
 <hr>
 
 <h2>The Short Version</h2>
-<p>Betty reads your receipts, puts the data in your spreadsheet, and keeps a compressed copy in your Google Drive folder. We track basic usage stats so we know what's working and what's not. We don't sell your data. We don't share it with advertisers. If you leave, we delete everything.</p>
+<p>Betty reads your receipts, puts the data in a spreadsheet, and keeps a compressed copy in a shared Google Drive folder. We track basic usage stats so we know what's working and what's not. We don't sell your data. We don't share it with advertisers.</p>
 
 <hr>
 
@@ -53,7 +61,7 @@
 <p>When you set up, we create:</p>
 <ul>
   <li>A <strong>customer ID</strong> (e.g. IS-12345) to link your account across platforms</li>
-  <li>A <strong>Google Drive folder</strong> shared with you, containing your spreadsheet and receipt copies</li>
+  <li>A <strong>Google Drive folder</strong> on our Google Workspace account, shared with you, containing your spreadsheet and receipt copies</li>
   <li>We store your <strong>email address</strong> (to share the folder) and your <strong>platform ID</strong> (Discord or WhatsApp) to recognise you</li>
 </ul>
 
@@ -61,7 +69,7 @@
 <p>When you send a receipt:</p>
 <ul>
   <li>We extract the text (vendor, amount, date, category) using AI and add it to your spreadsheet</li>
-  <li>We save a <strong>compressed copy</strong> of the image or document to your Google Drive folder, so you have a digital backup</li>
+  <li>We save a compressed copy of the image to our Google Drive, in a folder shared with you, as a backup for your convenience</li>
   <li>The original file is processed in memory and not kept on our servers</li>
 </ul>
 
@@ -69,7 +77,6 @@
 <p>When you message Betty:</p>
 <ul>
   <li>We log your messages to understand how people use the service - what features get asked about, what's confusing, what's missing</li>
-  <li>This is standard for any chatbot or customer service tool</li>
   <li>We don't use your messages for advertising or share them with third parties</li>
 </ul>
 
@@ -81,10 +88,9 @@
   <li>Which platform you're on (Discord or WhatsApp)</li>
   <li>Errors and issues (so we can fix them)</li>
 </ul>
-<p>This helps us improve Betty. It's the same kind of data any app collects.</p>
 
 <h3>Payments</h3>
-<p>Payments are handled by <strong>Stripe</strong> and <strong>PayPal</strong>. We never see your full card details. Through our payment dashboards we can see your name, email, card type/last four digits, and payment history - standard for any online merchant.</p>
+<p>Payments are handled by <strong>Stripe</strong> and <strong>PayPal</strong>. We never see your full card details. Through our payment dashboards we can see your name, email, card type/last four digits, and payment history.</p>
 
 <h3>Selfies</h3>
 <p>If you use the selfie feature, your scene description is sent to an AI image provider. We don't store the prompt or the generated image after delivery. We track the count only.</p>
@@ -94,16 +100,17 @@
 <h2>How Long We Keep It</h2>
 <table>
   <tr><th>Data</th><th>Kept Until</th></tr>
-  <tr><td>Account info (ID, email, platform ID)</td><td>You request deletion, or 30 days after cancellation</td></tr>
-  <tr><td>Spreadsheet + Drive folder</td><td>Remains in your Google Drive - yours to keep or delete</td></tr>
+  <tr><td>Account info (ID, email, platform ID)</td><td>You request deletion, or 12 months after last activity</td></tr>
+  <tr><td>Spreadsheet + Drive folder</td><td>Remains in the shared folder until account deletion</td></tr>
   <tr><td>Messages and usage logs</td><td>12 months, then automatically cleared</td></tr>
   <tr><td>Payment records</td><td>As required by Australian tax law (up to 7 years via Stripe/PayPal)</td></tr>
 </table>
+<p>If you cancel, we keep your data in case you want to come back. Inactive accounts (12 months with no activity) are deleted. You can also request deletion at any time.</p>
 
 <hr>
 
 <h2>Your Google Drive Folder</h2>
-<p>We create a folder in your Google Drive called "InvoiceSnap - [your ID]". It contains your spreadsheet and copies of your receipts. You're added as an editor with full sharing permissions - you can share it with your accountant, bookkeeper, or anyone else. The folder is owned by our service account (a Google Workspace requirement) but the data inside is yours.</p>
+<p>We create a folder on our Google Workspace account ("InvoiceSnap - [your ID]") containing your spreadsheet and receipt copies. You are added as an editor so you can view, export, and share the contents - for example, with your accountant or bookkeeper. The folder is owned by our service account as required by Google Workspace.</p>
 
 <hr>
 
@@ -111,7 +118,7 @@
 <ul>
   <li>Customer data is encrypted at rest (AES-256-GCM) and in transit (HTTPS/TLS)</li>
   <li>Our server sits behind Cloudflare's network</li>
-  <li>Receipt images are compressed and stored in your own Google Drive - not on our servers</li>
+  <li>Receipt copies are stored in Google Drive, not on our application servers</li>
   <li>Access to customer data is restricted to the service operator</li>
 </ul>
 
@@ -131,8 +138,8 @@
 <h2>Your Rights</h2>
 <p>You can:</p>
 <ul>
-  <li><strong>See your data</strong> - it's in your Google Sheet and Drive folder, always accessible</li>
-  <li><strong>Export it</strong> - download your spreadsheet anytime</li>
+  <li><strong>View your data</strong> - open the shared Google Drive folder anytime</li>
+  <li><strong>Export it</strong> - download your spreadsheet and receipt copies from the shared folder</li>
   <li><strong>Delete it</strong> - email <a href="mailto:admin@invoicesnapbot.com">admin@invoicesnapbot.com</a> and we'll remove your account and all associated data within 7 days</li>
   <li><strong>Unlink a platform</strong> - we can remove Discord or WhatsApp access while keeping your account</li>
 </ul>
