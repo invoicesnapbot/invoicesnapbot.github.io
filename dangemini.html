@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Don't Be Dan — InvoiceSnap</title>
+    <link rel="icon" href="/images/betty-avatar.png" type="image/png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0d0d0d;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --bg-elevated: #222222;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --text-muted: #737373;
+            --amber: #f59e0b;
+            --amber-light: #fbbf24;
+            --amber-dark: #d97706;
+            --coral: #fb7185;
+            --border: #2a2a2a;
+            --border-hover: #3a3a3a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .light-mode {
+            --bg-primary: #f5f5f0;
+            --bg-secondary: #eaeae5;
+            --bg-card: #ffffff;
+            --bg-elevated: #f0f0eb;
+            --text-primary: #1a1a1a;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --amber: #d97706;
+            --amber-light: #f59e0b;
+            --amber-dark: #b45309;
+            --coral: #e11d48;
+            --coral-light: #fb7185;
+            --border: #d4d4d0;
+            --border-hover: #b0b0a8;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(20, 30, 80, 0.03);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        a { color: var(--amber); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: var(--amber-light); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* NAV */
+        nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            display: flex; align-items: center; justify-content: space-between; padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 1.5rem; font-weight: 800; color: var(--text-primary);
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+        .theme-toggle:hover { border-color: var(--border-hover); background: var(--bg-elevated); }
+
+        .light-mode-icon-swap { display: none; }
+        .light-mode .dark-mode-icon-swap { display: none; }
+        .light-mode .light-mode-icon-swap { display: inline; }
+
+        /* HERO */
+        .hero { padding: 60px 0; text-align: center; }
+        .hero-image { width: 100%; max-width: 600px; border-radius: 16px; margin-bottom: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid var(--border); }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+        .hero h1 .amber { color: var(--amber); }
+        .hero-subtitle { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;}
+        .hero-jet-ski { font-size: 1.1rem; color: var(--text-primary); margin-bottom: 8px;}
+        .fine-print { font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+
+        .section { padding: 60px 0; border-top: 1px solid var(--border); }
+        
+        /* PITCH SECTION */
+        .pitch-header { text-align: center; margin-bottom: 40px; }
+        .pitch-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 24px; }
+        .pitch-header h2 .amber { color: var(--amber); }
+        
+        .pitch-intro { max-width: 680px; margin: 0 auto 40px; font-size: 1.1rem; color: var(--text-secondary); text-align: center; }
+        .pitch-intro p { margin-bottom: 16px; }
+        .pitch-intro .plain-english { color: var(--amber); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 12px; display: block;}
+        
+        .tagline { font-size: 2rem; font-weight: 800; color: var(--text-primary); text-align: center; margin: 40px 0; }
+
+        .callout-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--amber);
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        .callout-box h3 { font-size: 1.3rem; margin-bottom: 12px; color: var(--text-primary); }
+        .callout-box p { color: var(--text-secondary); font-size: 1.05rem; }
+
+        .facts-section { max-width: 1000px; margin: 0 auto; }
+        .facts-title { text-align: center; color: var(--amber); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 24px; }
+        
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .fact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        /* Make the 5th card span full width on desktop if desired, or keep grid. We'll let it naturally wrap. */
+        .fact-card.full-width { grid-column: 1 / -1; text-align: center; background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary)); border-color: var(--amber); }
+
+        .fact-number {
+            width: 36px; height: 36px;
+            background: var(--bg-elevated);
+            color: var(--amber);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1.1rem;
+            border: 1px solid var(--border);
+        }
+        .fact-card.full-width .fact-number { margin: 0 auto; background: var(--amber); color: #000; }
+
+        .fact-card p { color: var(--text-secondary); font-size: 1rem; line-height: 1.5; }
+        .fact-card.full-width p { font-size: 1.1rem; }
+        
+        .fact-list { list-style: none; padding-left: 0; margin-top: 12px; }
+        .fact-list li { padding: 4px 0 4px 24px; position: relative; color: var(--text-secondary); }
+        .fact-list li::before { content: '✓'; position: absolute; left: 0; color: var(--amber); font-weight: bold; }
+
+        .pitch-closing { text-align: center; max-width: 600px; margin: 60px auto 0; font-size: 1.1rem; color: var(--text-secondary); }
+        .pitch-closing strong { color: var(--text-primary); font-weight: 600; }
+        .pitch-closing .kicker { font-size: 1.3rem; font-weight: 700; color: var(--text-primary); margin-top: 24px; }
+
+        /* SCREENSHOT SECTION */
+        .screenshot-section { text-align: center; background: var(--bg-secondary); }
+        .screenshot-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;}
+        .screenshot-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            display: inline-block;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            margin-bottom: 32px;
+        }
+        .screenshot-wrapper img { max-width: 320px; border-radius: 8px; display: block; }
+        .screenshot-section p { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+        /* MEET BETTY */
+        .meet-betty { display: flex; align-items: center; gap: 60px; max-width: 900px; margin: 0 auto; }
+        .meet-betty-text { flex: 1; }
+        .meet-betty-text h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
+        .meet-betty-text h2 .amber { color: var(--amber); }
+        .meet-betty-text p { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5;}
+        .meet-betty-image { flex-shrink: 0; width: 280px; }
+        .meet-betty-image img { width: 100%; display: block; filter: drop-shadow(0 10px 25px rgba(245, 158, 11, 0.15)); }
+
+        /* CTA SECTION */
+        .cta-section { text-align: center; padding: 80px 0; }
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #25D366;
+            color: #ffffff !important;
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+        }
+        .cta-button svg { width: 28px; height: 28px; fill: #ffffff; }
+        .cta-subtext { font-size: 1rem; color: var(--text-muted); margin-top: 16px; font-weight: 500; }
+
+        /* FOOTER */
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 40px 0 20px; }
+        .footer-flex { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; flex-wrap: wrap; gap: 40px;}
+        .footer-brand p { color: var(--text-secondary); margin-top: 12px; font-size: 0.9rem; max-width: 300px; }
+        .footer-links { display: flex; gap: 60px; }
+        .footer-column { display: flex; flex-direction: column; gap: 12px;}
+        .footer-column a { color: var(--text-secondary); font-size: 0.9rem; }
+        .footer-column a:hover { color: var(--amber); }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .pitch-header h2 { font-size: 2rem; }
+            .tagline { font-size: 1.6rem; }
+            .facts-grid { grid-template-columns: 1fr; }
+            .meet-betty { flex-direction: column-reverse; text-align: center; gap: 32px; }
+            .meet-betty-image { width: 200px; margin: 0 auto; }
+            .screenshot-section h2 { font-size: 1.6rem; }
+            .cta-button { width: 100%; max-width: 350px; font-size: 1.1rem; padding: 16px 24px; }
+            .footer-flex { flex-direction: column; align-items: center; text-align: center; gap: 32px;}
+            .footer-links { flex-direction: column; gap: 24px; align-items: center;}
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <a href="/" class="logo">InvoiceSnap</a>
+            <button class="theme-toggle" id="theme-icon" onclick="toggleTheme()" aria-label="Toggle theme">
+                <span class="dark-mode-icon-swap">☀️</span>
+                <span class="light-mode-icon-swap">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero container">
+        <img src="/images/dan-hero-good-ending.png" alt="Man on jet ski in kiddie pool" class="hero-image">
+        <h1>You weren't a <span class="amber">Dan!</span></h1>
+        <p class="hero-subtitle">You clicked. Dan didn't.</p>
+        <p class="hero-jet-ski">You're well on your way to getting your own jet ski!*</p>
+        <p class="fine-print">*jet ski not included.</p>
+    </section>
+
+    <section class="section pitch-section container">
+        <div class="pitch-header">
+            <h2>So. What are we <span class="amber">selling</span> you?</h2>
+        </div>
+
+        <div class="pitch-intro">
+            <span class="plain-english">In plain English:</span>
+            <p>An AI bot that you send photos of your receipts to on WhatsApp. We named her Betty.</p>
+            <p>She creates a backup for you, in case your originals get ruined, and she sorts the important details into a Google Spreadsheet.</p>
+            <p>That's it. Simple.</p>
+        </div>
+
+        <h3 class="tagline">Snap it. Send it. Done.</h3>
+
+        <div class="callout-box">
+            <h3>Why would you want this?</h3>
+            <p>Doing the paperwork sucks. Data entry is boring. Dealing with spreadsheets is as bad as dealing with bad apprentices.</p>
+        </div>
+
+        <div class="facts-section">
+            <div class="facts-title">Facts are:</div>
+            <div class="facts-grid">
+                
+                <div class="fact-card">
+                    <div class="fact-number">1</div>
+                    <p>You need to track your expenses and keep receipts for the ATO. Storing them in the glove box or a shoe box risks them getting lost or ruined.</p>
+                    <!-- HTML Comment: Placeholder image idea -->
+                    <!-- <img src="/images/placeholder-ute-console.png" alt="Ute console full of receipts" style="width:100%; border-radius:8px; margin-top:12px;"> -->
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-number">2</div>
+                    <p>QuickBooks and Xero and the rest of them are too fancy and require their own apps you have to learn and, really, you're paying for stuff you don't want or need.</p>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-number">3</div>
+                    <p>Betty is the simple solution without the BS:</p>
+                    <ul class="fact-list">
+                        <li>Take a photo.</li>
+                        <li>Send it to Betty.</li>
+                        <li>Done.</li>
+                    </ul>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-number">4</div>
+                    <p>At BAS and EOFY, share the spreadsheet with your accountant and they can do what they want with it. Upload it to Xero, QuickBooks, directly to the ATO portal; whatever. It's a Google spreadsheet. Your accountant already knows what to do with it.</p>
+                </div>
+
+                <div class="fact-card full-width">
+                    <div class="fact-number">5</div>
+                    <p>It costs <strong>$9/month</strong> for unlimited, or you can use our <strong>free tier</strong> for 15 free receipts per month for those who either don't have many expenses, or those who want to test Betty out first.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="pitch-closing">
+            <p>Betty was made <em>by</em> an Aussie who hates admin work, <em>for</em> Aussies who hate admin work.</p>
+            <p style="margin-top: 16px;">Take her for a test spin. Tap the button below and send her a message.</p>
+            <p class="kicker">You'll be glad you did.</p>
+        </div>
+    </section>
+
+    <section class="section screenshot-section">
+        <div class="container">
+            <h2>All Dan had to do was send his receipts to Betty.</h2>
+            <div class="screenshot-wrapper">
+                <img src="/images/screenshot-whatsapp-cropped.png" alt="WhatsApp screenshot showing receipt sent to Betty">
+            </div>
+            <p>You'll send her your receipts and she'll save a copy to a Google spreadsheet for you. Zero effort. Done.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container meet-betty">
+            <div class="meet-betty-text">
+                <h2>Meet <span class="amber">Betty.</span></h2>
+                <p>She's keen.</p>
+                <p>She's tidy.</p>
+                <p>She's good at what she does.</p>
+                <p style="margin-top: 24px; font-weight: 600; color: var(--text-primary);">You'll love her.</p>
+            </div>
+            <div class="meet-betty-image">
+                <img src="/images/betty-landing-rembg.png" alt="Betty - AI receipt assistant">
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section container">
+        <a href="https://wa.me/61420522696?text=Hey%20Betty!" class="cta-button" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Message Betty on WhatsApp
+        </a>
+        <p class="cta-subtext">Free to start. No app to download. No signup.</p>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-flex">
+                <div class="footer-brand">
+                    <a href="/" class="logo">InvoiceSnap</a>
+                    <p>The simplest receipt tracker. Snap a photo, data to spreadsheet. Done.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <a href="/privacy">Privacy Policy</a>
+                        <a href="/tos">Terms of Service</a>
+                        <a href="/">Home</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 InvoiceSnap. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+        
+        (function() {
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+            }
+        })();
+    </script>
+</body>
+</html>
