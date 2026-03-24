@@ -553,51 +553,6 @@
             .betty-text h2 { font-size: 1.8rem; }
             .betty-image { width: 220px; }
         }
-
-        .plain-english-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--amber);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 12px;
-        }
-
-        .pitch-text {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            margin-bottom: 14px;
-            line-height: 1.7;
-        }
-
-        .sub-heading {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin: 28px 0 14px;
-        }
-
-        .betty-steps {
-            list-style: none;
-            padding: 8px 0 0 0;
-        }
-
-        .betty-steps li {
-            padding: 3px 0 3px 18px;
-            position: relative;
-            color: var(--text-secondary);
-        }
-
-        .betty-steps li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 11px;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--amber);
-        }
     </style>
 </head>
 <body>
@@ -633,44 +588,75 @@
         <div class="pitch-inner container">
             <h2>So. What are we <span>selling</span> you?</h2>
 
-            <!-- Plain English Pitch -->
-            <p class="plain-english-label">In plain English:</p>
+            <p style="font-size:0.85rem;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">In plain English:</p>
 
-            <p class="pitch-text">An AI bot that you send photos of your receipts to on WhatsApp. We named her Betty.</p>
-
-            <p class="pitch-text">She creates a backup for you, in case your originals get ruined, and she sorts the important details into a Google Spreadsheet.</p>
-
-            <p class="pitch-text">That's it. Simple.</p>
+            <!-- Feature Cards -->
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3><span class="icon">&#128241;</span> WhatsApp Based</h3>
+                    <p>An AI bot that you send photos of your receipts to on WhatsApp. We named her Betty.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="icon">&#128190;</span> Backup & Organise</h3>
+                    <p>She creates a backup for you, in case your originals get ruined, and she sorts the important details into a Google Spreadsheet.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="icon">&#128202;</span> Simple</h3>
+                    <p>That's it. Simple.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="icon">&#128100;</span> Aussie Made</h3>
+                    <p>Built by an Aussie who hates admin work, for Aussies who hate admin work.</p>
+                </div>
+            </div>
 
             <!-- Callout Box -->
             <div class="callout-box">
                 <p class="tagline">Snap it. Send it. Done.</p>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <p>Take a photo</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <p>Send to Betty</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <p>Done</p>
+                    </div>
+                </div>
             </div>
 
-            <h3 class="sub-heading">Why would you want this?</h3>
-
-            <p class="pitch-text">Doing the paperwork sucks. Data entry is boring. Dealing with spreadsheets is as bad as dealing with bad apprentices.</p>
+            <div style="margin-bottom:20px;"><h3 style="font-size:1.2rem;font-weight:700;color:var(--text-primary);margin-bottom:10px;">Why would you want this?</h3><p style="font-size:1rem;color:var(--text-secondary);line-height:1.7;">Doing the paperwork sucks. Data entry is boring. Dealing with spreadsheets is as bad as dealing with bad apprentices.</p></div>
 
             <!-- Facts -->
             <div class="facts-section">
                 <p class="facts-label">Facts are:</p>
                 <ol class="facts-list">
                     <li>You need to track your expenses and keep receipts for the ATO. Storing them in the glove box or a shoe box risks them getting lost or ruined.</li>
-
                     <li>QuickBooks and Xero and the rest of them are too fancy and require their own apps you have to learn and, really, you're paying for stuff you don't want or need.</li>
-
-                    <li>Betty is the simple solution without the BS:
-                        <ul class="betty-steps">
-                            <li>Take a photo.</li>
-                            <li>Send it to Betty.</li>
-                            <li>Done.</li>
-                        </ul>
+                    <li>Betty is the simple solution without the BS:<br>
+                        <span style="display:block;padding:6px 0 0 12px;color:var(--text-secondary);">- Take a photo.<br>- Send it to Betty.<br>- Done.</span>
                     </li>
-
                     <li>At BAS and EOFY, share the spreadsheet with your accountant and they can do what they want with it. Upload it to Xero, QuickBooks, directly to the ATO portal; whatever. It's a Google spreadsheet. Your accountant already knows what to do with it.</li>
-
                     <li>It costs $9/month for unlimited, or you can use our free tier for 15 free receipts per month for those who either don't have many expenses, or those who want to test Betty out first.</li>
                 </ol>
+            </div>
+
+            <!-- Pricing Mini -->
+            <div class="pricing-mini">
+                <div class="pricing-card-mini">
+                    <h4>Free</h4>
+                    <div class="price">$0</div>
+                    <p>15 receipts/month</p>
+                </div>
+                <div class="pricing-card-mini featured">
+                    <h4>Unlimited</h4>
+                    <div class="price">$9<span>/mo</span></div>
+                    <p>Unlimited receipts</p>
+                </div>
             </div>
 
             <!-- Closing -->
