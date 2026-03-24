@@ -382,7 +382,7 @@
         .screenshot-section h2 {
             font-size: 1.4rem;
             font-weight: 700;
-            margin-bottom: 32px;
+            margin-bottom: 40px;
         }
 
         .screenshot-container {
@@ -391,7 +391,7 @@
             border: 1px solid var(--border);
             padding: 16px;
             display: inline-block;
-            margin-bottom: 32px;
+            margin-bottom: 40px;
         }
 
         .screenshot-container img {
@@ -544,29 +544,15 @@
             .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
         }
 
-        /* PC - wider facts layout */
+        /* PC */
         @media (min-width: 769px) {
-            .pitch { max-width: 1100px; }
-
-            .facts-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            /* Fact 5 in center column with pricing on sides */
-            .facts-bottom-row {
-                display: grid;
-                grid-template-columns: 1fr 2fr 1fr;
-                gap: 20px;
-                margin-bottom: 32px;
-            }
-
             .hero h1 { font-size: 2.4rem; }
             .pitch h2 { font-size: 2.2rem; }
             .tagline { font-size: 2rem; }
-            .betty-section { max-width: 700px; }
+            .betty-section { max-width: 580px; }
+            .betty-inner { gap: 18px; }
             .betty-image img { max-width: 220px; }
             .cta-button { font-size: 1.2rem; padding: 18px 36px; }
-            .screenshot-section { max-width: 1000px; }
         }
     </style>
 </head>
@@ -649,30 +635,15 @@
                 <div class="fact-num">4</div>
                 <p>At BAS and EOFY, share the spreadsheet with your accountant and they can do what they want with it. Upload it to Xero, QuickBooks, directly to the ATO portal; whatever. It's a Google spreadsheet. Your accountant already knows what to do with it.</p>
             </div>
-        </div>
 
-        <!-- Fact 5 + pricing cards: PC = 3-col (Free | #5 | Unlimited). Mobile = stacked -->
-        <div class="facts-bottom-row">
-            <a href="https://wa.me/61420522696?text=Hey%20Betty!" class="pricing-card-mini" style="align-self:center;">
-                <h4>Free</h4>
-                <div class="price">$0</div>
-                <p>15 receipts/month</p>
-            </a>
-
-            <div class="fact-card" style="margin:0;">
+            <div class="fact-card full-width">
                 <div class="fact-num">5</div>
                 <p>It costs <strong>$9/month</strong> for unlimited, or you can use our <strong>free tier</strong> for 15 free receipts per month for those who either don't have many expenses, or those who want to test Betty out first.</p>
             </div>
-
-            <a href="#" onclick="openCheckoutModal(); return false;" class="pricing-card-mini featured" style="align-self:center;">
-                <h4>Unlimited</h4>
-                <div class="price">$9<span>/mo</span></div>
-                <p>Unlimited receipts</p>
-            </a>
         </div>
 
-        <!-- Mobile-only pricing (hidden on PC since they're in the grid above) -->
-        <div class="pricing-mini" style="display:none;" id="mobile-pricing">
+        <!-- Pricing cards -->
+        <div class="pricing-mini">
             <a href="https://wa.me/61420522696?text=Hey%20Betty!" class="pricing-card-mini">
                 <h4>Free</h4>
                 <div class="price">$0</div>
@@ -799,21 +770,7 @@
             }
         })();
 
-        // Show/hide mobile pricing vs desktop bottom row
-        function handleResize() {
-            var mobile = window.innerWidth <= 768;
-            var mp = document.getElementById('mobile-pricing');
-            var br = document.querySelector('.facts-bottom-row');
-            if (mobile) {
-                if (mp) mp.style.display = 'flex';
-                if (br) br.style.display = 'none';
-            } else {
-                if (mp) mp.style.display = 'none';
-                if (br) br.style.display = 'grid';
-            }
-        }
-        handleResize();
-        window.addEventListener('resize', handleResize);
+
     </script>
 </body>
 </html>
