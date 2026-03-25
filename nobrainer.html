@@ -806,7 +806,14 @@
             };
 
             var params = new URLSearchParams(window.location.search);
-            var ref = (params.get('ref') || 'dan').toLowerCase();
+            var ref = params.get('ref');
+            if (ref) {
+                ref = ref.toLowerCase();
+            } else {
+                // No ?ref= parameter: random story
+                var keys = Object.keys(stories);
+                ref = keys[Math.floor(Math.random() * keys.length)];
+            }
             var story = stories[ref] || stories.dan;
 
             document.getElementById('hero-headline').innerHTML = story.headline;
