@@ -6,6 +6,34 @@
     <meta name="robots" content="noindex, nofollow">
     <title>InvoiceSnap — Don't Be That Guy</title>
     <link rel="icon" href="/images/betty-avatar.png" type="image/png">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '958336127153632');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=958336127153632&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Google Analytics + Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP3NHESQHT"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WP3NHESQHT');
+    gtag('config', 'AW-472938836');
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -824,6 +852,22 @@
             document.querySelector('.hero').style.opacity = '1';
         })();
 
+    </script>
+
+    <!-- Track CTA clicks as Lead events -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('a[href*="wa.me"], a[href*="discord"], a[href*="stripe"], a[href*="paypal"]').forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                if (typeof fbq !== "undefined") {
+                    fbq("track", "Lead", {
+                        content_name: btn.textContent.trim(),
+                        content_category: btn.href.includes("wa.me") ? "whatsapp" : btn.href.includes("discord") ? "discord" : "payment"
+                    });
+                }
+            });
+        });
+    });
     </script>
 </body>
 </html>
