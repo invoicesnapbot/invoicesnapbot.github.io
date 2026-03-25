@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Don't Be Dan — InvoiceSnap</title>
+    <title>InvoiceSnap — Don't Be That Guy</title>
     <link rel="icon" href="/images/betty-avatar.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -570,16 +570,16 @@
     </nav>
 
     <!-- HERO: PC = side-by-side (image left, text right), mobile = stacked -->
+    <!-- Dynamic: ?ref=steve|mick|tommo|sarah swaps hero content. Default = dan -->
     <section class="hero">
         <div class="hero-layout">
             <div class="hero-right">
-                <img src="/images/dan-hero-good-ending.png" alt="The good ending" class="hero-image">
+                <img id="hero-img" src="/images/dan-hero-good-ending.png" alt="The good ending" class="hero-image">
             </div>
             <div class="hero-left">
-                <h1>You weren't a <span>Dan!</span></h1>
-                <p>You clicked. Dan didn't.</p>
-                <p>You're well on your way to getting your own jet ski!*</p>
-                <p class="fine-print">*jet ski not included.</p>
+                <h1 id="hero-headline">You weren't a <span>Dan!</span></h1>
+                <p id="hero-tagline">You clicked. Dan didn't. You're well on your way to getting your own jet ski!*</p>
+                <p id="hero-subtitle" class="fine-print">*jet ski not included.</p>
             </div>
         </div>
     </section>
@@ -770,6 +770,51 @@
             }
         })();
 
+        /* Dynamic hero based on ?ref= parameter */
+        (function() {
+            var stories = {
+                dan: {
+                    headline: 'You weren\'t a <span>Dan!</span>',
+                    tagline: 'You clicked. Dan didn\'t. You\'re well on your way to getting your own jet ski!*',
+                    subtitle: '*jet ski not included.',
+                    image: '/images/dan-hero-good-ending.png'
+                },
+                steve: {
+                    headline: 'You weren\'t a <span>Steve!</span>',
+                    tagline: 'Your big weekends won\'t get ruined because of ruined receipts!',
+                    subtitle: 'no promises on becoming 12th best at anything, though.',
+                    image: '/images/story-after-steve.jpg'
+                },
+                mick: {
+                    headline: 'You weren\'t a <span>Mick!</span>',
+                    tagline: 'You just need something simple that does the job.',
+                    subtitle: 'so you can get your \'personal time\' back.',
+                    image: '/images/story-after-mick.jpg'
+                },
+                tommo: {
+                    headline: 'You weren\'t a <span>Tommo!</span>',
+                    tagline: 'No more worrying about the government trying to take all your money!',
+                    subtitle: 'DISCLAIMER: The government will definitely still try to take all your money.',
+                    image: '/images/story-after-tommo.jpg'
+                },
+                sarah: {
+                    headline: 'You know where this <span>joke</span> is going.',
+                    tagline: 'Buy our product to get her off your back and onto her own.*',
+                    subtitle: '*DISCLAIMER: Buying our product does not guarantee you\'ll get you laid.',
+                    image: '/images/story-after-sarah.jpg'
+                }
+            };
+
+            var params = new URLSearchParams(window.location.search);
+            var ref = (params.get('ref') || 'dan').toLowerCase();
+            var story = stories[ref] || stories.dan;
+
+            document.getElementById('hero-headline').innerHTML = story.headline;
+            document.getElementById('hero-tagline').textContent = story.tagline;
+            document.getElementById('hero-subtitle').textContent = story.subtitle;
+            document.getElementById('hero-img').src = story.image;
+            document.title = 'InvoiceSnap — Don\'t Be a ' + ref.charAt(0).toUpperCase() + ref.slice(1);
+        })();
 
     </script>
 </body>
