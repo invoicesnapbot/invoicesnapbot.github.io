@@ -570,8 +570,8 @@
     </nav>
 
     <!-- HERO: PC = side-by-side (image left, text right), mobile = stacked -->
-    <!-- Dynamic: ?ref=steve|mick|tommo|sarah swaps hero content. Default = dan -->
-    <section class="hero">
+    <!-- Dynamic: ?ref=steve|mick|tommo|sarah swaps hero content. Default = random -->
+    <section class="hero" style="opacity:0;transition:opacity 0.15s ease">
         <div class="hero-layout">
             <div class="hero-right">
                 <img id="hero-img" src="/images/dan-hero-good-ending.png" alt="The good ending" class="hero-image">
@@ -821,6 +821,7 @@
             document.getElementById('hero-subtitle').textContent = story.subtitle;
             document.getElementById('hero-img').src = story.image;
             document.title = 'InvoiceSnap — Don\'t Be a ' + ref.charAt(0).toUpperCase() + ref.slice(1);
+            document.querySelector('.hero').style.opacity = '1';
         })();
 
     </script>
