@@ -54,9 +54,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </script>
 
     <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '958336127153632');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=958336127153632&ev=PageView&noscript=1"/></noscript>
     <!-- End Meta Pixel Code -->
 
     <!-- Google Analytics + Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP3NHESQHT"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WP3NHESQHT');
+    gtag('config', 'AW-472938836');
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -442,6 +465,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border: 1px solid var(--border);
             padding: 16px;
             display: inline-block;
+        }
+
+        .screenshots-row {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: flex-start;
             margin-bottom: 40px;
         }
 
@@ -592,6 +622,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .tagline { font-size: 1.4rem; }
             .pricing-mini { flex-direction: column; align-items: center; }
             .pricing-card-mini { width: 100%; max-width: 280px; }
+            .screenshots-row { flex-direction: column; align-items: center; }
             .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
         }
 
@@ -608,10 +639,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WT26TDV5"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
     <!-- NAV -->
     <nav>
@@ -647,53 +674,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div class="pitch-intro">
             <span class="plain-english-label">In plain English:</span>
-            <p>An AI bot that you send photos of your receipts to on WhatsApp.<br>
-            We named her <span class="betty-name">Betty</span>.</p>
-            <p>She creates a backup for you, in case your originals get ruined, and she sorts the important details into a Google Spreadsheet.</p>
-            <p>That's it. Simple.</p>
+            <p>You snap a photo of your receipts.<br>
+            You WhatsApp them to our AI Bot (We named her <span class="betty-name">Betty</span>).</p>
+            <p style="color: var(--text-primary);">That's your job done.</p>
+            <p>Betty then makes a backup copy in case the original gets lost or ruined and puts all the details into a spreadsheet for you.</p>
+            <p style="color: var(--text-primary);">That's it. Simple.</p>
         </div>
 
         <p class="tagline">Snap it. Send it. Done.</p>
 
         <div class="callout-box">
             <h3>Why would you want this?</h3>
-            <p>Doing the paperwork sucks. Data entry is boring. Dealing with spreadsheets is as bad as dealing with bad apprentices.</p>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: 4px 0;">Two words: <strong>Tax Deductions</strong>.</li>
+                <li style="padding: 4px 0;">Needs to be done but no-one wants to do it.</li>
+                <li style="padding: 4px 0;">Best $9 you ever spent.</li>
+            </ul>
         </div>
 
         <p class="facts-label">Facts are:</p>
 
-        <!-- Facts 1-4 (on PC: 4 columns. On mobile: stacked) -->
         <div class="facts-grid">
             <div class="fact-card">
                 <div class="fact-num">1</div>
-                <p>You need to track your expenses and keep receipts for the ATO. Storing them in the glove box or a shoe box risks them getting lost or ruined.</p>
+                <p>Keeping your receipts organised is the best way to pay the least tax. But it's boring as hell.</p>
             </div>
 
             <div class="fact-card">
                 <div class="fact-num">2</div>
-                <p>QuickBooks and Xero and the rest of them are too fancy and require their own apps you have to learn and, really, you're paying for stuff you don't want or need.</p>
+                <p>QuickBooks and Xero are over-engineered for what most tradies actually need. Don't pay for what you don't need.</p>
             </div>
 
             <div class="fact-card">
                 <div class="fact-num">3</div>
-                <div>
-                    <p>Betty is the simple solution without the BS:</p>
-                    <ul class="betty-steps">
-                        <li>Take a photo.</li>
-                        <li>Send it to Betty.</li>
-                        <li>Done.</li>
-                    </ul>
-                </div>
+                <p>Betty keeps things simple, she takes it off your hands and she gets the job done without hassle.</p>
             </div>
 
             <div class="fact-card">
                 <div class="fact-num">4</div>
-                <p>At BAS and EOFY, share the spreadsheet with your accountant and they can do what they want with it. Upload it to Xero, QuickBooks, directly to the ATO portal; whatever. It's a Google spreadsheet. Your accountant already knows what to do with it.</p>
+                <p>At BAS or EOFY, just share everything with your accountant. It's a spreadsheet. They already know what to do with it.</p>
             </div>
 
             <div class="fact-card full-width">
                 <div class="fact-num">5</div>
-                <p>It costs <strong>$9/month</strong> for unlimited, or you can use our <strong>free tier</strong> for 15 free receipts per month for those who either don't have many expenses, or those who want to test Betty out first.</p>
+                <p><strong>$9/mth</strong> to possibly earn back thousands. <strong>It's a no brainer.</strong><br>Or take it for a test drive: 15 receipts/mth for $0.</p>
             </div>
         </div>
 
@@ -713,9 +737,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <!-- Closing -->
         <div class="pitch-closing">
-            <p>Betty was made <em>by</em> an Aussie who hates admin work, <em>for</em> Aussies who hate admin work.</p>
-            <p>Take her for a test spin. Tap the button below and send her a message.</p>
-            <p class="kicker">You'll be glad you did.</p>
+            <p class="tagline">Bottom line: Betty keeps more of <em>your</em> money in <em>your</em> pocket.</p>
         </div>
     </section>
 
@@ -724,8 +746,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- SCREENSHOT -->
     <section class="screenshot-section">
         <h2>What it looks like in action</h2>
-        <div class="screenshot-container">
-            <img src="/images/screenshot-whatsapp-cropped.png" alt="WhatsApp receipt scanning with Betty">
+        <div class="screenshots-row">
+            <div class="screenshot-container">
+                <img src="/images/screenshot-whatsapp-cropped.png" alt="WhatsApp receipt scanning with Betty">
+            </div>
+            <div class="screenshot-container">
+                <img src="/images/screenshot-spreadsheet.jpg" alt="Google Spreadsheet with receipt data">
+            </div>
         </div>
         <div class="outcome">
             <h2>It's genuinely that simple.</h2>
@@ -885,6 +912,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         // LEAD: Free tier links (WhatsApp, Discord — not paying yet)
+        document.querySelectorAll('a[href*="wa.me"], a[href*="discord"]').forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                if (typeof fbq !== "undefined") {
+                    fbq("track", "Lead", {content_name: btn.textContent.trim(), content_category: btn.href.includes("wa.me") ? "whatsapp" : "discord"});
                 }
             });
         });
@@ -892,7 +923,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // VIEWCONTENT: Opening the checkout modal (showing purchase intent)
         document.querySelectorAll("button, a").forEach(function(btn) {
             if (btn.textContent.includes("Go Unlimited") || btn.textContent.includes("Upgrade") || (btn.onclick && btn.onclick.toString().includes("openCheckoutModal"))) {
-                btn.addEventListener("click", function() {, content_category: "checkout_modal"});
+                btn.addEventListener("click", function() {
+                    if (typeof fbq !== "undefined") fbq("track", "ViewContent", {content_name: btn.textContent.trim(), content_category: "checkout_modal"});
                 });
             }
         });
@@ -900,12 +932,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // INITIATECHECKOUT: Clicking Stripe or PayPal (about to pay)
         var stripeBtn = document.querySelector(".modal-btn.stripe");
         if (stripeBtn) {
-            stripeBtn.addEventListener("click", function() {", content_category: "payment"});
+            stripeBtn.addEventListener("click", function() {
+                if (typeof fbq !== "undefined") fbq("track", "InitiateCheckout", {content_name: "Pay by Card (Stripe)", content_category: "payment"});
             });
         }
         var paypalContainer = document.getElementById("paypal-button-container");
         if (paypalContainer) {
             paypalContainer.addEventListener("click", function() {
+                if (typeof fbq !== "undefined") fbq("track", "InitiateCheckout", {content_name: "PayPal Subscribe", content_category: "payment"});
             });
         }
     });
