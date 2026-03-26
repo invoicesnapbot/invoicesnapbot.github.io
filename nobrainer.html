@@ -54,32 +54,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </script>
 
     <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '958336127153632');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=958336127153632&ev=PageView&noscript=1"/></noscript>
     <!-- End Meta Pixel Code -->
 
     <!-- Google Analytics + Google Ads -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP3NHESQHT"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WP3NHESQHT');
-    gtag('config', 'AW-472938836');
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -908,10 +885,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         // LEAD: Free tier links (WhatsApp, Discord — not paying yet)
-        document.querySelectorAll('a[href*="wa.me"], a[href*="discord"]').forEach(function(btn) {
-            btn.addEventListener("click", function() {
-                if (typeof fbq !== "undefined") {
-                    fbq("track", "Lead", {content_name: btn.textContent.trim(), content_category: btn.href.includes("wa.me") ? "whatsapp" : "discord"});
                 }
             });
         });
@@ -919,8 +892,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // VIEWCONTENT: Opening the checkout modal (showing purchase intent)
         document.querySelectorAll("button, a").forEach(function(btn) {
             if (btn.textContent.includes("Go Unlimited") || btn.textContent.includes("Upgrade") || (btn.onclick && btn.onclick.toString().includes("openCheckoutModal"))) {
-                btn.addEventListener("click", function() {
-                    if (typeof fbq !== "undefined") fbq("track", "ViewContent", {content_name: btn.textContent.trim(), content_category: "checkout_modal"});
+                btn.addEventListener("click", function() {, content_category: "checkout_modal"});
                 });
             }
         });
@@ -928,14 +900,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // INITIATECHECKOUT: Clicking Stripe or PayPal (about to pay)
         var stripeBtn = document.querySelector(".modal-btn.stripe");
         if (stripeBtn) {
-            stripeBtn.addEventListener("click", function() {
-                if (typeof fbq !== "undefined") fbq("track", "InitiateCheckout", {content_name: "Pay by Card (Stripe)", content_category: "payment"});
+            stripeBtn.addEventListener("click", function() {", content_category: "payment"});
             });
         }
         var paypalContainer = document.getElementById("paypal-button-container");
         if (paypalContainer) {
             paypalContainer.addEventListener("click", function() {
-                if (typeof fbq !== "undefined") fbq("track", "InitiateCheckout", {content_name: "PayPal Subscribe", content_category: "payment"});
             });
         }
     });
