@@ -586,33 +586,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         })();
     </script>
 
-<!-- Meta Pixel Button Click Tracking -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  // Track all links (a tags) to wa.me, discord, stripe, paypal
-      }
-    });
-  });
-  // Track Stripe button click (its a button, not a link)
-  var stripeBtn = document.querySelector(".modal-btn.stripe");
-  if (stripeBtn) {
-    stripeBtn.addEventListener("click", function() {", content_category: "payment"});
-    });
-  }
-  // Track Go Unlimited button (opens modal = intent signal)
-  document.querySelectorAll("button").forEach(function(btn) {
-    if (btn.textContent.includes("Go Unlimited") || btn.textContent.includes("Upgrade")) {
-      btn.addEventListener("click", function() {});
-      });
-    }
-  });
-  // Track PayPal - listen for iframe insertion (PayPal renders in iframe)
-  var paypalContainer = document.getElementById("paypal-button-container");
-  if (paypalContainer) {
-    paypalContainer.addEventListener("click", function() {
-    });
-  }
-});
-</script>
+
 </body>
 </html>
