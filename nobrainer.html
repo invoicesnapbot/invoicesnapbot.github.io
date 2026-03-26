@@ -884,6 +884,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     tagline: 'Buy our product to get her off your back and onto her own.*',
                     subtitle: '*DISCLAIMER: Buying our product does not guarantee you\'ll get you laid.',
                     image: '/images/story-after-sarah.jpg'
+                },
+                video: {
+                    headline: 'There. <span>Done.</span>',
+                    tagline: 'Send your receipts to Betty.',
+                    subtitle: 'The ute can stay a mess.',
+                    image: '/images/hero-video.jpg'
+                },
+                shoebox: {
+                    headline: 'Receipts sorted in <span>30 seconds.</span>',
+                    tagline: 'Make your accountant happy.',
+                    subtitle: '(And hopefully charge you less, too)',
+                    image: '/images/hero-shoebox.jpg'
                 }
             };
 
@@ -892,17 +904,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             if (ref) {
                 ref = ref.toLowerCase();
             } else {
-                // No ?ref= parameter: random story
-                var keys = Object.keys(stories);
-                ref = keys[Math.floor(Math.random() * keys.length)];
+                // No ?ref= parameter: default to video
+                ref = 'video';
             }
-            var story = stories[ref] || stories.dan;
+            var story = stories[ref] || stories.video;
 
             document.getElementById('hero-headline').innerHTML = story.headline;
             document.getElementById('hero-tagline').textContent = story.tagline;
             document.getElementById('hero-subtitle').textContent = story.subtitle;
             document.getElementById('hero-img').src = story.image;
-            document.title = 'InvoiceSnap — Don\'t Be a ' + ref.charAt(0).toUpperCase() + ref.slice(1);
+            if (['dan','steve','mick','tommo','sarah'].indexOf(ref) !== -1) {
+                document.title = 'InvoiceSnap — Don\'t Be a ' + ref.charAt(0).toUpperCase() + ref.slice(1);
+            } else {
+                document.title = 'InvoiceSnap — Receipt Management Made Easy';
+            }
             document.querySelector('.hero').style.opacity = '1';
         })();
 
