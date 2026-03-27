@@ -71,14 +71,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- End Meta Pixel Code -->
 
     <!-- Google Analytics + Google Ads -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WP3NHESQHT"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WP3NHESQHT');
-    gtag('config', 'AW-472938836');
-    </script>
+    <!-- GA4 + Google Ads loaded via GTM (tags 3 + 4) — no inline gtag needed -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -817,15 +810,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- PayPal SDK -->
     <script src="https://www.paypal.com/sdk/js?client-id=AWaVKs0tun_UzLy0N3lXw5rqYiLvF1Y-GS-_1s9Vi_HDaE-bXju0gS94nuttsrCSK-VtdyxcGNOve5K7&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
     <script>
-        paypal.Buttons({
-            style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
-            createSubscription: function(data, actions) {
-                return actions.subscription.create({ plan_id: 'P-3L5808217N0972454NG7TTSQ' });
-            },
-            onApprove: function(data, actions) {
-                window.location.href = 'https://invoicesnapbot.com/?subscribed=paypal&sub_id=' + data.subscriptionID;
-            }
-        }).render('#paypal-button-container');
+        if (typeof paypal !== 'undefined') {
+            paypal.Buttons({
+                style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
+                createSubscription: function(data, actions) {
+                    return actions.subscription.create({ plan_id: 'P-3L5808217N0972454NG7TTSQ' });
+                },
+                onApprove: function(data, actions) {
+                    window.location.href = 'https://invoicesnapbot.com/?subscribed=paypal&sub_id=' + data.subscriptionID;
+                }
+            }).render('#paypal-button-container');
+        }
     </script>
 
     <script>
