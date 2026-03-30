@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WT26TDV5');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>InvoiceSnap — Receipt Tracking on WhatsApp</title>
+    <meta name="description" content="Send your receipts to Betty on WhatsApp. She puts them in a Google Spreadsheet. 15 free per month, or $9/mth unlimited. No app to install.">
+    <link rel="icon" href="/images/betty-portrait-rembg.png" type="image/png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="InvoiceSnap — Receipt Tracking on WhatsApp">
+    <meta property="og:description" content="Send your receipts to Betty on WhatsApp. She puts them in a Google Spreadsheet. No app to install.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invoicesnapbot.com/nobrainerv3">
+    <meta property="og:image" content="https://invoicesnapbot.com/images/betty-portrait-rembg.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0d0d0d;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --bg-elevated: #222222;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --text-muted: #737373;
+            --amber: #f59e0b;
+            --amber-light: #fbbf24;
+            --amber-dark: #d97706;
+            --border: #2a2a2a;
+            --border-hover: #3a3a3a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-primary: #f5f5f0;
+                --bg-secondary: #eaeae5;
+                --bg-card: #ffffff;
+                --bg-elevated: #f0f0eb;
+                --text-primary: #1a1a1a;
+                --text-secondary: #555555;
+                --text-muted: #888888;
+                --amber: #d97706;
+                --amber-light: #f59e0b;
+                --amber-dark: #b45309;
+                --border: #d4d4d0;
+                --border-hover: #b0b0a8;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-family); background-color: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; padding: 0 5px; }
+        a { color: var(--amber); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: var(--amber-light); }
+        nav { background: var(--bg-secondary); border-bottom: 1px solid var(--border); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; max-width: 1100px; margin: 0 auto; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); text-decoration: none; }
+        .nav-link { color: var(--text-secondary); font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: color 0.2s ease; }
+        .nav-link:hover { color: var(--amber); }
+        .hero { max-width: 700px; margin: 0 auto; padding: 48px 20px 40px; text-align: center; }
+        .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
+        .hero h1 span { color: var(--amber); }
+        .hero .hero-sub { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-button { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #ffffff; font-size: 1.1rem; font-weight: 600; padding: 16px 32px; border-radius: 50px; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4); color: #ffffff; }
+        .cta-button svg { width: 24px; height: 24px; fill: #ffffff; }
+        .subtext { font-size: 0.85rem; color: var(--text-muted); margin-top: 12px; }
+        .divider { width: 60px; height: 3px; background: var(--amber); margin: 0 auto; border-radius: 2px; }
+        .how-it-works { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+        .how-it-works h2 { font-size: 1.4rem; font-weight: 800; text-align: center; margin-bottom: 24px; }
+        .steps { display: flex; flex-direction: column; gap: 16px; }
+        .step { display: flex; align-items: center; gap: 16px; }
+        .step-num { width: 36px; height: 36px; min-width: 36px; background: var(--amber); color: var(--bg-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; }
+        .step p { font-size: 1rem; color: var(--text-secondary); }
+        .step p strong { color: var(--text-primary); }
+        .why-section { max-width: 600px; margin: 0 auto; padding: 32px 20px; }
+        .callout-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--amber); border-radius: 12px; padding: 24px; }
+        .callout-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
+        .callout-box ul { list-style: none; padding: 0; margin: 0; }
+        .callout-box li { padding: 5px 0; color: var(--text-secondary); font-size: 0.95rem; }
+        .callout-box li strong { color: var(--text-primary); }
+        .pricing-section { max-width: 600px; margin: 0 auto; padding: 20px 20px 40px; }
+        .pricing-mini { display: flex; gap: 16px; justify-content: center; }
+        .pricing-card-mini { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 28px; text-align: center; min-width: 140px; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; text-decoration: none; display: block; color: inherit; }
+        .pricing-card-mini:hover { transform: translateY(-2px); border-color: var(--border-hover); }
+        .pricing-card-mini.featured { border-color: var(--amber); }
+        .pricing-card-mini.featured:hover { border-color: var(--amber-light); }
+        .pricing-card-mini h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .pricing-card-mini .price { font-size: 1.8rem; font-weight: 800; color: var(--text-primary); }
+        .pricing-card-mini .price span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
+        .pricing-card-mini p { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+        .screenshot-section { max-width: 600px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+        .screenshot-section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; }
+        .screenshot-container { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 12px; display: inline-block; }
+        .screenshot-container img { width: 100%; max-width: 260px; border-radius: 8px; }
+        .screenshot-section .caption { font-size: 0.9rem; color: var(--text-muted); margin-top: 16px; }
+        .betty-section { max-width: 500px; margin: 0 auto; padding: 40px 20px; }
+        .betty-inner { display: flex; align-items: center; gap: 24px; }
+        .betty-text { flex: 6; }
+        .betty-image { flex: 4; text-align: center; }
+        .betty-image img { width: 100%; max-width: 140px; filter: drop-shadow(0 4px 20px rgba(245, 158, 11, 0.15)); }
+        .betty-text h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+        .betty-text h2 span { color: var(--amber); }
+        .betty-text p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
+        .cta-section { max-width: 800px; margin: 0 auto; padding: 30px 20px 60px; text-align: center; }
+        .overlay-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; padding: 24px; }
+        .overlay-modal.active { display: flex; }
+        .modal-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 40px; max-width: 420px; width: 100%; position: relative; text-align: center; }
+        .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; }
+        .modal-content h2 { margin-bottom: 8px; }
+        .modal-content .subtitle { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
+        .modal-btn { width: 100%; padding: 16px; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 12px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: white; transition: all 0.2s ease; }
+        .modal-btn.stripe { background: white; color: #000 !important; }
+        .modal-btn.stripe:hover { color: #000 !important; }
+        .modal-secure { color: var(--text-muted); font-size: 0.85rem; margin-top: 8px; }
+        footer { border-top: 1px solid var(--border); background: var(--bg-secondary); }
+        .footer-inner { max-width: 1100px; margin: 0 auto; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { color: var(--text-muted); font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--amber); }
+        .footer-bottom { text-align: center; padding: 12px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.6rem; }
+            .pricing-mini { flex-direction: column; align-items: center; }
+            .pricing-card-mini { width: 100%; max-width: 280px; }
+            .screenshot-container img { max-width: 220px; }
+            .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+        }
+        @media (min-width: 769px) {
+            .hero h1 { font-size: 2.4rem; }
+            .hero { padding: 64px 20px 48px; }
+            .betty-section { max-width: 580px; }
+            .betty-inner { gap: 18px; }
+            .betty-image img { max-width: 180px; }
+            .cta-button { font-size: 1.2rem; padding: 18px 36px; }
+        }
+    </style>
+</head>
+<body>
+    <nav><div class="nav-inner"><a href="/" class="logo">InvoiceSnap</a><a href="#pricing" class="nav-link">Pricing</a></div></nav>
+
+    <section class="hero">
+        <h1 id="hero-h1">Snap your receipts.<br><span>Betty does the rest.</span></h1>
+        <p class="hero-sub" id="hero-sub">Send them on WhatsApp. She reads them, puts them in a spreadsheet with tax categories. 15 free — no email, no app, no signup.</p>
+        <a href="https://wa.me/61420522696?text=Hey%20Betty!" class="cta-button" id="hero-cta">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span id="hero-cta-text">Try Betty</span>
+        </a>
+        <p class="subtext" id="hero-undertext">Takes 10 seconds. Seriously.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="how-it-works">
+        <h2>How it works</h2>
+        <div class="steps">
+            <div class="step"><div class="step-num">1</div><p><strong>Snap a photo</strong> of your receipt.</p></div>
+            <div class="step"><div class="step-num">2</div><p><strong>Send it to Betty</strong> on WhatsApp.</p></div>
+            <div class="step"><div class="step-num">3</div><p>She puts it in <strong>your spreadsheet</strong> — date, store, amount, tax category. Image backed up.</p></div>
+        </div>
+    </section>
+
+    <section class="why-section">
+        <div class="callout-box">
+            <h3>Why bother?</h3>
+            <ul>
+                <li><strong>Tax deductions.</strong> Aussie sole traders miss $3,000 a year, on average. Betty catches them.</li>
+                <li><strong>BAS less painful.</strong> Share the spreadsheet with your accountant. Done.</li>
+                <li><strong>Receipts fade.</strong> Thermal paper goes blank in a few months. Betty saves the image.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="pricing-section" id="pricing">
+        <div class="pricing-mini">
+            <a href="https://wa.me/61420522696?text=Hey%20Betty!" class="pricing-card-mini"><h4>Free</h4><div class="price">$0</div><p>15 receipts/month</p></a>
+            <a href="#" onclick="openCheckoutModal(); return false;" class="pricing-card-mini featured"><h4>Unlimited</h4><div class="price">$9<span>/mo</span></div><p>Unlimited receipts</p></a>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="screenshot-section">
+        <h2>What it looks like</h2>
+        <div class="screenshot-container"><img src="/images/screenshot-whatsapp-cropped.png" alt="WhatsApp receipt scanning with Betty"></div>
+        <p class="caption">Photo in, spreadsheet entry out.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="betty-section"><div class="betty-inner"><div class="betty-text"><h2>This is <span>Betty.</span></h2><p>She's keen.<br>She's tidy.<br>She's good at what she does.</p></div><div class="betty-image"><img src="/images/betty-landing-rembg.png" alt="Betty from InvoiceSnap"></div></div></section>
+
+    <div class="divider"></div>
+
+    <section class="cta-section">
+        <a href="https://wa.me/61420522696?text=Hey%20Betty!" class="cta-button">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Try Betty Free on WhatsApp
+        </a>
+        <p class="subtext">No email. No app. No signup. Just send her a receipt.</p>
+    </section>
+
+    <div class="overlay-modal" id="checkout-modal"><div class="modal-content"><button class="modal-close" onclick="closeCheckoutModal()">&times;</button><h2>Go Unlimited</h2><p class="subtitle">$9/month — no receipt limits.</p><button class="modal-btn stripe" onclick="checkoutStripe()">&#128179; Pay by Card (Stripe)</button><div id="paypal-button-container" style="margin-top: 10px;"></div><p class="modal-secure">&#128274; Secure checkout. Cancel anytime.</p></div></div>
+
+    <footer><div class="footer-inner"><a href="/" class="logo">InvoiceSnap</a><div class="footer-links"><a href="/privacy.html">Privacy</a><a href="/tos.html">Terms</a><a href="/">Home</a></div></div><div class="footer-bottom"><p>InvoiceSnap &copy; 2026</p></div></footer>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AWaVKs0tun_UzLy0N3lXw5rqYiLvF1Y-GS-_1s9Vi_HDaE-bXju0gS94nuttsrCSK-VtdyxcGNOve5K7&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+    <script>if(typeof paypal!=='undefined'){paypal.Buttons({style:{shape:'rect',color:'gold',layout:'vertical',label:'subscribe'},createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-3L5808217N0972454NG7TTSQ'});},onApprove:function(data,actions){window.location.href='https://invoicesnapbot.com/?subscribed=paypal&sub_id='+data.subscriptionID;}}).render('#paypal-button-container');}</script>
+    <script>
+        function openCheckoutModal(){document.getElementById('checkout-modal').classList.add('active');}
+        function closeCheckoutModal(){document.getElementById('checkout-modal').classList.remove('active');}
+        function checkoutStripe(){window.open('https://buy.stripe.com/aFaeVcgq76GWeMS8YxfUQ01','_blank');}
+        document.querySelectorAll('.overlay-modal').forEach(function(modal){modal.addEventListener('click',function(e){if(e.target===e.currentTarget)modal.classList.remove('active');});});
+
+        // Dynamic hero based on ?ref= parameter
+        (function(){
+            var params = new URLSearchParams(window.location.search);
+            var ref = (params.get('ref') || '').toLowerCase();
+
+            var heroes = {
+                'tommo': {
+                    h1: 'Hand the ATO what they want.',
+                    sub: 'Betty tracks your receipts on WhatsApp. Every deduction, backed up, in a spreadsheet. No digging at tax time.',
+                    cta: 'Message Betty',
+                    under: 'Free. 15 receipts. No app. No signup.'
+                },
+                'fear': {
+                    h1: 'Hand the ATO what they want.',
+                    sub: 'Betty tracks your receipts on WhatsApp. Every deduction, backed up, in a spreadsheet. No digging at tax time.',
+                    cta: 'Message Betty',
+                    under: 'Free. 15 receipts. No app. No signup.'
+                },
+                'simple': {
+                    h1: 'No app. Just WhatsApp.',
+                    sub: 'Snap a receipt. Send it to Betty. She reads it, puts it in your spreadsheet. Done.',
+                    cta: 'Message Betty',
+                    under: 'Free. 15 receipts. No app. No signup.'
+                },
+                'bas': {
+                    h1: 'Tax time is coming.<br>Where are your receipts?',
+                    sub: 'Betty tracks them on WhatsApp. Snap, send, done. Share the spreadsheet with your accountant.',
+                    cta: 'Message Betty',
+                    under: 'Free. 15 receipts. No app. No signup.'
+                },
+                'tax': {
+                    h1: 'Tax time is coming.<br>Where are your receipts?',
+                    sub: 'Betty tracks them on WhatsApp. Snap, send, done. Share the spreadsheet with your accountant.',
+                    cta: 'Message Betty',
+                    under: 'Free. 15 receipts. No app. No signup.'
+                }
+            };
+            // Default / taste test: ref=free, ref=taste, or no ref — uses the HTML defaults
+
+            if(heroes[ref]){
+                var h = heroes[ref];
+                document.getElementById('hero-h1').innerHTML = h.h1;
+                document.getElementById('hero-sub').textContent = h.sub;
+                document.getElementById('hero-cta-text').textContent = h.cta;
+                document.getElementById('hero-undertext').textContent = h.under;
+            }
+        })();
+    </script>
+</body>
+</html>
