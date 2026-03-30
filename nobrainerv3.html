@@ -77,20 +77,55 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .cta-button svg { width: 24px; height: 24px; fill: #ffffff; }
         .subtext { font-size: 0.85rem; color: var(--text-muted); margin-top: 12px; }
         .divider { width: 60px; height: 3px; background: var(--amber); margin: 0 auto; border-radius: 2px; }
-        .how-it-works { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+        .how-it-works { max-width: 600px; margin: 0 auto; padding: 48px 20px; }
         .how-it-works h2 { font-size: 1.4rem; font-weight: 800; text-align: center; margin-bottom: 24px; }
         .steps { display: flex; flex-direction: column; gap: 16px; }
         .step { display: flex; align-items: center; gap: 16px; }
         .step-num { width: 36px; height: 36px; min-width: 36px; background: var(--amber); color: var(--bg-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; }
         .step p { font-size: 1rem; color: var(--text-secondary); }
         .step p strong { color: var(--text-primary); }
-        .why-section { max-width: 600px; margin: 0 auto; padding: 32px 20px; }
+        .why-section { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+
+        /* Animated WhatsApp Demo */
+        .demo-section { max-width: 380px; margin: 0 auto; padding: 48px 20px; }
+        .demo-section h2 { font-size: 1.3rem; font-weight: 700; text-align: center; margin-bottom: 20px; }
+        .wa-chat { background: #0b141a; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+        .wa-chat-header { background: #1f2c34; padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
+        .wa-chat-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--amber); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: 0.7rem; }
+        .wa-chat-name { color: #e9edef; font-size: 0.9rem; font-weight: 600; }
+        .wa-chat-body { padding: 12px; min-height: 280px; display: flex; flex-direction: column; gap: 6px; }
+        .wa-msg { max-width: 85%; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; line-height: 1.4; opacity: 0; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.3s ease; }
+        .wa-msg.visible { opacity: 1; transform: translateY(0); }
+        .wa-msg.sent { background: #005c4b; color: #e9edef; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .wa-msg.received { background: #1f2c34; color: #e9edef; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .wa-msg .wa-img { display: block; width: 100%; max-width: 160px; border-radius: 6px; margin-bottom: 4px; }
+        .wa-msg .wa-time { font-size: 0.65rem; color: #8696a0; text-align: right; margin-top: 2px; }
+        .wa-typing { align-self: flex-start; background: #1f2c34; padding: 10px 16px; border-radius: 8px; border-bottom-left-radius: 2px; opacity: 0; transition: opacity 0.3s ease; }
+        .wa-typing.visible { opacity: 1; }
+        .wa-typing-dots { display: flex; gap: 4px; }
+        .wa-typing-dots span { width: 7px; height: 7px; background: #8696a0; border-radius: 50%; animation: typingBounce 1.4s infinite; }
+        .wa-typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .wa-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typingBounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
+        .demo-caption { text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 16px; }
+
+        /* ROI Calculator */
+        .roi-section { max-width: 500px; margin: 0 auto; padding: 48px 20px; }
+        .roi-section h2 { font-size: 1.3rem; font-weight: 700; text-align: center; margin-bottom: 20px; }
+        .roi-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+        .roi-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .roi-row label { font-size: 0.9rem; color: var(--text-secondary); }
+        .roi-row input[type="range"] { width: 120px; accent-color: var(--amber); }
+        .roi-row .roi-val { font-weight: 700; color: var(--text-primary); min-width: 40px; text-align: right; font-size: 0.95rem; }
+        .roi-result { text-align: center; padding-top: 16px; border-top: 1px solid var(--border); }
+        .roi-result .roi-big { font-size: 1.6rem; font-weight: 800; color: var(--amber); }
+        .roi-result p { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
         .callout-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--amber); border-radius: 12px; padding: 24px; }
         .callout-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
         .callout-box ul { list-style: none; padding: 0; margin: 0; }
         .callout-box li { padding: 5px 0; color: var(--text-secondary); font-size: 0.95rem; }
         .callout-box li strong { color: var(--text-primary); }
-        .pricing-section { max-width: 600px; margin: 0 auto; padding: 20px 20px 40px; }
+        .pricing-section { max-width: 600px; margin: 0 auto; padding: 32px 20px 48px; }
         .pricing-mini { display: flex; gap: 16px; justify-content: center; }
         .pricing-card-mini { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 28px; text-align: center; min-width: 140px; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; text-decoration: none; display: block; color: inherit; }
         .pricing-card-mini:hover { transform: translateY(-2px); border-color: var(--border-hover); }
@@ -100,12 +135,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .pricing-card-mini .price { font-size: 1.8rem; font-weight: 800; color: var(--text-primary); }
         .pricing-card-mini .price span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
         .pricing-card-mini p { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
-        .screenshot-section { max-width: 600px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+        .screenshot-section { max-width: 600px; margin: 0 auto; padding: 48px 20px; text-align: center; }
         .screenshot-section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; }
         .screenshot-container { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 12px; display: inline-block; }
         .screenshot-container img { width: 100%; max-width: 260px; border-radius: 8px; }
         .screenshot-section .caption { font-size: 0.9rem; color: var(--text-muted); margin-top: 16px; }
-        .betty-section { max-width: 500px; margin: 0 auto; padding: 40px 20px; }
+        .betty-section { max-width: 500px; margin: 0 auto; padding: 48px 20px; }
         .betty-inner { display: flex; align-items: center; gap: 24px; }
         .betty-text { flex: 6; }
         .betty-image { flex: 4; text-align: center; }
@@ -113,7 +148,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .betty-text h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
         .betty-text h2 span { color: var(--amber); }
         .betty-text p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
-        .cta-section { max-width: 800px; margin: 0 auto; padding: 30px 20px 60px; text-align: center; }
+        .cta-section { max-width: 800px; margin: 0 auto; padding: 40px 20px 64px; text-align: center; }
         .overlay-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; padding: 24px; }
         .overlay-modal.active { display: flex; }
         .modal-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 40px; max-width: 420px; width: 100%; position: relative; text-align: center; }
@@ -171,6 +206,60 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </section>
 
+    <div class="divider"></div>
+
+    <section class="demo-section">
+        <h2>See it in action</h2>
+        <div class="wa-chat" id="wa-demo">
+            <div class="wa-chat-header">
+                <div class="wa-chat-avatar">B</div>
+                <div class="wa-chat-name">Betty from InvoiceSnap</div>
+            </div>
+            <div class="wa-chat-body" id="wa-chat-body">
+                <div class="wa-msg sent" id="dm1">
+                    <div style="background:#003d32;border-radius:6px;padding:8px;margin-bottom:4px;text-align:center;font-size:0.75rem;color:#8696a0;">[ Receipt photo ]<br><span style="font-size:1.4rem;">&#128248;</span></div>
+                    <div class="wa-time">4:32 PM</div>
+                </div>
+                <div class="wa-typing" id="dt1"><div class="wa-typing-dots"><span></span><span></span><span></span></div></div>
+                <div class="wa-msg received" id="dm2">
+                    Got it! Give me a sec...<div class="wa-time">4:32 PM</div>
+                </div>
+                <div class="wa-typing" id="dt2"><div class="wa-typing-dots"><span></span><span></span><span></span></div></div>
+                <div class="wa-msg received" id="dm3">
+                    <strong>Bunnings Warehouse</strong><br>
+                    $147.85 — Tools &amp; Equipment<br>
+                    28 Mar 2026<br><br>
+                    Saved to your spreadsheet. Image backed up.<div class="wa-time">4:33 PM</div>
+                </div>
+            </div>
+        </div>
+        <p class="demo-caption">That's it. 10 seconds. No app needed.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="roi-section">
+        <h2>What's it worth to you?</h2>
+        <div class="roi-box">
+            <div class="roi-row">
+                <label>Receipts per week</label>
+                <input type="range" id="roi-receipts" min="2" max="30" value="10">
+                <div class="roi-val" id="roi-receipts-val">10</div>
+            </div>
+            <div class="roi-row">
+                <label>Avg deduction per receipt</label>
+                <input type="range" id="roi-deduction" min="10" max="200" step="5" value="50">
+                <div class="roi-val" id="roi-deduction-val">$50</div>
+            </div>
+            <div class="roi-result">
+                <div class="roi-big" id="roi-total">$26,000</div>
+                <p>in deductions per year — for <strong>$9/month</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
     <section class="why-section">
         <div class="callout-box">
             <h3>Why bother?</h3>
@@ -222,6 +311,54 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         function closeCheckoutModal(){document.getElementById('checkout-modal').classList.remove('active');}
         function checkoutStripe(){window.open('https://buy.stripe.com/aFaeVcgq76GWeMS8YxfUQ01','_blank');}
         document.querySelectorAll('.overlay-modal').forEach(function(modal){modal.addEventListener('click',function(e){if(e.target===e.currentTarget)modal.classList.remove('active');});});
+
+        // WhatsApp demo animation — plays once when scrolled into view
+        (function(){
+            var played = false;
+            var observer = new IntersectionObserver(function(entries){
+                if(entries[0].isIntersecting && !played){
+                    played = true;
+                    observer.disconnect();
+                    var steps = [
+                        {id:'dm1', delay:300},
+                        {id:'dt1', delay:1200, typing:true},
+                        {id:'dm2', delay:2400},
+                        {id:'dt1', delay:2500, hide:true},
+                        {id:'dt2', delay:3200, typing:true},
+                        {id:'dm3', delay:5000},
+                        {id:'dt2', delay:5100, hide:true}
+                    ];
+                    steps.forEach(function(s){
+                        setTimeout(function(){
+                            var el = document.getElementById(s.id);
+                            if(s.hide) el.classList.remove('visible');
+                            else el.classList.add('visible');
+                        }, s.delay);
+                    });
+                }
+            }, {threshold:0.3});
+            observer.observe(document.getElementById('wa-demo'));
+        })();
+
+        // ROI Calculator
+        (function(){
+            var rSlider = document.getElementById('roi-receipts');
+            var dSlider = document.getElementById('roi-deduction');
+            var rVal = document.getElementById('roi-receipts-val');
+            var dVal = document.getElementById('roi-deduction-val');
+            var total = document.getElementById('roi-total');
+            function update(){
+                var r = parseInt(rSlider.value);
+                var d = parseInt(dSlider.value);
+                rVal.textContent = r;
+                dVal.textContent = '$' + d;
+                var yearly = r * d * 52;
+                total.textContent = '$' + yearly.toLocaleString();
+            }
+            rSlider.addEventListener('input', update);
+            dSlider.addEventListener('input', update);
+            update();
+        })();
 
         // Dynamic hero based on ?ref= parameter
         (function(){
