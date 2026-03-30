@@ -14,399 +14,391 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <title>InvoiceSnap — Receipt Tracking on WhatsApp</title>
     <meta name="description" content="Send your receipts to Betty on WhatsApp. She puts them in a Google Spreadsheet. 15 free per month, or $9/mth unlimited. No app to install.">
     <link rel="icon" href="/images/betty-portrait-rembg.png" type="image/png">
-
-    <!-- Open Graph -->
     <meta property="og:title" content="InvoiceSnap — Receipt Tracking on WhatsApp">
     <meta property="og:description" content="Send your receipts to Betty on WhatsApp. She puts them in a Google Spreadsheet. No app to install.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://invoicesnapbot.com/nobrainerv3">
     <meta property="og:image" content="https://invoicesnapbot.com/images/betty-portrait-rembg.png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0d0d0d;
-            --bg-secondary: #141414;
-            --bg-card: #1a1a1a;
-            --bg-elevated: #222222;
-            --text-primary: #f5f5f5;
-            --text-secondary: #a3a3a3;
-            --text-muted: #737373;
-            --amber: #f59e0b;
-            --amber-light: #fbbf24;
-            --amber-dark: #d97706;
-            --border: #2a2a2a;
-            --border-hover: #3a3a3a;
-            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --bg: #0a0f1a; --bg-card: #111827; --bg-elevated: #1a2236;
+            --text: #f1f5f9; --text-secondary: #94a3b8; --text-muted: #64748b;
+            --amber: #f59e0b; --amber-light: #fbbf24; --green: #25D366;
+            --border: #1e293b; --border-hover: #334155;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-
-        @media (prefers-color-scheme: light) {
-            :root {
-                --bg-primary: #f5f5f0;
-                --bg-secondary: #eaeae5;
-                --bg-card: #ffffff;
-                --bg-elevated: #f0f0eb;
-                --text-primary: #1a1a1a;
-                --text-secondary: #555555;
-                --text-muted: #888888;
-                --amber: #d97706;
-                --amber-light: #f59e0b;
-                --amber-dark: #b45309;
-                --border: #d4d4d0;
-                --border-hover: #b0b0a8;
-            }
-        }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-family); background-color: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; padding: 0 5px; }
-        a { color: var(--amber); text-decoration: none; transition: color 0.2s ease; }
-        a:hover { color: var(--amber-light); }
-        nav { background: var(--bg-secondary); border-bottom: 1px solid var(--border); }
-        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; max-width: 1100px; margin: 0 auto; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); text-decoration: none; }
-        .nav-link { color: var(--text-secondary); font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: color 0.2s ease; }
-        .nav-link:hover { color: var(--amber); }
-        .hero { max-width: 700px; margin: 0 auto; padding: 48px 20px 40px; text-align: center; }
-        .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
-        .hero h1 span { color: var(--amber); }
-        .hero .hero-sub { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .cta-button { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #ffffff; font-size: 1.1rem; font-weight: 600; padding: 16px 32px; border-radius: 50px; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4); color: #ffffff; }
-        .cta-button svg { width: 24px; height: 24px; fill: #ffffff; }
-        .subtext { font-size: 0.85rem; color: var(--text-muted); margin-top: 12px; }
-        .divider { width: 60px; height: 3px; background: var(--amber); margin: 0 auto; border-radius: 2px; }
-        .how-it-works { max-width: 600px; margin: 0 auto; padding: 48px 20px; }
-        .how-it-works h2 { font-size: 1.4rem; font-weight: 800; text-align: center; margin-bottom: 24px; }
-        .steps { display: flex; flex-direction: column; gap: 16px; }
-        .step { display: flex; align-items: center; gap: 16px; }
-        .step-num { width: 36px; height: 36px; min-width: 36px; background: var(--amber); color: var(--bg-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; }
-        .step p { font-size: 1rem; color: var(--text-secondary); }
-        .step p strong { color: var(--text-primary); }
-        .why-section { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+        body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        a { color: var(--amber); text-decoration: none; }
 
-        /* Animated WhatsApp Demo */
-        .demo-section { max-width: 380px; margin: 0 auto; padding: 48px 20px; }
-        .demo-section h2 { font-size: 1.3rem; font-weight: 700; text-align: center; margin-bottom: 20px; }
-        .wa-chat { background: #0b141a; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
-        .wa-chat-header { background: #1f2c34; padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
-        .wa-chat-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--amber); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: 0.7rem; }
-        .wa-chat-name { color: #e9edef; font-size: 0.9rem; font-weight: 600; }
-        .wa-chat-body { padding: 12px; min-height: 280px; display: flex; flex-direction: column; gap: 6px; }
-        .wa-msg { max-width: 85%; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; line-height: 1.4; opacity: 0; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.3s ease; }
+        /* Layout */
+        .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 72px 0; }
+        .section-label { display: inline-block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--amber); border: 1px solid rgba(245,158,11,0.3); padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
+        .section-title { font-size: 1.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+        .section-subtitle { font-size: 1.05rem; color: var(--text-secondary); max-width: 540px; }
+        .text-center { text-align: center; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+
+        /* Nav */
+        nav { background: rgba(10,15,26,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; max-width: 960px; margin: 0 auto; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--text); }
+        .nav-link { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; }
+        .nav-link:hover { color: var(--amber); }
+
+        /* Hero */
+        .hero { padding: 64px 0 48px; text-align: center; }
+        .hero h1 { font-size: 2.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+        .hero h1 span { color: var(--amber); }
+        .hero-sub { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+        /* ROI Calculator — hero position */
+        .roi-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; max-width: 640px; margin: 0 auto 32px; }
+        .roi-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+        .roi-sliders { display: flex; flex-direction: column; gap: 20px; }
+        .roi-slider-group label { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 8px; }
+        .roi-slider-group label strong { color: var(--text); font-weight: 700; }
+        .roi-slider-group input[type="range"] { width: 100%; height: 6px; -webkit-appearance: none; appearance: none; background: var(--border); border-radius: 3px; outline: none; }
+        .roi-slider-group input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--amber); cursor: pointer; border: 2px solid var(--bg); box-shadow: 0 2px 8px rgba(245,158,11,0.3); }
+        .roi-slider-group input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--amber); cursor: pointer; border: 2px solid var(--bg); }
+        .roi-slider-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; }
+        .roi-result-box { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+        .roi-result-label { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 4px; }
+        .roi-result-big { font-size: 2.8rem; font-weight: 800; color: var(--amber); line-height: 1; }
+        .roi-result-sub { font-size: 0.85rem; color: var(--text-muted); margin-top: 8px; }
+        .roi-result-sub strong { color: var(--text); }
+
+        /* CTA Button */
+        .cta-button { display: inline-flex; align-items: center; gap: 10px; background: var(--green); color: #fff; font-size: 1.05rem; font-weight: 600; padding: 14px 28px; border-radius: 50px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(37,211,102,0.25); }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(37,211,102,0.35); color: #fff; }
+        .cta-button svg { width: 22px; height: 22px; fill: #fff; }
+        .cta-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; }
+
+        /* How it works */
+        .steps-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 560px; }
+        .step { display: flex; align-items: flex-start; gap: 16px; }
+        .step-num { width: 36px; height: 36px; min-width: 36px; background: var(--amber); color: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; }
+        .step p { font-size: 0.95rem; color: var(--text-secondary); }
+        .step p strong { color: var(--text); }
+
+        /* Demo chat */
+        .demo-grid { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; }
+        .wa-chat { background: #0b141a; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); max-width: 360px; }
+        .wa-header { background: #1f2c34; padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
+        .wa-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--amber); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: 0.7rem; }
+        .wa-name { color: #e9edef; font-size: 0.85rem; font-weight: 600; }
+        .wa-body { padding: 12px; min-height: 260px; display: flex; flex-direction: column; gap: 6px; }
+        .wa-msg { max-width: 85%; padding: 8px 12px; border-radius: 8px; font-size: 0.82rem; line-height: 1.4; opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s; }
         .wa-msg.visible { opacity: 1; transform: translateY(0); }
         .wa-msg.sent { background: #005c4b; color: #e9edef; align-self: flex-end; border-bottom-right-radius: 2px; }
         .wa-msg.received { background: #1f2c34; color: #e9edef; align-self: flex-start; border-bottom-left-radius: 2px; }
-        .wa-msg .wa-img { display: block; width: 100%; max-width: 160px; border-radius: 6px; margin-bottom: 4px; }
-        .wa-msg .wa-time { font-size: 0.65rem; color: #8696a0; text-align: right; margin-top: 2px; }
-        .wa-typing { align-self: flex-start; background: #1f2c34; padding: 10px 16px; border-radius: 8px; border-bottom-left-radius: 2px; opacity: 0; transition: opacity 0.3s ease; }
+        .wa-time { font-size: 0.6rem; color: #8696a0; text-align: right; margin-top: 2px; }
+        .wa-typing { align-self: flex-start; background: #1f2c34; padding: 10px 16px; border-radius: 8px; border-bottom-left-radius: 2px; opacity: 0; transition: opacity 0.3s; }
         .wa-typing.visible { opacity: 1; }
-        .wa-typing-dots { display: flex; gap: 4px; }
-        .wa-typing-dots span { width: 7px; height: 7px; background: #8696a0; border-radius: 50%; animation: typingBounce 1.4s infinite; }
-        .wa-typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .wa-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes typingBounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
-        .demo-caption { text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 16px; }
+        .wa-dots { display: flex; gap: 4px; }
+        .wa-dots span { width: 6px; height: 6px; background: #8696a0; border-radius: 50%; animation: bounce 1.4s infinite; }
+        .wa-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .wa-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-3px); } }
+        .demo-text { max-width: 340px; }
+        .demo-text p { font-size: 0.95rem; color: var(--text-secondary); margin-top: 12px; }
 
-        /* ROI Calculator */
-        .roi-section { max-width: 500px; margin: 0 auto; padding: 48px 20px; }
-        .roi-section h2 { font-size: 1.3rem; font-weight: 700; text-align: center; margin-bottom: 20px; }
-        .roi-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
-        .roi-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-        .roi-row label { font-size: 0.9rem; color: var(--text-secondary); }
-        .roi-row input[type="range"] { width: 120px; accent-color: var(--amber); }
-        .roi-row .roi-val { font-weight: 700; color: var(--text-primary); min-width: 40px; text-align: right; font-size: 0.95rem; }
-        .roi-result { text-align: center; padding-top: 16px; border-top: 1px solid var(--border); }
-        .roi-result .roi-big { font-size: 1.6rem; font-weight: 800; color: var(--amber); }
-        .roi-result p { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
-        .callout-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--amber); border-radius: 12px; padding: 24px; }
-        .callout-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
-        .callout-box ul { list-style: none; padding: 0; margin: 0; }
-        .callout-box li { padding: 5px 0; color: var(--text-secondary); font-size: 0.95rem; }
-        .callout-box li strong { color: var(--text-primary); }
-        .pricing-section { max-width: 600px; margin: 0 auto; padding: 32px 20px 48px; }
-        .pricing-mini { display: flex; gap: 16px; justify-content: center; }
-        .pricing-card-mini { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 28px; text-align: center; min-width: 140px; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; text-decoration: none; display: block; color: inherit; }
-        .pricing-card-mini:hover { transform: translateY(-2px); border-color: var(--border-hover); }
-        .pricing-card-mini.featured { border-color: var(--amber); }
-        .pricing-card-mini.featured:hover { border-color: var(--amber-light); }
-        .pricing-card-mini h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .pricing-card-mini .price { font-size: 1.8rem; font-weight: 800; color: var(--text-primary); }
-        .pricing-card-mini .price span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
-        .pricing-card-mini p { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
-        .screenshot-section { max-width: 600px; margin: 0 auto; padding: 48px 20px; text-align: center; }
-        .screenshot-section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; }
-        .screenshot-container { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 12px; display: inline-block; }
-        .screenshot-container img { width: 100%; max-width: 260px; border-radius: 8px; }
-        .screenshot-section .caption { font-size: 0.9rem; color: var(--text-muted); margin-top: 16px; }
-        .betty-section { max-width: 500px; margin: 0 auto; padding: 48px 20px; }
-        .betty-inner { display: flex; align-items: center; gap: 24px; }
-        .betty-text { flex: 6; }
-        .betty-image { flex: 4; text-align: center; }
-        .betty-image img { width: 100%; max-width: 140px; filter: drop-shadow(0 4px 20px rgba(245, 158, 11, 0.15)); }
+        /* Why bother */
+        .callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--amber); border-radius: 12px; padding: 28px; max-width: 600px; }
+        .callout h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
+        .callout ul { list-style: none; }
+        .callout li { padding: 6px 0; color: var(--text-secondary); font-size: 0.95rem; }
+        .callout li strong { color: var(--text); }
+
+        /* Pricing */
+        .pricing-grid { display: flex; gap: 20px; justify-content: center; }
+        .price-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 32px; text-align: center; min-width: 160px; cursor: pointer; transition: transform 0.2s, border-color 0.2s; text-decoration: none; color: inherit; display: block; }
+        .price-card:hover { transform: translateY(-2px); border-color: var(--border-hover); }
+        .price-card.featured { border-color: var(--amber); }
+        .price-card h4 { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .price-card .price { font-size: 2rem; font-weight: 800; }
+        .price-card .price small { font-size: 0.85rem; font-weight: 400; color: var(--text-muted); }
+        .price-card p { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+        /* Screenshot */
+        .screenshot-wrap { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 12px; display: inline-block; }
+        .screenshot-wrap img { width: 100%; max-width: 260px; border-radius: 8px; display: block; }
+
+        /* Betty */
+        .betty-grid { display: flex; align-items: center; gap: 32px; max-width: 520px; }
+        .betty-text { flex: 3; }
         .betty-text h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
         .betty-text h2 span { color: var(--amber); }
         .betty-text p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
-        .cta-section { max-width: 800px; margin: 0 auto; padding: 40px 20px 64px; text-align: center; }
+        .betty-img { flex: 2; text-align: center; }
+        .betty-img img { width: 100%; max-width: 150px; filter: drop-shadow(0 4px 20px rgba(245,158,11,0.15)); }
+
+        /* Divider */
+        .divider { width: 60px; height: 3px; background: var(--amber); margin: 0 auto; border-radius: 2px; }
+
+        /* Modal */
         .overlay-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; padding: 24px; }
         .overlay-modal.active { display: flex; }
         .modal-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 40px; max-width: 420px; width: 100%; position: relative; text-align: center; }
         .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; }
         .modal-content h2 { margin-bottom: 8px; }
         .modal-content .subtitle { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
-        .modal-btn { width: 100%; padding: 16px; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 12px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: white; transition: all 0.2s ease; }
+        .modal-btn { width: 100%; padding: 16px; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 12px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; color: white; }
         .modal-btn.stripe { background: white; color: #000 !important; }
-        .modal-btn.stripe:hover { color: #000 !important; }
         .modal-secure { color: var(--text-muted); font-size: 0.85rem; margin-top: 8px; }
-        footer { border-top: 1px solid var(--border); background: var(--bg-secondary); }
-        .footer-inner { max-width: 1100px; margin: 0 auto; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+
+        /* Footer */
+        footer { border-top: 1px solid var(--border); background: var(--bg-card); }
+        .footer-inner { max-width: 960px; margin: 0 auto; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
         .footer-links { display: flex; gap: 20px; }
-        .footer-links a { color: var(--text-muted); font-size: 0.85rem; }
-        .footer-links a:hover { color: var(--amber); }
-        .footer-bottom { text-align: center; padding: 12px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 1.6rem; }
-            .pricing-mini { flex-direction: column; align-items: center; }
-            .pricing-card-mini { width: 100%; max-width: 280px; }
-            .screenshot-container img { max-width: 220px; }
-            .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
-        }
+        .footer-links a { color: var(--text-muted); font-size: 0.8rem; }
+        .footer-bottom { text-align: center; padding: 12px 24px; color: var(--text-muted); font-size: 0.75rem; border-top: 1px solid var(--border); }
+
+        /* ===== DESKTOP ===== */
         @media (min-width: 769px) {
-            .hero h1 { font-size: 2.4rem; }
-            .hero { padding: 64px 20px 48px; }
-            .betty-section { max-width: 580px; }
-            .betty-inner { gap: 18px; }
-            .betty-image img { max-width: 180px; }
-            .cta-button { font-size: 1.2rem; padding: 18px 36px; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero { padding: 80px 0 56px; }
+            .section { padding: 88px 0; }
+            .section-title { font-size: 2.2rem; }
+            .roi-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+            .roi-result-box { min-height: 200px; }
+            .demo-grid { grid-template-columns: auto 1fr; gap: 48px; }
+            .steps-grid { grid-template-columns: 1fr 1fr 1fr; gap: 24px; max-width: 100%; }
+            .step { flex-direction: column; text-align: center; align-items: center; }
+            .betty-grid { max-width: 600px; gap: 40px; }
+            .cta-button { font-size: 1.15rem; padding: 16px 32px; }
+        }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.7rem; }
+            .section { padding: 56px 0; }
+            .pricing-grid { flex-direction: column; align-items: center; }
+            .price-card { width: 100%; max-width: 280px; }
+            .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+            .wa-chat { max-width: 100%; }
+            .betty-grid { max-width: 100%; }
+            .demo-grid { gap: 20px; }
+            .roi-result-big { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
-    <nav><div class="nav-inner"><a href="/" class="logo">InvoiceSnap</a><a href="#pricing" class="nav-link">Pricing</a></div></nav>
 
-    <section class="hero">
-        <h1 id="hero-h1">Snap your receipts.<br><span>Betty does the rest.</span></h1>
-        <p class="hero-sub" id="hero-sub">Send them on WhatsApp. She reads them, puts them in a spreadsheet with tax categories. 15 free — no email, no app, no signup.</p>
-        <a href="https://wa.me/61420522696?text=Hey%20Betty!" class="cta-button" id="hero-cta">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            <span id="hero-cta-text">Try Betty</span>
-        </a>
-        <p class="subtext" id="hero-undertext">Takes 10 seconds. Seriously.</p>
-    </section>
+<nav><div class="nav-inner"><a href="/" class="logo">InvoiceSnap</a><a href="#pricing" class="nav-link">Pricing</a></div></nav>
 
-    <div class="divider"></div>
+<!-- HERO + ROI CALCULATOR -->
+<section class="hero container">
+    <h1 id="hero-h1">Snap your receipts.<br><span>Betty does the rest.</span></h1>
+    <p class="hero-sub" id="hero-sub">Send them on WhatsApp. She reads them, puts them in a spreadsheet with tax categories. 15 free — no email, no app, no signup.</p>
 
-    <section class="how-it-works">
-        <h2>How it works</h2>
-        <div class="steps">
-            <div class="step"><div class="step-num">1</div><p><strong>Snap a photo</strong> of your receipt.</p></div>
-            <div class="step"><div class="step-num">2</div><p><strong>Send it to Betty</strong> on WhatsApp.</p></div>
-            <div class="step"><div class="step-num">3</div><p>She puts it in <strong>your spreadsheet</strong> — date, store, amount, tax category. Image backed up.</p></div>
+    <div class="roi-card">
+        <div class="roi-grid">
+            <div class="roi-sliders">
+                <div class="roi-slider-group">
+                    <label>Weekly business expenses <strong id="roi-exp-val">$200</strong></label>
+                    <input type="range" id="roi-exp" min="50" max="2000" step="25" value="200">
+                    <div class="roi-slider-labels"><span>$50</span><span>$2,000+</span></div>
+                </div>
+                <div class="roi-slider-group">
+                    <label>Receipts you lose or forget <strong id="roi-lost-val">20%</strong></label>
+                    <input type="range" id="roi-lost" min="0" max="100" step="5" value="20">
+                    <div class="roi-slider-labels"><span>0% (Perfect tracker)</span><span>100% (The shoebox)</span></div>
+                </div>
+            </div>
+            <div class="roi-result-box">
+                <div class="roi-result-label">You could be losing</div>
+                <div class="roi-result-big" id="roi-total">$624</div>
+                <div class="roi-result-sub">per year in missed deductions</div>
+                <div class="roi-result-sub" style="margin-top: 12px;">Betty costs <strong>$108/year</strong></div>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <div class="divider"></div>
+    <a href="https://wa.me/61420522696?text=Hey%20Betty!" class="cta-button" id="hero-cta">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span id="hero-cta-text">Try Betty</span>
+    </a>
+    <p class="cta-sub" id="hero-undertext">Takes 10 seconds. Seriously.</p>
+</section>
 
-    <section class="demo-section">
-        <h2>See it in action</h2>
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="section container text-center">
+    <div class="section-label">How it works</div>
+    <h2 class="section-title" style="margin-bottom: 32px;">Three steps. Ten seconds.</h2>
+    <div class="steps-grid mx-auto">
+        <div class="step"><div class="step-num">1</div><p><strong>Snap a photo</strong> of your receipt.</p></div>
+        <div class="step"><div class="step-num">2</div><p><strong>Send it to Betty</strong> on WhatsApp.</p></div>
+        <div class="step"><div class="step-num">3</div><p>She puts it in <strong>your spreadsheet</strong> — date, store, amount, tax category. Image backed up.</p></div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DEMO -->
+<section class="section container">
+    <div class="text-center" style="margin-bottom: 32px;">
+        <div class="section-label">See it in action</div>
+        <h2 class="section-title">From receipt to spreadsheet</h2>
+    </div>
+    <div class="demo-grid mx-auto" style="max-width: 700px;">
         <div class="wa-chat" id="wa-demo">
-            <div class="wa-chat-header">
-                <div class="wa-chat-avatar">B</div>
-                <div class="wa-chat-name">Betty from InvoiceSnap</div>
-            </div>
-            <div class="wa-chat-body" id="wa-chat-body">
-                <div class="wa-msg sent" id="dm1">
-                    <div style="background:#003d32;border-radius:6px;padding:8px;margin-bottom:4px;text-align:center;font-size:0.75rem;color:#8696a0;">[ Receipt photo ]<br><span style="font-size:1.4rem;">&#128248;</span></div>
-                    <div class="wa-time">4:32 PM</div>
-                </div>
-                <div class="wa-typing" id="dt1"><div class="wa-typing-dots"><span></span><span></span><span></span></div></div>
-                <div class="wa-msg received" id="dm2">
-                    Got it! Give me a sec...<div class="wa-time">4:32 PM</div>
-                </div>
-                <div class="wa-typing" id="dt2"><div class="wa-typing-dots"><span></span><span></span><span></span></div></div>
-                <div class="wa-msg received" id="dm3">
-                    <strong>Bunnings Warehouse</strong><br>
-                    $147.85 — Tools &amp; Equipment<br>
-                    28 Mar 2026<br><br>
-                    Saved to your spreadsheet. Image backed up.<div class="wa-time">4:33 PM</div>
-                </div>
+            <div class="wa-header"><div class="wa-avatar">B</div><div class="wa-name">Betty from InvoiceSnap</div></div>
+            <div class="wa-body" id="wa-body">
+                <div class="wa-msg sent" id="dm1"><div style="background:#003d32;border-radius:6px;padding:8px;text-align:center;font-size:0.7rem;color:#8696a0;">[ Receipt photo ]<br><span style="font-size:1.2rem;">&#128248;</span></div><div class="wa-time">4:32 PM</div></div>
+                <div class="wa-typing" id="dt1"><div class="wa-dots"><span></span><span></span><span></span></div></div>
+                <div class="wa-msg received" id="dm2">Got it! Give me a sec...<div class="wa-time">4:32 PM</div></div>
+                <div class="wa-typing" id="dt2"><div class="wa-dots"><span></span><span></span><span></span></div></div>
+                <div class="wa-msg received" id="dm3"><strong>Bunnings Warehouse</strong><br>$147.85 — Tools &amp; Equipment<br>28 Mar 2026<br><br>Saved to your spreadsheet. Image backed up.<div class="wa-time">4:33 PM</div></div>
             </div>
         </div>
-        <p class="demo-caption">That's it. 10 seconds. No app needed.</p>
-    </section>
-
-    <div class="divider"></div>
-
-    <section class="roi-section">
-        <h2>What's it worth to you?</h2>
-        <div class="roi-box">
-            <div class="roi-row">
-                <label>Receipts per week</label>
-                <input type="range" id="roi-receipts" min="2" max="30" value="10">
-                <div class="roi-val" id="roi-receipts-val">10</div>
-            </div>
-            <div class="roi-row">
-                <label>Avg deduction per receipt</label>
-                <input type="range" id="roi-deduction" min="10" max="200" step="5" value="50">
-                <div class="roi-val" id="roi-deduction-val">$50</div>
-            </div>
-            <div class="roi-result">
-                <div class="roi-big" id="roi-total">$26,000</div>
-                <p>in deductions per year — for <strong>$9/month</strong></p>
-            </div>
+        <div class="demo-text">
+            <h3 style="font-size: 1.1rem; font-weight: 700;">No app. No login. No typing.</h3>
+            <p>Snap the receipt, send it on WhatsApp. Betty reads the store, amount, date, and category — then puts it straight in your Google Spreadsheet.</p>
+            <p>The image gets backed up too. No more faded receipts.</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <div class="divider"></div>
+<div class="divider"></div>
 
-    <section class="why-section">
-        <div class="callout-box">
-            <h3>Why bother?</h3>
-            <ul>
-                <li><strong>Tax deductions.</strong> Aussie sole traders miss $3,000 a year, on average. Betty catches them.</li>
-                <li><strong>BAS less painful.</strong> Share the spreadsheet with your accountant. Done.</li>
-                <li><strong>Receipts fade.</strong> Thermal paper goes blank in a few months. Betty saves the image.</li>
-            </ul>
-        </div>
-    </section>
+<!-- WHY BOTHER -->
+<section class="section container text-center">
+    <div class="section-label">Why bother?</div>
+    <div class="callout mx-auto" style="text-align: left;">
+        <ul>
+            <li><strong>Tax deductions.</strong> Aussie sole traders miss $3,000 a year, on average. Betty catches them.</li>
+            <li><strong>BAS less painful.</strong> Share the spreadsheet with your accountant. Done.</li>
+            <li><strong>Receipts fade.</strong> Thermal paper goes blank in a few months. Betty saves the image.</li>
+        </ul>
+    </div>
+</section>
 
-    <section class="pricing-section" id="pricing">
-        <div class="pricing-mini">
-            <a href="https://wa.me/61420522696?text=Hey%20Betty!" class="pricing-card-mini"><h4>Free</h4><div class="price">$0</div><p>15 receipts/month</p></a>
-            <a href="#" onclick="openCheckoutModal(); return false;" class="pricing-card-mini featured"><h4>Unlimited</h4><div class="price">$9<span>/mo</span></div><p>Unlimited receipts</p></a>
-        </div>
-    </section>
+<div class="divider"></div>
 
-    <div class="divider"></div>
+<!-- PRICING -->
+<section class="section container text-center" id="pricing">
+    <div class="section-label">Simple pricing</div>
+    <h2 class="section-title" style="margin-bottom: 32px;">Free to try. Cheap to keep.</h2>
+    <div class="pricing-grid">
+        <a href="https://wa.me/61420522696?text=Hey%20Betty!" class="price-card"><h4>Free</h4><div class="price">$0</div><p>15 receipts/month</p></a>
+        <a href="#" onclick="openCheckoutModal(); return false;" class="price-card featured"><h4>Unlimited</h4><div class="price">$9<small>/mo</small></div><p>Unlimited receipts</p></a>
+    </div>
+</section>
 
-    <section class="screenshot-section">
-        <h2>What it looks like</h2>
-        <div class="screenshot-container"><img src="/images/screenshot-whatsapp-cropped.png" alt="WhatsApp receipt scanning with Betty"></div>
-        <p class="caption">Photo in, spreadsheet entry out.</p>
-    </section>
+<div class="divider"></div>
 
-    <div class="divider"></div>
+<!-- SCREENSHOT -->
+<section class="section container text-center">
+    <div class="section-label">What it looks like</div>
+    <div class="screenshot-wrap"><img src="/images/screenshot-whatsapp-cropped.png" alt="WhatsApp receipt scanning with Betty"></div>
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 16px;">Photo in, spreadsheet entry out.</p>
+</section>
 
-    <section class="betty-section"><div class="betty-inner"><div class="betty-text"><h2>This is <span>Betty.</span></h2><p>She's keen.<br>She's tidy.<br>She's good at what she does.</p></div><div class="betty-image"><img src="/images/betty-landing-rembg.png" alt="Betty from InvoiceSnap"></div></div></section>
+<div class="divider"></div>
 
-    <div class="divider"></div>
+<!-- BETTY -->
+<section class="section container">
+    <div class="betty-grid mx-auto">
+        <div class="betty-text"><h2>This is <span>Betty.</span></h2><p>She's keen.<br>She's tidy.<br>She's good at what she does.</p></div>
+        <div class="betty-img"><img src="/images/betty-landing-rembg.png" alt="Betty from InvoiceSnap"></div>
+    </div>
+</section>
 
-    <section class="cta-section">
-        <a href="https://wa.me/61420522696?text=Hey%20Betty!" class="cta-button">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Try Betty Free on WhatsApp
-        </a>
-        <p class="subtext">No email. No app. No signup. Just send her a receipt.</p>
-    </section>
+<div class="divider"></div>
 
-    <div class="overlay-modal" id="checkout-modal"><div class="modal-content"><button class="modal-close" onclick="closeCheckoutModal()">&times;</button><h2>Go Unlimited</h2><p class="subtitle">$9/month — no receipt limits.</p><button class="modal-btn stripe" onclick="checkoutStripe()">&#128179; Pay by Card (Stripe)</button><div id="paypal-button-container" style="margin-top: 10px;"></div><p class="modal-secure">&#128274; Secure checkout. Cancel anytime.</p></div></div>
+<!-- BOTTOM CTA -->
+<section class="section container text-center">
+    <a href="https://wa.me/61420522696?text=Hey%20Betty!" class="cta-button">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Try Betty Free on WhatsApp
+    </a>
+    <p class="cta-sub">No email. No app. No signup. Just send her a receipt.</p>
+</section>
 
-    <footer><div class="footer-inner"><a href="/" class="logo">InvoiceSnap</a><div class="footer-links"><a href="/privacy.html">Privacy</a><a href="/tos.html">Terms</a><a href="/">Home</a></div></div><div class="footer-bottom"><p>InvoiceSnap &copy; 2026</p></div></footer>
+<!-- CHECKOUT MODAL -->
+<div class="overlay-modal" id="checkout-modal"><div class="modal-content"><button class="modal-close" onclick="closeCheckoutModal()">&times;</button><h2>Go Unlimited</h2><p class="subtitle">$9/month — no receipt limits.</p><button class="modal-btn stripe" onclick="checkoutStripe()">&#128179; Pay by Card (Stripe)</button><div id="paypal-button-container" style="margin-top: 10px;"></div><p class="modal-secure">&#128274; Secure checkout. Cancel anytime.</p></div></div>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=AWaVKs0tun_UzLy0N3lXw5rqYiLvF1Y-GS-_1s9Vi_HDaE-bXju0gS94nuttsrCSK-VtdyxcGNOve5K7&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
-    <script>if(typeof paypal!=='undefined'){paypal.Buttons({style:{shape:'rect',color:'gold',layout:'vertical',label:'subscribe'},createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-3L5808217N0972454NG7TTSQ'});},onApprove:function(data,actions){window.location.href='https://invoicesnapbot.com/?subscribed=paypal&sub_id='+data.subscriptionID;}}).render('#paypal-button-container');}</script>
-    <script>
-        function openCheckoutModal(){document.getElementById('checkout-modal').classList.add('active');}
-        function closeCheckoutModal(){document.getElementById('checkout-modal').classList.remove('active');}
-        function checkoutStripe(){window.open('https://buy.stripe.com/aFaeVcgq76GWeMS8YxfUQ01','_blank');}
-        document.querySelectorAll('.overlay-modal').forEach(function(modal){modal.addEventListener('click',function(e){if(e.target===e.currentTarget)modal.classList.remove('active');});});
+<footer><div class="footer-inner"><a href="/" class="logo">InvoiceSnap</a><div class="footer-links"><a href="/privacy.html">Privacy</a><a href="/tos.html">Terms</a><a href="/">Home</a></div></div><div class="footer-bottom"><p>InvoiceSnap &copy; 2026</p></div></footer>
 
-        // WhatsApp demo animation — plays once when scrolled into view
-        (function(){
-            var played = false;
-            var observer = new IntersectionObserver(function(entries){
-                if(entries[0].isIntersecting && !played){
-                    played = true;
-                    observer.disconnect();
-                    var steps = [
-                        {id:'dm1', delay:300},
-                        {id:'dt1', delay:1200, typing:true},
-                        {id:'dm2', delay:2400},
-                        {id:'dt1', delay:2500, hide:true},
-                        {id:'dt2', delay:3200, typing:true},
-                        {id:'dm3', delay:5000},
-                        {id:'dt2', delay:5100, hide:true}
-                    ];
-                    steps.forEach(function(s){
-                        setTimeout(function(){
-                            var el = document.getElementById(s.id);
-                            if(s.hide) el.classList.remove('visible');
-                            else el.classList.add('visible');
-                        }, s.delay);
-                    });
-                }
-            }, {threshold:0.3});
-            observer.observe(document.getElementById('wa-demo'));
-        })();
+<script src="https://www.paypal.com/sdk/js?client-id=AWaVKs0tun_UzLy0N3lXw5rqYiLvF1Y-GS-_1s9Vi_HDaE-bXju0gS94nuttsrCSK-VtdyxcGNOve5K7&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+<script>if(typeof paypal!=='undefined'){paypal.Buttons({style:{shape:'rect',color:'gold',layout:'vertical',label:'subscribe'},createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-3L5808217N0972454NG7TTSQ'});},onApprove:function(data,actions){window.location.href='https://invoicesnapbot.com/?subscribed=paypal&sub_id='+data.subscriptionID;}}).render('#paypal-button-container');}</script>
+<script>
+    function openCheckoutModal(){document.getElementById('checkout-modal').classList.add('active');}
+    function closeCheckoutModal(){document.getElementById('checkout-modal').classList.remove('active');}
+    function checkoutStripe(){window.open('https://buy.stripe.com/aFaeVcgq76GWeMS8YxfUQ01','_blank');}
+    document.querySelectorAll('.overlay-modal').forEach(function(m){m.addEventListener('click',function(e){if(e.target===e.currentTarget)m.classList.remove('active');});});
 
-        // ROI Calculator
-        (function(){
-            var rSlider = document.getElementById('roi-receipts');
-            var dSlider = document.getElementById('roi-deduction');
-            var rVal = document.getElementById('roi-receipts-val');
-            var dVal = document.getElementById('roi-deduction-val');
-            var total = document.getElementById('roi-total');
-            function update(){
-                var r = parseInt(rSlider.value);
-                var d = parseInt(dSlider.value);
-                rVal.textContent = r;
-                dVal.textContent = '$' + d;
-                var yearly = r * d * 52;
-                total.textContent = '$' + yearly.toLocaleString();
+    // ROI Calculator
+    (function(){
+        var expSlider = document.getElementById('roi-exp');
+        var lostSlider = document.getElementById('roi-lost');
+        var expVal = document.getElementById('roi-exp-val');
+        var lostVal = document.getElementById('roi-lost-val');
+        var total = document.getElementById('roi-total');
+        function update(){
+            var exp = parseInt(expSlider.value);
+            var lost = parseInt(lostSlider.value);
+            expVal.textContent = '$' + exp.toLocaleString();
+            lostVal.textContent = lost + '%';
+            // Yearly expenses * % lost * assumed 30% tax rate = missed deductions
+            var yearly = exp * 52;
+            var lostAmount = yearly * (lost / 100);
+            var taxLoss = Math.round(lostAmount * 0.3);
+            total.textContent = '$' + taxLoss.toLocaleString();
+        }
+        expSlider.addEventListener('input', update);
+        lostSlider.addEventListener('input', update);
+        update();
+    })();
+
+    // WhatsApp demo animation
+    (function(){
+        var played = false;
+        var observer = new IntersectionObserver(function(entries){
+            if(entries[0].isIntersecting && !played){
+                played = true; observer.disconnect();
+                var steps = [
+                    {id:'dm1',delay:300},{id:'dt1',delay:1200,typing:true},{id:'dm2',delay:2400},
+                    {id:'dt1',delay:2500,hide:true},{id:'dt2',delay:3200,typing:true},
+                    {id:'dm3',delay:5000},{id:'dt2',delay:5100,hide:true}
+                ];
+                steps.forEach(function(s){
+                    setTimeout(function(){
+                        var el=document.getElementById(s.id);
+                        if(s.hide)el.classList.remove('visible');
+                        else el.classList.add('visible');
+                    },s.delay);
+                });
             }
-            rSlider.addEventListener('input', update);
-            dSlider.addEventListener('input', update);
-            update();
-        })();
+        },{threshold:0.3});
+        observer.observe(document.getElementById('wa-demo'));
+    })();
 
-        // Dynamic hero based on ?ref= parameter
-        (function(){
-            var params = new URLSearchParams(window.location.search);
-            var ref = (params.get('ref') || '').toLowerCase();
-
-            var heroes = {
-                'tommo': {
-                    h1: 'Hand the ATO <span>what they want.</span>',
-                    sub: 'Betty tracks your receipts through WhatsApp. Every deduction, backed up, in a spreadsheet. No digging at tax time.',
-                    cta: 'Message Betty',
-                    under: 'Free. 15 receipts. No app. No signup.'
-                },
-                'fear': {
-                    h1: 'Hand the ATO <span>what they want.</span>',
-                    sub: 'Betty tracks your receipts through WhatsApp. Every deduction, backed up, in a spreadsheet. No digging at tax time.',
-                    cta: 'Message Betty',
-                    under: 'Free. 15 receipts. No app. No signup.'
-                },
-                'simple': {
-                    h1: 'No app.<br><span>Just WhatsApp.</span>',
-                    sub: 'Snap a receipt. Send it to Betty. She reads it, puts it in your spreadsheet. Done.',
-                    cta: 'Message Betty',
-                    under: 'Free. 15 receipts. No app. No signup.'
-                },
-                'bas': {
-                    h1: 'Tax time is coming.<br><span>Where are your receipts?</span>',
-                    sub: 'Betty tracks them through WhatsApp. Snap, send, done. Share the spreadsheet with your accountant.',
-                    cta: 'Message Betty',
-                    under: 'Free. 15 receipts. No app. No signup.'
-                },
-                'tax': {
-                    h1: 'Tax time is coming.<br><span>Where are your receipts?</span>',
-                    sub: 'Betty tracks them through WhatsApp. Snap, send, done. Share the spreadsheet with your accountant.',
-                    cta: 'Message Betty',
-                    under: 'Free. 15 receipts. No app. No signup.'
-                }
-            };
-            // Default / taste test: ref=free, ref=taste, or no ref — uses the HTML defaults
-
-            if(heroes[ref]){
-                var h = heroes[ref];
-                document.getElementById('hero-h1').innerHTML = h.h1;
-                document.getElementById('hero-sub').textContent = h.sub;
-                document.getElementById('hero-cta-text').textContent = h.cta;
-                document.getElementById('hero-undertext').textContent = h.under;
-            }
-        })();
-    </script>
+    // Dynamic hero
+    (function(){
+        var ref=(new URLSearchParams(window.location.search).get('ref')||'').toLowerCase();
+        var heroes={
+            'tommo':{h1:'Hand the ATO <span>what they want.</span>',sub:'Betty tracks your receipts through WhatsApp. Every deduction, backed up, in a spreadsheet. No digging at tax time.',cta:'Message Betty',under:'Free. 15 receipts. No app. No signup.'},
+            'fear':{h1:'Hand the ATO <span>what they want.</span>',sub:'Betty tracks your receipts through WhatsApp. Every deduction, backed up, in a spreadsheet. No digging at tax time.',cta:'Message Betty',under:'Free. 15 receipts. No app. No signup.'},
+            'simple':{h1:'No app.<br><span>Just WhatsApp.</span>',sub:'Snap a receipt. Send it to Betty. She reads it, puts it in your spreadsheet. Done.',cta:'Message Betty',under:'Free. 15 receipts. No app. No signup.'},
+            'bas':{h1:'Tax time is coming.<br><span>Where are your receipts?</span>',sub:'Betty tracks them through WhatsApp. Snap, send, done. Share the spreadsheet with your accountant.',cta:'Message Betty',under:'Free. 15 receipts. No app. No signup.'},
+            'tax':{h1:'Tax time is coming.<br><span>Where are your receipts?</span>',sub:'Betty tracks them through WhatsApp. Snap, send, done. Share the spreadsheet with your accountant.',cta:'Message Betty',under:'Free. 15 receipts. No app. No signup.'}
+        };
+        if(heroes[ref]){
+            var h=heroes[ref];
+            document.getElementById('hero-h1').innerHTML=h.h1;
+            document.getElementById('hero-sub').textContent=h.sub;
+            document.getElementById('hero-cta-text').textContent=h.cta;
+            document.getElementById('hero-undertext').textContent=h.under;
+        }
+    })();
+</script>
 </body>
 </html>
