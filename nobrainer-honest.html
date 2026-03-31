@@ -100,6 +100,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .nav-link { color: var(--text-secondary); font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: color 0.2s ease; }
         .nav-link:hover { color: var(--amber); }
 
+        /* TOP IMAGE */
+        .top-image { max-width: 100%; margin: 0 auto; overflow: hidden; max-height: 220px; }
+        .top-image img { width: 100%; object-fit: cover; object-position: center 30%; display: block; }
+
         /* HERO */
         .hero { max-width: 700px; margin: 0 auto; padding: 48px 20px 40px; text-align: center; }
         .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; line-height: 1.2; }
@@ -112,7 +116,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .divider { width: 60px; height: 3px; background: var(--amber); margin: 0 auto; border-radius: 2px; }
 
         /* HOW IT WORKS */
-        .how-it-works { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+        .how-it-works { max-width: 600px; margin: 0 auto; padding: 48px 20px; }
         .how-it-works h2 { font-size: 1.4rem; font-weight: 800; text-align: center; margin-bottom: 24px; }
         .steps { display: flex; flex-direction: column; gap: 16px; }
         .step { display: flex; align-items: center; gap: 16px; }
@@ -121,20 +125,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .step p strong { color: var(--text-primary); }
 
         /* TAGLINE */
-        .tagline-section { text-align: center; padding: 24px 20px 32px; }
+        .tagline-section { text-align: center; padding: 32px 20px 40px; }
         .tagline { font-size: 1.8rem; font-weight: 800; color: var(--text-primary); }
 
         /* USE-CASES */
-        .usecases-section { max-width: 800px; margin: 0 auto; padding: 20px 20px 40px; }
+        .usecases-section { max-width: 800px; margin: 0 auto; padding: 40px 20px 48px; }
         .usecases-label { text-align: center; color: var(--amber); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 20px; }
-        .usecases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .usecases-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
         .usecase-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; display: flex; gap: 16px; align-items: flex-start; }
         .usecase-card.full-width { grid-column: 1 / -1; }
         .usecase-num { width: 32px; height: 32px; min-width: 32px; background: var(--amber); color: var(--bg-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
-        .usecase-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+        .usecase-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+        .usecase-card h3 { color: var(--text-primary); font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
 
         /* PERSONAL STORY */
-        .story-section { max-width: 680px; margin: 0 auto; padding: 20px 20px 40px; }
+        .story-section { max-width: 680px; margin: 0 auto; padding: 40px 20px 48px; }
         .story-section h2 { font-size: 1.3rem; font-weight: 700; text-align: center; margin-bottom: 16px; color: var(--text-primary); }
         .story-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--amber); border-radius: 12px; padding: 28px; }
         .story-box p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 14px; line-height: 1.7; }
@@ -142,7 +147,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .story-box .kicker { color: var(--amber); font-weight: 700; font-size: 1.05rem; }
 
         /* PRICING */
-        .pricing-section { max-width: 600px; margin: 0 auto; padding: 20px 20px 40px; }
+        .pricing-section { max-width: 600px; margin: 0 auto; padding: 40px 20px 48px; }
         .pricing-section h2 { font-size: 1.3rem; font-weight: 700; text-align: center; margin-bottom: 16px; }
         .pricing-mini { display: flex; gap: 16px; justify-content: center; }
         .pricing-card-mini { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 28px; text-align: center; min-width: 140px; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; text-decoration: none; display: block; color: inherit; }
@@ -219,6 +224,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body>
     <nav><div class="nav-inner"><a href="/" class="logo">InvoiceSnap</a><a href="#pricing" class="nav-link">Pricing</a></div></nav>
 
+    <!-- TOP IMAGE -->
+    <div class="top-image">
+        <img src="/images/betty-judging-receipt.png" alt="Betty checking a receipt">
+    </div>
+
     <!-- HERO -->
     <section class="hero">
         <h1>My biggest tax return in years.</h1>
@@ -251,17 +261,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <section class="usecases-section">
         <p class="usecases-label">Why you'd want this</p>
         <div class="usecases-grid">
-            <div class="usecase-card">
+            <div class="usecase-card full-width">
                 <div class="usecase-num">1</div>
-                <p>Every receipt you keep is a tax deduction you can claim. Every receipt you lose is money you gave the ATO for free. Betty makes sure you <strong>keep more of what you earn</strong>.</p>
+                <div>
+                    <h3>Maximum tax returns.</h3>
+                    <p>This is the big one. Data entry sucks but taking a photo is manageable. Take a quick photo inside WhatsApp while you're walking back to the bowser; that fuel deductible is logged and sorted. Done.</p>
+                </div>
             </div>
-            <div class="usecase-card">
+            <div class="usecase-card full-width">
                 <div class="usecase-num">2</div>
-                <p>When your accountant asks for your records, <strong>share the spreadsheet</strong>. No more handing over a shoebox. They can upload it to Xero, QuickBooks, whatever they use.</p>
+                <div>
+                    <h3>Accountant-ready records.</h3>
+                    <p>When your accountant asks for your records, just share the spreadsheet. No more handing over a shoebox, just give them access and it's all there, with links and everything; all neat and tidy for them.</p>
+                </div>
             </div>
             <div class="usecase-card full-width">
                 <div class="usecase-num">3</div>
-                <p>The ATO accepts <strong>photos of receipts</strong> as valid records. That thermal paper in your glovebox? It'll be blank in a few months. Betty saves the image before it fades.</p>
+                <div>
+                    <h3>Proof the ATO can't argue with.</h3>
+                    <p>The ATO accepts photos of receipts as valid records, as long as they're a clear copy of the original. If you lose any receipts or they get ruined — Betty's already got you covered. All your receipts in one place with basically zero effort. ATO wants proof? No worries; they're all here.</p>
+                </div>
             </div>
         </div>
     </section>
