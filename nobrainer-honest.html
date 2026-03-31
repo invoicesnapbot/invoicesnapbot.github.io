@@ -212,14 +212,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
         }
         @media (min-width: 769px) {
+            /* Top image - taller window on desktop */
+            .top-image { height: 280px; }
+            .top-image img { top: -140px; }
+
+            /* Hero - bigger text, more room */
             .hero h1 { font-size: 2.4rem; }
             .hero { padding: 64px 20px 48px; }
             .hero .hero-tagline { font-size: 1.25rem; }
             .tagline { font-size: 2rem; }
+            .cta-button { font-size: 1.2rem; padding: 18px 36px; }
+
+            /* How it works - 3 steps in a row */
+            .how-it-works { max-width: 900px; }
+            .steps { flex-direction: row; gap: 32px; }
+            .step { flex: 1; flex-direction: column; text-align: center; }
+            .step-num { margin-bottom: 8px; }
+
+            /* Use-cases - first two side by side, third full width */
+            .usecases-section { max-width: 900px; }
+            .usecases-grid { grid-template-columns: 1fr 1fr; }
+
+            /* Story - wider */
+            .story-section { max-width: 800px; }
+            .story-box { padding: 36px; }
+
+            /* Screenshots - bigger, more room */
+            .screenshot-section { max-width: 800px; }
+            .screenshot-container img { max-width: 320px; }
+            .screenshot-pair { gap: 24px; }
+
+            /* Betty - wider */
             .betty-section { max-width: 580px; }
             .betty-inner { gap: 18px; }
             .betty-image img { max-width: 180px; }
-            .cta-button { font-size: 1.2rem; padding: 18px 36px; }
+
+            /* Pricing - wider cards */
+            .pricing-card-mini { min-width: 180px; padding: 24px 36px; }
         }
     </style>
 </head>
