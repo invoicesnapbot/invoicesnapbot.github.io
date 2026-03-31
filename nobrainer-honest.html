@@ -100,6 +100,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .nav-link { color: var(--text-secondary); font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: color 0.2s ease; }
         .nav-link:hover { color: var(--amber); }
 
+        /* HERO ROW - stacks on mobile, side by side on desktop */
+        .hero-row { display: block; }
+
         /* TOP IMAGE */
         .top-image { max-width: 100%; margin: 0 auto; overflow: hidden; height: 220px; position: relative; }
         .top-image img { width: 100%; position: absolute; top: -100px; left: 0; display: block; }
@@ -212,13 +215,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
         }
         @media (min-width: 769px) {
-            /* Top image - contained on desktop, show the full scene */
-            .top-image { height: 320px; display: flex; justify-content: center; }
-            .top-image img { width: auto; max-height: 480px; position: static; }
-
-            /* Hero - bigger text, more room */
+            /* Hero + image side by side on desktop */
+            .hero-row { display: flex; align-items: center; max-width: 1000px; margin: 0 auto; padding: 48px 32px; gap: 40px; }
+            .hero-row .top-image { height: auto; flex: 0 0 400px; border-radius: 16px; }
+            .hero-row .top-image img { position: static; width: 100%; border-radius: 16px; }
+            .hero-row .hero { padding: 0; margin: 0; text-align: left; max-width: none; }
             .hero h1 { font-size: 2.4rem; }
-            .hero { padding: 64px 20px 48px; }
             .hero .hero-tagline { font-size: 1.25rem; }
             .tagline { font-size: 2rem; }
             .cta-button { font-size: 1.2rem; padding: 18px 36px; }
@@ -255,6 +257,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body>
     <nav><div class="nav-inner"><a href="/" class="logo">InvoiceSnap</a><a href="#pricing" class="nav-link">Pricing</a></div></nav>
 
+    <!-- HERO ROW (image + text side by side on desktop, stacked on mobile) -->
+    <div class="hero-row">
+
     <!-- TOP IMAGE -->
     <div class="top-image">
         <img src="/images/demo-receipt-hero.jpg" alt="Betty photographing a receipt">
@@ -271,6 +276,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </a>
         <p class="subtext">Free to start. No app to download. No signup.</p>
     </section>
+
+    </div><!-- end hero-row -->
 
     <div class="divider"></div>
 
