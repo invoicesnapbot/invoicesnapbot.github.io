@@ -212,9 +212,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
         }
         @media (min-width: 769px) {
-            /* Top image - taller window on desktop */
-            .top-image { height: 280px; }
-            .top-image img { top: -140px; }
+            /* Top image - contained on desktop, show the full scene */
+            .top-image { height: 320px; display: flex; justify-content: center; }
+            .top-image img { width: auto; max-height: 480px; position: static; }
 
             /* Hero - bigger text, more room */
             .hero h1 { font-size: 2.4rem; }
