@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Betty — Claim It Back On Tax</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="description" content="">
+
+<style>
+  :root {
+    --paper: #F2ECDF;
+    --paper-2: #E8DFCC;
+    --ink: #1A1714;
+    --ink-soft: #3A332B;
+    --concrete: #8B847A;
+    --concrete-2: #C9C0AE;
+    --rule: #1A1714;
+    --hivis: #F2C300;
+    --rust: #C24A1E;
+    --whatsapp: #25D366;
+    --whatsapp-dark: #128C7E;
+    --accent: var(--hivis);
+    --accent-ink: var(--ink);
+  }
+  /* themes */
+  body[data-theme="rust"] { --accent: #C24A1E; --accent-ink: #F2ECDF; }
+  body[data-theme="cream"] { --accent: #1A1714; --accent-ink: #F2ECDF; }
+  body[data-theme="hivis"] { --accent: #F2C300; --accent-ink: #1A1714; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Work Sans', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Subtle paper grain via SVG noise */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.09 0 0 0 0 0.07 0 0 0 0.18 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    z-index: 1000;
+  }
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+
+  /* Type */
+  .display, h1, h2, h3 {
+    font-family: 'Anton', 'Oswald', 'Arial Narrow', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    line-height: 0.92;
+    color: var(--ink);
+  }
+  h1 { font-size: clamp(56px, 8.4vw, 132px); }
+  h2 { font-size: clamp(40px, 5.8vw, 88px); }
+  h3 { font-size: clamp(22px, 2.2vw, 32px); letter-spacing: 0.01em; }
+  .mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 12px;
+  }
+  p { max-width: 64ch; }
+
+  /* NAV */
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--paper);
+    border-bottom: 2px solid var(--ink);
+  }
+  nav.top .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 14px; padding-bottom: 14px;
+    gap: 24px;
+  }
+  .brand {
+    display: flex; align-items: baseline; gap: 10px;
+    text-decoration: none; color: var(--ink);
+  }
+  .brand .name {
+    font-family: 'Anton', sans-serif;
+    font-size: 32px; line-height: 1;
+    text-transform: uppercase;
+  }
+  .brand .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+  }
+  nav.top .links {
+    display: flex; gap: 28px; align-items: center;
+  }
+  nav.top .links a {
+    color: var(--ink); text-decoration: none;
+    font-weight: 600; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  nav.top .links a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--whatsapp);
+    color: white;
+    text-decoration: none;
+    border: 2px solid var(--ink);
+    padding: 14px 22px;
+    font-family: 'Anton', sans-serif;
+    font-size: 22px; text-transform: uppercase;
+    letter-spacing: 0.02em;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+  .btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--ink); }
+  .btn.big { padding: 20px 32px; font-size: 30px; }
+  .btn.ghost {
+    background: transparent; color: var(--ink); box-shadow: 4px 4px 0 var(--ink);
+  }
+  .btn.ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn .wa {
+    width: 22px; height: 22px; flex: 0 0 22px;
+  }
+
+  /* HERO */
+  .hero { padding: 56px 0 80px; position: relative; overflow: hidden; }
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items: end;
+  }
+  .hero h1 .l1 { display: block; }
+  .hero h1 .l2 {
+    display: block;
+    background: var(--accent);
+    color: var(--accent-ink);
+    padding: 0.04em 0.14em 0.06em;
+    width: max-content;
+    max-width: 100%;
+    margin-top: 4px;
+  }
+  body[data-theme="cream"] .hero h1 .l2 { background: transparent; color: var(--ink); padding-left: 0; }
+  .hero .sub {
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.45;
+    margin-top: 28px;
+    max-width: 28ch;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .hero .cta-row {
+    margin-top: 32px;
+    display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+  }
+  .hero .micro {
+    margin-top: 18px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .hero .micro b { color: var(--ink); }
+
+  /* Hero right — phone with WhatsApp-style chat */
+  .phone-wrap {
+    position: relative;
+    display: flex; justify-content: center;
+    padding: 24px 0;
+  }
+  .phone {
+    width: 320px;
+    background: #ECE5DD;
+    border: 3px solid var(--ink);
+    border-radius: 28px;
+    box-shadow: 10px 10px 0 var(--ink);
+    overflow: hidden;
+    position: relative;
+    transform: rotate(-2deg);
+  }
+  .phone .bar {
+    background: #075E54;
+    color: white;
+    padding: 14px 16px 12px;
+    display: flex; align-items: center; gap: 12px;
+    font-weight: 600;
+  }
+  .phone .bar .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--hivis);
+    color: var(--ink);
+    display: grid; place-items: center;
+    font-family: 'Anton', sans-serif; font-size: 20px;
+    border: 2px solid white;
+  }
+  .phone .bar .who { font-size: 15px; line-height: 1.1; }
+  .phone .bar .who small { display: block; font-size: 11px; font-weight: 400; opacity: 0.8; margin-top: 2px; }
+  .phone .body {
+    padding: 14px 12px 18px;
+    min-height: 380px;
+    display: flex; flex-direction: column; gap: 8px;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.04) 0 6px, transparent 6px),
+      radial-gradient(circle at 70% 70%, rgba(0,0,0,0.03) 0 8px, transparent 8px),
+      #ECE5DD;
+  }
+  .msg {
+    max-width: 78%;
+    padding: 8px 10px 18px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    position: relative;
+    line-height: 1.35;
+    box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+  }
+  .msg.me { background: #DCF8C6; align-self: flex-end; border-bottom-right-radius: 2px; }
+  .msg.them { background: white; align-self: flex-start; border-bottom-left-radius: 2px; }
+  .msg .time {
+    position: absolute; right: 8px; bottom: 4px;
+    font-size: 10px; color: rgba(0,0,0,0.45);
+  }
+  .msg .receipt {
+    display: block;
+    background: #fff;
+    border: 1px dashed #999;
+    padding: 8px;
+    margin: -2px 0 6px;
+    width: 150px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: #333;
+    border-radius: 4px;
+  }
+  .msg.me .receipt { margin-left: -2px; }
+  .receipt .top {
+    text-align: center; border-bottom: 1px dashed #999;
+    padding-bottom: 4px; margin-bottom: 4px;
+  }
+  .receipt .top b { display: block; font-size: 10.5px; }
+  .receipt .row { display: flex; justify-content: space-between; }
+  .receipt .total { border-top: 1px dashed #999; margin-top: 4px; padding-top: 4px; font-weight: 700; display: flex; justify-content: space-between; }
+
+  /* Sticker */
+  .sticker {
+    position: absolute;
+    top: -8px; right: -22px;
+    background: var(--hivis);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    padding: 8px 14px;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 1;
+    transform: rotate(6deg);
+    box-shadow: 3px 3px 0 var(--ink);
+    z-index: 2;
+  }
+  .sticker small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    margin-top: 3px;
+  }
+
+  /* Section header */
+  .sec-head {
+    display: flex; align-items: end; justify-content: space-between;
+    border-top: 2px solid var(--ink);
+    padding-top: 24px;
+    margin-bottom: 36px;
+    gap: 32px;
+  }
+  .sec-head .nbr {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 0.85;
+    color: var(--ink);
+  }
+  .sec-head .label {
+    text-align: right;
+  }
+  .sec-head .label .mono { display: block; color: var(--ink-soft); margin-bottom: 4px; }
+  .sec-head h2 { font-size: clamp(34px, 4.2vw, 56px); }
+  .sec-head .label .lead { color: var(--ink-soft); font-weight: 500; margin-top: 14px; max-width: 38ch; font-size: clamp(15px, 1.4vw, 17px); }
+  .sec-head .label { display: flex; flex-direction: column; align-items: flex-end; }
+  @media (max-width: 760px) { .sec-head .label { align-items: flex-start; } .sec-head .label .lead { text-align: left; } }
+  .sec-head .label .lead { text-align: right; }
+  section { padding: 80px 0; }
+
+  /* How it works */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .step {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    padding: 28px 24px 28px;
+    display: flex; flex-direction: column; gap: 16px;
+    position: relative;
+  }
+  .step .nbr {
+    font-family: 'Anton', sans-serif;
+    font-size: 120px;
+    line-height: 0.85;
+    color: var(--accent);
+    -webkit-text-stroke: 2px var(--ink);
+  }
+  body[data-theme="cream"] .step .nbr { color: var(--paper); -webkit-text-stroke: 2px var(--ink); }
+  .step h3 { font-size: 36px; }
+  .step p { font-weight: 500; color: var(--ink-soft); }
+  .step .visual {
+    height: 160px;
+    border: 2px solid var(--ink);
+    background: var(--paper-2);
+    display: grid; place-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .step .visual.stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--paper-2) 0 18px,
+      var(--paper) 18px 36px
+    );
+  }
+  .step .visual .lbl {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    padding: 6px 10px;
+  }
+  .step.snap .visual {
+    background: #2A2520;
+    background-image:
+      linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.05) 50%, transparent 52%);
+  }
+  .step.snap .receipt-mini {
+    background: #F5F1E8;
+    width: 110px;
+    padding: 8px 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    line-height: 1.4;
+    transform: rotate(-6deg);
+    box-shadow: 6px 8px 14px rgba(0,0,0,0.4);
+    border: 1px solid #ccc;
+  }
+  .step.snap .receipt-mini .ttl { text-align:center; font-weight:700; font-size: 10px; border-bottom: 1px dashed #aaa; padding-bottom: 3px; margin-bottom: 3px; }
+  .step.snap .receipt-mini .r { display:flex; justify-content: space-between; }
+  .step.snap .receipt-mini .total { border-top: 1px dashed #aaa; margin-top: 3px; padding-top: 3px; display:flex; justify-content: space-between; font-weight: 700; }
+  .step.snap .flash {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18), transparent 40%);
+    pointer-events: none;
+  }
+  .step.snap .focus {
+    position: absolute; top: 16px; right: 16px;
+    width: 28px; height: 28px;
+    border: 2px solid white;
+  }
+  .step.send .visual {
+    background: #ECE5DD;
+    padding: 12px;
+    flex-direction: column;
+    gap: 6px;
+    display: flex; justify-content: center; align-items: stretch;
+  }
+  .step.send .bubble {
+    background: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    max-width: 70%;
+    box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+  }
+  .step.send .bubble.me { background: #DCF8C6; align-self: flex-end; }
+  .step.done .visual {
+    background: white;
+    padding: 0;
+  }
+  .sheet {
+    width: 100%; height: 100%;
+    display: grid;
+    grid-template-rows: 22px 1fr;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+  }
+  .sheet .hd {
+    display: grid;
+    grid-template-columns: 26px 1.4fr 1fr 0.7fr 0.7fr;
+    background: #1A6E3F;
+    color: white;
+    align-items: center;
+    padding: 0 4px;
+    gap: 4px;
+    font-weight: 700;
+  }
+  .sheet .grid {
+    display: grid;
+    grid-auto-rows: 22px;
+    grid-template-columns: 26px 1.4fr 1fr 0.7fr 0.7fr;
+    background:
+      linear-gradient(to right, #ddd 1px, transparent 1px) 26px 0/calc((100% - 26px) / 4) 100% repeat-x,
+      linear-gradient(to bottom, #eee 1px, transparent 1px) 0 0/100% 22px repeat-y,
+      white;
+    padding: 0 4px;
+    align-items: center;
+    gap: 4px;
+    color: #333;
+  }
+  .sheet .grid .c { padding: 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sheet .grid .c.idx { color: #888; }
+  .sheet .grid .c.amt { color: #1A6E3F; font-weight: 700; }
+
+  /* Why it's not bullshit */
+  .nbs {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .nbs h2 { color: var(--paper); }
+  .nbs .sec-head { border-top-color: var(--paper); }
+  .nbs .sec-head .nbr, .nbs .sec-head .label .mono { color: var(--paper); }
+  .nbs .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 2px solid var(--paper);
+  }
+  .nbs .item {
+    border-bottom: 2px solid var(--paper);
+    border-right: 2px solid var(--paper);
+    padding: 28px 24px 32px;
+  }
+  .nbs .item:last-child { border-right: none; }
+  .nbs .item .num {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    margin-bottom: 18px;
+    display: block;
+  }
+  body[data-theme="cream"] .nbs .item .num { color: var(--hivis); }
+  .nbs .item h3 { color: var(--paper); font-size: 28px; }
+  .nbs .item p { color: var(--concrete-2); margin-top: 12px; font-weight: 500; }
+
+  /* Pricing */
+  .pricing .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .tier {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    padding: 28px 28px 32px;
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+  .tier.featured {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  body[data-theme="cream"] .tier.featured { background: var(--ink); color: var(--paper); }
+  body[data-theme="cream"] .tier.featured .desc { color: var(--concrete-2); }
+  .tier .tier-name {
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    font-size: 32px;
+    line-height: 1;
+  }
+  .tier .price {
+    font-family: 'Anton', sans-serif;
+    font-size: 84px;
+    line-height: 0.9;
+    margin-top: 16px;
+    display: flex; align-items: flex-start; gap: 6px;
+  }
+  .tier .price .dol { font-size: 36px; margin-top: 10px; }
+  .tier .price .per {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    align-self: end;
+    margin-bottom: 12px;
+    margin-left: 4px;
+    font-weight: 700;
+  }
+  .tier .desc { color: var(--ink-soft); margin-top: 6px; font-weight: 500; }
+  .tier ul {
+    list-style: none;
+    margin-top: 22px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .tier li {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-weight: 500;
+    border-top: 1px dashed currentColor;
+    padding-top: 10px;
+  }
+  .tier li:first-child { border-top: none; padding-top: 0; }
+  .tier li .tick {
+    flex: 0 0 18px;
+    width: 18px; height: 18px;
+    margin-top: 3px;
+    border: 2px solid currentColor;
+    background: transparent;
+    position: relative;
+  }
+  .tier li .tick::after {
+    content: ""; position: absolute;
+    left: 2px; top: -2px;
+    width: 10px; height: 14px;
+    border-right: 3px solid currentColor;
+    border-bottom: 3px solid currentColor;
+    transform: rotate(40deg);
+  }
+  .tier .btn {
+    margin-top: auto;
+    align-self: stretch;
+    justify-content: center;
+    margin-top: 28px;
+  }
+  .tier .badge {
+    position: absolute;
+    top: -14px; right: 16px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 6px 10px;
+    border: 2px solid var(--ink);
+  }
+  body[data-theme="cream"] .tier.featured .badge { background: var(--hivis); color: var(--ink); }
+
+  /* FAQ */
+  .faq-list {
+    border-top: 2px solid var(--ink);
+  }
+  .faq-item {
+    border-bottom: 2px solid var(--ink);
+  }
+  .faq-q {
+    width: 100%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 24px 0;
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 24px;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(22px, 2.4vw, 32px);
+    text-transform: uppercase;
+    color: var(--ink);
+    letter-spacing: 0.005em;
+  }
+  .faq-q:hover { color: var(--rust); }
+  .faq-q .ico {
+    flex: 0 0 36px; width: 36px; height: 36px;
+    border: 2px solid var(--ink);
+    position: relative;
+    transition: transform 0.15s ease;
+  }
+  .faq-q .ico::before, .faq-q .ico::after {
+    content: ""; position: absolute;
+    background: var(--ink);
+  }
+  .faq-q .ico::before { left: 8px; right: 8px; top: 50%; height: 3px; margin-top: -1.5px; }
+  .faq-q .ico::after { top: 8px; bottom: 8px; left: 50%; width: 3px; margin-left: -1.5px; transition: transform 0.15s ease; }
+  .faq-item[open] .faq-q .ico::after { transform: scaleY(0); }
+  .faq-a {
+    padding: 0 0 24px 0;
+    max-width: 70ch;
+    color: var(--ink-soft);
+    font-weight: 500;
+    font-size: 17px;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 64px 0 32px;
+    margin-top: 60px;
+  }
+  footer .wrap {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  footer h4 {
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+    color: var(--concrete-2);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  footer a { color: var(--paper); text-decoration: none; font-weight: 500; }
+  footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  footer .brand .name { color: var(--paper); }
+  footer .brand .tag { color: var(--concrete-2); }
+  footer .legal {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--concrete);
+    padding-top: 24px;
+    margin-top: 24px;
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--concrete-2);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  footer .blurb { color: var(--concrete-2); margin-top: 12px; max-width: 36ch; font-weight: 500; }
+
+  /* Marquee */
+  .marquee {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    overflow: hidden;
+    padding: 14px 0;
+  }
+  body[data-theme="cream"] .marquee { background: var(--ink); color: var(--paper); }
+  .marquee .track {
+    display: flex; gap: 40px;
+    white-space: nowrap;
+    animation: scroll 40s linear infinite;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    font-size: 22px;
+    letter-spacing: 0.02em;
+  }
+  .marquee .track span { display: inline-flex; align-items: center; gap: 40px; }
+  .marquee .dot { width: 10px; height: 10px; background: currentColor; border-radius: 50%; display: inline-block; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Responsive */
+  @media (max-width: 980px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .nbs .grid { grid-template-columns: 1fr 1fr; }
+    .nbs .item { border-right: 2px solid var(--paper); }
+    .nbs .item:nth-child(2n) { border-right: none; }
+    .pricing .tiers { grid-template-columns: 1fr; }
+    footer .wrap { grid-template-columns: 1fr 1fr; }
+    nav.top .links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .wrap { padding: 0 20px; }
+    .nbs .grid { grid-template-columns: 1fr; }
+    .nbs .item { border-right: none; }
+    footer .wrap { grid-template-columns: 1fr; }
+    .sec-head { flex-direction: column; align-items: start; gap: 12px; }
+    .sec-head .label { text-align: left; }
+  }
+
+  /* ---- Animated WhatsApp demo ---- */
+  .phone .body { overflow-y: auto; max-height: 460px; scroll-behavior: smooth; }
+  .phone .body::-webkit-scrollbar { width: 4px; }
+  .phone .body::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+  .msg.appearing { animation: appearMsg 0.32s ease-out; }
+  @keyframes appearMsg {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg.typing {
+    padding: 10px 12px 10px;
+    background: white;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+    width: max-content;
+    box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+  }
+  .msg.typing .dots { display: inline-flex; gap: 4px; align-items: center; }
+  .msg.typing .dots span {
+    width: 6px; height: 6px;
+    background: #8a8a8a;
+    border-radius: 50%;
+    display: inline-block;
+    animation: typingDot 1.2s infinite;
+  }
+  .msg.typing .dots span:nth-child(2) { animation-delay: 0.2s; }
+  .msg.typing .dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingDot {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-3px); opacity: 1; }
+  }
+
+  .sorted-card {
+    background: white;
+    padding: 10px 12px 10px;
+    border-left: 3px solid var(--whatsapp);
+    border-radius: 4px;
+    font-size: 12.5px;
+    line-height: 1.4;
+    min-width: 220px;
+  }
+  .sorted-card .head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .sorted-card .tick {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--whatsapp); color: white;
+    display: grid; place-items: center;
+    font-size: 11px; font-weight: 700;
+    flex: 0 0 18px;
+  }
+  .sorted-card .title { font-weight: 700; font-size: 12.5px; color: #1a1a1a; }
+  .sorted-card .sub { font-size: 10.5px; color: #888; margin-top: 1px; }
+  .sorted-card .grid-rows {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 14px;
+    margin-top: 4px;
+    padding-top: 6px;
+    border-top: 1px solid #eee;
+  }
+  .sorted-card .grid-rows .gr { display: flex; flex-direction: column; }
+  .sorted-card .grid-rows .gr .k { font-size: 9.5px; color: #999; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700; }
+  .sorted-card .grid-rows .gr .v { font-size: 12px; color: #1a1a1a; font-weight: 700; }
+  .sorted-card .grid-rows .gr.full { grid-column: 1 / -1; }
+
+  .datechip {
+    align-self: center;
+    background: rgba(0,0,0,0.08);
+    color: #555;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    margin: 2px 0 6px;
+  }
+  .encrypt {
+    align-self: center;
+    background: #FFF6C8;
+    color: #6B5800;
+    padding: 6px 12px;
+    font-size: 10.5px;
+    text-align: center;
+    border-radius: 4px;
+    max-width: 92%;
+    margin: 0 0 8px;
+    line-height: 1.3;
+  }
+</style>
+</head>
+<body data-theme="rust">
+
+<!-- NAV -->
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <span class="name">Betty</span>
+      <span class="tag">CLAIM IT BACK ON TAX</span>
+    </a>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#why">Why bother</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn" href="#cta" style="padding: 10px 18px; font-size: 16px; box-shadow: 3px 3px 0 var(--ink);">
+        <svg class="wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.4.6 4.6 1.7 6.6L3 29l6.6-1.7c1.9 1.1 4 1.7 6.4 1.7 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.4c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4c-1.1-1.7-1.6-3.7-1.6-5.7C5.2 10 10 5.2 16 5.2S26.8 10 26.8 16 22 26.4 16 26.4zm6-7.8c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.3.4-.9 1.1-1.1 1.3-.2.2-.4.2-.8 0s-1.4-.5-2.7-1.7c-1-.9-1.7-2-1.9-2.4-.2-.4 0-.5.2-.7.2-.2.4-.5.5-.7.2-.2.2-.4.4-.6.1-.3 0-.5 0-.7s-.8-2-1.1-2.8c-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
+        Try Betty
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="mono" style="display:inline-block; padding: 6px 10px; border: 2px solid var(--ink); margin-bottom: 28px;">RECEIPTS · WHATSAPP · TAX TIME</span>
+      <h1 id="headline">
+        <span class="l1">NO SHOEBOX.</span>
+        <span class="l2">No bullshit.</span>
+      </h1>
+      <p class="sub">Send photos of your receipts to Betty on WhatsApp. She sorts them. You claim every dollar back on tax. Easy as.</p>
+      <div class="cta-row">
+        <a class="btn big" href="#cta">
+          <svg class="wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" style="width:28px;height:28px;"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.4.6 4.6 1.7 6.6L3 29l6.6-1.7c1.9 1.1 4 1.7 6.4 1.7 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.4c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4c-1.1-1.7-1.6-3.7-1.6-5.7C5.2 10 10 5.2 16 5.2S26.8 10 26.8 16 22 26.4 16 26.4zm6-7.8c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.3.4-.9 1.1-1.1 1.3-.2.2-.4.2-.8 0s-1.4-.5-2.7-1.7c-1-.9-1.7-2-1.9-2.4-.2-.4 0-.5.2-.7.2-.2.4-.5.5-.7.2-.2.2-.4.4-.6.1-.3 0-.5 0-.7s-.8-2-1.1-2.8c-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
+          Try Betty free
+        </a>
+      </div>
+      <p class="micro">Free for 14 days. No card. No catch. Cancel by messaging on WhatsApp with CANCEL.</p>
+    </div>
+
+    <div class="phone-wrap">
+      <div class="sticker" id="sticker" style="background-color: rgb(194, 74, 30)">
+        Built in AU
+        <small>FOR THE TOOLS</small>
+      </div>
+      <div class="phone" aria-label="Animated example WhatsApp conversation with Betty">
+        <div class="bar">
+          <div class="avatar">B</div>
+          <div class="who">
+            Betty
+            <small>online · sorting</small>
+          </div>
+        </div>
+        <div class="body" id="wa-chat-body">
+          <!-- Populated by the WhatsApp demo animation script at the bottom of this file -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee strip -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>SPARKIES · <span class="dot"></span> · PLUMBERS · <span class="dot"></span> · CHIPPIES · <span class="dot"></span> · MECHANICS · <span class="dot"></span> · BRICKIES · <span class="dot"></span> · BUILDERS · <span class="dot"></span> · TILERS · <span class="dot"></span> · LANDSCAPERS · <span class="dot"></span> · ROOFERS · <span class="dot"></span> · PAINTERS · <span class="dot"></span> · </span>
+    <span>SPARKIES · <span class="dot"></span> · PLUMBERS · <span class="dot"></span> · CHIPPIES · <span class="dot"></span> · MECHANICS · <span class="dot"></span> · BRICKIES · <span class="dot"></span> · BUILDERS · <span class="dot"></span> · TILERS · <span class="dot"></span> · LANDSCAPERS · <span class="dot"></span> · ROOFERS · <span class="dot"></span> · PAINTERS · <span class="dot"></span> · </span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="nbr"></div>
+      <div class="label">
+        <span class="mono">How it works</span>
+        <h2>Snap. Send. Done.</h2>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step snap">
+        <div class="visual">
+          <div class="receipt-mini">
+            <div class="ttl">REPCO MILE END</div>
+            <div class="r"><span>Oil filter</span><span>$22.40</span></div>
+            <div class="r"><span>Wiper blade</span><span>$18.95</span></div>
+            <div class="r"><span>Lubricant</span><span>$9.50</span></div>
+            <div class="total"><span>TOTAL</span><span>$50.85</span></div>
+          </div>
+          <div class="flash"></div>
+          <div class="focus"></div>
+        </div>
+        <div class="nbr">01</div>
+        <h3>Snap it.</h3>
+        <p>Pull the receipt out of the glovebox. Take a photo with your phone. Crinkled, faded, half-coffee-stained - Betty can read it.</p>
+      </div>
+
+      <div class="step send">
+        <div class="visual">
+          <div class="bubble me">📷 IMG_2419.jpg</div>
+          <div class="bubble">Got it. <b>Repco · $50.85</b><br>Filing under Vehicle.</div>
+          <div class="bubble me">cheers</div>
+          <div class="bubble">👍</div>
+        </div>
+        <div class="nbr">02</div>
+        <h3>Send to Betty.</h3>
+        <p>Drop the photo into WhatsApp like you would to a mate. No new app to download. No password to forget. No login screens.</p>
+      </div>
+
+      <div class="step done">
+        <div class="visual">
+          <div class="sheet">
+            <div class="hd">
+              <div></div><div>SUPPLIER</div><div>CATEGORY</div><div>GST</div><div>TOTAL</div>
+            </div>
+            <div class="grid">
+              <div class="c idx">1</div><div class="c">Bunnings</div><div class="c">Materials</div><div class="c">4.51</div><div class="c amt">49.65</div>
+              <div class="c idx">2</div><div class="c">Shell</div><div class="c">Fuel</div><div class="c">10.79</div><div class="c amt">118.74</div>
+              <div class="c idx">3</div><div class="c">Repco</div><div class="c">Vehicle</div><div class="c">4.62</div><div class="c amt">50.85</div>
+              <div class="c idx">4</div><div class="c">Officeworks</div><div class="c">Office</div><div class="c">2.18</div><div class="c amt">24.00</div>
+              <div class="c idx">5</div><div class="c">Total Tools</div><div class="c">Tools</div><div class="c">28.99</div><div class="c amt">319.00</div>
+              <div class="c idx">6</div><div class="c">BP</div><div class="c">Fuel</div><div class="c">8.65</div><div class="c amt">95.18</div>
+            </div>
+          </div>
+        </div>
+        <div class="nbr">03</div>
+        <h3>It's done.</h3>
+        <p>Betty drops every receipt into a Google Sheet, sorted and totalled. Hand it to your accountant. Or do it yourself. Either way - sweet as.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT'S NOT BULLSHIT -->
+<section id="why" class="nbs">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="nbr"></div>
+      <div class="label">
+        <span class="mono">No catches</span>
+        <h2>Why it's not bullshit.</h2>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="item">
+        <span class="num mono">// 01</span>
+        <h3>Your data's yours.</h3>
+        <p>Your receipts live in Google Drive. Cancel and you keep every record. We never sell, share or train AI on it. Full stop.</p>
+      </div>
+      <div class="item">
+        <span class="num mono">// 02</span>
+        <h3>Built by a tradie's mate.</h3>
+        <p>Not a VC-funded fintech. Just one bloke who got sick of watching tradies get rorted at tax time. Real human at the wheel, real human on the other end.</p>
+      </div>
+      <div class="item">
+        <span class="num mono">// 03</span>
+        <h3>Cancel anytime.</h3>
+        <p>Message Betty saying CANCEL. That's the cancellation flow. No retention specialist. No 12-month lock-in. No BS.</p>
+      </div>
+      <div class="item">
+        <span class="num mono">// 04</span>
+        <h3>ATO-friendly format.</h3>
+        <p>Your sheet matches the categories your accountant already uses. Hand it over at tax time. Done. They'll thank you instead of charging you to type it in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="nbr"></div>
+      <div class="label">
+        <span class="mono">Pricing</span>
+        <h2>Three plans. Pick one.</h2>
+        <p class="lead">Less than a slab a month. Tax deductible, obviously.</p>
+      </div>
+    </div>
+
+    <div class="tiers">
+      <!-- FREE -->
+      <div class="tier">
+        <div class="tier-name">Free Trial</div>
+        <p class="desc">Kick the tyres. No card up front.</p>
+        <div class="price"><span class="dol">$</span>0<span class="per">/14 DAYS</span></div>
+        <ul>
+          <li><span class="tick"></span>Unlimited receipts</li>
+          <li><span class="tick"></span>Sorted Google Sheet</li>
+          <li><span class="tick"></span>GST &amp; category tagging</li>
+          <li><span class="tick"></span>End of trial: pick a plan or piss off — no charge</li>
+        </ul>
+        <a class="btn ghost" href="#cta">Start the trial</a>
+      </div>
+
+      <!-- STARTER (FEATURED) -->
+      <div class="tier featured">
+        <div class="badge">MOST PICK THIS</div>
+        <div class="tier-name">Starter</div>
+        <p class="desc">For the working sole trader. Most tradies land here.</p>
+        <div class="price"><span class="dol">$</span>9<span class="per">/MONTH AUD</span></div>
+        <ul>
+          <li><span class="tick"></span>Everything in the trial</li>
+          <li><span class="tick"></span>Up to 200 receipts/month</li>
+          <li><span class="tick"></span>End-of-quarter BAS-ready summary</li>
+          <li><span class="tick"></span>Mileage tracking via WhatsApp</li>
+          <li><span class="tick"></span>Email a human if Betty stuffs up</li>
+        </ul>
+        <a class="btn" href="#cta" style="background: var(--ink); color: var(--paper);">Get Starter</a>
+      </div>
+
+      <!-- PLUS -->
+      <div class="tier">
+        <div class="tier-name">Plus</div>
+        <p class="desc">If you run a small crew or a side ABN.</p>
+        <div class="price"><span class="dol">$</span>19<span class="per">/MONTH AUD</span></div>
+        <ul>
+          <li><span class="tick"></span>Everything in Starter</li>
+          <li><span class="tick"></span>Unlimited receipts</li>
+          <li><span class="tick"></span>Multiple ABNs / vehicles</li>
+          <li><span class="tick"></span>Direct export to Xero / MYOB</li>
+          <li><span class="tick"></span>Share read-only with your accountant</li>
+        </ul>
+        <a class="btn ghost" href="#cta">Get Plus</a>
+      </div>
+    </div>
+
+    <p class="mono" style="margin-top: 28px; color: var(--ink-soft);">PRICES IN AUD · NO SETUP FEE · NO PER-USER FEE</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="nbr"></div>
+      <div class="label">
+        <span class="mono">Plain answers</span>
+        <h2>Questions, sorted.</h2>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q">Is Betty actually a person?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">No. Betty's our system - software, doing the reading and sorting. We named her Betty because "AI tax assistant" sounds wanky. There's a real human on the other end if something goes sideways (Brendon, mostly. G'day.).</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What if Betty reads a receipt wrong?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">She'll ask. If something's unclear - faded ink, weird supplier, ambiguous total - Betty messages you back to confirm. You can also fix any line directly in the Google Sheet. It's your sheet.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Do I need to be tech-savvy?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">If you can send a photo on WhatsApp, you can use Betty. That's the whole deal. No app to install, no dashboards, no settings menus you'll never look at twice.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What about my privacy?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">Receipts are stored encrypted on AU servers, attached to your Google Sheet (in Google Drive). We don't sell data. We don't train AI on it. We don't share it with anyone - not the ATO, not advertisers, not your nosy cousin who works at Centrelink.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Will my accountant be happy with this?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">Yeah - most accountants love it. They get a clean, categorised sheet instead of a shoebox of crumpled paper in July. On the Plus plan you can give them access to your spreadsheet directly.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How do I cancel?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">Message Betty the word CANCEL. That's it. You'll get pro-rata refund of any unused days, and your sheet stays put. No 5-screen unsubscribe flow.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Is this an app I have to download?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">No. Betty's just a WhatsApp contact. You already have WhatsApp. Save the number, send receipts. That's the whole install.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Where do my receipts actually end up?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">In a Google Sheet on your own Google Drive. Photos attached to each row. We hold encrypted backups on AU servers, but the working copy is yours. Cancel anytime and you keep every record.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Does Betty replace my accountant?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">No, and she's not trying to. She just gets your receipts into one neat spreadsheet so your accountant doesn't charge you to type them in. They'll thank you.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What if a receipt is faded or crumpled?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">Crumpled, faded, half-coffee-stained — Betty will give it a go. If she can't read something specific, she'll message back to confirm before adding it to your sheet. She won't make up numbers.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Is this ATO compliant?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">The ATO accepts photographs of receipts as long as they're legible and you can produce them on request. Betty stores the photo alongside the row in your sheet — easy to produce. Your accountant signs off on what gets claimed; Betty doesn't give tax advice.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- BIG CTA -->
+<section id="cta" style="background: var(--accent); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); padding: 90px 0;">
+  <div class="wrap" style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center;">
+    <h2 style="font-size: clamp(48px, 7vw, 110px);">
+      Stop losing<br>tax dollars<br>in the ute.
+    </h2>
+    <div>
+      <p style="font-size: 20px; font-weight: 500; max-width: 32ch; margin-bottom: 28px;">
+        Two weeks free. Cancel by typing one word. If Betty doesn't save you her own price ten times over, we'll be very surprised.
+      </p>
+      <a class="btn big" href="https://wa.me/" style="background: var(--ink); color: var(--paper);">
+        <svg class="wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" style="width:28px;height:28px;"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.4.6 4.6 1.7 6.6L3 29l6.6-1.7c1.9 1.1 4 1.7 6.4 1.7 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.4c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4c-1.1-1.7-1.6-3.7-1.6-5.7C5.2 10 10 5.2 16 5.2S26.8 10 26.8 16 22 26.4 16 26.4zm6-7.8c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.3.4-.9 1.1-1.1 1.3-.2.2-.4.2-.8 0s-1.4-.5-2.7-1.7c-1-.9-1.7-2-1.9-2.4-.2-.4 0-.5.2-.7.2-.2.4-.5.5-.7.2-.2.2-.4.4-.6.1-.3 0-.5 0-.7s-.8-2-1.1-2.8c-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
+        Try Betty free
+      </a>
+      <p class="mono" style="margin-top: 18px;">14 DAYS · NO CARD · NO BS</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#">
+        <span class="name">Betty</span>
+      </a>
+      <p class="blurb">A receipt-tracking tool built in Australia for Australian sole traders. Made by tradies' kids, mostly.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#cta">Start the trial</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:hello@claimitback.com.au">hello@claimitback.com.au</a></li>
+        <li><a href="tel:+61400000000">0400 000 000</a></li>
+        <li>Mon–Fri, 7am–5pm AEST</li>
+      </ul>
+    </div>
+    <div class="legal">
+      <span>CLAIM IT BACK ON TAX</span>
+      <span>© 2026 · MADE IN AUSTRALIA</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Tweaks panel + protocol removed for production deploy -->
+
+
+<script>
+  // ---- ANIMATED WHATSAPP DEMO ----
+  // Vanilla JS, no dependencies. Auto-plays a script of receipts being sent to Betty
+  // and Betty sorting them into a structured "sorted card". Loops every ~4s after
+  // the script ends.
+  (function () {
+    var bodyEl = document.getElementById('wa-chat-body');
+    if (!bodyEl) return;
+
+    var SCRIPT = [
+      { from: 'me',   kind: 'text',   body: "G'day Betty",                                                             delay: 700,  time: '7:42' },
+      { from: 'them', kind: 'text',   body: "G'day mate. Send through receipts whenever you've got 'em.",              delay: 1300, time: '7:42' },
+      { from: 'me',   kind: 'receipt', delay: 1500, time: '7:43', meta: {
+          vendor: 'BUNNINGS WAREHOUSE', date: 'Mile End SA · 14/05/26',
+          items: [['Cordless drill', '$184.55'], ['Grinding discs 2pk', '$18.40'], ['Gaffer tape', '$8.95']],
+          total: '$211.90'
+      }},
+      { from: 'them', kind: 'typing',  delay: 1300 },
+      { from: 'them', kind: 'sorted',  delay: 1300, time: '7:44', meta: {
+          vendor: 'Bunnings Warehouse', date: '14 May 2026',
+          category: 'Tools & Materials', total: '$211.90',
+          gst: '$19.26', deductible: '100%'
+      }},
+      { from: 'me',   kind: 'receipt', delay: 1700, time: '12:08', meta: {
+          vendor: 'SHELL COLES EXPRESS', date: 'Diesel · 14/05/26',
+          items: [['64.2L Diesel', '$118.74']],
+          total: '$118.74'
+      }},
+      { from: 'them', kind: 'typing',  delay: 1100 },
+      { from: 'them', kind: 'sorted',  delay: 1200, time: '12:08', meta: {
+          vendor: 'Shell Coles Express', date: '14 May 2026',
+          category: 'Fuel (Logbook)', total: '$118.74',
+          gst: '$10.79', deductible: 'Tracked'
+      }},
+      { from: 'them', kind: 'text',   body: "Two sorted. Sheet's up to date. Knock off ya legend.",                    delay: 1500, time: '12:09' }
+    ];
+
+    function makeDateChip() {
+      var c = document.createElement('div');
+      c.className = 'datechip';
+      c.textContent = 'TODAY';
+      return c;
+    }
+    function makeEncrypt() {
+      var e = document.createElement('div');
+      e.className = 'encrypt';
+      e.textContent = '🔒 End-to-end encrypted. Receipts only go to Betty.';
+      return e;
+    }
+
+    function renderReceipt(meta) {
+      var rows = meta.items.map(function (it) {
+        return '<span class="row"><span>' + it[0] + '</span><span>' + it[1] + '</span></span>';
+      }).join('');
+      return '<span class="receipt">' +
+             '<span class="top"><b>' + meta.vendor + '</b>' + meta.date + '</span>' +
+             rows +
+             '<span class="total"><span>TOTAL</span><span>' + meta.total + '</span></span>' +
+             '</span>';
+    }
+
+    function renderSorted(meta) {
+      return '<div class="sorted-card">' +
+               '<div class="head">' +
+                 '<div class="tick">✓</div>' +
+                 '<div><div class="title">Sorted into your sheet</div><div class="sub">Row added · ' + meta.date + '</div></div>' +
+               '</div>' +
+               '<div class="grid-rows">' +
+                 '<div class="gr"><span class="k">Vendor</span><span class="v">' + meta.vendor + '</span></div>' +
+                 '<div class="gr"><span class="k">Category</span><span class="v">' + meta.category + '</span></div>' +
+                 '<div class="gr"><span class="k">Total</span><span class="v">' + meta.total + '</span></div>' +
+                 '<div class="gr"><span class="k">GST</span><span class="v">' + meta.gst + '</span></div>' +
+                 '<div class="gr full"><span class="k">Deductible</span><span class="v">' + meta.deductible + '</span></div>' +
+               '</div>' +
+             '</div>';
+    }
+
+    var idx = 0;
+    var typingNode = null;
+    var cancelled = false;
+    var timer = null;
+
+    function reset() {
+      bodyEl.innerHTML = '';
+      bodyEl.appendChild(makeDateChip());
+      bodyEl.appendChild(makeEncrypt());
+      idx = 0;
+      typingNode = null;
+    }
+
+    function step() {
+      if (cancelled) return;
+
+      // Remove any visible typing indicator before the next message
+      if (typingNode && typingNode.parentNode === bodyEl) {
+        bodyEl.removeChild(typingNode);
+        typingNode = null;
+      }
+
+      if (idx >= SCRIPT.length) {
+        // Loop after a beat
+        timer = setTimeout(function () {
+          reset();
+          step();
+        }, 4500);
+        return;
+      }
+
+      var msg = SCRIPT[idx];
+      var node = document.createElement('div');
+      var cls = 'msg ' + (msg.from === 'me' ? 'me' : 'them') + ' appearing';
+      if (msg.kind === 'typing') cls += ' typing';
+      node.className = cls;
+
+      if (msg.kind === 'text') {
+        node.innerHTML = msg.body + '<span class="time">' + msg.time + '</span>';
+      } else if (msg.kind === 'receipt') {
+        node.innerHTML = renderReceipt(msg.meta) + '<span class="time">' + msg.time + '</span>';
+      } else if (msg.kind === 'sorted') {
+        node.innerHTML = renderSorted(msg.meta) + '<span class="time">' + msg.time + '</span>';
+      } else if (msg.kind === 'typing') {
+        node.innerHTML = '<div class="dots"><span></span><span></span><span></span></div>';
+        typingNode = node;
+      }
+
+      bodyEl.appendChild(node);
+      bodyEl.scrollTop = bodyEl.scrollHeight;
+
+      idx++;
+      timer = setTimeout(step, msg.delay);
+    }
+
+    // Init
+    reset();
+    timer = setTimeout(step, 900);
+
+    // If the page is hidden (tab switched away), pause to save battery
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        cancelled = true;
+        if (timer) { clearTimeout(timer); timer = null; }
+      } else if (cancelled) {
+        cancelled = false;
+        reset();
+        timer = setTimeout(step, 900);
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
