@@ -97,7 +97,7 @@
   /* hazard-stripe divider under the dark header band: orange stripes, paper showing through, charcoal edge */
   nav.top::after {
     content: ""; display: block; height: 10px;
-    background: repeating-linear-gradient(-45deg, var(--rust) 0 12px, var(--paper) 12px 24px);
+    background: repeating-linear-gradient(-45deg, var(--rust) 0 12px, #161617 12px 24px);
     border-bottom: 2px solid var(--ink);
   }
   nav.top .nav-right { display: flex; align-items: center; gap: 22px; }
@@ -147,7 +147,7 @@
   .btn {
     display: inline-flex; align-items: center; gap: 12px;
     background: var(--whatsapp);
-    color: white;
+    color: #161617;
     text-decoration: none;
     border: 2px solid var(--ink);
     padding: 14px 22px;
@@ -804,6 +804,56 @@
     line-height: 1.3;
   }
 
+  /* ===== PASS-2 FIXES + REDESIGNS ===== */
+  /* phone chat mimics WhatsApp (always light) — pin its text dark regardless of site theme */
+  .phone .msg.me, .phone .msg.them { color: #111b21; }
+  body[data-theme="dark"] .phone { box-shadow: 10px 10px 0 var(--rust); }
+
+  /* VALUE STRIP — punchy stat row */
+  .value-strip .vs-stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); }
+  .value-strip .vs-stat { padding: 30px 24px 30px 0; border-right: 2px solid var(--ink); }
+  .value-strip .vs-stat:last-child { border-right: none; padding-right: 0; }
+  .value-strip .vs-stat .big { font-family: 'Anton', sans-serif; font-size: clamp(38px, 4.4vw, 60px); line-height: 0.9; color: var(--rust); text-transform: uppercase; display: block; }
+  body[data-theme="dark"] .value-strip .vs-stat .big { color: var(--accent); }
+  .value-strip .vs-stat .big em { font-style: normal; font-size: 0.42em; color: var(--ink); }
+  .value-strip .vs-stat p { margin-top: 14px; font-weight: 600; color: var(--ink-soft); max-width: 26ch; }
+  @media (max-width: 760px) { .value-strip .vs-stats { grid-template-columns: 1fr 1fr; } .value-strip .vs-stat { padding: 22px 18px; border-bottom: 2px solid var(--ink); } .value-strip .vs-stat:nth-child(2) { border-right: none; } }
+  @media (max-width: 460px) { .value-strip .vs-stats { grid-template-columns: 1fr; } }
+
+  /* PACKS — text left, document mock right */
+  .packs .pack-split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .pack-copy .mono { color: var(--rust); }
+  .pack-copy h2 { margin-top: 14px; }
+  .pack-list { list-style: none; margin: 28px 0 0; display: flex; flex-direction: column; gap: 16px; }
+  .pack-list li { display: flex; gap: 14px; font-weight: 600; font-size: 18px; }
+  .pack-list li::before { content: "\2192"; color: var(--rust); font-weight: 800; }
+  .pack-foot { margin-top: 24px; color: var(--ink-soft); font-weight: 500; }
+  .pack-doc { background: #161617; border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); color: #ECEAE4; }
+  body[data-theme="dark"] .pack-doc { box-shadow: 8px 8px 0 var(--rust); }
+  .pack-doc .doc-head { display: flex; justify-content: space-between; align-items: flex-start; padding: 20px 22px 14px; }
+  .pack-doc .doc-brand { display: flex; align-items: center; gap: 10px; }
+  .pack-doc .doc-brand svg { width: 24px; height: auto; }
+  .pack-doc .doc-brand span { font-family: 'Anton', sans-serif; font-size: 18px; letter-spacing: 0.02em; }
+  .pack-doc .doc-prep { text-align: right; display: flex; flex-direction: column; gap: 3px; }
+  .pack-doc .doc-prep .mono { color: #8A8880; font-size: 9px; }
+  .pack-doc .doc-stripe { height: 14px; background: repeating-linear-gradient(-45deg, var(--rust) 0 12px, #161617 12px 24px); }
+  .pack-doc .doc-body { padding: 22px; }
+  .pack-doc .doc-fy { color: var(--rust); display: block; font-size: 10px; }
+  .pack-doc .doc-title { color: #ECEAE4; font-size: clamp(34px, 4.4vw, 54px); line-height: 0.86; margin-top: 8px; }
+  .pack-doc .doc-tag { color: #B5B2AA; margin-top: 10px; font-weight: 500; }
+  .pack-doc .doc-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; padding-top: 18px; border-top: 1px solid #34343A; }
+  .pack-doc .doc-stats .mono { color: #8A8880; font-size: 9px; display: block; margin-bottom: 6px; }
+  .pack-doc .doc-stats b { font-family: 'Anton', sans-serif; font-size: 26px; font-weight: 400; }
+  .pack-doc .doc-sample { color: #8A8880; font-size: 9px; display: block; margin-top: 22px; padding-top: 14px; border-top: 1px solid #34343A; }
+  .pack-doc .doc-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+  .pack-doc .doc-table th { text-align: left; color: #8A8880; font-weight: 700; font-size: 9px; letter-spacing: 0.06em; padding-bottom: 8px; border-bottom: 1px solid #34343A; }
+  .pack-doc .doc-table th:nth-child(3), .pack-doc .doc-table th:nth-child(4), .pack-doc .doc-table td:nth-child(3), .pack-doc .doc-table td:nth-child(4) { text-align: right; }
+  .pack-doc .doc-table td { padding: 9px 0; color: #ECEAE4; border-bottom: 1px solid #232327; }
+  .pack-doc .doc-table td:nth-child(2) { color: var(--rust); }
+  .pack-doc .doc-foot { display: flex; justify-content: space-between; margin-top: 20px; }
+  .pack-doc .doc-foot .mono { color: var(--rust); font-size: 9px; }
+  @media (max-width: 860px) { .packs .pack-split { grid-template-columns: 1fr; gap: 36px; } }
+
   /* ===== NEWSITE2 ADDITIONS (Done & Deducted rebuild) ===== */
 
   /* Dark-mode coherence: keep the inverse bands (why / footer / cost panel) dark instead of flipping to cream */
@@ -897,12 +947,12 @@
 <section class="hero">
   <div class="wrap">
     <div>
-      <span class="mono" style="display:inline-block; padding: 6px 10px; border: 2px solid var(--ink); margin-bottom: 28px;">RECEIPTS IN · TAX-READY OUT</span>
+      <span class="mono" style="display:inline-block; padding: 6px 10px; border: 2px solid var(--ink); margin-bottom: 28px;">YOUR PPE AGAINST THE TAX MAN</span>
       <h1 id="headline">
-        <span class="l1">NO SHOEBOX.</span>
+        <span class="l1">CLAIM EVERY CENT.</span>
         <span class="l2">No bullshit.</span>
       </h1>
-      <p class="sub">Send your receipts to Betty — a photo, a PDF, or a doc — on WhatsApp, Discord or email. She reads them, sorts them, files them. You claim every dollar back at tax time. Easy as.</p>
+      <p class="sub">Never lose another dollar to a ruined or lost receipt. Send them to Betty and she files them into your spreadsheet — claim every dollar back at tax time, for the price of a photo. Audit-safe, sorted, done.</p>
       <div class="cta-row">
         <a class="btn big" href="#cta">
           <svg class="wa" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" style="width:28px;height:28px;"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.4.6 4.6 1.7 6.6L3 29l6.6-1.7c1.9 1.1 4 1.7 6.4 1.7 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.4c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4c-1.1-1.7-1.6-3.7-1.6-5.7C5.2 10 10 5.2 16 5.2S26.8 10 26.8 16 22 26.4 16 26.4zm6-7.8c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.3.4-.9 1.1-1.1 1.3-.2.2-.4.2-.8 0s-1.4-.5-2.7-1.7c-1-.9-1.7-2-1.9-2.4-.2-.4 0-.5.2-.7.2-.2.4-.5.5-.7.2-.2.2-.4.4-.6.1-.3 0-.5 0-.7s-.8-2-1.1-2.8c-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
@@ -941,28 +991,18 @@
   </div>
 </div>
 
-<!-- VALUE STRIP — what you get / what it costs (up top) -->
+<!-- VALUE STRIP — what you get / what it costs (punchy, up top) -->
 <section class="value-strip">
   <div class="wrap">
     <div class="vs-head">
-      <span class="mono">Why bother</span>
-      <h2>What you get. What it costs.</h2>
+      <span class="mono">What you get · what it costs</span>
+      <h2>Straight up.</h2>
     </div>
-    <div class="vs-grid">
-      <div class="vs-get">
-        <span class="mono">WHAT YOU GET</span>
-        <ul>
-          <li>Every cent you're owed — claimed, not lost to a faded receipt</li>
-          <li>Audit-proof records, sorted by category</li>
-          <li>Zero data entry — Betty reads every receipt for you</li>
-          <li>A tidy sheet to hand straight to your accountant</li>
-        </ul>
-      </div>
-      <div class="vs-cost">
-        <span class="mono">WHAT IT COSTS YOU</span>
-        <div class="vs-cost-big">5 sec<span>a receipt, then forget it</span></div>
-        <div class="vs-cost-sub">Less than a slab a month. Tax deductible, obviously.</div>
-      </div>
+    <div class="vs-stats">
+      <div class="vs-stat"><span class="big">1 photo</span><p>Snap a receipt, send it to Betty. That's the whole job.</p></div>
+      <div class="vs-stat"><span class="big">~5 sec</span><p>Per receipt, then forget it &mdash; Betty does the filing.</p></div>
+      <div class="vs-stat"><span class="big">$9<em>/mth</em></span><p>Less than a slab, and tax deductible. That's the lot &mdash; no tricks, no fine print.</p></div>
+      <div class="vs-stat"><span class="big">Every $</span><p>You're owed, claimed back. Never lose a deduction to a faded docket.</p></div>
     </div>
   </div>
 </section>
@@ -1047,7 +1087,7 @@
       <div class="item">
         <span class="num mono">// 01</span>
         <h3>Your data's yours.</h3>
-        <p>Betty keeps your spreadsheet and shares it straight to you — open it, sort it, download it whenever. Cancel and you keep every record. We never sell it, share it, or train AI on it. Full stop.</p>
+        <p>Betty creates you a spreadsheet of every receipt — yours to open, sort and download whenever. Cancel and you keep every record. We never sell it, share it, or train AI on it. Full stop.</p>
       </div>
       <div class="item">
         <span class="num mono">// 02</span>
@@ -1123,48 +1163,46 @@
 
 <!-- PACKS -->
 <section id="packs" class="packs">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="nbr"></div>
-      <div class="label">
-        <span class="mono">Tax time</span>
-        <h2>Packs, ready to hand over.</h2>
-        <p class="lead">When it counts, Betty hands you a finished pack — sorted, totalled, every receipt backed by its photo.</p>
-      </div>
+  <div class="wrap pack-split">
+    <div class="pack-copy">
+      <span class="mono">Your tax-time pack</span>
+      <h2>One pack. Hand it straight to your accountant.</h2>
+      <ul class="pack-list">
+        <li>A clean, totalled summary of the year</li>
+        <li>A searchable record of every receipt, linked to its photo</li>
+        <li>The receipt images themselves</li>
+        <li>Ready-to-import files for Xero &amp; QuickBooks</li>
+      </ul>
+      <p class="pack-foot">Use it for tax time, an insurance claim, or an audit. All sorted, all totalled, all backed by the photo.</p>
     </div>
-    <div class="pack-grid">
-      <article class="pack">
-        <div class="pack-cover">
-          <span class="mono">PREPARED BY BETTY</span>
-          <h3>Accountant &amp; Bookkeeper</h3>
-          <span class="pack-stripe"></span>
+    <div class="pack-doc" aria-hidden="true">
+      <div class="doc-head">
+        <div class="doc-brand">
+          <svg viewBox="0 0 56 50"><path d="M8 5 H48 C51.3 5 54 7.7 54 11 V31 C54 34.3 51.3 37 48 37 H24 L13 46 V37 H8 C4.7 37 2 34.3 2 31 V11 C2 7.7 4.7 5 8 5 Z M22 12 H40 V29 L37.5 27 L35 29 L32.5 27 L30 29 L27.5 27 L25 29 L22 27 Z" fill="var(--rust)" fill-rule="evenodd"></path></svg>
+          <span>DONE &amp; DEDUCTED</span>
         </div>
-        <p>The clean handover your accountant actually wants — every expense sorted, categorised and totalled, with the original receipts attached. They thank you instead of charging you to type it in.</p>
-      </article>
-      <article class="pack">
-        <div class="pack-cover">
-          <span class="mono">PREPARED BY BETTY</span>
-          <h3>Insurance Claim</h3>
-          <span class="pack-stripe"></span>
+        <div class="doc-prep"><span class="mono">PREPARED BY BETTY</span><span class="mono">22 JUN 2026</span></div>
+      </div>
+      <div class="doc-stripe"></div>
+      <div class="doc-body">
+        <span class="mono doc-fy">FY 2025&ndash;26 &middot; PACK 01</span>
+        <h3 class="doc-title">EXPENSE<br>RECORDS</h3>
+        <p class="doc-tag">Audit-safe. Sorted. Done.</p>
+        <div class="doc-stats">
+          <div><span class="mono">RECEIPTS</span><b>142</b></div>
+          <div><span class="mono">GST TOTAL</span><b>$1,284.40</b></div>
         </div>
-        <p>Tools nicked off the ute? Water through the shed? Pull a dated, itemised record of what you bought — with photos of the receipts — and lodge the claim without the hunt.</p>
-      </article>
-      <article class="pack">
-        <div class="pack-cover">
-          <span class="mono">PREPARED BY BETTY</span>
-          <h3>Tax Audit</h3>
-          <span class="pack-stripe"></span>
-        </div>
-        <p>If the tax man comes knocking, every claim is backed by a legible photo of the original receipt — sorted and ready to produce. Your PPE against the tax man.</p>
-      </article>
-      <article class="pack">
-        <div class="pack-cover">
-          <span class="mono">PREPARED BY BETTY</span>
-          <h3>Your Own Copy</h3>
-          <span class="pack-stripe"></span>
-        </div>
-        <p>Just want to see where the money went? An end-of-year summary — totals by category, every receipt in one tidy place, yours to keep whenever you ask.</p>
-      </article>
+        <span class="mono doc-sample">Sample &middot; sorted &amp; totalled</span>
+        <table class="doc-table">
+          <thead><tr><th>Supplier</th><th>Category</th><th>GST</th><th>Total</th></tr></thead>
+          <tbody>
+            <tr><td>Bunnings</td><td>Materials</td><td>4.51</td><td>49.65</td></tr>
+            <tr><td>Repco</td><td>Vehicle</td><td>4.62</td><td>50.85</td></tr>
+            <tr><td>Total Tools</td><td>Tools</td><td>28.99</td><td>319.00</td></tr>
+          </tbody>
+        </table>
+        <div class="doc-foot"><span class="mono">YOUR PPE AGAINST THE TAX MAN</span><span class="mono">MADE IN AUSTRALIA</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1314,7 +1352,7 @@
       { from: 'them', kind: 'sorted',  delay: 1300, time: '7:44', meta: {
           vendor: 'Bunnings Warehouse', date: '14 May 2026',
           category: 'Tools & Materials', total: '$211.90',
-          gst: '$19.26', deductible: '100%'
+          gst: '$19.26', deductible: '✓ Sorted'
       }},
       { from: 'me',   kind: 'receipt', delay: 1700, time: '12:08', meta: {
           vendor: 'SHELL COLES EXPRESS', date: 'Diesel · 14/05/26',
@@ -1325,7 +1363,7 @@
       { from: 'them', kind: 'sorted',  delay: 1200, time: '12:08', meta: {
           vendor: 'Shell Coles Express', date: '14 May 2026',
           category: 'Fuel (Logbook)', total: '$118.74',
-          gst: '$10.79', deductible: 'Tracked'
+          gst: '$10.79', deductible: '✓ Logged'
       }},
       { from: 'them', kind: 'text',   body: "Two sorted. Sheet's up to date. Knock off ya legend.",                    delay: 1500, time: '12:09' }
     ];
@@ -1339,7 +1377,7 @@
     function makeEncrypt() {
       var e = document.createElement('div');
       e.className = 'encrypt';
-      e.textContent = '🔒 End-to-end encrypted. Receipts only go to Betty.';
+      e.textContent = '🔒 Private and encrypted. We never sell or share your receipts.';
       return e;
     }
 
@@ -1365,7 +1403,7 @@
                  '<div class="gr"><span class="k">Category</span><span class="v">' + meta.category + '</span></div>' +
                  '<div class="gr"><span class="k">Total</span><span class="v">' + meta.total + '</span></div>' +
                  '<div class="gr"><span class="k">GST</span><span class="v">' + meta.gst + '</span></div>' +
-                 '<div class="gr full"><span class="k">Deductible</span><span class="v">' + meta.deductible + '</span></div>' +
+                 '<div class="gr full"><span class="k">Filed</span><span class="v">' + meta.deductible + '</span></div>' +
                '</div>' +
              '</div>';
     }
