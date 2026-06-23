@@ -76,7 +76,7 @@
     line-height: 0.92;
     color: var(--ink);
   }
-  h1 { font-size: clamp(56px, 8.4vw, 132px); }
+  h1 { font-size: clamp(50px, 7vw, 108px); }
   h2 { font-size: clamp(40px, 5.8vw, 88px); }
   h3 { font-size: clamp(22px, 2.2vw, 32px); letter-spacing: 0.01em; }
   .mono {
@@ -106,6 +106,7 @@
   nav.top .links a { color: #F2ECDF; }
   nav.top .links a:hover { color: var(--rust); text-decoration: none; }
   nav.top .btn { border-color: #F2ECDF; box-shadow: 3px 3px 0 rgba(0,0,0,0.45) !important; }
+  nav.top .links a.btn { color: #161617; }
   .brandmark { width: 30px; height: auto; flex: 0 0 30px; align-self: center; }
   .theme-toggle {
     background: transparent; border: 2px solid #F2ECDF; color: #F2ECDF;
@@ -173,7 +174,7 @@
   .hero { padding: 56px 0 80px; position: relative; overflow: hidden; }
   .hero .wrap {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 1.35fr 0.75fr;
     gap: 56px;
     align-items: end;
   }
@@ -192,7 +193,7 @@
     font-size: clamp(18px, 1.6vw, 22px);
     line-height: 1.45;
     margin-top: 28px;
-    max-width: 28ch;
+    max-width: 36ch;
     color: var(--ink-soft);
     font-weight: 500;
   }
@@ -680,7 +681,7 @@
   }
   body[data-theme="cream"] .marquee { background: var(--ink); color: var(--paper); }
   .marquee .track {
-    display: flex; gap: 40px;
+    display: flex; gap: 0;
     white-space: nowrap;
     animation: scroll 40s linear infinite;
     font-family: 'Anton', sans-serif;
@@ -807,7 +808,7 @@
   /* ===== PASS-2 FIXES + REDESIGNS ===== */
   /* phone chat mimics WhatsApp (always light) — pin its text dark regardless of site theme */
   .phone .msg.me, .phone .msg.them { color: #111b21; }
-  body[data-theme="dark"] .phone { box-shadow: 10px 10px 0 var(--rust); }
+  body[data-theme="dark"] .phone { border-color: #161617; box-shadow: 10px 10px 0 var(--ink); }
 
   /* VALUE STRIP — punchy stat row */
   .value-strip .vs-stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); }
@@ -828,8 +829,7 @@
   .pack-list li { display: flex; gap: 14px; font-weight: 600; font-size: 18px; }
   .pack-list li::before { content: "\2192"; color: var(--rust); font-weight: 800; }
   .pack-foot { margin-top: 24px; color: var(--ink-soft); font-weight: 500; }
-  .pack-doc { background: #161617; border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); color: #ECEAE4; }
-  body[data-theme="dark"] .pack-doc { box-shadow: 8px 8px 0 var(--rust); }
+  .pack-doc { background: #161617; border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); color: #ECEAE4; }
   .pack-doc .doc-head { display: flex; justify-content: space-between; align-items: flex-start; padding: 20px 22px 14px; }
   .pack-doc .doc-brand { display: flex; align-items: center; gap: 10px; }
   .pack-doc .doc-brand svg { width: 24px; height: auto; }
@@ -925,7 +925,6 @@
     <a class="brand" href="#">
       <svg class="brandmark" viewBox="0 0 56 50" aria-hidden="true"><path d="M8 5 H48 C51.3 5 54 7.7 54 11 V31 C54 34.3 51.3 37 48 37 H24 L13 46 V37 H8 C4.7 37 2 34.3 2 31 V11 C2 7.7 4.7 5 8 5 Z M22 12 H40 V29 L37.5 27 L35 29 L32.5 27 L30 29 L27.5 27 L25 29 L22 27 Z" fill="var(--accent)" fill-rule="evenodd"></path><rect x="26" y="16" width="10" height="1.8" rx="0.9" fill="var(--accent)"></rect><rect x="26" y="19.8" width="10" height="1.8" rx="0.9" fill="var(--accent)"></rect></svg>
       <span class="name">Done &amp; Deducted</span>
-      <span class="tag">YOUR PPE AGAINST THE TAX MAN</span>
     </a>
     <div class="nav-right">
       <div class="links">
@@ -999,7 +998,7 @@
       <h2>Straight up.</h2>
     </div>
     <div class="vs-stats">
-      <div class="vs-stat"><span class="big">1 photo</span><p>Snap a receipt, send it to Betty. That's the whole job.</p></div>
+      <div class="vs-stat"><span class="big">1 photo</span><p>Send Betty a photo of a receipt. That's the whole job.</p></div>
       <div class="vs-stat"><span class="big">~5 sec</span><p>Per receipt, then forget it &mdash; Betty does the filing.</p></div>
       <div class="vs-stat"><span class="big">$9<em>/mth</em></span><p>Less than a slab, and tax deductible. That's the lot &mdash; no tricks, no fine print.</p></div>
       <div class="vs-stat"><span class="big">Every $</span><p>You're owed, claimed back. Never lose a deduction to a faded docket.</p></div>
