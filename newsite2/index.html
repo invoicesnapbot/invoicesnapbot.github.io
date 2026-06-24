@@ -973,6 +973,14 @@
   .doc .docfoot { display: flex; justify-content: space-between; margin-top: 22px; }
   .doc .docfoot .mono { color: var(--rust); font-size: 9px; }
   @media (max-width: 820px) { .packsplit { grid-template-columns: 1fr; gap: 32px; } .doc { position: static; } }
+
+  /* ===== WHAT BETTY DOES (plain-English explainer) ===== */
+  .explainer-lead { font-weight: 800; font-size: clamp(23px, 2.7vw, 36px); line-height: 1.25; max-width: 26ch; margin-bottom: 40px; }
+  .explainer-lead b { color: var(--rust); }
+  .explainer-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; max-width: 980px; }
+  .explainer-list li { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; font-weight: 500; color: var(--ink-soft); font-size: 17px; padding: 18px 0; border-top: 1px solid var(--concrete-2); }
+  .explainer-list li::before { content: "\2192"; color: var(--rust); font-weight: 800; }
+  @media (max-width: 760px) { .explainer-list { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body data-theme="rust">
@@ -1060,20 +1068,40 @@
     </div>
     <div class="deal-grid">
       <div class="card cost">
-        <span class="lbl mono">What it costs</span>
+        <span class="lbl mono">You give us</span>
         <div class="big">3 sec<span>to send one photo of a receipt</span></div>
         <div class="price"><b>$9</b><span class="per">/ month · tax deductible</span></div>
       </div>
       <div class="card get">
-        <span class="lbl mono">What you get</span>
+        <span class="lbl mono">We give you</span>
         <ul>
-          <li><span class="n">01</span><h3>Money back in your pocket — not the tax man's</h3></li>
-          <li><span class="n">02</span><h3>Easy tracking of business expenses</h3></li>
-          <li><span class="n">03</span><h3>Audit-safe records that can't get wrecked or lost</h3></li>
+          <li><span class="n">01</span><h3>Every single cent you're owed by the tax man.</h3></li>
+          <li><span class="n">02</span><h3>Organised proof to keep him off your back in future.</h3></li>
         </ul>
       </div>
     </div>
     <p class="dealfoot">We'll be straight with you: it's <b>$9 a month</b>. In return you never lose a deduction, never touch a spreadsheet, and never dig through the glovebox at tax time. No tricks, no fine print.</p>
+  </div>
+</section>
+
+<!-- WHAT BETTY DOES (plain-English explainer) -->
+<section class="explainer">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="nbr"></div>
+      <div class="label">
+        <span class="mono">In plain English</span>
+        <h2>What Betty does.</h2>
+      </div>
+    </div>
+    <p class="explainer-lead">Betty tracks your expenses, keeps your records, and gives you tax-ready reports — <b>for the price of a Big Mac and the effort of a photo.</b></p>
+    <ul class="explainer-list">
+      <li>Send her a receipt — WhatsApp, Discord or email.</li>
+      <li>She sets up a spreadsheet for you and logs every receipt into it: date, supplier, amount, GST, the lot.</li>
+      <li>Every receipt gets a clear digital copy, kept and attached — proof, organised and searchable, all in one place.</li>
+      <li>The tax office wants years of records? That's the whole point — saved and ready when you need them.</li>
+      <li>Seconds per receipt, and you can send a pile at once.</li>
+    </ul>
   </div>
 </section>
 
