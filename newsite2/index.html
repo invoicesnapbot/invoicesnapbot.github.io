@@ -919,9 +919,6 @@
   @media (max-width: 600px) { .packs .pack-grid { grid-template-columns: 1fr; } .pricing .tiers { grid-template-columns: 1fr; } }
 
   /* ===== CLAUDE DESIGN: value-strip (deal) + packs (ported 2026-06-24, namespaced) ===== */
-  .cd-sec { border-top: 2px solid var(--ink); padding-top: 22px; margin-bottom: 40px; }
-  .cd-sec .mono { color: var(--ink-soft); display: block; margin-bottom: 10px; }
-  .cd-sec h2 { font-size: clamp(40px, 5.4vw, 76px); }
 
   .deal-grid { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 24px; align-items: stretch; }
   .deal .card { border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 36px 32px; display: flex; flex-direction: column; }
@@ -1054,9 +1051,12 @@
 <!-- VALUE STRIP (Claude Design) -->
 <section class="deal">
   <div class="wrap">
-    <div class="cd-sec">
-      <span class="mono">What you get · what it costs</span>
-      <h2>Here's the deal. Straight up.</h2>
+    <div class="sec-head">
+      <div class="nbr"></div>
+      <div class="label">
+        <span class="mono">What you get · what it costs</span>
+        <h2>Here's the deal. Straight up.</h2>
+      </div>
     </div>
     <div class="deal-grid">
       <div class="card cost">
@@ -1234,9 +1234,12 @@
 <!-- PACKS (Claude Design) -->
 <section id="packs" class="packs">
   <div class="wrap">
-    <div class="cd-sec">
-      <span class="mono">Tax time</span>
-      <h2>One pack for every job.</h2>
+    <div class="sec-head">
+      <div class="nbr"></div>
+      <div class="label">
+        <span class="mono">Tax time</span>
+        <h2>One pack for every job.</h2>
+      </div>
     </div>
     <div class="packsplit">
       <div class="packlist" id="packlist">
