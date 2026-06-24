@@ -976,7 +976,7 @@
 
     /* ===== WHAT BETTY DOES (Claude Design explainer, ported) ===== */
   .ex-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 64px; align-items: start; }
-  .ex-lead { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(30px, 3.4vw, 52px); line-height: 1.0; letter-spacing: .005em; position: sticky; top: 100px; color: var(--ink); }
+  .ex-lead { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(30px, 3.4vw, 52px); line-height: 1.0; letter-spacing: .005em; color: var(--ink); }
   .ex-lead b { color: var(--rust); font-weight: 400; }
   .ex-lead .ex-small { display: block; margin-top: 22px; font-family: 'Work Sans', sans-serif; text-transform: none; font-size: 17px; font-weight: 600; color: var(--ink-soft); line-height: 1.5; max-width: 34ch; letter-spacing: 0; }
   .ex-steps { list-style: none; }
@@ -1176,59 +1176,6 @@
   </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing" class="pricing">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="nbr"></div>
-      <div class="label">
-        <span class="mono">Pricing</span>
-        <h2>Two plans. Pick one.</h2>
-        <p class="lead">Less than a slab a month. Tax deductible, obviously.</p>
-      </div>
-    </div>
-
-    <div class="price-toggle" role="group" aria-label="Billing cycle">
-      <button class="pt-btn active" data-cycle="monthly" type="button">Monthly</button>
-      <button class="pt-btn" data-cycle="yearly" type="button">Yearly · save 17%</button>
-    </div>
-
-    <div class="tiers">
-      <!-- FREE -->
-      <div class="tier">
-        <div class="tier-name">Free</div>
-        <p class="desc">For getting started. No card up front.</p>
-        <div class="price"><span class="dol">$</span>0<span class="per">/MONTH</span></div>
-        <ul>
-          <li><span class="tick"></span>A set number of receipts each month</li>
-          <li><span class="tick"></span>Read &amp; sorted automatically</li>
-          <li><span class="tick"></span>Your tidy spreadsheet, shared to you</li>
-          <li><span class="tick"></span>Category &amp; tax tagging</li>
-        </ul>
-        <a class="btn ghost" href="#cta">Start free</a>
-      </div>
-
-      <!-- UNLIMITED (FEATURED) -->
-      <div class="tier featured">
-        <div class="badge">MOST PICK THIS</div>
-        <div class="tier-name">Unlimited</div>
-        <p class="desc">For the working sole trader. Everything, no limits.</p>
-        <div class="price"><span class="dol">$</span><span id="paid-amount">9</span><span class="per" id="paid-per">/MONTH AUD</span></div>
-        <ul>
-          <li><span class="tick"></span>Unlimited receipts</li>
-          <li><span class="tick"></span>Photo, PDF or document</li>
-          <li><span class="tick"></span>WhatsApp, Discord &amp; email</li>
-          <li><span class="tick"></span>Tax-time packs — accountant, insurance, audit</li>
-          <li><span class="tick"></span>A real human if Betty stuffs up</li>
-        </ul>
-        <a class="btn" href="#cta" style="background: var(--ink); color: var(--paper);">Go unlimited</a>
-      </div>
-    </div>
-
-    <p class="mono" style="margin-top: 28px; color: var(--ink-soft);">PRICES IN AUD · NO SETUP FEE · NO PER-USER FEE</p>
-  </div>
-</section>
-
 <!-- PACKS (Claude Design) -->
 <section id="packs" class="packs">
   <div class="wrap">
@@ -1287,6 +1234,59 @@
   </div>
 </section>
 
+<!-- PRICING -->
+<section id="pricing" class="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="nbr"></div>
+      <div class="label">
+        <span class="mono">Pricing</span>
+        <h2>Two plans. Pick one.</h2>
+        <p class="lead">Less than a slab a month. Tax deductible, obviously.</p>
+      </div>
+    </div>
+
+    <div class="price-toggle" role="group" aria-label="Billing cycle">
+      <button class="pt-btn active" data-cycle="monthly" type="button">Monthly</button>
+      <button class="pt-btn" data-cycle="yearly" type="button">Yearly · save 17%</button>
+    </div>
+
+    <div class="tiers">
+      <!-- FREE -->
+      <div class="tier">
+        <div class="tier-name">Free</div>
+        <p class="desc">For getting started. No card up front.</p>
+        <div class="price"><span class="dol">$</span>0<span class="per">/MONTH</span></div>
+        <ul>
+          <li><span class="tick"></span>A set number of receipts each month</li>
+          <li><span class="tick"></span>Read &amp; sorted automatically</li>
+          <li><span class="tick"></span>Your tidy spreadsheet, shared to you</li>
+          <li><span class="tick"></span>Category &amp; tax tagging</li>
+        </ul>
+        <a class="btn ghost" href="#cta">Start free</a>
+      </div>
+
+      <!-- UNLIMITED (FEATURED) -->
+      <div class="tier featured">
+        <div class="badge">MOST PICK THIS</div>
+        <div class="tier-name">Unlimited</div>
+        <p class="desc">For the working sole trader. Everything, no limits.</p>
+        <div class="price"><span class="dol">$</span><span id="paid-amount">9</span><span class="per" id="paid-per">/MONTH AUD</span></div>
+        <ul>
+          <li><span class="tick"></span>Unlimited receipts</li>
+          <li><span class="tick"></span>Photo, PDF or document</li>
+          <li><span class="tick"></span>WhatsApp, Discord &amp; email</li>
+          <li><span class="tick"></span>Tax-time packs — accountant, insurance, audit</li>
+          <li><span class="tick"></span>A real human if Betty stuffs up</li>
+        </ul>
+        <a class="btn" href="#cta" style="background: var(--ink); color: var(--paper);">Go unlimited</a>
+      </div>
+    </div>
+
+    <p class="mono" style="margin-top: 28px; color: var(--ink-soft);">PRICES IN AUD · NO SETUP FEE · NO PER-USER FEE</p>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section id="faq">
   <div class="wrap">
@@ -1301,7 +1301,19 @@
     <div class="faq-list">
       <details class="faq-item">
         <summary class="faq-q">Is this bullshit?<span class="ico" aria-hidden="true"></span></summary>
-        <div class="faq-a">Nah. It's one bloke (Brendon — g'day) and an AI (Betty), doing the lot. I hate paperwork and finances, so when the AI boom hit I built an AI to do mine — and it got good enough that I'm sharing it as a little side hustle. No body corporate, no growth team trying to milk every cent out of you. Just me and the bot.</div>
+        <div class="faq-a">No, it's not. I am 1 bloke (Brendon) + AI (Betty) doing everything. I hate doing finances and paperwork. The AI boom happened and I made an AI to do my paperwork and finances for me. Now it's good enough for me to share and make a side hustle out of it.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Is my data actually mine?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">Your data's yours. Betty creates you a spreadsheet of every receipt — yours to open, sort and download whenever. Cancel and you keep every record. We never sell it, share it, or train AI on it. Full stop.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Am I locked into a contract?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">Cancel anytime. Message Betty saying CANCEL. That's the cancellation flow. No retention specialist. No 12-month lock-in. No BS.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Is it in a format my accountant can use?<span class="ico" aria-hidden="true"></span></summary>
+        <div class="faq-a">Your sheet matches the categories your accountant already uses. Hand it over at tax time. Done. They'll thank you instead of charging you to type it in.</div>
       </details>
       <details class="faq-item">
         <summary class="faq-q">Is Betty actually a person?<span class="ico" aria-hidden="true"></span></summary>
