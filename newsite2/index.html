@@ -974,13 +974,18 @@
   .doc .docfoot .mono { color: var(--rust); font-size: 9px; }
   @media (max-width: 820px) { .packsplit { grid-template-columns: 1fr; gap: 32px; } .doc { position: static; } }
 
-  /* ===== WHAT BETTY DOES (plain-English explainer) ===== */
-  .explainer-lead { font-weight: 800; font-size: clamp(23px, 2.7vw, 36px); line-height: 1.25; max-width: 26ch; margin-bottom: 40px; }
-  .explainer-lead b { color: var(--rust); }
-  .explainer-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; max-width: 980px; }
-  .explainer-list li { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; font-weight: 500; color: var(--ink-soft); font-size: 17px; padding: 18px 0; border-top: 1px solid var(--concrete-2); }
-  .explainer-list li::before { content: "\2192"; color: var(--rust); font-weight: 800; }
-  @media (max-width: 760px) { .explainer-list { grid-template-columns: 1fr; } }
+    /* ===== WHAT BETTY DOES (Claude Design explainer, ported) ===== */
+  .ex-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 64px; align-items: start; }
+  .ex-lead { font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(30px, 3.4vw, 52px); line-height: 1.0; letter-spacing: .005em; position: sticky; top: 100px; color: var(--ink); }
+  .ex-lead b { color: var(--rust); font-weight: 400; }
+  .ex-lead .ex-small { display: block; margin-top: 22px; font-family: 'Work Sans', sans-serif; text-transform: none; font-size: 17px; font-weight: 600; color: var(--ink-soft); line-height: 1.5; max-width: 34ch; letter-spacing: 0; }
+  .ex-steps { list-style: none; }
+  .ex-steps li { display: grid; grid-template-columns: auto 1fr; gap: 24px; padding: 26px 0; border-top: 1px solid var(--concrete-2); }
+  .ex-steps li:first-child { border-top: none; padding-top: 0; }
+  .ex-steps .num { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; color: var(--rust); padding-top: 7px; }
+  .ex-steps h3 { font-size: clamp(21px, 2vw, 27px); color: var(--ink); }
+  .ex-steps p { color: var(--ink-soft); font-weight: 500; margin-top: 9px; max-width: 44ch; }
+  @media (max-width: 860px) { .ex-grid { grid-template-columns: 1fr; gap: 44px; } .ex-lead { position: static; } }
 </style>
 </head>
 <body data-theme="rust">
@@ -1084,7 +1089,7 @@
   </div>
 </section>
 
-<!-- WHAT BETTY DOES (plain-English explainer) -->
+<!-- WHAT BETTY DOES (Claude Design explainer, ported) -->
 <section class="explainer">
   <div class="wrap">
     <div class="sec-head">
@@ -1094,14 +1099,16 @@
         <h2>What Betty does.</h2>
       </div>
     </div>
-    <p class="explainer-lead">Betty tracks your expenses, keeps your records, and gives you tax-ready reports — <b>for the price of a Big Mac and the effort of a photo.</b></p>
-    <ul class="explainer-list">
-      <li>Send her a receipt — WhatsApp, Discord or email.</li>
-      <li>She sets up a spreadsheet for you and logs every receipt into it: date, supplier, amount, GST, the lot.</li>
-      <li>Every receipt gets a clear digital copy, kept and attached — proof, organised and searchable, all in one place.</li>
-      <li>The tax office wants years of records? That's the whole point — saved and ready when you need them.</li>
-      <li>Seconds per receipt, and you can send a pile at once.</li>
-    </ul>
+    <div class="ex-grid">
+      <p class="ex-lead">Tracks your expenses, keeps your records, hands you tax-ready reports — <b>for the price of a Big Mac and the effort of a photo.</b><span class="ex-small">No app to learn, no spreadsheet to wrangle. You take a photo; Betty does the rest.</span></p>
+      <ol class="ex-steps">
+        <li><span class="num">01</span><div><h3>Send her a receipt</h3><p>WhatsApp, Discord or email — whatever you already use.</p></div></li>
+        <li><span class="num">02</span><div><h3>She sets up your spreadsheet and logs it</h3><p>Date, supplier, amount, tax — the lot — into a sheet she makes and keeps for you.</p></div></li>
+        <li><span class="num">03</span><div><h3>Every receipt gets a clear digital copy</h3><p>Kept and attached — proof, organised and searchable, all in one place.</p></div></li>
+        <li><span class="num">04</span><div><h3>Tax time? Here's your pack</h3><p>A finished pack ready for your accountant, an insurance claim, or an audit — and every receipt kept for years.</p></div></li>
+        <li><span class="num">05</span><div><h3>Send receipts in bulk</h3><p>Up to 10 at a time on the free plan, 50 at a time on paid.</p></div></li>
+      </ol>
+    </div>
   </div>
 </section>
 
