@@ -986,6 +986,7 @@
   .ex-steps h3 { font-size: clamp(21px, 2vw, 27px); color: var(--ink); }
   .ex-steps p { color: var(--ink-soft); font-weight: 500; margin-top: 9px; max-width: 44ch; }
   @media (max-width: 860px) { .ex-grid { grid-template-columns: 1fr; gap: 44px; } .ex-lead { position: static; } }
+  .tier.featured .desc { color: var(--accent-ink); opacity: 0.85; }
 </style>
 </head>
 <body data-theme="rust">
@@ -1270,8 +1271,8 @@
       <div class="tier featured">
         <div class="badge">MOST PICK THIS</div>
         <div class="tier-name">Unlimited</div>
-        <p class="desc">For when the receipts pile up.</p>
-        <div class="price"><span class="dol">$</span><span id="paid-amount">9</span><span class="per" id="paid-per">/MONTH AUD</span></div>
+        <p class="desc">For regular users and those with a backlog to work through.</p>
+        <div class="price"><span class="dol">$</span><span id="paid-amount">9</span><span class="per" id="paid-per">/MONTH</span></div>
         <ul>
           <li><span class="tick"></span>Unlimited receipts — no monthly cap</li>
           <li><span class="tick"></span>Read, sorted and filed for you</li>
@@ -1282,7 +1283,6 @@
       </div>
     </div>
 
-    <p class="mono" style="margin-top: 28px; color: var(--ink-soft);">PRICES IN AUD · NO SETUP FEE · NO PER-USER FEE</p>
   </div>
 </section>
 
@@ -1607,9 +1607,9 @@
         btns.forEach(function (x) { x.classList.remove('active'); });
         b.classList.add('active');
         if (b.getAttribute('data-cycle') === 'yearly') {
-          amt.textContent = '90'; per.textContent = '/YEAR AUD';
+          amt.textContent = '90'; per.textContent = '/YEAR';
         } else {
-          amt.textContent = '9'; per.textContent = '/MONTH AUD';
+          amt.textContent = '9'; per.textContent = '/MONTH';
         }
       });
     });
