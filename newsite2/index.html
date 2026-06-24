@@ -917,6 +917,65 @@
   @media (max-width: 980px) { .packs .pack-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 760px) { .value-strip .vs-grid { grid-template-columns: 1fr; } }
   @media (max-width: 600px) { .packs .pack-grid { grid-template-columns: 1fr; } .pricing .tiers { grid-template-columns: 1fr; } }
+
+  /* ===== CLAUDE DESIGN: value-strip (deal) + packs (ported 2026-06-24, namespaced) ===== */
+  .cd-sec { border-top: 2px solid var(--ink); padding-top: 22px; margin-bottom: 40px; }
+  .cd-sec .mono { color: var(--ink-soft); display: block; margin-bottom: 10px; }
+  .cd-sec h2 { font-size: clamp(40px, 5.4vw, 76px); }
+
+  .deal-grid { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 24px; align-items: stretch; }
+  .deal .card { border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 36px 32px; display: flex; flex-direction: column; }
+  .deal .cost .lbl { color: var(--rust); margin-bottom: auto; }
+  .deal .cost .big { font-family: 'Anton', sans-serif; font-size: clamp(58px, 7vw, 96px); line-height: .82; text-transform: uppercase; margin-top: 28px; }
+  .deal .cost .big span { display: block; font-size: .24em; color: var(--ink-soft); letter-spacing: .01em; margin-top: 12px; font-family: 'Work Sans', sans-serif; font-weight: 600; text-transform: none; line-height: 1.3; }
+  .deal .cost .price { margin-top: 28px; display: flex; align-items: baseline; gap: 10px; border-top: 2px dashed var(--concrete); padding-top: 22px; }
+  .deal .cost .price b { font-family: 'Anton', sans-serif; font-weight: 400; font-size: 56px; line-height: 1; }
+  .deal .cost .price .per { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; color: var(--ink-soft); }
+  .deal .get { background: var(--ink); color: #F2ECDF; }
+  body[data-theme="dark"] .deal .get { background: #1C1C1F; }
+  .deal .get .lbl { color: var(--accent); margin-bottom: 26px; }
+  body[data-theme="dark"] .deal .get .lbl { color: var(--rust); }
+  .deal .get ul { list-style: none; display: flex; flex-direction: column; gap: 24px; }
+  .deal .get li { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; }
+  .deal .get li .n { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 700; font-size: 13px; padding-top: 8px; }
+  body[data-theme="dark"] .deal .get li .n { color: var(--rust); }
+  .deal .get li h3 { color: #F2ECDF; font-size: clamp(24px, 2.4vw, 34px); }
+  .dealfoot { margin-top: 26px; font-weight: 600; color: var(--ink-soft); max-width: 70ch; }
+  .dealfoot b { color: var(--ink); }
+  @media (max-width: 820px) { .deal-grid { grid-template-columns: 1fr; } }
+
+  .packsplit { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 48px; align-items: start; }
+  .packlist { display: flex; flex-direction: column; border-top: 2px solid var(--ink); }
+  .packlist .item { border-bottom: 2px solid var(--ink); padding: 24px 6px; cursor: pointer; display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: baseline; transition: background .15s, padding .15s; }
+  .packlist .item .num { font-family: 'JetBrains Mono', monospace; color: var(--concrete); font-weight: 700; font-size: 13px; }
+  .packlist .item h3 { font-size: clamp(22px, 2.2vw, 30px); transition: color .15s; }
+  .packlist .item p { grid-column: 2; color: var(--ink-soft); font-weight: 500; font-size: 15px; margin-top: 6px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .25s ease, opacity .2s, margin .2s; }
+  .packlist .item.active { padding-left: 18px; }
+  .packlist .item.active .num { color: var(--rust); }
+  .packlist .item.active h3 { color: var(--rust); }
+  .packlist .item.active p { max-height: 90px; opacity: 1; }
+  .doc { border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #161617; color: #ECEAE4; position: sticky; top: 24px; }
+  .doc .head { display: flex; justify-content: space-between; align-items: flex-start; padding: 20px 22px 14px; }
+  .doc .docbrand { font-family: 'Anton', sans-serif; font-size: 17px; letter-spacing: .02em; display: flex; gap: 9px; align-items: center; color: #ECEAE4; }
+  .doc .docbrand .m { width: 22px; height: 18px; border: 2px solid var(--rust); border-radius: 3px 3px 3px 0; flex: 0 0 22px; }
+  .doc .prep { text-align: right; }
+  .doc .prep .mono { color: #8A8880; font-size: 9px; display: block; }
+  .doc .stripe { height: 14px; background: repeating-linear-gradient(-45deg, var(--rust) 0 12px, #161617 12px 24px); }
+  .doc .docbody { padding: 26px 24px 24px; }
+  .doc .fy { color: var(--rust); display: block; font-size: 10px; }
+  .doc .title { color: #ECEAE4; font-size: clamp(32px, 4vw, 48px); line-height: .86; margin-top: 8px; }
+  .doc .tag { color: #B5B2AA; margin-top: 12px; font-weight: 500; min-height: 1.5em; }
+  .doc .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 26px; padding-top: 18px; border-top: 1px solid #34343A; }
+  .doc .stats .mono { color: #8A8880; font-size: 9px; display: block; margin-bottom: 6px; }
+  .doc .stats b { font-family: 'Anton', sans-serif; font-weight: 400; font-size: 26px; }
+  .doc table { width: 100%; border-collapse: collapse; margin-top: 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+  .doc th { text-align: left; color: #8A8880; font-size: 9px; letter-spacing: .06em; padding-bottom: 8px; border-bottom: 1px solid #34343A; }
+  .doc th:nth-child(n+3), .doc td:nth-child(n+3) { text-align: right; }
+  .doc td { padding: 9px 0; border-bottom: 1px solid #232327; color: #ECEAE4; }
+  .doc td:nth-child(2) { color: var(--rust); }
+  .doc .docfoot { display: flex; justify-content: space-between; margin-top: 22px; }
+  .doc .docfoot .mono { color: var(--rust); font-size: 9px; }
+  @media (max-width: 820px) { .packsplit { grid-template-columns: 1fr; gap: 32px; } .doc { position: static; } }
 </style>
 </head>
 <body data-theme="rust">
@@ -992,19 +1051,29 @@
   </div>
 </div>
 
-<!-- VALUE STRIP — what you get / what it costs (punchy, up top) -->
-<section class="value-strip">
+<!-- VALUE STRIP (Claude Design) -->
+<section class="deal">
   <div class="wrap">
-    <div class="vs-head">
+    <div class="cd-sec">
       <span class="mono">What you get · what it costs</span>
-      <h2>Straight up.</h2>
+      <h2>Here's the deal. Straight up.</h2>
     </div>
-    <div class="vs-stats">
-      <div class="vs-stat"><span class="big">1 photo</span><p>Send Betty a photo of a receipt. That's the whole job.</p></div>
-      <div class="vs-stat"><span class="big">~5 sec</span><p>Per receipt, then forget it &mdash; Betty does the filing.</p></div>
-      <div class="vs-stat"><span class="big">$9<em>/mth</em></span><p>Less than a slab, and tax deductible. That's the lot &mdash; no tricks, no fine print.</p></div>
-      <div class="vs-stat"><span class="big">Every $</span><p>You're owed, claimed back. Never lose a deduction to a faded docket.</p></div>
+    <div class="deal-grid">
+      <div class="card cost">
+        <span class="lbl mono">What it costs you</span>
+        <div class="big">3 sec<span>to send one photo of a receipt</span></div>
+        <div class="price"><b>$9</b><span class="per">/ month · tax deductible</span></div>
+      </div>
+      <div class="card get">
+        <span class="lbl mono">What you get back</span>
+        <ul>
+          <li><span class="n">01</span><h3>Money back in your pocket — not the tax man's</h3></li>
+          <li><span class="n">02</span><h3>Your business expense tracking, sorted</h3></li>
+          <li><span class="n">03</span><h3>Audit-safe records that can't get wrecked or lost</h3></li>
+        </ul>
+      </div>
     </div>
+    <p class="dealfoot">We'll be straight with you: it's <b>$9 a month</b>, and yeah, we're after it. In return you never lose a deduction, never touch a spreadsheet, and never dig through the glovebox at tax time. No tricks, no fine print.</p>
   </div>
 </section>
 
@@ -1162,47 +1231,56 @@
   </div>
 </section>
 
-<!-- PACKS -->
+<!-- PACKS (Claude Design) -->
 <section id="packs" class="packs">
-  <div class="wrap pack-split">
-    <div class="pack-copy">
-      <span class="mono">Your tax-time pack</span>
-      <h2>One pack. Hand it straight to your accountant.</h2>
-      <ul class="pack-list">
-        <li>A clean, totalled summary of the year</li>
-        <li>A searchable record of every receipt, linked to its photo</li>
-        <li>The receipt images themselves</li>
-        <li>Ready-to-import files for Xero &amp; QuickBooks</li>
-      </ul>
-      <p class="pack-foot">Use it for tax time, an insurance claim, or an audit. All sorted, all totalled, all backed by the photo.</p>
+  <div class="wrap">
+    <div class="cd-sec">
+      <span class="mono">Tax time</span>
+      <h2>One pack for every job.</h2>
     </div>
-    <div class="pack-doc" aria-hidden="true">
-      <div class="doc-head">
-        <div class="doc-brand">
-          <svg viewBox="0 0 56 50"><path d="M8 5 H48 C51.3 5 54 7.7 54 11 V31 C54 34.3 51.3 37 48 37 H24 L13 46 V37 H8 C4.7 37 2 34.3 2 31 V11 C2 7.7 4.7 5 8 5 Z M22 12 H40 V29 L37.5 27 L35 29 L32.5 27 L30 29 L27.5 27 L25 29 L22 27 Z" fill="var(--rust)" fill-rule="evenodd"></path></svg>
-          <span>DONE &amp; DEDUCTED</span>
+    <div class="packsplit">
+      <div class="packlist" id="packlist">
+        <div class="item active" data-pack="0">
+          <span class="num">01</span><h3>Accountant &amp; Bookkeeper</h3>
+          <p>The clean handover — every expense sorted, categorised and totalled, receipts attached. They thank you instead of charging you to type it in.</p>
         </div>
-        <div class="doc-prep"><span class="mono">PREPARED BY BETTY</span><span class="mono">22 JUN 2026</span></div>
+        <div class="item" data-pack="1">
+          <span class="num">02</span><h3>Insurance Claim</h3>
+          <p>Tools nicked off the ute? A dated, itemised record of what you bought, with the photos — lodge the claim without the hunt.</p>
+        </div>
+        <div class="item" data-pack="2">
+          <span class="num">03</span><h3>Tax Audit</h3>
+          <p>If the tax man comes knocking, every claim is backed by a legible photo of the receipt — sorted and ready to produce.</p>
+        </div>
+        <div class="item" data-pack="3">
+          <span class="num">04</span><h3>Your Own Copy</h3>
+          <p>Just want to see where the money went? Your year in one tidy place — totals by category, every receipt to hand.</p>
+        </div>
       </div>
-      <div class="doc-stripe"></div>
-      <div class="doc-body">
-        <span class="mono doc-fy">FY 2025&ndash;26 &middot; PACK 01</span>
-        <h3 class="doc-title">EXPENSE<br>RECORDS</h3>
-        <p class="doc-tag">Audit-safe. Sorted. Done.</p>
-        <div class="doc-stats">
-          <div><span class="mono">RECEIPTS</span><b>142</b></div>
-          <div><span class="mono">GST TOTAL</span><b>$1,284.40</b></div>
+      <div class="doc" id="doc">
+        <div class="head">
+          <div class="docbrand"><span class="m"></span> DONE &amp; DEDUCTED</div>
+          <div class="prep"><span class="mono">PREPARED BY BETTY</span><span class="mono">FY 2025–26</span></div>
         </div>
-        <span class="mono doc-sample">Sample &middot; sorted &amp; totalled</span>
-        <table class="doc-table">
-          <thead><tr><th>Supplier</th><th>Category</th><th>GST</th><th>Total</th></tr></thead>
-          <tbody>
-            <tr><td>Bunnings</td><td>Materials</td><td>4.51</td><td>49.65</td></tr>
-            <tr><td>Repco</td><td>Vehicle</td><td>4.62</td><td>50.85</td></tr>
-            <tr><td>Total Tools</td><td>Tools</td><td>28.99</td><td>319.00</td></tr>
-          </tbody>
-        </table>
-        <div class="doc-foot"><span class="mono">YOUR PPE AGAINST THE TAX MAN</span><span class="mono">MADE IN AUSTRALIA</span></div>
+        <div class="stripe"></div>
+        <div class="docbody">
+          <span class="fy mono" id="d-fy">PACK 01 · ACCOUNTANT</span>
+          <h2 class="title" id="d-title">EXPENSE RECORDS</h2>
+          <p class="tag" id="d-tag">Sorted, totalled, audit-safe. Hand it straight over.</p>
+          <div class="stats">
+            <div><span class="mono">RECEIPTS</span><b>142</b></div>
+            <div><span class="mono">GST TOTAL</span><b>$1,284.40</b></div>
+          </div>
+          <table>
+            <thead><tr><th>Supplier</th><th>Category</th><th>GST</th><th>Total</th></tr></thead>
+            <tbody>
+              <tr><td>Bunnings</td><td>Materials</td><td>4.51</td><td>49.65</td></tr>
+              <tr><td>Repco</td><td>Vehicle</td><td>4.62</td><td>50.85</td></tr>
+              <tr><td>Total Tools</td><td>Tools</td><td>28.99</td><td>319.00</td></tr>
+            </tbody>
+          </table>
+          <div class="docfoot"><span class="mono">YOUR PPE AGAINST THE TAX MAN</span><span class="mono">MADE IN AUSTRALIA</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1522,5 +1600,27 @@
   })();
 </script>
 
+<script>
+  // pack preview swap (Claude Design packs)
+  (function () {
+    var packs = [
+      { fy: 'PACK 01 · ACCOUNTANT', title: 'EXPENSE RECORDS', tag: 'Sorted, totalled, audit-safe. Hand it straight over.' },
+      { fy: 'PACK 02 · INSURANCE', title: 'ASSET &amp; PURCHASE RECORD', tag: 'Dated, itemised, photo-backed — ready to lodge.' },
+      { fy: 'PACK 03 · AUDIT', title: 'AUDIT TRAIL', tag: 'Every claim backed by the original receipt photo.' },
+      { fy: 'YOUR COPY · FY 2025–26', title: 'YEAR IN REVIEW', tag: 'Where every dollar went, totalled by category.' }
+    ];
+    var items = document.querySelectorAll('#packlist .item');
+    var fy = document.getElementById('d-fy'), title = document.getElementById('d-title'), tag = document.getElementById('d-tag');
+    if (!items.length || !title) return;
+    function show(i) {
+      items.forEach(function (el, n) { el.classList.toggle('active', n === i); });
+      fy.textContent = packs[i].fy; title.innerHTML = packs[i].title; tag.innerHTML = packs[i].tag;
+    }
+    items.forEach(function (el, i) {
+      el.addEventListener('mouseenter', function () { show(i); });
+      el.addEventListener('click', function () { show(i); });
+    });
+  })();
+</script>
 </body>
 </html>
